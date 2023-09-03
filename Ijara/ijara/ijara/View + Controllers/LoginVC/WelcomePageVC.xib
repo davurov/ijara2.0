@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomePageVC" customModule="ijara" customModuleProvider="target">
+            <connections>
+                <outlet property="introLbl" destination="dRE-CV-wmc" id="snq-MT-rHa"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bulgari Resort Bali, Uluwatu, Indonesia_ Luxury Hotel Review by TravelPlusStyle 1" translatesAutoresizingMaskIntoConstraints="NO" id="jBs-nO-Db3">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" red="0.01176470611" green="0.066666662690000003" blue="0.090196087960000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siz uchun ijaraga uy, dacha topamiz." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRE-CV-wmc">
+                    <rect key="frame" x="20" y="109" width="353" height="81.333333333333314"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="dRE-CV-wmc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="6iB-Xw-xbn"/>
+                <constraint firstAttribute="trailing" secondItem="dRE-CV-wmc" secondAttribute="trailing" constant="20" id="GPj-Il-XbN"/>
+                <constraint firstItem="jBs-nO-Db3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Zrh-bq-JKl"/>
+                <constraint firstAttribute="bottom" secondItem="jBs-nO-Db3" secondAttribute="bottom" id="abj-gG-A5z"/>
+                <constraint firstItem="dRE-CV-wmc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="clZ-T7-LtN"/>
+                <constraint firstItem="jBs-nO-Db3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="g64-IC-bgF"/>
+                <constraint firstItem="jBs-nO-Db3" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="hXx-gH-JFF"/>
+            </constraints>
+            <point key="canvasLocation" x="136.64122137404578" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Bulgari Resort Bali, Uluwatu, Indonesia_ Luxury Hotel Review by TravelPlusStyle 1" width="414" height="515"/>
+    </resources>
+</document>
