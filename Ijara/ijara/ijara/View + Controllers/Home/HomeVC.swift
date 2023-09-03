@@ -21,6 +21,9 @@ class HomeVC: UIViewController {
     @IBOutlet weak var topContainer: UIView!
     @IBOutlet weak var filterBtn: UIButton!
     
+    
+    @IBOutlet var topViews: [UIView]!
+    
     var scrollFlag = false
     
     // temporary
@@ -73,6 +76,17 @@ class HomeVC: UIViewController {
         
         setupSearchTextField()
         
+        for i in 0..<topViews.count {
+            topViews[i].clipsToBounds = true
+            topViews[i].layer.cornerRadius = 16
+            
+            topViews[i].layer.masksToBounds = false
+            
+            topViews[i].layer.shadowColor = UIColor.lightGray.cgColor
+            topViews[i].layer.shadowRadius = 6
+            topViews[i].layer.shadowOffset = CGSize(width: 6, height: 6)
+            topViews[i].layer.shadowOpacity = 0.6
+        }
     }
     
     func setupColView() {
