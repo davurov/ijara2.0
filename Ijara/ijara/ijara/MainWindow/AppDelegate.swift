@@ -35,6 +35,8 @@ var window: UIWindow?
         
         API.getProducts { result in
             if let result = result {
+                guard !result.isEmpty else {return}
+                
                 let encoded = JSONEncoder()
                 
                 if let encoded = try? encoded.encode(result) {

@@ -221,7 +221,11 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             cell.nameLbl.text = houseDM[indexPath.row].name
             cell.pirceLbl.text = houseDM[indexPath.row].workingdays + "/" + " " + houseDM[indexPath.row].weekends + "so'm"
             cell.locationLbl.text = houseDM[indexPath.row].province
+            cell.isVerified(v: houseDM[indexPath.row].approved, alco: houseDM[indexPath.row].alcohol, typeId: houseDM[indexPath.row].companylist, pool: houseDM[indexPath.row].swimmingpool)
             
+            if houseDM[indexPath.row].name == "Hasan husan" {
+                print(houseDM)
+            }
             return cell
         }
         

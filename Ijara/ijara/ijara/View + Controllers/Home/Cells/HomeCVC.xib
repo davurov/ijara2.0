@@ -87,45 +87,61 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="PuK-uP-pj8">
-                            <rect key="frame" x="165.66666666666666" y="301" width="42" height="20"/>
+                            <rect key="frame" x="186.66666666666666" y="301" width="0.0" height="0.0"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell" translatesAutoresizingMaskIntoConstraints="NO" id="8aJ-7d-O5K">
-                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="34746" translatesAutoresizingMaskIntoConstraints="NO" id="8aJ-7d-O5K">
+                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="Fdq-xc-ugi"/>
-                                        <constraint firstAttribute="width" constant="20" id="q4X-gN-M5h"/>
+                                        <constraint firstAttribute="height" constant="25" id="Fdq-xc-ugi"/>
+                                        <constraint firstAttribute="width" constant="25" id="q4X-gN-M5h"/>
                                     </constraints>
                                 </imageView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell" translatesAutoresizingMaskIntoConstraints="NO" id="2zg-VQ-w3c">
-                                    <rect key="frame" x="22" y="0.0" width="20" height="20"/>
+                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pngwing" translatesAutoresizingMaskIntoConstraints="NO" id="2zg-VQ-w3c">
+                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="e3z-sG-KF8"/>
+                                        <constraint firstAttribute="height" constant="25" id="wwE-TJ-2gF"/>
+                                    </constraints>
                                 </imageView>
                             </subviews>
                         </stackView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell" translatesAutoresizingMaskIntoConstraints="NO" id="o6y-hf-3vD">
-                            <rect key="frame" x="341" y="301" width="20" height="20"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell" translatesAutoresizingMaskIntoConstraints="NO" id="o6y-hf-3vD">
+                            <rect key="frame" x="313" y="286" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="5Kx-hn-JsT"/>
-                                <constraint firstAttribute="height" constant="20" id="Vo2-R9-dXx"/>
+                                <constraint firstAttribute="width" constant="40" id="5Kx-hn-JsT"/>
+                                <constraint firstAttribute="height" constant="40" id="Vo2-R9-dXx"/>
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="eSL-57-rKV">
-                            <rect key="frame" x="12" y="301" width="86" height="20"/>
+                            <rect key="frame" x="12" y="301" width="106" height="25"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell" translatesAutoresizingMaskIntoConstraints="NO" id="fql-a9-ent">
-                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="fql-a9-ent">
+                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="JxJ-Pr-Lnk"/>
-                                        <constraint firstAttribute="width" constant="20" id="lQk-bT-eL6"/>
+                                        <constraint firstAttribute="height" constant="25" id="JxJ-Pr-Lnk"/>
+                                        <constraint firstAttribute="width" constant="25" id="lQk-bT-eL6"/>
                                     </constraints>
                                 </imageView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell" translatesAutoresizingMaskIntoConstraints="NO" id="SUG-vQ-Ln7">
-                                    <rect key="frame" x="22" y="0.0" width="20" height="20"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2" translatesAutoresizingMaskIntoConstraints="NO" id="SUG-vQ-Ln7">
+                                    <rect key="frame" x="27" y="0.0" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="TGj-Pi-pWE"/>
+                                        <constraint firstAttribute="width" constant="25" id="dIA-kj-kBA"/>
+                                    </constraints>
                                 </imageView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell" translatesAutoresizingMaskIntoConstraints="NO" id="UM5-71-ZKg">
-                                    <rect key="frame" x="44" y="0.0" width="20" height="20"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3" translatesAutoresizingMaskIntoConstraints="NO" id="UM5-71-ZKg">
+                                    <rect key="frame" x="54" y="0.0" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="9XL-e6-kHR"/>
+                                        <constraint firstAttribute="width" constant="25" id="MTR-xC-yZF"/>
+                                    </constraints>
                                 </imageView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell" translatesAutoresizingMaskIntoConstraints="NO" id="kdc-T8-VdD">
-                                    <rect key="frame" x="66" y="0.0" width="20" height="20"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4" translatesAutoresizingMaskIntoConstraints="NO" id="kdc-T8-VdD">
+                                    <rect key="frame" x="81" y="0.0" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="GkL-7Q-5Nr"/>
+                                        <constraint firstAttribute="height" constant="25" id="kaM-re-a7S"/>
+                                    </constraints>
                                 </imageView>
                             </subviews>
                         </stackView>
@@ -135,12 +151,12 @@
                         <constraint firstItem="eSL-57-rKV" firstAttribute="leading" secondItem="r0i-nd-vUb" secondAttribute="leading" constant="12" id="4LV-VR-k1q"/>
                         <constraint firstItem="PuK-uP-pj8" firstAttribute="centerX" secondItem="r0i-nd-vUb" secondAttribute="centerX" id="BEK-Ic-oI6"/>
                         <constraint firstAttribute="trailing" secondItem="xKw-A0-jcR" secondAttribute="trailing" constant="12" id="ERY-xw-jGd"/>
-                        <constraint firstItem="o6y-hf-3vD" firstAttribute="top" secondItem="xKw-A0-jcR" secondAttribute="bottom" constant="10" id="K4y-Q4-jdk"/>
+                        <constraint firstItem="o6y-hf-3vD" firstAttribute="bottom" secondItem="fql-a9-ent" secondAttribute="bottom" id="If8-o0-OB2"/>
                         <constraint firstItem="PuK-uP-pj8" firstAttribute="top" secondItem="xKw-A0-jcR" secondAttribute="bottom" constant="10" id="LiB-nc-BaQ"/>
                         <constraint firstItem="xKw-A0-jcR" firstAttribute="top" secondItem="r0i-nd-vUb" secondAttribute="top" constant="12" id="cZq-yd-Ocl"/>
                         <constraint firstItem="eSL-57-rKV" firstAttribute="top" secondItem="xKw-A0-jcR" secondAttribute="bottom" constant="10" id="cuA-Rz-SZy"/>
                         <constraint firstItem="xKw-A0-jcR" firstAttribute="leading" secondItem="r0i-nd-vUb" secondAttribute="leading" constant="12" id="iBp-hm-RPi"/>
-                        <constraint firstAttribute="trailing" secondItem="o6y-hf-3vD" secondAttribute="trailing" constant="12" id="k6O-Dc-w2d"/>
+                        <constraint firstAttribute="trailing" secondItem="o6y-hf-3vD" secondAttribute="trailing" constant="20" id="k6O-Dc-w2d"/>
                     </constraints>
                 </view>
             </subviews>
@@ -152,19 +168,33 @@
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="r0i-nd-vUb" secondAttribute="trailing" id="ddf-tK-wzG"/>
             </constraints>
             <connections>
+                <outlet property="alcoholImg" destination="o6y-hf-3vD" id="yE8-ou-1d8"/>
                 <outlet property="containerView" destination="r0i-nd-vUb" id="S7V-u3-WdV"/>
                 <outlet property="imageCont" destination="FEm-JZ-pzF" id="7iS-s7-7aV"/>
+                <outlet property="innirPool" destination="8aJ-7d-O5K" id="i2a-eZ-1LD"/>
                 <outlet property="locationLbl" destination="ZnT-zx-k1i" id="Hag-IB-e1a"/>
+                <outlet property="menImg" destination="UM5-71-ZKg" id="20B-Sk-EJ1"/>
+                <outlet property="mixImg" destination="kdc-T8-VdD" id="Y4D-Au-ohh"/>
                 <outlet property="nameLbl" destination="V5O-j2-8Jn" id="KPy-lz-mZm"/>
+                <outlet property="onlyFamilyImg" destination="fql-a9-ent" id="Ipl-2P-s6W"/>
+                <outlet property="outerPool" destination="2zg-VQ-w3c" id="pdW-0v-6dM"/>
                 <outlet property="pirceLbl" destination="EmG-2L-DPv" id="zMr-eQ-QKD"/>
+                <outlet property="verifiedImg" destination="HaQ-pl-KQ2" id="t54-CI-BrV"/>
+                <outlet property="womenImg" destination="SUG-vQ-Ln7" id="QWv-55-F6C"/>
             </connections>
             <point key="canvasLocation" x="155" y="177"/>
         </collectionReusableView>
     </objects>
     <resources>
+        <image name="1" width="100" height="100"/>
+        <image name="2" width="100" height="100"/>
+        <image name="3" width="100" height="100"/>
+        <image name="34746" width="512" height="417"/>
+        <image name="4" width="100" height="100"/>
         <image name="bell" width="15" height="15"/>
         <image name="guaranteeuz" width="260" height="153"/>
         <image name="map" width="15" height="15"/>
+        <image name="pngwing" width="512" height="365"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

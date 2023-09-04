@@ -16,7 +16,6 @@ class API {
     class func getProducts(completion: @escaping ([HouseDM]?) -> Void){
         
         Net.request(url: Endpoints.products, method: .get, params: nil, headers: nil, withLoader: true) { data in
-            
             var houses = [HouseDM]()
             
             if let data = data {
@@ -41,10 +40,10 @@ class API {
                     
                     for j in  i["swimmingpool"].arrayValue {
                         house.swimmingpool.append(Swimmingpool(
-                            id: j["swimmingpool"]["id"].intValue,
-                            nsme: j["swimmingpool"]["name"].stringValue,
-                            size: j["swimmingpool"]["size"].stringValue,
-                            image: j["swimmingpool"]["image"].stringValue))
+                            id: j["id"].intValue,
+                            nsme: j["name"].stringValue,
+                            size: j["size"].stringValue,
+                            image: j["image"].stringValue))
                     }
                     
                     for j in i["images"].arrayValue {
