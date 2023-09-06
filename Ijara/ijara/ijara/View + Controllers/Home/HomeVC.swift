@@ -221,8 +221,11 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             cell.nameLbl.text = houseDM[indexPath.row].name
             cell.pirceLbl.text = houseDM[indexPath.row].workingdays + "/" + " " + houseDM[indexPath.row].weekends + "so'm"
             cell.locationLbl.text = houseDM[indexPath.row].province
-            cell.isVerified(v: houseDM[indexPath.row].approved, alco: houseDM[indexPath.row].alcohol, typeId: houseDM[indexPath.row].companylist, pool: houseDM[indexPath.row].swimmingpool)
-            
+            cell.isVerified(v: houseDM[indexPath.row].approved,
+                            alco: houseDM[indexPath.row].alcohol,
+                            typeId: houseDM[indexPath.row].companylist,
+                            pool: houseDM[indexPath.row].swimmingpool)
+            cell.configureCell()
             if houseDM[indexPath.row].name == "Hasan husan" {
                 print(houseDM)
             }
@@ -231,7 +234,10 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         // changes unselected category background
         if collectionView == categoryColView {
             let selectedCell = categoryColView.cellForItem(at: indexPath) as! CategoryCVC
@@ -240,7 +246,8 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didDeselectItemAt indexPath: IndexPath) {
         // changes selected category background
         if collectionView == categoryColView {
             let selectedCell = categoryColView.cellForItem(at: indexPath) as! CategoryCVC
@@ -253,7 +260,9 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         didScroll(scrollView.contentOffset.y)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == categoryColView {
             return CGSize(width: 100, height: 40)
         } else {

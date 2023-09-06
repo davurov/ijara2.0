@@ -36,15 +36,55 @@ class HomeCVC: UICollectionViewCell {
     @IBOutlet weak var pageController: UIView!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
     var images = [String]()
-    
-    
-    
     /// Home Cell Identifier
     static let identifier: String = String(describing: HomeCVC.self)
     let sc = SCPageControlView()
     
-    func isVerified(v: Bool, alco: Bool, typeId: [Companylist], pool: [Swimmingpool]) {
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        setupSubviews()
+        setupCollView()
+        setupPageController()
+    }
+    
+    func setupSubviews() {
+        containerView.layer.cornerRadius = 20
+        containerView.clipsToBounds = true
+        imageCont.layer.cornerRadius = 10
+        imageCont.clipsToBounds = true
+    }
+    
+    func setupPageController() {
+        sc.frame = CGRect(x: 0, y: 0, width: pageController.frame.width, height: pageController.frame.height)
+        
+        sc.scp_style = .SCNormal
+        sc.set_view(5, current: 0, current_color: .white, disable_color: nil)
+        
+        pageController.addSubview(sc)
+    }
+    
+    
+    
+    func setupCollView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(PhotoCVC.nib(), forCellWithReuseIdentifier: PhotoCVC.identifier)
+    }
+    
+    func configureCell() {
+        collectionView.scrollRectToVisible(CGRect(x: 0, y: 0, width: collectionView.frame.width, height: collectionView.frame.height
+                                                 ), animated: true)
+    }
+    
+    func isVerified(v: Bool,
+                    alco: Bool,
+                    typeId: [Companylist],
+                    pool: [Swimmingpool]) {
         
         verifiedImg.isHidden = !v
         alcoholImg.image = UIImage(named: "\(alco)")
@@ -93,31 +133,7 @@ class HomeCVC: UICollectionViewCell {
         }
         
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        containerView.layer.cornerRadius = 20
-        containerView.clipsToBounds = true
-        imageCont.layer.cornerRadius = 10
-        imageCont.clipsToBounds = true
-        
-        sc.frame = CGRect(x: 0, y: 0, width: pageController.frame.width, height: pageController.frame.height)
-        
-        sc.scp_style = .SCNormal
-        sc.set_view(5, current: 0, current_color: .white, disable_color: nil)
-        
-        pageController.addSubview(sc)
-        setupCollView()
-    }
-    
-    func setupCollView() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        collectionView.register(PhotoCVC.nib(), forCellWithReuseIdentifier: PhotoCVC.identifier)
-    }
-    
+
 }
 
 extension HomeCVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -125,17 +141,23 @@ extension HomeCVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         return 5
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCVC.identifier, for: indexPath) as! PhotoCVC
         
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width,
+                      height: collectionView.frame.height)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         sc.scroll_did(scrollView)
+        
     }
 }
