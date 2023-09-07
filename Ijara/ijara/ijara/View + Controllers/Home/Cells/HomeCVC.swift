@@ -7,6 +7,7 @@
 
 import UIKit
 import SCPageControl
+import SDWebImage
 
 public enum SCPageStyle: Int {
     case SCNormal = 100
@@ -38,7 +39,7 @@ class HomeCVC: UICollectionViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var images = [String]()
-    /// Home Cell Identifier
+    // Home Cell Identifier
     static let identifier: String = String(describing: HomeCVC.self)
     let sc = SCPageControlView()
     
@@ -56,6 +57,7 @@ class HomeCVC: UICollectionViewCell {
         containerView.clipsToBounds = true
         imageCont.layer.cornerRadius = 10
         imageCont.clipsToBounds = true
+        
     }
     
     func setupPageController() {
@@ -79,6 +81,7 @@ class HomeCVC: UICollectionViewCell {
     func configureCell() {
         collectionView.scrollRectToVisible(CGRect(x: 0, y: 0, width: collectionView.frame.width, height: collectionView.frame.height
                                                  ), animated: true)
+        collectionView.reloadData()
     }
     
     func isVerified(v: Bool,
@@ -138,13 +141,13 @@ class HomeCVC: UICollectionViewCell {
 
 extension HomeCVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return images.count >= 5 ? 5 : images.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCVC.identifier, for: indexPath) as! PhotoCVC
-        
+        cell.loadImage(url: images[indexPath.row])
         return cell
     }
     
@@ -158,6 +161,5 @@ extension HomeCVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         sc.scroll_did(scrollView)
-        
     }
 }

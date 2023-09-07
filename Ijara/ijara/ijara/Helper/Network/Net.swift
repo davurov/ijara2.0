@@ -33,18 +33,13 @@ class Net {
                     return
                 }
                 let json = JSON(data)
-//                if json["code"].intValue == 401 {
-//                    let vc = OnBroadingVC(nibName: "OnBroadingVC", bundle: nil)
-//                    if let window = (UIApplication.shared.delegate as! AppDelegate).window {
-//                        window.rootViewController = vc
-//                    }
-//                }
+
                 completion(json)
             }
         } else {
             //Not connected to the internet
             completion(nil)
-            //Alert.showAlert(forState: .error, message: SetLanguage.setLang(type: .checkInternet), duration: 10, userInteration: false)
+            
         }
     }
     

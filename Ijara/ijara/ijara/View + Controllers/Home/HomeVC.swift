@@ -23,12 +23,15 @@ class HomeVC: UIViewController {
     
     
     @IBOutlet var topViews: [UIView]!
-    
     var scrollFlag = false
+
     
     // temporary
-    let categoryNames = ["Toshkent","Chorvoq","Chimyon","Qibray","Oqtosh"]
+    let categoryNames = ["Hamma","Toshkent","Chorvoq","Chimyon","Qibray","Oq tosh"]
     var houseDM = [HouseDM]()
+    var searchedData = [HouseDM]()
+    var timer: Timer? = nil
+    var isSelected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +71,8 @@ class HomeVC: UIViewController {
     }
     
     func setupSubviews() {
+        
+        searchTF.delegate = self
         
         filterBtn.layer.borderWidth = 1
         filterBtn.layer.borderColor = AppColors.mainColor.cgColor
@@ -114,8 +119,26 @@ class HomeVC: UIViewController {
             let decoder = JSONDecoder()
             if let houses = try? decoder.decode([HouseDM].self , from: savedHouse) {
                 houseDM = houses
+                searchedData = houseDM
             }
         }
+    }
+    
+    func searchByCategory(str: String) {
+        searchedData = []
+        
+        if str != "Hamma" {
+            var city = str
+            if city == "Toshkent" {
+                city.append(" sh.")
+            }
+            for i in houseDM where i.province == city {
+                searchedData.append(i)
+            }
+        } else {
+            searchedData = houseDM
+        }
+        colView.reloadData()
     }
     
 }
@@ -196,7 +219,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         if collectionView == categoryColView {
             return categoryNames.count
         } else {
-            return houseDM.count
+            return searchedData.count
         }
     }
     
@@ -211,6 +234,11 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             cell.clipsToBounds = true
             cell.sizeToFit()
             
+            if !isSelected && indexPath.row == 0 {
+                cell.containerView.backgroundColor = AppColors.mainColor
+                cell.categoryNameLbl.textColor = .white
+            }
+            
             // cell data configure
             cell.categoryNameLbl.text = categoryNames[indexPath.row]
             
@@ -218,17 +246,16 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         } else {
             let cell = colView.dequeueReusableCell(withReuseIdentifier: HomeCVC.identifier, for: indexPath) as! HomeCVC
             
-            cell.nameLbl.text = houseDM[indexPath.row].name
-            cell.pirceLbl.text = houseDM[indexPath.row].workingdays + "/" + " " + houseDM[indexPath.row].weekends + "so'm"
-            cell.locationLbl.text = houseDM[indexPath.row].province
-            cell.isVerified(v: houseDM[indexPath.row].approved,
-                            alco: houseDM[indexPath.row].alcohol,
-                            typeId: houseDM[indexPath.row].companylist,
-                            pool: houseDM[indexPath.row].swimmingpool)
+            cell.nameLbl.text = searchedData[indexPath.row].name
+            cell.pirceLbl.text = searchedData[indexPath.row].workingdays + "/" + " " + searchedData[indexPath.row].weekends + "so'm"
+            cell.locationLbl.text = searchedData[indexPath.row].province
+            cell.isVerified(v: searchedData[indexPath.row].approved,
+                            alco: searchedData[indexPath.row].alcohol,
+                            typeId: searchedData[indexPath.row].companylist,
+                            pool: searchedData[indexPath.row].swimmingpool)
             cell.configureCell()
-            if houseDM[indexPath.row].name == "Hasan husan" {
-                print(houseDM)
-            }
+            cell.images = searchedData[indexPath.row].images
+            
             return cell
         }
         
@@ -236,23 +263,30 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     
     
     
-    func collectionView(_ collectionView: UICollectionView,
-                        didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,didSelectItemAt indexPath: IndexPath) {
         // changes unselected category background
         if collectionView == categoryColView {
-            let selectedCell = categoryColView.cellForItem(at: indexPath) as! CategoryCVC
-            selectedCell.containerView.backgroundColor = AppColors.mainColor
-            selectedCell.categoryNameLbl.textColor = .white
+            if !isSelected {
+                let firstCell = categoryColView.cellForItem(at: IndexPath(row: 0, section: 0)) as? CategoryCVC
+                firstCell?.containerView.backgroundColor = .clear
+                firstCell?.categoryNameLbl.textColor = .black
+                isSelected = true
+            }
+            let selectedCell = categoryColView.cellForItem(at: indexPath) as? CategoryCVC
+            selectedCell?.containerView.backgroundColor = AppColors.mainColor
+            selectedCell?.categoryNameLbl.textColor = .white
+            searchByCategory(str: categoryNames[indexPath.row])
+        } else {
+            print(searchedData[indexPath.row])
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        didDeselectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         // changes selected category background
         if collectionView == categoryColView {
-            let selectedCell = categoryColView.cellForItem(at: indexPath) as! CategoryCVC
-            selectedCell.containerView.backgroundColor = .clear
-            selectedCell.categoryNameLbl.textColor = .black
+            let selectedCell = categoryColView.cellForItem(at: indexPath) as? CategoryCVC
+            selectedCell?.containerView.backgroundColor = .clear
+            selectedCell?.categoryNameLbl.textColor = .black
         }
     }
     
@@ -260,16 +294,13 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         didScroll(scrollView.contentOffset.y)
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == categoryColView {
-            return CGSize(width: 100, height: 40)
-        } else {
-            return CGSize(width: view.frame.width - 24, height: 300)
+                return CGSize(width: 100, height: 40)
+            } else {
+                return CGSize(width: view.frame.width - 24, height: 300)
+            }
         }
-    }
-    
 }
 //MARK: - HIDES AND UNHIDE TOPVIEW
 extension HomeVC {
@@ -299,4 +330,38 @@ extension HomeVC {
             }
         }
     }
+}
+
+//MARK: TEXTFIELD
+
+extension HomeVC: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        NSObject.cancelPreviousPerformRequests(
+            withTarget: self,
+            selector: #selector(self.serchByName),
+            object: textField)
+        self.perform(
+            #selector(self.serchByName),
+            with: textField,
+            afterDelay: 0.5)
+        return true
+    }
+
+    @objc func serchByName(textField: UITextField) {
+        searchedData = []
+        if let name = searchTF.text {
+            if name != "" {
+                for i in houseDM {
+                    if i.name.lowercased().contains(name.lowercased()) {
+                        searchedData.append(i)
+                    }
+                }
+            } else {
+                searchedData = houseDM
+            }
+        }
+        colView.reloadData()
+    }
+    
 }
