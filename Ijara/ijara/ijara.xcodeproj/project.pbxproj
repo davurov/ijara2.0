@@ -38,6 +38,11 @@
 		3D7359712A6DE14400BA329F /* WelcomePageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D73596F2A6DE14400BA329F /* WelcomePageVC.xib */; };
 		3DBDDB0E2AA5E7800068E065 /* PhotoCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB0C2AA5E7800068E065 /* PhotoCVC.swift */; };
 		3DBDDB0F2AA5E7800068E065 /* PhotoCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDDB0D2AA5E7800068E065 /* PhotoCVC.xib */; };
+		3DBDDB132AAA2D6A0068E065 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB112AAA2D6A0068E065 /* MapVC.swift */; };
+		3DBDDB142AAA2D6A0068E065 /* MapVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDDB122AAA2D6A0068E065 /* MapVC.xib */; };
+		3DBDDB1A2AAB689A0068E065 /* MapChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB182AAB689A0068E065 /* MapChildVC.swift */; };
+		3DBDDB1B2AAB689A0068E065 /* MapChildVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDDB192AAB689A0068E065 /* MapChildVC.xib */; };
+		3DBDDB1D2AAB97A90068E065 /* HouseByIdDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB1C2AAB97A90068E065 /* HouseByIdDM.swift */; };
 		5350408D2014B7A85C9E7099 /* Pods_ijara.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F46D81B2304154349E0BAFA /* Pods_ijara.framework */; };
 		DBD74E232AA26B1C003096BB /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD74E222AA26B1C003096BB /* CustomTabBar.swift */; };
 		DBD74E262AA26B8D003096BB /* Ex + UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD74E252AA26B8D003096BB /* Ex + UIImage.swift */; };
@@ -87,6 +92,11 @@
 		3D73596F2A6DE14400BA329F /* WelcomePageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomePageVC.xib; sourceTree = "<group>"; };
 		3DBDDB0C2AA5E7800068E065 /* PhotoCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCVC.swift; sourceTree = "<group>"; };
 		3DBDDB0D2AA5E7800068E065 /* PhotoCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCVC.xib; sourceTree = "<group>"; };
+		3DBDDB112AAA2D6A0068E065 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		3DBDDB122AAA2D6A0068E065 /* MapVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapVC.xib; sourceTree = "<group>"; };
+		3DBDDB182AAB689A0068E065 /* MapChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapChildVC.swift; sourceTree = "<group>"; };
+		3DBDDB192AAB689A0068E065 /* MapChildVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapChildVC.xib; sourceTree = "<group>"; };
+		3DBDDB1C2AAB97A90068E065 /* HouseByIdDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseByIdDM.swift; sourceTree = "<group>"; };
 		3F46D81B2304154349E0BAFA /* Pods_ijara.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ijara.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73083FFBB313154B0962A013 /* Pods-ijara.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ijara.debug.xcconfig"; path = "Target Support Files/Pods-ijara/Pods-ijara.debug.xcconfig"; sourceTree = "<group>"; };
 		81C410BF8F8AD33D4D6775CD /* Pods-ijara.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ijara.release.xcconfig"; path = "Target Support Files/Pods-ijara/Pods-ijara.release.xcconfig"; sourceTree = "<group>"; };
@@ -148,6 +158,26 @@
 			path = ijara;
 			sourceTree = "<group>";
 		};
+		3DBDDB102AAA2D340068E065 /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				DBD74E2A2AA26C70003096BB /* HomeVC.swift */,
+				DBD74E2B2AA26C70003096BB /* HomeVC.xib */,
+			);
+			path = HomeVC;
+			sourceTree = "<group>";
+		};
+		3DBDDB152AAA2D850068E065 /* MapVC */ = {
+			isa = PBXGroup;
+			children = (
+				3DBDDB112AAA2D6A0068E065 /* MapVC.swift */,
+				3DBDDB122AAA2D6A0068E065 /* MapVC.xib */,
+				3DBDDB182AAB689A0068E065 /* MapChildVC.swift */,
+				3DBDDB192AAB689A0068E065 /* MapChildVC.xib */,
+			);
+			path = MapVC;
+			sourceTree = "<group>";
+		};
 		3DD6DD212AA1B9320023E392 /* MainWindow */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				3D0D05852A929DC200BDAFF3 /* HouseDM.swift */,
+				3DBDDB1C2AAB97A90068E065 /* HouseByIdDM.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -268,8 +299,8 @@
 			children = (
 				DBD74E3B2AA26C84003096BB /* Header */,
 				DBD74E2E2AA26C79003096BB /* Cells */,
-				DBD74E2A2AA26C70003096BB /* HomeVC.swift */,
-				DBD74E2B2AA26C70003096BB /* HomeVC.xib */,
+				3DBDDB102AAA2D340068E065 /* HomeVC */,
+				3DBDDB152AAA2D850068E065 /* MapVC */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -368,9 +399,11 @@
 				3D7359642A6DE0C500BA329F /* Assets.xcassets in Resources */,
 				DBD74E362AA26C81003096BB /* CategoryCVC.xib in Resources */,
 				3D0D05672A8A162B00BDAFF3 /* SingInLangVC.xib in Resources */,
+				3DBDDB1B2AAB689A0068E065 /* MapChildVC.xib in Resources */,
 				DBD74E372AA26C81003096BB /* HomeCVC.xib in Resources */,
 				3D0D05782A8DA1E900BDAFF3 /* GoogleService-Info.plist in Resources */,
 				3D0D057E2A8F357F00BDAFF3 /* KKfo9cQRyU.json in Resources */,
+				3DBDDB142AAA2D6A0068E065 /* MapVC.xib in Resources */,
 				3DBDDB0F2AA5E7800068E065 /* PhotoCVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,6 +463,7 @@
 				DBD74E3A2AA26C81003096BB /* HomeCVC.swift in Sources */,
 				3D0D05602A8A0A4800BDAFF3 /* Alert.swift in Sources */,
 				DBD74E392AA26C81003096BB /* CategoryCVC.swift in Sources */,
+				3DBDDB1A2AAB689A0068E065 /* MapChildVC.swift in Sources */,
 				3D0D05622A8A116800BDAFF3 /* Ex+UIView.swift in Sources */,
 				3D0D057A2A8DC7A500BDAFF3 /* AuthManager.swift in Sources */,
 				DBD74E232AA26B1C003096BB /* CustomTabBar.swift in Sources */,
@@ -445,10 +479,12 @@
 				3D0D05742A8BA85900BDAFF3 /* OTPFieldView.swift in Sources */,
 				3D0D05882A961B4300BDAFF3 /* API.swift in Sources */,
 				3D73595B2A6DE0C200BA329F /* AppDelegate.swift in Sources */,
+				3DBDDB1D2AAB97A90068E065 /* HouseByIdDM.swift in Sources */,
 				3D0D056A2A8A172C00BDAFF3 /* Keys.swift in Sources */,
 				3D0D05712A8B7A1B00BDAFF3 /* VerificationChildVC.swift in Sources */,
 				3D0D056C2A8A1B4500BDAFF3 /* SetLanguage.swift in Sources */,
 				DBD74E3E2AA26C8F003096BB /* Header.swift in Sources */,
+				3DBDDB132AAA2D6A0068E065 /* MapVC.swift in Sources */,
 				3DBDDB0E2AA5E7800068E065 /* PhotoCVC.swift in Sources */,
 				3D0D056E2A8B752700BDAFF3 /* Extentions.swift in Sources */,
 				3D0D057C2A8F338D00BDAFF3 /* Loader.swift in Sources */,

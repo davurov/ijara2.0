@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 enum ScrollState {
     case up
@@ -21,9 +22,9 @@ class HomeVC: UIViewController {
     @IBOutlet weak var topContainer: UIView!
     @IBOutlet weak var filterBtn: UIButton!
     
-    
     @IBOutlet var topViews: [UIView]!
     var scrollFlag = false
+    let locationManager = CLLocationManager()
 
     
     // temporary
@@ -39,6 +40,7 @@ class HomeVC: UIViewController {
         setupColView()
         setupSubviews()
         navigationController?.navigationBar.isHidden = true
+        locationManager.requestWhenInUseAuthorization()
         getData()
     }
     
@@ -124,6 +126,7 @@ class HomeVC: UIViewController {
         }
     }
     
+    // searches by tapped city category
     func searchByCategory(str: String) {
         searchedData = []
         
@@ -139,6 +142,15 @@ class HomeVC: UIViewController {
             searchedData = houseDM
         }
         colView.reloadData()
+    }
+    
+    //MARK: - SHOW MAP
+    @IBAction func showMap(_ sender: Any) {
+        let vc = MapVC()
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true) 
+        vc.houseDM = houseDM
+        
     }
     
 }
@@ -277,7 +289,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             selectedCell?.categoryNameLbl.textColor = .white
             searchByCategory(str: categoryNames[indexPath.row])
         } else {
-            print(searchedData[indexPath.row])
+            
         }
     }
     
@@ -351,9 +363,11 @@ extension HomeVC: UITextFieldDelegate {
     @objc func serchByName(textField: UITextField) {
         searchedData = []
         if let name = searchTF.text {
-            if name != "" {
+            if name.replacingOccurrences(of: " ", with: "") != "" {
                 for i in houseDM {
-                    if i.name.lowercased().contains(name.lowercased()) {
+                    let houseName = i.name.lowercased().replacingOccurrences(of: " ", with: "")
+                    let searchName = name.lowercased().replacingOccurrences(of: " ", with: "")
+                    if houseName.contains(searchName) {
                         searchedData.append(i)
                     }
                 }

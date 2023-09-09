@@ -11,6 +11,7 @@ class PhotoCVC: UICollectionViewCell {
     
     
     @IBOutlet weak var houseImage: UIImageView!
+    var isExpanded = false
     
     static let identifier: String = String(describing: PhotoCVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
@@ -19,13 +20,22 @@ class PhotoCVC: UICollectionViewCell {
         houseImage.sd_cancelCurrentImageLoad()
     }
     
+    func toggleSize() {
+        isExpanded.toggle()
+        
+        UIView.animate(withDuration: 0.3) {
+            self.houseImage.transform = self.isExpanded ? CGAffineTransform(scaleX: 1.2, y: 1.2) : .identity
+            self.layoutIfNeeded()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
     }
     
     func loadImage(url: String) {
-        houseImage.sd_setImage(with: URL(string: image_base + url), placeholderImage: UIImage(named: "1"))
+        houseImage.sd_setImage(with: URL(string: base_URL + url), placeholderImage: UIImage(named: "1"))
     }
     
 }

@@ -7,9 +7,8 @@
 
 import Foundation
 
-let base_URL : String = "https://bronla.uz/bronla/uz/data/api"
-let image_base : String = "https://bronla.uz"
-
+let base_URL : String = "https://bronla.uz"
 struct Endpoints {
-    static let products = base_URL + "/CountryHouse/"
+    static let products = base_URL + "/bronla/uz/data/api/CountryHouse/"
+    static let getById = base_URL + "/_next/data/5ETcuQ1WLRDx3e9E-UlmM/countryhouse/"
 }
