@@ -43,6 +43,7 @@
 		3DBDDB1A2AAB689A0068E065 /* MapChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB182AAB689A0068E065 /* MapChildVC.swift */; };
 		3DBDDB1B2AAB689A0068E065 /* MapChildVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDDB192AAB689A0068E065 /* MapChildVC.xib */; };
 		3DBDDB1D2AAB97A90068E065 /* HouseByIdDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB1C2AAB97A90068E065 /* HouseByIdDM.swift */; };
+		3DBDDB222AAEDB600068E065 /* OpenMapDirections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB212AAEDB600068E065 /* OpenMapDirections.swift */; };
 		5350408D2014B7A85C9E7099 /* Pods_ijara.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F46D81B2304154349E0BAFA /* Pods_ijara.framework */; };
 		DBD74E232AA26B1C003096BB /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD74E222AA26B1C003096BB /* CustomTabBar.swift */; };
 		DBD74E262AA26B8D003096BB /* Ex + UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD74E252AA26B8D003096BB /* Ex + UIImage.swift */; };
@@ -97,6 +98,7 @@
 		3DBDDB182AAB689A0068E065 /* MapChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapChildVC.swift; sourceTree = "<group>"; };
 		3DBDDB192AAB689A0068E065 /* MapChildVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapChildVC.xib; sourceTree = "<group>"; };
 		3DBDDB1C2AAB97A90068E065 /* HouseByIdDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseByIdDM.swift; sourceTree = "<group>"; };
+		3DBDDB212AAEDB600068E065 /* OpenMapDirections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMapDirections.swift; sourceTree = "<group>"; };
 		3F46D81B2304154349E0BAFA /* Pods_ijara.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ijara.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73083FFBB313154B0962A013 /* Pods-ijara.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ijara.debug.xcconfig"; path = "Target Support Files/Pods-ijara/Pods-ijara.debug.xcconfig"; sourceTree = "<group>"; };
 		81C410BF8F8AD33D4D6775CD /* Pods-ijara.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ijara.release.xcconfig"; path = "Target Support Files/Pods-ijara/Pods-ijara.release.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				3DBDDB122AAA2D6A0068E065 /* MapVC.xib */,
 				3DBDDB182AAB689A0068E065 /* MapChildVC.swift */,
 				3DBDDB192AAB689A0068E065 /* MapChildVC.xib */,
+				3DBDDB212AAEDB600068E065 /* OpenMapDirections.swift */,
 			);
 			path = MapVC;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				3DBDDB132AAA2D6A0068E065 /* MapVC.swift in Sources */,
 				3DBDDB0E2AA5E7800068E065 /* PhotoCVC.swift in Sources */,
 				3D0D056E2A8B752700BDAFF3 /* Extentions.swift in Sources */,
+				3DBDDB222AAEDB600068E065 /* OpenMapDirections.swift in Sources */,
 				3D0D057C2A8F338D00BDAFF3 /* Loader.swift in Sources */,
 				3D0D055E2A8A094800BDAFF3 /* Ex+UIVC.swift in Sources */,
 			);

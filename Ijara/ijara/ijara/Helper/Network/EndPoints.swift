@@ -10,5 +10,5 @@ import Foundation
 let base_URL : String = "https://bronla.uz"
 struct Endpoints {
     static let products = base_URL + "/bronla/uz/data/api/CountryHouse/"
-    static let getById = base_URL + "/_next/data/5ETcuQ1WLRDx3e9E-UlmM/countryhouse/"
+    static let getById = base_URL + "/_next/data/3H_hWXqjtamuAwasIEWsw/countryhouse/"
 }

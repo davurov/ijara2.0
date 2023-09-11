@@ -14,9 +14,11 @@ class MapVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLbl: UILabel!
     
+    var direction: Direction = .down
     var childForMapVC: MapChildVC!
     let locationManager = CLLocationManager()
     var didReceiveInitialLocationUpdate = false
+    var userDefData = [CountryhouseData]()
     var houseDM : [HouseDM] = [] {
         didSet {
             for i in houseDM {
@@ -31,6 +33,11 @@ class MapVC: UIViewController {
         setupMap()
         addChildHomeVC()
         setupDragGestureRecognizer()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     func setupMap() {
@@ -54,6 +61,7 @@ class MapVC: UIViewController {
     
     func addChildHomeVC() {
         childForMapVC = MapChildVC(nibName: "MapChildVC", bundle: nil)
+        childForMapVC.delegate = self
         self.add(childForMapVC)
         showHomeChildNotRemove(isDraggingMap: false)
     }
@@ -61,14 +69,17 @@ class MapVC: UIViewController {
     func getCountryHouse(id: String) {
         API.getProducts(id: id) { [self] result in
             if let result = result {
-                addressLbl.text = result.address
+                addressLbl.text = result["address"] as? String
+                childForMapVC.houseName.text = result["name"] as? String
+                childForMapVC.starLbl.text = "\(result["reyting"] as! Int).0"
+                for i in houseDM where "\(i.id)" == id {
+                    childForMapVC.housePrice.text = "\(i.workingdays)/ \(i.weekends) so'm"
+                    childForMapVC.houseCoordinates.latitude = i.listlocation[0]
+                    childForMapVC.houseCoordinates.longitude = i.listlocation[1]
+                    childForMapVC.images = i.images
+                }
             }
         }
-    }
-    
-    func placeBtnPressed() {
-        //        let cameraPosition = GMSCameraPosition.camera(withLatitude: mapView.myLocation?.coordinate.latitude ?? 0, longitude: mapView.myLocation?.coordinate.longitude ?? 0, zoom: 17.0)
-        //        mapView.animate(to: cameraPosition)
     }
     
     func showHomeChildNotRemove(isDraggingMap: Bool = false) {
@@ -79,6 +90,16 @@ class MapVC: UIViewController {
                 liftChild(height: childForMapVC.full - 50, child: childForMapVC)
             }
             t.invalidate()
+        }
+    }
+    
+    // get data from userdefaults
+    func getData() {
+        if let savedHouse = UserDefaults.standard.object(forKey: Keys.houseData) as? Data {
+            let decoder = JSONDecoder()
+            if let houses = try? decoder.decode([HouseDM].self , from: savedHouse) {
+                houseDM = houses
+            }
         }
     }
     
@@ -100,6 +121,14 @@ class MapVC: UIViewController {
         dismiss(animated: true)
     }
     
+    
+    @IBAction func whereBtnPressed(_ sender: Any) {
+        if let userLocation = mapView.userLocation.location?.coordinate {
+            let newCenter = CLLocationCoordinate2D(latitude: userLocation.latitude - 0.0027, longitude: userLocation.longitude)
+            let region = MKCoordinateRegion(center: newCenter, latitudinalMeters: 1000, longitudinalMeters: 1000)
+                mapView.setRegion(region, animated: true)
+            }
+    }
     
 }
 
@@ -145,9 +174,9 @@ extension MapVC: MKMapViewDelegate {
 
 extension MapVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if !didReceiveInitialLocationUpdate, let location = locations.last {
+        if !didReceiveInitialLocationUpdate {
             //let userLocation = location.coordinate
-            let userLocation = CLLocationCoordinate2D(latitude: houseDM[0].listlocation[0], longitude: houseDM[0].listlocation[1])
+            let userLocation = CLLocationCoordinate2D(latitude: houseDM[0].listlocation[0] - 0.0027, longitude: houseDM[0].listlocation[1])
             let regionSpan = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
             
             let region = MKCoordinateRegion(center: userLocation, span: regionSpan)
@@ -162,5 +191,21 @@ extension MapVC: CLLocationManagerDelegate {
 extension MapVC: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+
+extension MapVC: SwipeDelegate {
+    func didSwipe(dir: Direction) {
+        if dir == .up && dir != direction {
+            if screenSize.height / 2 > 400 {
+                liftChild(height: 395, child: childForMapVC)
+            } else {
+                liftChild(height: 200, child: childForMapVC)
+            }
+            direction = .up
+        } else if dir == .down && dir != direction {
+            liftChild(height: childForMapVC.partial , child: childForMapVC)
+            direction = .down
+        }
     }
 }

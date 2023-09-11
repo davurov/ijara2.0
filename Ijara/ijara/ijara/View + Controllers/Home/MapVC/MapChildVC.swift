@@ -7,16 +7,40 @@
 
 import UIKit
 
+enum Direction {
+    case up
+    case down
+}
+
+protocol SwipeDelegate {
+    func didSwipe(dir: Direction)
+}
+
 class MapChildVC: UIViewController {
     
     @IBOutlet weak var contView: UIView!
     @IBOutlet weak var pageController: UIPageControl!
     @IBOutlet weak var collView: UICollectionView!
+    @IBOutlet weak var houseName: UILabel!
+    @IBOutlet weak var housePrice: UILabel!
+    @IBOutlet weak var starLbl: UILabel!
+    @IBOutlet weak var likeBtn: UIButton!
     
-    var houseDM: CountryhouseData?
+    var houseCoordinates = (latitude: 0.0, longitude: 0.0)
+    var images : [String] = [] {
+        didSet {
+            currentIndexPath.row = 0
+            pageController.currentPage = 0
+            configureCell()
+            collView.reloadData()
+        }
+    }
+    
+    var delegate: SwipeDelegate?
     var currentIndexPath: IndexPath = IndexPath(row: 0, section: 0)
     let partial = screenSize.height - screenSize.height / 2
     let full = screenSize.height
+    var isliked = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +66,23 @@ class MapChildVC: UIViewController {
     func addSwipeRecognizer() {
         let swipeToLeft = UISwipeGestureRecognizer(target: self, action: #selector(leftSwipe))
         let swipeToRight = UISwipeGestureRecognizer(target: self, action: #selector(rightSwipe))
+        let swipeToUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeUp))
+        let swipeToDown = UISwipeGestureRecognizer(target: self, action: #selector(swipeDown))
+        
         swipeToLeft.direction = .right
         swipeToRight.direction = .left
-        self.collView.addGestureRecognizer(swipeToLeft)
-        self.collView.addGestureRecognizer(swipeToRight)
+        swipeToUp.direction = .up
+        swipeToDown.direction = .down
+        
+        collView.addGestureRecognizer(swipeToLeft)
+        collView.addGestureRecognizer(swipeToRight)
+        view.addGestureRecognizer(swipeToUp)
+        view.addGestureRecognizer(swipeToDown)
+    }
+    
+    func configureCell() {
+        collView.scrollRectToVisible(CGRect(x: 0, y: 0, width: collView.frame.width, height: collView.frame.height
+                                                 ), animated: true)
     }
     
     @objc func leftSwipe() {
@@ -66,16 +103,43 @@ class MapChildVC: UIViewController {
         }
     }
     
+    @objc func swipeUp() {
+        delegate?.didSwipe(dir: .up)
+    }
+    
+    @objc func swipeDown() {
+        delegate?.didSwipe(dir: .down)
+    }
+    
+    @IBAction func moreInfoPressed(_ sender: Any) {
+        
+    }
+    
+    @IBAction func directionPressed(_ sender: Any) {
+        OpenMapDirections.present(in: self,latitude: houseCoordinates.latitude,longitude: houseCoordinates.longitude, sourceView: UIView())
+    }
+    
+    
+    @IBAction func likePressed(_ sender: Any) {
+        if isliked {
+            likeBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+            isliked = !isliked
+        } else {
+            likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            isliked = !isliked
+        }
+    }
 }
 
 extension MapChildVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return images.count >= 5 ? 5 : images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collView.dequeueReusableCell(withReuseIdentifier: PhotoCVC.identifier, for: indexPath)
+        let cell = collView.dequeueReusableCell(withReuseIdentifier: PhotoCVC.identifier, for: indexPath) as! PhotoCVC
         
+        cell.loadImage(url: images[indexPath.row])
         
         return cell
     }

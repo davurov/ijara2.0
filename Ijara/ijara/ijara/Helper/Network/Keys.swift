@@ -14,4 +14,5 @@ struct Keys {
     static let LANG = "lang"
     static let time = "time"
     static let child = "child"
+    static let fStore = "HouseData"
 }

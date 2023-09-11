@@ -12,7 +12,11 @@
             <connections>
                 <outlet property="collView" destination="0fW-3h-YsQ" id="aMZ-Kg-BFb"/>
                 <outlet property="contView" destination="lmH-mW-qpA" id="4Xs-TH-uQ0"/>
+                <outlet property="houseName" destination="Kmh-VZ-kMJ" id="gzf-yr-l22"/>
+                <outlet property="housePrice" destination="6i1-sG-jGj" id="tlb-WX-Bnz"/>
+                <outlet property="likeBtn" destination="LZM-yS-Rck" id="sne-jj-gfX"/>
                 <outlet property="pageController" destination="vcQ-Qz-Qix" id="fWV-f4-Obn"/>
+                <outlet property="starLbl" destination="LVb-FZ-oCz" id="DZf-8E-BA1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,7 +28,7 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lmH-mW-qpA">
                     <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A3g-hJ-J1f">
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A3g-hJ-J1f">
                             <rect key="frame" x="16" y="16" width="361" height="270"/>
                             <subviews>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0fW-3h-YsQ">
@@ -65,6 +69,11 @@
                                 <constraint firstAttribute="height" constant="270" id="jRC-LY-LaG"/>
                                 <constraint firstItem="0fW-3h-YsQ" firstAttribute="leading" secondItem="A3g-hJ-J1f" secondAttribute="leading" id="rZ3-RX-5pQ"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4oy-HS-9Lu">
                             <rect key="frame" x="15.999999999999993" y="302" width="126.33333333333331" height="48.666666666666686"/>
@@ -122,6 +131,9 @@
                                             <integer key="value" value="25"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="directionPressed:" destination="-1" eventType="touchUpInside" id="aRh-qT-qPR"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ra3-gd-Bis">
                                     <rect key="frame" x="60" y="0.0" width="200" height="50"/>
@@ -139,6 +151,9 @@
                                             <integer key="value" value="20"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="moreInfoPressed:" destination="-1" eventType="touchUpInside" id="tXj-DI-xxs"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZM-yS-Rck">
                                     <rect key="frame" x="270" y="0.0" width="50" height="50"/>
@@ -157,6 +172,9 @@
                                             <integer key="value" value="25"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="likePressed:" destination="-1" eventType="touchUpInside" id="d0p-MH-mL9"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>
