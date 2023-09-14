@@ -7,8 +7,8 @@ target 'ijara' do
 
 pod 'SDWebImage', '~> 5.0'
 pod "SCPageControl"
-pod 'Firebase/Auth'
-pod 'Firebase/Core'
+#pod 'Firebase/Auth'
+#pod 'Firebase/Core'
 pod 'IQKeyboardManager'
 pod 'lottie-ios'
 pod 'Alamofire'

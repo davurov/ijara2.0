@@ -7,34 +7,48 @@
 
 import UIKit
 
-class CustomTabBar: UITabBarController {
-
+final class CustomTabBar: UITabBarController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewControllers = [createMenuViewController(),
+                           createContactViewController(),
+                           createProfileViewController()]
+        
+        tabBar.tintColor = AppColors.selectedTabbarCollor
+        tabBar.backgroundColor = AppColors.tabBarBack
+    }
+}
 
-        viewControllers = [
-            generate(viewController: HomeVC(nibName: "HomeVC", bundle: nil),
-                     image: UIImage(named: "home"))
-        ]
+private extension CustomTabBar {
+    
+    func createMenuViewController() -> UIViewController {
+        let vc = HomeVC()
+        let image = SFSymbols.TabBarSymbols.homeSymbol
+        vc.tabBarItem = UITabBarItem(title: "Меню",
+                                     image: image,
+                                     tag: 0)
+        
+        return UINavigationController(rootViewController: vc)
     }
     
-    func generate(viewController: UIViewController,
-                  title: String? = nil,
-                  image: UIImage? = nil,
-                  inNav: Bool = false) -> UIViewController{
+    func createContactViewController() -> UIViewController {
+        let vc = LikedHousesVC()
+        let image = SFSymbols.TabBarSymbols.heartSymbol
+        vc.tabBarItem = UITabBarItem(title: "Контакты",
+                                     image: image,
+                                     tag: 1)
         
-        let vc = inNav ? UINavigationController(rootViewController: viewController) : viewController
-        
-        vc.tabBarItem.title = title
-        vc.tabBarItem.image = image?.withSize(scaledToSize: CGSize(width: 20, height: 20))
-        
-        return vc
+        return UINavigationController(rootViewController: vc)
     }
     
-    // customize tabBar Appearance
-    
-    func customizeTabBar() {
+    func createProfileViewController() -> UIViewController {
+        let vc = LikedHousesVC()
+        let image = SFSymbols.TabBarSymbols.profileSymbol
+        vc.tabBarItem = UITabBarItem(title: "Профиль",
+                                     image: image,
+                                     tag: 2)
         
-        
+        return UINavigationController(rootViewController: vc)
     }
 }

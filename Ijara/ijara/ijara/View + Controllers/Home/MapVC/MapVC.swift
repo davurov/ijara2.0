@@ -19,6 +19,7 @@ class MapVC: UIViewController {
     let locationManager = CLLocationManager()
     var didReceiveInitialLocationUpdate = false
     var userDefData = [CountryhouseData]()
+    var likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as! [String]
     var houseDM : [HouseDM] = [] {
         didSet {
             for i in houseDM {
@@ -67,16 +68,26 @@ class MapVC: UIViewController {
     }
     
     func getCountryHouse(id: String) {
+        likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as! [String]
         API.getProducts(id: id) { [self] result in
             if let result = result {
                 addressLbl.text = result["address"] as? String
                 childForMapVC.houseName.text = result["name"] as? String
                 childForMapVC.starLbl.text = "\(result["reyting"] as! Int).0"
                 for i in houseDM where "\(i.id)" == id {
+                    //set up child map vc data
                     childForMapVC.housePrice.text = "\(i.workingdays)/ \(i.weekends) so'm"
                     childForMapVC.houseCoordinates.latitude = i.listlocation[0]
                     childForMapVC.houseCoordinates.longitude = i.listlocation[1]
                     childForMapVC.images = i.images
+                    childForMapVC.id = id
+                    // check if the house liked or not
+                    if likedHouses.contains(id) {
+                        childForMapVC.likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                    } else {
+                        childForMapVC.likeBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+                    }
+                    
                 }
             }
         }
@@ -194,7 +205,7 @@ extension MapVC: UIGestureRecognizerDelegate {
     }
 }
 
-extension MapVC: SwipeDelegate {
+extension MapVC: MapChildDelegate {
     func didSwipe(dir: Direction) {
         if dir == .up && dir != direction {
             if screenSize.height / 2 > 400 {

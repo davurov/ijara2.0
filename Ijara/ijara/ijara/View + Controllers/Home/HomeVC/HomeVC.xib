@@ -52,7 +52,7 @@
                     </constraints>
                 </stackView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="wqi-zN-bSR">
-                    <rect key="frame" x="0.0" y="302" width="393" height="508"/>
+                    <rect key="frame" x="0.0" y="302" width="393" height="516"/>
                     <color key="backgroundColor" systemColor="systemGray6Color"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Rhc-af-1GU">
                         <size key="itemSize" width="128" height="128"/>
@@ -237,7 +237,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hPI-EV-PkV" secondAttribute="trailing" constant="16" id="cvS-8p-v1l"/>
                 <constraint firstItem="6hN-NF-a18" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ezH-Jh-TTs"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6hN-NF-a18" secondAttribute="trailing" id="jtd-Re-Jph"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wqi-zN-bSR" secondAttribute="bottom" constant="8" id="s9D-r0-WEg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wqi-zN-bSR" secondAttribute="bottom" id="s9D-r0-WEg"/>
                 <constraint firstItem="wqi-zN-bSR" firstAttribute="top" secondItem="6hN-NF-a18" secondAttribute="bottom" id="zbO-uy-KTL"/>
             </constraints>
             <point key="canvasLocation" x="72.51908396946564" y="20.422535211267608"/>

@@ -45,6 +45,12 @@ var window: UIWindow?
             }
         }
         
+        // set up liked house data
+        if UserDefaults.standard.array(forKey: Keys.likedHouses) == nil{
+            let defVal = [String]()
+            UserDefaults.standard.set(defVal, forKey: Keys.likedHouses)
+        }
+        
         window?.makeKeyAndVisible()
         return true
     }

@@ -44,6 +44,13 @@
 		3DBDDB1B2AAB689A0068E065 /* MapChildVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDDB192AAB689A0068E065 /* MapChildVC.xib */; };
 		3DBDDB1D2AAB97A90068E065 /* HouseByIdDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB1C2AAB97A90068E065 /* HouseByIdDM.swift */; };
 		3DBDDB222AAEDB600068E065 /* OpenMapDirections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB212AAEDB600068E065 /* OpenMapDirections.swift */; };
+		3DBDDB272AB0B8490068E065 /* LikedHousesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB252AB0B8490068E065 /* LikedHousesVC.swift */; };
+		3DBDDB282AB0B8490068E065 /* LikedHousesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDDB262AB0B8490068E065 /* LikedHousesVC.xib */; };
+		3DBDDB2C2AB20CED0068E065 /* LikedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB2A2AB20CED0068E065 /* LikedCell.swift */; };
+		3DBDDB2D2AB20CED0068E065 /* LikedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDDB2B2AB20CED0068E065 /* LikedCell.xib */; };
+		3DBDDB2F2AB220540068E065 /* animation_lmhzc44c.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDDB2E2AB220530068E065 /* animation_lmhzc44c.json */; };
+		3DBDDB312AB30D5E0068E065 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB302AB30D5D0068E065 /* SFSymbols.swift */; };
+		3DBDDB342AB353F30068E065 /* like.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDDB332AB353F30068E065 /* like.json */; };
 		5350408D2014B7A85C9E7099 /* Pods_ijara.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F46D81B2304154349E0BAFA /* Pods_ijara.framework */; };
 		DBD74E232AA26B1C003096BB /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD74E222AA26B1C003096BB /* CustomTabBar.swift */; };
 		DBD74E262AA26B8D003096BB /* Ex + UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD74E252AA26B8D003096BB /* Ex + UIImage.swift */; };
@@ -99,6 +106,13 @@
 		3DBDDB192AAB689A0068E065 /* MapChildVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapChildVC.xib; sourceTree = "<group>"; };
 		3DBDDB1C2AAB97A90068E065 /* HouseByIdDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseByIdDM.swift; sourceTree = "<group>"; };
 		3DBDDB212AAEDB600068E065 /* OpenMapDirections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMapDirections.swift; sourceTree = "<group>"; };
+		3DBDDB252AB0B8490068E065 /* LikedHousesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedHousesVC.swift; sourceTree = "<group>"; };
+		3DBDDB262AB0B8490068E065 /* LikedHousesVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikedHousesVC.xib; sourceTree = "<group>"; };
+		3DBDDB2A2AB20CED0068E065 /* LikedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedCell.swift; sourceTree = "<group>"; };
+		3DBDDB2B2AB20CED0068E065 /* LikedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikedCell.xib; sourceTree = "<group>"; };
+		3DBDDB2E2AB220530068E065 /* animation_lmhzc44c.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation_lmhzc44c.json; sourceTree = "<group>"; };
+		3DBDDB302AB30D5D0068E065 /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
+		3DBDDB332AB353F30068E065 /* like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = like.json; sourceTree = "<group>"; };
 		3F46D81B2304154349E0BAFA /* Pods_ijara.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ijara.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73083FFBB313154B0962A013 /* Pods-ijara.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ijara.debug.xcconfig"; path = "Target Support Files/Pods-ijara/Pods-ijara.debug.xcconfig"; sourceTree = "<group>"; };
 		81C410BF8F8AD33D4D6775CD /* Pods-ijara.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ijara.release.xcconfig"; path = "Target Support Files/Pods-ijara/Pods-ijara.release.xcconfig"; sourceTree = "<group>"; };
@@ -150,11 +164,11 @@
 			isa = PBXGroup;
 			children = (
 				3DD6DD212AA1B9320023E392 /* MainWindow */,
-				3D0D05772A8DA1E900BDAFF3 /* GoogleService-Info.plist */,
 				3DD6DD272AA1BC570023E392 /* Helper */,
 				3DD6DD252AA1BB300023E392 /* Model */,
 				DBD74E212AA26AF1003096BB /* View + Controllers */,
 				3DD6DD262AA1BB600023E392 /* Resource */,
+				3D0D05772A8DA1E900BDAFF3 /* GoogleService-Info.plist */,
 				3D7359682A6DE0C500BA329F /* Info.plist */,
 			);
 			path = ijara;
@@ -181,6 +195,24 @@
 			path = MapVC;
 			sourceTree = "<group>";
 		};
+		3DBDDB292AB0B85F0068E065 /* LikedHousesVC */ = {
+			isa = PBXGroup;
+			children = (
+				3DBDDB252AB0B8490068E065 /* LikedHousesVC.swift */,
+				3DBDDB262AB0B8490068E065 /* LikedHousesVC.xib */,
+			);
+			path = LikedHousesVC;
+			sourceTree = "<group>";
+		};
+		3DBDDB322AB30D840068E065 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				3DBDDB302AB30D5D0068E065 /* SFSymbols.swift */,
+				3D0D05692A8A172C00BDAFF3 /* Keys.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		3DD6DD212AA1B9320023E392 /* MainWindow */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,7 +227,6 @@
 				3D0D056B2A8A1B4500BDAFF3 /* SetLanguage.swift */,
 				3D0D05872A961B4300BDAFF3 /* API.swift */,
 				3D0D05812A92947C00BDAFF3 /* Net.swift */,
-				3D0D05692A8A172C00BDAFF3 /* Keys.swift */,
 				3D0D055F2A8A0A4800BDAFF3 /* Alert.swift */,
 				3D0D05832A92975900BDAFF3 /* EndPoints.swift */,
 				3D0D057F2A8F35E000BDAFF3 /* Reachability.swift */,
@@ -238,7 +269,9 @@
 		3DD6DD262AA1BB600023E392 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3DBDDB332AB353F30068E065 /* like.json */,
 				3D0D057D2A8F357F00BDAFF3 /* KKfo9cQRyU.json */,
+				3DBDDB2E2AB220530068E065 /* animation_lmhzc44c.json */,
 				3D7359632A6DE0C500BA329F /* Assets.xcassets */,
 				3D7359652A6DE0C500BA329F /* LaunchScreen.storyboard */,
 			);
@@ -248,6 +281,7 @@
 		3DD6DD272AA1BC570023E392 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				3DBDDB322AB30D840068E065 /* Constants */,
 				3DD6DD222AA1B9E40023E392 /* Network */,
 				3DD6DD232AA1BA360023E392 /* Extentions */,
 				3DD6DD242AA1BA990023E392 /* Additional */,
@@ -304,6 +338,7 @@
 				DBD74E2E2AA26C79003096BB /* Cells */,
 				3DBDDB102AAA2D340068E065 /* HomeVC */,
 				3DBDDB152AAA2D850068E065 /* MapVC */,
+				3DBDDB292AB0B85F0068E065 /* LikedHousesVC */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -319,6 +354,8 @@
 				DBD74E322AA26C81003096BB /* TopItemCVC.xib */,
 				3DBDDB0C2AA5E7800068E065 /* PhotoCVC.swift */,
 				3DBDDB0D2AA5E7800068E065 /* PhotoCVC.xib */,
+				3DBDDB2A2AB20CED0068E065 /* LikedCell.swift */,
+				3DBDDB2B2AB20CED0068E065 /* LikedCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -394,18 +431,22 @@
 			files = (
 				3D7359712A6DE14400BA329F /* WelcomePageVC.xib in Resources */,
 				3D7359672A6DE0C500BA329F /* LaunchScreen.storyboard in Resources */,
+				3DBDDB282AB0B8490068E065 /* LikedHousesVC.xib in Resources */,
 				DBD74E3F2AA26C8F003096BB /* Header.xib in Resources */,
 				3D0D05722A8B7A1B00BDAFF3 /* VerificationChildVC.xib in Resources */,
 				3D0D055C2A8A068600BDAFF3 /* RegisterChildVC.xib in Resources */,
 				DBD74E2D2AA26C70003096BB /* HomeVC.xib in Resources */,
 				DBD74E382AA26C81003096BB /* TopItemCVC.xib in Resources */,
 				3D7359642A6DE0C500BA329F /* Assets.xcassets in Resources */,
+				3DBDDB2D2AB20CED0068E065 /* LikedCell.xib in Resources */,
 				DBD74E362AA26C81003096BB /* CategoryCVC.xib in Resources */,
 				3D0D05672A8A162B00BDAFF3 /* SingInLangVC.xib in Resources */,
+				3DBDDB2F2AB220540068E065 /* animation_lmhzc44c.json in Resources */,
 				3DBDDB1B2AAB689A0068E065 /* MapChildVC.xib in Resources */,
 				DBD74E372AA26C81003096BB /* HomeCVC.xib in Resources */,
 				3D0D05782A8DA1E900BDAFF3 /* GoogleService-Info.plist in Resources */,
 				3D0D057E2A8F357F00BDAFF3 /* KKfo9cQRyU.json in Resources */,
+				3DBDDB342AB353F30068E065 /* like.json in Resources */,
 				3DBDDB142AAA2D6A0068E065 /* MapVC.xib in Resources */,
 				3DBDDB0F2AA5E7800068E065 /* PhotoCVC.xib in Resources */,
 			);
@@ -465,6 +506,7 @@
 				3D0D05762A8BA92F00BDAFF3 /* OTPTextField.swift in Sources */,
 				DBD74E3A2AA26C81003096BB /* HomeCVC.swift in Sources */,
 				3D0D05602A8A0A4800BDAFF3 /* Alert.swift in Sources */,
+				3DBDDB312AB30D5E0068E065 /* SFSymbols.swift in Sources */,
 				DBD74E392AA26C81003096BB /* CategoryCVC.swift in Sources */,
 				3DBDDB1A2AAB689A0068E065 /* MapChildVC.swift in Sources */,
 				3D0D05622A8A116800BDAFF3 /* Ex+UIView.swift in Sources */,
@@ -477,6 +519,7 @@
 				3D0D05822A92947C00BDAFF3 /* Net.swift in Sources */,
 				3D0D05842A92975900BDAFF3 /* EndPoints.swift in Sources */,
 				3D0D055B2A8A068600BDAFF3 /* RegisterChildVC.swift in Sources */,
+				3DBDDB2C2AB20CED0068E065 /* LikedCell.swift in Sources */,
 				3D0D05642A8A118D00BDAFF3 /* AppColors.swift in Sources */,
 				DBD74E262AA26B8D003096BB /* Ex + UIImage.swift in Sources */,
 				3D0D05742A8BA85900BDAFF3 /* OTPFieldView.swift in Sources */,
@@ -485,6 +528,7 @@
 				3DBDDB1D2AAB97A90068E065 /* HouseByIdDM.swift in Sources */,
 				3D0D056A2A8A172C00BDAFF3 /* Keys.swift in Sources */,
 				3D0D05712A8B7A1B00BDAFF3 /* VerificationChildVC.swift in Sources */,
+				3DBDDB272AB0B8490068E065 /* LikedHousesVC.swift in Sources */,
 				3D0D056C2A8A1B4500BDAFF3 /* SetLanguage.swift in Sources */,
 				DBD74E3E2AA26C8F003096BB /* Header.swift in Sources */,
 				3DBDDB132AAA2D6A0068E065 /* MapVC.swift in Sources */,

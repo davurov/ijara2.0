@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import Lottie
 
 enum Direction {
     case up
     case down
 }
 
-protocol SwipeDelegate {
+protocol MapChildDelegate {
     func didSwipe(dir: Direction)
 }
 
@@ -27,6 +28,7 @@ class MapChildVC: UIViewController {
     @IBOutlet weak var likeBtn: UIButton!
     
     var houseCoordinates = (latitude: 0.0, longitude: 0.0)
+    var id = ""
     var images : [String] = [] {
         didSet {
             currentIndexPath.row = 0
@@ -36,11 +38,11 @@ class MapChildVC: UIViewController {
         }
     }
     
-    var delegate: SwipeDelegate?
+    var delegate: MapChildDelegate?
+    var likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as! [String]
     var currentIndexPath: IndexPath = IndexPath(row: 0, section: 0)
     let partial = screenSize.height - screenSize.height / 2
     let full = screenSize.height
-    var isliked = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,13 +123,16 @@ class MapChildVC: UIViewController {
     
     
     @IBAction func likePressed(_ sender: Any) {
-        if isliked {
+        if likedHouses.contains(id) {
+           let index = likedHouses.firstIndex(of: id)!
+            likedHouses.remove(at: index)
             likeBtn.setImage(UIImage(systemName: "heart"), for: .normal)
-            isliked = !isliked
         } else {
+            likedHouses.append(id)
             likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            isliked = !isliked
         }
+        
+        UserDefaults.standard.set(likedHouses, forKey: Keys.likedHouses)
     }
 }
 
