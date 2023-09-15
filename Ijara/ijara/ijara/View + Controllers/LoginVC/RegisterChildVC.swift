@@ -60,7 +60,7 @@ class RegisterChildVC: UIViewController {
             Alert.showAlert(forState: .error, message: "Enter number")
             return
         }
-        
+        UserDefaults.standard.set([phoneTF.text, nameTF.text], forKey: Keys.userInfo)
         let numberWithCode = "+998" + number.replacingOccurrences(of: " ", with: "")
         AuthManager.shared.startAuth(phoneNumber: numberWithCode) { success in
             

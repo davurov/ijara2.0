@@ -39,9 +39,13 @@ class HomeVC: UIViewController {
         
         setupColView()
         setupSubviews()
-        navigationController?.navigationBar.isHidden = true
         locationManager.requestWhenInUseAuthorization()
         getData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
     
     //MARK: - @IBActions

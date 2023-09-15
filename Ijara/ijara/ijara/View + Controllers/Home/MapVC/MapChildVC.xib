@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapChildVC" customModule="ijara" customModuleProvider="target">
             <connections>
+                <outlet property="animationView" destination="b3T-ex-uC1" id="VmI-4H-5xJ"/>
                 <outlet property="collView" destination="0fW-3h-YsQ" id="aMZ-Kg-BFb"/>
                 <outlet property="contView" destination="lmH-mW-qpA" id="4Xs-TH-uQ0"/>
                 <outlet property="houseName" destination="Kmh-VZ-kMJ" id="gzf-yr-l22"/>
@@ -178,6 +179,14 @@
                                 </button>
                             </subviews>
                         </stackView>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3T-ex-uC1">
+                            <rect key="frame" x="301.66666666666669" y="365.66666666666669" width="60" height="60"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="E5I-ab-PGt"/>
+                                <constraint firstAttribute="height" constant="60" id="qqc-cP-Spx"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
@@ -189,7 +198,9 @@
                         <constraint firstItem="A3g-hJ-J1f" firstAttribute="leading" secondItem="lmH-mW-qpA" secondAttribute="leading" constant="16" id="bNt-uN-FwM"/>
                         <constraint firstItem="oiP-WF-exi" firstAttribute="top" secondItem="A3g-hJ-J1f" secondAttribute="bottom" constant="16" id="cjh-YG-kh8"/>
                         <constraint firstItem="A3g-hJ-J1f" firstAttribute="top" secondItem="lmH-mW-qpA" secondAttribute="top" constant="16" id="eMa-sl-4vL"/>
+                        <constraint firstItem="b3T-ex-uC1" firstAttribute="centerY" secondItem="LZM-yS-Rck" secondAttribute="centerY" id="ehO-FI-z68"/>
                         <constraint firstItem="4oy-HS-9Lu" firstAttribute="leading" secondItem="lmH-mW-qpA" secondAttribute="leading" constant="16" id="fQf-GZ-iYF"/>
+                        <constraint firstItem="b3T-ex-uC1" firstAttribute="centerX" secondItem="LZM-yS-Rck" secondAttribute="centerX" id="gxs-HH-S8d"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nue-3v-fIA">

@@ -100,6 +100,7 @@ extension UIViewController{
                           actions: [((UIAlertAction) -> Void)?],
                           preferredActionIndex: Int? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: alertType)
+        alert.view.tintColor = AppColors.mainColor
         
         for (index, title) in actionTitles.enumerated() {
             let action = UIAlertAction(title: title, style: style[index], handler: actions[index])

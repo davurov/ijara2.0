@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import Firebase
 import FirebaseFirestore
+import FirebaseAuth
 
 
 class API {
@@ -96,5 +97,16 @@ class API {
         }
     }
     
-    
+    class func deleteUser(complition: @escaping((Error?) -> Void)) {
+        let user = Auth.auth().currentUser
+        user?.delete { error in
+          if let error = error {
+              Alert.showAlert(forState: .error, message: "Unable to delete accaunt")
+              complition(error)
+          } else {
+              
+              complition(nil)
+          }
+        }
+    }
 }

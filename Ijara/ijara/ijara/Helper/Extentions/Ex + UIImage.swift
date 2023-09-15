@@ -15,4 +15,17 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return newImage!.withRenderingMode(.alwaysOriginal)
     }
+    
+    func saveImage() {
+        guard let data = self.jpegData(compressionQuality: 0.5) else { return }
+        let encoded = try! PropertyListEncoder().encode(data)
+        UserDefaults.standard.set(encoded, forKey: Keys.userImage)
+    }
+    
+    func loadImage() -> UIImage? {
+        guard let data = UserDefaults.standard.data(forKey: Keys.userImage) else { return nil}
+        let decoded = try! PropertyListDecoder().decode(Data.self, from: data)
+        let image = UIImage(data: decoded)
+        return image
+    }
 }

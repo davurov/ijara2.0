@@ -89,6 +89,7 @@ extension WelcomePageVC: VerificationDelegate {
     func verified() {
         //Present HomeVC
         let vc = CustomTabBar()
+        vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true)
     }
 }

@@ -22,7 +22,8 @@ var window: UIWindow?
         
         window = UIWindow()
         // if user not signed up
-        if Auth.auth().currentUser == nil {
+        let token = UserDefaults.standard.string(forKey: Keys.token)
+        if Auth.auth().currentUser == nil || token == nil {
             let vc = SingInLangVC(nibName: "SingInLangVC", bundle: nil)
             let nav = UINavigationController(rootViewController: vc)
             window?.rootViewController = nav
@@ -30,7 +31,6 @@ var window: UIWindow?
             //if user signed in
             let vc = CustomTabBar()
             window?.rootViewController = vc
-            
         }
         
         API.getProducts { result in

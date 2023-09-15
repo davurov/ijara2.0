@@ -63,6 +63,7 @@ class AuthManager {
                 complition(false)
                 return
             }
+            UserDefaults.standard.set(self.auth.currentUser?.uid ?? "tok", forKey: Keys.token)
             complition(true)
         }
         

@@ -27,6 +27,9 @@ class MapChildVC: UIViewController {
     @IBOutlet weak var starLbl: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
     
+    @IBOutlet weak var animationView: UIView!
+    
+    var lottieView: LottieAnimationView?
     var houseCoordinates = (latitude: 0.0, longitude: 0.0)
     var id = ""
     var images : [String] = [] {
@@ -87,6 +90,7 @@ class MapChildVC: UIViewController {
                                                  ), animated: true)
     }
     
+    
     @objc func leftSwipe() {
         if currentIndexPath.row > 0 {
             currentIndexPath.row -= 1
@@ -131,7 +135,6 @@ class MapChildVC: UIViewController {
             likedHouses.append(id)
             likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
-        
         UserDefaults.standard.set(likedHouses, forKey: Keys.likedHouses)
     }
 }
