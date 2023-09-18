@@ -16,6 +16,10 @@ public enum SCPageStyle: Int {
     case SCJAFlatBar
 }
 
+protocol CellDelegate {
+    func cellSelected(id: String)
+}
+
 class HomeCVC: UICollectionViewCell {
     
     @IBOutlet weak var containerView: UIView!
@@ -39,6 +43,8 @@ class HomeCVC: UICollectionViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var images = [String]()
+    var id = 0
+    var cellDelegate: CellDelegate?
     // Home Cell Identifier
     static let identifier: String = String(describing: HomeCVC.self)
     let sc = SCPageControlView()
@@ -147,6 +153,7 @@ extension HomeCVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCVC.identifier, for: indexPath) as! PhotoCVC
+        cell.imageCont.layer.cornerRadius = 10
         cell.loadImage(url: images[indexPath.row])
         return cell
     }
@@ -161,5 +168,9 @@ extension HomeCVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         sc.scroll_did(scrollView)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        cellDelegate?.cellSelected(id: "\(id)")
     }
 }

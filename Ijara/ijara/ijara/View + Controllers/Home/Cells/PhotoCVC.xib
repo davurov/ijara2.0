@@ -31,11 +31,6 @@
                             <constraint firstAttribute="bottom" secondItem="Cau-h9-aJd" secondAttribute="bottom" id="qwP-xY-Uqh"/>
                             <constraint firstItem="Cau-h9-aJd" firstAttribute="leading" secondItem="NJ3-mA-CVf" secondAttribute="leading" id="yDI-c9-Xt3"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="10"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
@@ -49,6 +44,7 @@
             <size key="customSize" width="223" height="148"/>
             <connections>
                 <outlet property="houseImage" destination="Cau-h9-aJd" id="NOX-qX-Bkg"/>
+                <outlet property="imageCont" destination="NJ3-mA-CVf" id="nTe-TM-Yfl"/>
             </connections>
             <point key="canvasLocation" x="158.01526717557252" y="54.225352112676056"/>
         </collectionViewCell>

@@ -43,7 +43,7 @@ private extension CustomTabBar {
     }
     
     func createProfileViewController() -> UIViewController {
-        let vc = ProfileVC()
+        let vc = LikedHousesVC()
         let image = SFSymbols.TabBarSymbols.profileSymbol
         vc.tabBarItem = UITabBarItem(title: "Профиль",
                                      image: image,

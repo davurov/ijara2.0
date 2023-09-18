@@ -11,6 +11,8 @@ class PhotoCVC: UICollectionViewCell {
     
     
     @IBOutlet weak var houseImage: UIImageView!
+    @IBOutlet weak var imageCont: UIView!
+    
     var isExpanded = false
     
     static let identifier: String = String(describing: PhotoCVC.self)

@@ -262,6 +262,8 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         } else {
             let cell = colView.dequeueReusableCell(withReuseIdentifier: HomeCVC.identifier, for: indexPath) as! HomeCVC
             
+            cell.cellDelegate = self
+            cell.id = searchedData[indexPath.row].id
             cell.nameLbl.text = searchedData[indexPath.row].name
             cell.pirceLbl.text = searchedData[indexPath.row].workingdays + "/" + " " + searchedData[indexPath.row].weekends + "so'm"
             cell.locationLbl.text = searchedData[indexPath.row].province
@@ -293,7 +295,10 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             selectedCell?.categoryNameLbl.textColor = .white
             searchByCategory(str: categoryNames[indexPath.row])
         } else {
-            
+            let vc = HomeDetailVC()
+            vc.modalPresentationStyle = .overFullScreen
+            present(vc, animated: true)
+            vc.images = searchedData[indexPath.row].images
         }
     }
     
@@ -382,4 +387,16 @@ extension HomeVC: UITextFieldDelegate {
         colView.reloadData()
     }
     
+}
+
+extension HomeVC: CellDelegate {
+    func cellSelected(id: String) {
+        let vc = HomeDetailVC()
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true) {
+            for i in self.searchedData where "\(i.id)" == id {
+                vc.images = i.images
+            }
+        }
+    }
 }
