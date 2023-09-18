@@ -390,13 +390,10 @@ extension HomeVC: UITextFieldDelegate {
 }
 
 extension HomeVC: CellDelegate {
-    func cellSelected(id: String) {
+    func cellSelected(id: String, images: [String]) {
         let vc = HomeDetailVC()
         vc.modalPresentationStyle = .overFullScreen
-        present(vc, animated: true) {
-            for i in self.searchedData where "\(i.id)" == id {
-                vc.images = i.images
-            }
-        }
+        present(vc, animated: true)
+        vc.images = images
     }
 }

@@ -16,9 +16,20 @@ class PhotoTVC: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageController: UIView!
+    @IBOutlet weak var pageCountLbl: UILabel!
     
     let sc = SCPageControlView()
-    var houseImgs = [String]()
+    var houseImgs : [String] = [] {
+        didSet {
+            pageCountLbl.text = "\(currentPage)/\(houseImgs.count)"
+        }
+    }
+    var currentPage = 1 {
+        didSet {
+            pageCountLbl.text = "\(currentPage)/\(houseImgs.count)"
+        }
+    }
+    var previousOffset: CGFloat = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,18 +40,6 @@ class PhotoTVC: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(PhotoCVC.nib(), forCellWithReuseIdentifier: PhotoCVC.identifier)
-        
-        sc.frame = pageController.bounds
-        
-        sc.scp_style = .SCNormal
-        sc.set_view(houseImgs.count, current: 0, current_color: .white, disable_color: nil)
-        
-        pageController.addSubview(sc)
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
     }
     
 }
@@ -65,8 +64,22 @@ extension PhotoTVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
                       height: collectionView.frame.height)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        sc.scroll_did(scrollView)
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.x
+        
+        if currentOffset > previousOffset {
+            // Swiped to the left
+            if currentPage < houseImgs.count {
+                currentPage += 1
+            }
+        } else if currentOffset < previousOffset {
+            // Swiped to the right
+            if currentPage > 1 {
+                currentPage -= 1
+            }
+        }
+        
+        previousOffset = currentOffset
     }
     
 }

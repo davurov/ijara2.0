@@ -16,7 +16,6 @@ class HomeDetailVC: UIViewController {
     
     var previousContentOffset: CGFloat = 0.0
     var images = [String]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()

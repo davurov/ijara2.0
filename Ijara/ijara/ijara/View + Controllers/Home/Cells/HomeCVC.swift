@@ -17,7 +17,7 @@ public enum SCPageStyle: Int {
 }
 
 protocol CellDelegate {
-    func cellSelected(id: String)
+    func cellSelected(id: String, images: [String])
 }
 
 class HomeCVC: UICollectionViewCell {
@@ -171,6 +171,6 @@ extension HomeCVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        cellDelegate?.cellSelected(id: "\(id)")
+        cellDelegate?.cellSelected(id: "\(id)", images: images)
     }
 }
