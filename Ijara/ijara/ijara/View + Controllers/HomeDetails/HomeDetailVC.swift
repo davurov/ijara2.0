@@ -34,6 +34,7 @@ class HomeDetailVC: UIViewController {
         tableView.register(AdditionalTVC.nib(), forCellReuseIdentifier: AdditionalTVC.identifier)
         tableView.register(InfoTVC.nib(), forCellReuseIdentifier: InfoTVC.identifier)
         tableView.register(CommentTVC.nib(), forCellReuseIdentifier: CommentTVC.identifier)
+        tableView.register(ContactTVC.nib(), forCellReuseIdentifier: ContactTVC.identifier)
         
         navigationController?.navigationBar.isHidden = true
         
@@ -93,6 +94,10 @@ extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
             cell.resizeComment()
             
             return cell
+        } else if indexPath.row == 6 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ContactTVC.identifier, for: indexPath) as! ContactTVC
+            
+            return cell
         } else {
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
           
@@ -113,6 +118,8 @@ extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
             return 340
         } else if indexPath.row == 5 {
             return commentCellSize
+        } else if indexPath.row == 6 {
+            return 230
         } else {
             return 50
         }

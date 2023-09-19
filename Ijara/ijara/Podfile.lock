@@ -793,6 +793,7 @@ PODS:
     - gRPC-Core/Interface (= 1.50.1)
   - gRPC-Core/Interface (1.50.1)
   - GTMSessionFetcher/Core (3.1.1)
+  - HorizonCalendar (1.16.0)
   - IQKeyboardManager (6.5.12)
   - leveldb-library (1.22.2)
   - lottie-ios (4.2.0)
@@ -813,6 +814,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - FirebaseFirestore
+  - HorizonCalendar
   - IQKeyboardManager
   - lottie-ios
   - SCPageControl
@@ -837,6 +839,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - HorizonCalendar
     - IQKeyboardManager
     - leveldb-library
     - lottie-ios
@@ -863,6 +866,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": 0968bace703459fd3e5dcb0b2bed4c573dbff046
   gRPC-Core: 17108291d84332196d3c8466b48f016fc17d816d
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
+  HorizonCalendar: 90d7281cf1cd0cb3fae1d3e53f6f7fd24fda5a0e
   IQKeyboardManager: b1fd66ccf7a79095bdcc4a2735231586f744216e
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
   lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
@@ -872,6 +876,6 @@ SPEC CHECKSUMS:
   SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: bb6ad86f1adf838a8f658927d155f8092c646f13
+PODFILE CHECKSUM: d89c37ea6dca0bbedf95a9e1ac5476e9229ad2c6
 
 COCOAPODS: 1.11.3

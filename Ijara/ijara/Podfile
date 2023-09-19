@@ -14,5 +14,7 @@ pod 'lottie-ios'
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'FirebaseFirestore'
+pod 'HorizonCalendar'
+
 
 end

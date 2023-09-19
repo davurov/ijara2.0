@@ -54,6 +54,10 @@
 		3D8A72932AB8F7E60051DE9D /* InfoTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A72912AB8F7E60051DE9D /* InfoTVC.xib */; };
 		3D8A72962AB902610051DE9D /* CommentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A72942AB902610051DE9D /* CommentTVC.swift */; };
 		3D8A72972AB902610051DE9D /* CommentTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A72952AB902610051DE9D /* CommentTVC.xib */; };
+		3D8A729A2AB9DFA10051DE9D /* ContactTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A72982AB9DFA00051DE9D /* ContactTVC.swift */; };
+		3D8A729B2AB9DFA10051DE9D /* ContactTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A72992AB9DFA10051DE9D /* ContactTVC.xib */; };
+		3D8A729E2ABA198D0051DE9D /* CalendarTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A729C2ABA198D0051DE9D /* CalendarTVC.swift */; };
+		3D8A729F2ABA198D0051DE9D /* CalendarTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A729D2ABA198D0051DE9D /* CalendarTVC.xib */; };
 		3D9502EE2AB4561C00F0D3A8 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9502EC2AB4561C00F0D3A8 /* ProfileVC.swift */; };
 		3D9502EF2AB4561C00F0D3A8 /* ProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9502ED2AB4561C00F0D3A8 /* ProfileVC.xib */; };
 		3DBDDB0E2AA5E7800068E065 /* PhotoCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB0C2AA5E7800068E065 /* PhotoCVC.swift */; };
@@ -139,6 +143,10 @@
 		3D8A72912AB8F7E60051DE9D /* InfoTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTVC.xib; sourceTree = "<group>"; };
 		3D8A72942AB902610051DE9D /* CommentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTVC.swift; sourceTree = "<group>"; };
 		3D8A72952AB902610051DE9D /* CommentTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTVC.xib; sourceTree = "<group>"; };
+		3D8A72982AB9DFA00051DE9D /* ContactTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTVC.swift; sourceTree = "<group>"; };
+		3D8A72992AB9DFA10051DE9D /* ContactTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTVC.xib; sourceTree = "<group>"; };
+		3D8A729C2ABA198D0051DE9D /* CalendarTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTVC.swift; sourceTree = "<group>"; };
+		3D8A729D2ABA198D0051DE9D /* CalendarTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarTVC.xib; sourceTree = "<group>"; };
 		3D9502EC2AB4561C00F0D3A8 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		3D9502ED2AB4561C00F0D3A8 /* ProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileVC.xib; sourceTree = "<group>"; };
 		3DBDDB0C2AA5E7800068E065 /* PhotoCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCVC.swift; sourceTree = "<group>"; };
@@ -487,6 +495,10 @@
 				3D8A72912AB8F7E60051DE9D /* InfoTVC.xib */,
 				3D8A72942AB902610051DE9D /* CommentTVC.swift */,
 				3D8A72952AB902610051DE9D /* CommentTVC.xib */,
+				3D8A72982AB9DFA00051DE9D /* ContactTVC.swift */,
+				3D8A72992AB9DFA10051DE9D /* ContactTVC.xib */,
+				3D8A729C2ABA198D0051DE9D /* CalendarTVC.swift */,
+				3D8A729D2ABA198D0051DE9D /* CalendarTVC.xib */,
 				3D70CB572AB8A6700016C0B4 /* RulesTVC */,
 				3D8A728A2AB8E83B0051DE9D /* AdditionalTVC */,
 			);
@@ -573,6 +585,7 @@
 				DBD74E382AA26C81003096BB /* TopItemCVC.xib in Resources */,
 				3D70CB522AB898C80016C0B4 /* NameTVC.xib in Resources */,
 				3D7359642A6DE0C500BA329F /* Assets.xcassets in Resources */,
+				3D8A729F2ABA198D0051DE9D /* CalendarTVC.xib in Resources */,
 				3D8A72932AB8F7E60051DE9D /* InfoTVC.xib in Resources */,
 				3DBDDB2D2AB20CED0068E065 /* LikedCell.xib in Resources */,
 				3D8A72892AB8CDD90051DE9D /* AdditionalTVC.xib in Resources */,
@@ -586,6 +599,7 @@
 				3D70CB492AB5FF050016C0B4 /* HomeDetailVC.xib in Resources */,
 				DBD74E372AA26C81003096BB /* HomeCVC.xib in Resources */,
 				3D0D05782A8DA1E900BDAFF3 /* GoogleService-Info.plist in Resources */,
+				3D8A729B2AB9DFA10051DE9D /* ContactTVC.xib in Resources */,
 				3D70CB4E2AB7A49A0016C0B4 /* PhotoTVC.xib in Resources */,
 				3D0D057E2A8F357F00BDAFF3 /* KKfo9cQRyU.json in Resources */,
 				3D8A728E2AB8E8C50051DE9D /* AditionalChildTVC.xib in Resources */,
@@ -646,12 +660,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D8A728D2AB8E8C50051DE9D /* AditionalChildTVC.swift in Sources */,
+				3D8A729E2ABA198D0051DE9D /* CalendarTVC.swift in Sources */,
 				DBD74E352AA26C81003096BB /* TopItemCVC.swift in Sources */,
 				3D0D05682A8A162B00BDAFF3 /* SingInLangVC.swift in Sources */,
 				3D9502EE2AB4561C00F0D3A8 /* ProfileVC.swift in Sources */,
 				3D0D05762A8BA92F00BDAFF3 /* OTPTextField.swift in Sources */,
 				DBD74E3A2AA26C81003096BB /* HomeCVC.swift in Sources */,
 				3D0D05602A8A0A4800BDAFF3 /* Alert.swift in Sources */,
+				3D8A729A2AB9DFA10051DE9D /* ContactTVC.swift in Sources */,
 				3DBDDB312AB30D5E0068E065 /* SFSymbols.swift in Sources */,
 				DBD74E392AA26C81003096BB /* CategoryCVC.swift in Sources */,
 				3DBDDB1A2AAB689A0068E065 /* MapChildVC.swift in Sources */,
