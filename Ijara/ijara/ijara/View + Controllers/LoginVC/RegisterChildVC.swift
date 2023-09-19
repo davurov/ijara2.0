@@ -91,7 +91,7 @@ class RegisterChildVC: UIViewController {
     
     func setupViews() {
         for (i, _) in contViews.enumerated() {
-            contViews[i].addBorder()
+            contViews[i].addBorder(size: 2)
             contViews[i].layer.cornerRadius = 20
         }
         phoneTF.delegate = self

@@ -17,9 +17,9 @@ extension UIView {
         layer.shadowOffset = CGSize(width: 0, height: 0)
     }
     
-    func addBorder() {
+    func addBorder(size: CGFloat) {
         layer.borderColor = AppColors.mainColor.cgColor
-        layer.borderWidth = 2
+        layer.borderWidth = size
     }
     
     func addShadowCustom(offset: CGSize, color: CGColor, radius: CGFloat, opacity: Float){

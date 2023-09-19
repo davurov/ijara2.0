@@ -24,7 +24,12 @@ class HomeDetailVC: UIViewController {
     func setUpViews() {
         tableView.delegate = self
         tableView.dataSource = self
+        
         tableView.register(PhotoTVC.nib(), forCellReuseIdentifier: PhotoTVC.identifier)
+        tableView.register(NameTVC.nib(), forCellReuseIdentifier: NameTVC.identifier)
+        tableView.register(RulesTVC.nib(), forCellReuseIdentifier: RulesTVC.identifier)
+        tableView.register(AdditionalTVC.nib(), forCellReuseIdentifier: AdditionalTVC.identifier)
+        tableView.register(InfoTVC.nib(), forCellReuseIdentifier: InfoTVC.identifier)
         
         navigationController?.navigationBar.isHidden = true
         
@@ -56,6 +61,27 @@ extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
             cell.houseImgs = images
             
             return cell
+        } else if indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: NameTVC.identifier, for: indexPath) as! NameTVC
+            
+            cell.nameLbl.text = "Dacha 909"
+            cell.locationLbl.text = "xzxxzmxzkmxzmxkzmxdcsdcs"
+            cell.starLbl.text = "5.0"
+            
+            return cell
+        } else if indexPath.row == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: InfoTVC.identifier, for: indexPath) as! InfoTVC
+            
+            
+            return cell
+        } else if indexPath.row == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: RulesTVC.identifier, for: indexPath) as! RulesTVC
+            
+            return cell
+        } else if indexPath.row == 4 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: AdditionalTVC.identifier, for: indexPath) as! AdditionalTVC
+            
+            return cell
         } else {
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
           
@@ -66,6 +92,14 @@ extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 300
+        } else if indexPath.row == 1 {
+            return 110
+        } else if indexPath.row == 2 {
+            return 80
+        } else if indexPath.row == 3 {
+            return 140
+        } else if indexPath.row == 4 {
+            return 340
         } else {
             return 50
         }
