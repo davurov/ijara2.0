@@ -14,8 +14,11 @@ class HomeDetailVC: UIViewController {
     @IBOutlet weak var tableviewSafeConst: NSLayoutConstraint!
     @IBOutlet weak var callCont: UIView!
     
+    
     var previousContentOffset: CGFloat = 0.0
+    var commentCellSize : CGFloat = 280
     var images = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
@@ -30,6 +33,7 @@ class HomeDetailVC: UIViewController {
         tableView.register(RulesTVC.nib(), forCellReuseIdentifier: RulesTVC.identifier)
         tableView.register(AdditionalTVC.nib(), forCellReuseIdentifier: AdditionalTVC.identifier)
         tableView.register(InfoTVC.nib(), forCellReuseIdentifier: InfoTVC.identifier)
+        tableView.register(CommentTVC.nib(), forCellReuseIdentifier: CommentTVC.identifier)
         
         navigationController?.navigationBar.isHidden = true
         
@@ -82,6 +86,13 @@ extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: AdditionalTVC.identifier, for: indexPath) as! AdditionalTVC
             
             return cell
+        } else if indexPath.row == 5 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CommentTVC.identifier, for: indexPath) as! CommentTVC
+            
+            cell.delegate = self
+            cell.resizeComment()
+            
+            return cell
         } else {
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
           
@@ -100,6 +111,8 @@ extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
             return 140
         } else if indexPath.row == 4 {
             return 340
+        } else if indexPath.row == 5 {
+            return commentCellSize
         } else {
             return 50
         }
@@ -145,5 +158,12 @@ extension HomeDetailVC: UIScrollViewDelegate {
         }
         
         previousContentOffset = currentContentOffset
+    }
+}
+
+extension HomeDetailVC: CommentDelegate {
+    func readMorePressed(size: CGFloat) {
+        commentCellSize = size
+        tableView.reloadData()
     }
 }
