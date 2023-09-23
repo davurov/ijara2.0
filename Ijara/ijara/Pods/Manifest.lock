@@ -692,6 +692,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - PromisesObjC (~> 2.1)
+  - FSCalendar (2.8.4)
   - GoogleAppMeasurement (10.12.0):
     - GoogleAppMeasurement/AdIdSupport (= 10.12.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
@@ -793,7 +794,6 @@ PODS:
     - gRPC-Core/Interface (= 1.50.1)
   - gRPC-Core/Interface (1.50.1)
   - GTMSessionFetcher/Core (3.1.1)
-  - HorizonCalendar (1.16.0)
   - IQKeyboardManager (6.5.12)
   - leveldb-library (1.22.2)
   - lottie-ios (4.2.0)
@@ -814,7 +814,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - FirebaseFirestore
-  - HorizonCalendar
+  - FSCalendar
   - IQKeyboardManager
   - lottie-ios
   - SCPageControl
@@ -834,12 +834,12 @@ SPEC REPOS:
     - FirebaseCoreInternal
     - FirebaseFirestore
     - FirebaseInstallations
+    - FSCalendar
     - GoogleAppMeasurement
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
-    - HorizonCalendar
     - IQKeyboardManager
     - leveldb-library
     - lottie-ios
@@ -861,12 +861,12 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: 950500ad8a08963657f6d8c67b579740c06d6aa1
   FirebaseFirestore: f94c9541515fa4a49af52269bbc50349009424b4
   FirebaseInstallations: 7b99ef103f013624444c614397038219c45f8e63
+  FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   GoogleAppMeasurement: 2d800fab85e7848b1e66a6f8ce5bca06c5aad892
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   "gRPC-C++": 0968bace703459fd3e5dcb0b2bed4c573dbff046
   gRPC-Core: 17108291d84332196d3c8466b48f016fc17d816d
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
-  HorizonCalendar: 90d7281cf1cd0cb3fae1d3e53f6f7fd24fda5a0e
   IQKeyboardManager: b1fd66ccf7a79095bdcc4a2735231586f744216e
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
   lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
@@ -876,6 +876,6 @@ SPEC CHECKSUMS:
   SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: d89c37ea6dca0bbedf95a9e1ac5476e9229ad2c6
+PODFILE CHECKSUM: 3e08cc3395b5c790d500d96bae5c9f92648e9e24
 
 COCOAPODS: 1.11.3

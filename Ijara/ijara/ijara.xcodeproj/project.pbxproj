@@ -58,6 +58,8 @@
 		3D8A729B2AB9DFA10051DE9D /* ContactTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A72992AB9DFA10051DE9D /* ContactTVC.xib */; };
 		3D8A729E2ABA198D0051DE9D /* CalendarTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A729C2ABA198D0051DE9D /* CalendarTVC.swift */; };
 		3D8A729F2ABA198D0051DE9D /* CalendarTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A729D2ABA198D0051DE9D /* CalendarTVC.xib */; };
+		3D8A72B62ABC84370051DE9D /* CalendarCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A72B42ABC84370051DE9D /* CalendarCVC.swift */; };
+		3D8A72B72ABC84370051DE9D /* CalendarCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A72B52ABC84370051DE9D /* CalendarCVC.xib */; };
 		3D9502EE2AB4561C00F0D3A8 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9502EC2AB4561C00F0D3A8 /* ProfileVC.swift */; };
 		3D9502EF2AB4561C00F0D3A8 /* ProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9502ED2AB4561C00F0D3A8 /* ProfileVC.xib */; };
 		3DBDDB0E2AA5E7800068E065 /* PhotoCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB0C2AA5E7800068E065 /* PhotoCVC.swift */; };
@@ -147,6 +149,8 @@
 		3D8A72992AB9DFA10051DE9D /* ContactTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTVC.xib; sourceTree = "<group>"; };
 		3D8A729C2ABA198D0051DE9D /* CalendarTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTVC.swift; sourceTree = "<group>"; };
 		3D8A729D2ABA198D0051DE9D /* CalendarTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarTVC.xib; sourceTree = "<group>"; };
+		3D8A72B42ABC84370051DE9D /* CalendarCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCVC.swift; sourceTree = "<group>"; };
+		3D8A72B52ABC84370051DE9D /* CalendarCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCVC.xib; sourceTree = "<group>"; };
 		3D9502EC2AB4561C00F0D3A8 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		3D9502ED2AB4561C00F0D3A8 /* ProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileVC.xib; sourceTree = "<group>"; };
 		3DBDDB0C2AA5E7800068E065 /* PhotoCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCVC.swift; sourceTree = "<group>"; };
@@ -282,6 +286,17 @@
 				3D8A728C2AB8E8C50051DE9D /* AditionalChildTVC.xib */,
 			);
 			path = ChildTVC;
+			sourceTree = "<group>";
+		};
+		3D8A72B12ABC82240051DE9D /* CalendarTVC */ = {
+			isa = PBXGroup;
+			children = (
+				3D8A729C2ABA198D0051DE9D /* CalendarTVC.swift */,
+				3D8A729D2ABA198D0051DE9D /* CalendarTVC.xib */,
+				3D8A72B42ABC84370051DE9D /* CalendarCVC.swift */,
+				3D8A72B52ABC84370051DE9D /* CalendarCVC.xib */,
+			);
+			path = CalendarTVC;
 			sourceTree = "<group>";
 		};
 		3D9502F02AB4562700F0D3A8 /* ProfileVC */ = {
@@ -497,8 +512,7 @@
 				3D8A72952AB902610051DE9D /* CommentTVC.xib */,
 				3D8A72982AB9DFA00051DE9D /* ContactTVC.swift */,
 				3D8A72992AB9DFA10051DE9D /* ContactTVC.xib */,
-				3D8A729C2ABA198D0051DE9D /* CalendarTVC.swift */,
-				3D8A729D2ABA198D0051DE9D /* CalendarTVC.xib */,
+				3D8A72B12ABC82240051DE9D /* CalendarTVC */,
 				3D70CB572AB8A6700016C0B4 /* RulesTVC */,
 				3D8A728A2AB8E83B0051DE9D /* AdditionalTVC */,
 			);
@@ -582,6 +596,7 @@
 				3D0D05722A8B7A1B00BDAFF3 /* VerificationChildVC.xib in Resources */,
 				3D0D055C2A8A068600BDAFF3 /* RegisterChildVC.xib in Resources */,
 				DBD74E2D2AA26C70003096BB /* HomeVC.xib in Resources */,
+				3D8A72B72ABC84370051DE9D /* CalendarCVC.xib in Resources */,
 				DBD74E382AA26C81003096BB /* TopItemCVC.xib in Resources */,
 				3D70CB522AB898C80016C0B4 /* NameTVC.xib in Resources */,
 				3D7359642A6DE0C500BA329F /* Assets.xcassets in Resources */,
@@ -708,6 +723,7 @@
 				3DC9285A2AB4BA9700A56389 /* Ex+UINavigationController.swift in Sources */,
 				3D0D057C2A8F338D00BDAFF3 /* Loader.swift in Sources */,
 				3D70CB552AB8A1510016C0B4 /* RulesTVC.swift in Sources */,
+				3D8A72B62ABC84370051DE9D /* CalendarCVC.swift in Sources */,
 				3D0D055E2A8A094800BDAFF3 /* Ex+UIVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

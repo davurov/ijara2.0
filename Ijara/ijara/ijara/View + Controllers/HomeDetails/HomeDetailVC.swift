@@ -35,6 +35,7 @@ class HomeDetailVC: UIViewController {
         tableView.register(InfoTVC.nib(), forCellReuseIdentifier: InfoTVC.identifier)
         tableView.register(CommentTVC.nib(), forCellReuseIdentifier: CommentTVC.identifier)
         tableView.register(ContactTVC.nib(), forCellReuseIdentifier: ContactTVC.identifier)
+        tableView.register(CalendarTVC.nib(), forCellReuseIdentifier: CalendarTVC.identifier)
         
         navigationController?.navigationBar.isHidden = true
         
@@ -98,6 +99,10 @@ extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: ContactTVC.identifier, for: indexPath) as! ContactTVC
             
             return cell
+        } else if indexPath.row == 7 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CalendarTVC.identifier, for: indexPath) as! CalendarTVC
+            
+            return cell
         } else {
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
           
@@ -120,6 +125,8 @@ extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
             return commentCellSize
         } else if indexPath.row == 6 {
             return 230
+        } else if indexPath.row == 7 {
+            return 350
         } else {
             return 50
         }
@@ -146,7 +153,6 @@ extension HomeDetailVC: UIScrollViewDelegate {
             UIView.animate(withDuration: 0.3) {
                 self.navView.alpha = 0.0
             }
-            print("Scrolling down")
         } else if currentContentOffset < previousContentOffset && (navView.alpha == 0 || isCellVisible(indexPath: IndexPath(row: 0, section: 0))) {
             //SHOWS NAVVIEW BUT COLOR IS CLEAR
             if !isCellVisible(indexPath: IndexPath(row: 0, section: 0))  {
@@ -160,8 +166,6 @@ extension HomeDetailVC: UIScrollViewDelegate {
             UIView.animate(withDuration: 0.3) {
                 self.navView.alpha = 1.0
             }
-            
-            print("Scrolling up")
         }
         
         previousContentOffset = currentContentOffset
