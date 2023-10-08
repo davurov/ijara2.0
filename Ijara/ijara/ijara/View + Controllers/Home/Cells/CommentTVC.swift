@@ -29,6 +29,11 @@ class CommentTVC: UITableViewCell {
     
     var commentState: CommentState = .less
     var delegate: CommentDelegate?
+    var comment = "" {
+        didSet {
+            resizeComment()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,7 +50,7 @@ class CommentTVC: UITableViewCell {
         if commentLbl.frame.height < 190 {
             readBtn.isHidden = true
             let height = commentLbl.frame.height
-            borderConst.constant = height + 40
+            borderConst.constant = height + 20
             delegate?.readMorePressed(size: height + 110)
         }
     }

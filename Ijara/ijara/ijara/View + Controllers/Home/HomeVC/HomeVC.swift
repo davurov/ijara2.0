@@ -51,6 +51,15 @@ class HomeVC: UIViewController {
     //MARK: - @IBActions
     
     @IBAction func filterBtnPressed(_ sender: UIButton) {
+        let vc = FiltrVC()
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [ .large()]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 24
+        }
+        present(vc, animated: true)
+        vc.houseDM = houseDM
     }
     
     
@@ -155,6 +164,17 @@ class HomeVC: UIViewController {
         present(vc, animated: true) 
         vc.houseDM = houseDM
         
+    }
+    
+    @IBAction func newsBtn(_ sender: Any) {
+        guard let botURL = URL.init(string: "https://bronla.uz/blog") else { return }
+        UIApplication.shared.open(botURL)
+    }
+    
+    
+    @IBAction func contactsPressed(_ sender: Any) {
+        guard let botURL = URL.init(string: "https://bronla.uz/contact") else { return }
+        UIApplication.shared.open(botURL)
     }
     
 }
@@ -265,7 +285,10 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             cell.cellDelegate = self
             cell.id = searchedData[indexPath.row].id
             cell.nameLbl.text = searchedData[indexPath.row].name
-            cell.pirceLbl.text = searchedData[indexPath.row].workingdays + "/" + " " + searchedData[indexPath.row].weekends + "so'm"
+            cell.pirceLbl.text = "\(searchedData[indexPath.row].workingdays)" + "/" + " " + "\(searchedData[indexPath.row].weekends)" + "so'm"
+            let workingDay = Int(searchedData[indexPath.row].workingdays.replacingOccurrences(of: " ", with: ""))!
+            let weekend = Int(searchedData[indexPath.row].weekends.replacingOccurrences(of: " ", with: ""))!
+            cell.price = (working: workingDay, weekend: weekend)
             cell.locationLbl.text = searchedData[indexPath.row].province
             cell.isVerified(v: searchedData[indexPath.row].approved,
                             alco: searchedData[indexPath.row].alcohol,
@@ -299,6 +322,9 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             vc.modalPresentationStyle = .overFullScreen
             present(vc, animated: true)
             vc.images = searchedData[indexPath.row].images
+            vc.id = "\(searchedData[indexPath.row].id)"
+            vc.price.weekday = Int(searchedData[indexPath.row].weekends.replacingOccurrences(of: " ", with: ""))!
+            vc.price.wrking = Int(searchedData[indexPath.row].workingdays.replacingOccurrences(of: " ", with: ""))!
         }
     }
     
@@ -308,7 +334,10 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             let selectedCell = categoryColView.cellForItem(at: indexPath) as? CategoryCVC
             selectedCell?.containerView.backgroundColor = .clear
             selectedCell?.categoryNameLbl.textColor = .black
+        } else {
+            
         }
+        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -390,10 +419,13 @@ extension HomeVC: UITextFieldDelegate {
 }
 
 extension HomeVC: CellDelegate {
-    func cellSelected(id: String, images: [String]) {
+    func cellSelected(id: String, images: [String], price: (working: Int, weekend: Int)) {
         let vc = HomeDetailVC()
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true)
         vc.images = images
+        vc.id = id
+        vc.price.weekday = price.weekend
+        vc.price.wrking = price.working
     }
 }

@@ -13,7 +13,7 @@ class RulesTVC: UITableViewCell {
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
     @IBOutlet weak var collView: UICollectionView!
-    var category = [Companylist]()
+    var category = [Company]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,15 +34,14 @@ class RulesTVC: UITableViewCell {
 
 extension RulesTVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return category.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RulesCVC.identifier, for: indexPath) as! RulesCVC
         
-        //cell.loadImage(url: category[indexPath.row].image)
-        cell.ruleImg.image = UIImage(systemName: "person.fill")
-        cell.ruleLbl.text = "Erkaklar kompaniyasi"
+        cell.loadImage(url: category[indexPath.row].image)
+        cell.ruleLbl.text = category[indexPath.row].name
         
         return cell
     }

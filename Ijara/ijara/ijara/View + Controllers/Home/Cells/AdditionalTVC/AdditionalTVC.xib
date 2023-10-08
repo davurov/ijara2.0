@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="378" height="352"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RZt-DH-QKg">
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RZt-DH-QKg">
                         <rect key="frame" x="0.0" y="56.333333333333343" width="378" height="200.00000000000003"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -64,6 +64,7 @@
             <connections>
                 <outlet property="showBtn" destination="6S8-MP-TuB" id="zFB-x4-YGy"/>
                 <outlet property="tableView" destination="RZt-DH-QKg" id="xTs-8p-Gsn"/>
+                <outlet property="tableViewConst" destination="nu9-T3-b9W" id="YjZ-RF-EGx"/>
             </connections>
             <point key="canvasLocation" x="70.229007633587784" y="68.309859154929583"/>
         </tableViewCell>

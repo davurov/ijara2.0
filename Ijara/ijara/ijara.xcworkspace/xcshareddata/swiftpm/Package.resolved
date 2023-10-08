@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "rollingdigitslabel",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nchiu/RollingDigitsLabel",
+      "state" : {
+        "revision" : "56191bbe99cb8e63050858b3e142934cf4c702b9",
+        "version" : "1.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -6,12 +6,6 @@
 //
 
 import Foundation
-
-//  Cache.swift
-//  Taxi
-//  Created by apple on 17/05/22.
-
-import Foundation
 import Alamofire
 import SwiftyJSON
 

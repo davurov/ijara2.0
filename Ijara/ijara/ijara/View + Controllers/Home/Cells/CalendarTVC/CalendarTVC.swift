@@ -7,18 +7,35 @@
 
 import UIKit
 import FSCalendar
+import RollingDigitsLabel
+
+protocol RangeDelegate {
+    func rangeSelected(dates: [Date]?)
+    func personAdded(num: Int)
+}
 
 class CalendarTVC: UITableViewCell {
     
-    @IBOutlet weak var calendarView: FSCalendar!
+    @IBOutlet weak var weakdayPrice: UILabel!
+    @IBOutlet weak var workingDayPrice: UILabel!
+    @IBOutlet weak var peopleTF: UITextField!
+    @IBOutlet weak var peopleView: UIView!
+    @IBOutlet weak var calendarCont: UIView!
+    weak var calendarView: FSCalendar!
     
     static let identifier: String = String(describing: CalendarTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
     private var firstDate: Date?
     private var lastDate: Date?
+    var delegate: RangeDelegate?
     var datesRange: [Date]?
     var dateFormatter: DateFormatter!
+    var sum = 1 {
+        didSet {
+            delegate?.personAdded(num: sum)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,18 +43,42 @@ class CalendarTVC: UITableViewCell {
     }
     
     func setUpViews() {
+        let calendarView = FSCalendar(frame: CGRect(x: 0, y: 0, width: calendarCont.frame.width, height: 300))
         calendarView.delegate = self
         calendarView.dataSource = self
         calendarView.allowsMultipleSelection = true
         calendarView.swipeToChooseGesture.isEnabled = true
         
+        
+        peopleTF.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
         //calendarView.appearance.selectionColor = AppColors.mainColor
         calendarView.register(CalendarCVC.self, forCellReuseIdentifier: "cell")
+        self.calendarView = calendarView
+        self.calendarCont.addSubview(calendarView)
+        peopleView.addBorder(size: 0.5)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
+    }
+    
+    @objc func textFieldDidChange() {
+        sum = Int(peopleTF.text ?? "1") ?? 1
+    }
+    
+    @IBAction func minusPressed(_ sender: UIButton) {
+        if sum > 1 {
+            sum -= 1
+            peopleTF.text = "\(sum)"
+        }
+    }
+    
+    
+    @IBAction func plusPressed(_ sender: Any) {
+        sum += 1
+        peopleTF.text = "\(sum)"
     }
 }
 
@@ -49,12 +90,13 @@ extension CalendarTVC: FSCalendarDataSource, FSCalendarDelegate, UIScrollViewDel
         // Check if the date is in the past
         if Calendar.current.compare(date, to: Date(), toGranularity: .day) == .orderedAscending {
             // Date is in the past, make it partially transparent
-            cell.titleLabel.alpha = 0.3
+            cell.titleLabel.alpha = 0.5
+            
         } else {
             // Date is not in the past, reset alpha to 1.0
             cell.titleLabel.alpha = 1.0
         }
-        cell.backgroundColor = .white
+        //cell.backgroundColor = .white
         
         return cell
     }
@@ -75,8 +117,6 @@ extension CalendarTVC: FSCalendarDataSource, FSCalendarDelegate, UIScrollViewDel
             firstDate = date
             datesRange = [firstDate!]
             
-            print("datesRange contains: \(datesRange!)")
-            
             return
         }
         
@@ -88,13 +128,11 @@ extension CalendarTVC: FSCalendarDataSource, FSCalendarDelegate, UIScrollViewDel
                 firstDate = date
                 datesRange = [firstDate!]
                 
-                print("datesRange contains: \(datesRange!)")
-                
                 return
             }
             
             let range = datesRange(from: firstDate!, to: date)
-
+            
             lastDate = range.last
             
             for d in range {
@@ -102,8 +140,7 @@ extension CalendarTVC: FSCalendarDataSource, FSCalendarDelegate, UIScrollViewDel
             }
             
             datesRange = range
-            
-            print("datesRange contains: \(datesRange!)")
+            delegate?.rangeSelected(dates: datesRange)
             
             return
         }
@@ -118,8 +155,6 @@ extension CalendarTVC: FSCalendarDataSource, FSCalendarDelegate, UIScrollViewDel
             firstDate = nil
             
             datesRange = []
-            
-            print("datesRange contains: \(datesRange!)")
         }
     }
     
@@ -136,7 +171,6 @@ extension CalendarTVC: FSCalendarDataSource, FSCalendarDelegate, UIScrollViewDel
             firstDate = nil
             
             datesRange = []
-            print("datesRange contains: \(datesRange!)")
         }
     }
     
@@ -147,14 +181,12 @@ extension CalendarTVC: FSCalendarDataSource, FSCalendarDelegate, UIScrollViewDel
         
         var tempDate = from
         var array = [tempDate]
-
+        
         while tempDate < to {
             tempDate = Calendar.current.date(byAdding: .day, value: 1, to: tempDate)!
             array.append(tempDate)
         }
         
-        print(array)
-
         return array
     }
 }

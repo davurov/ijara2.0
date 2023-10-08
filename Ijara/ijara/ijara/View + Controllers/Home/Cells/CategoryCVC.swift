@@ -13,6 +13,7 @@ class CategoryCVC: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
     
     static let identifier: String = String(describing: CategoryCVC.self)
+    static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
     
     override func awakeFromNib() {

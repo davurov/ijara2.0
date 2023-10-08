@@ -17,7 +17,7 @@ public enum SCPageStyle: Int {
 }
 
 protocol CellDelegate {
-    func cellSelected(id: String, images: [String])
+    func cellSelected(id: String, images: [String], price: (working: Int, weekend:Int))
 }
 
 class HomeCVC: UICollectionViewCell {
@@ -43,6 +43,7 @@ class HomeCVC: UICollectionViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var images = [String]()
+    var price = (working: 0, weekend:0)
     var id = 0
     var cellDelegate: CellDelegate?
     // Home Cell Identifier
@@ -171,6 +172,6 @@ extension HomeCVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        cellDelegate?.cellSelected(id: "\(id)", images: images)
+        cellDelegate?.cellSelected(id: "\(id)", images: images, price: price)
     }
 }

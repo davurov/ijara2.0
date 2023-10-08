@@ -17,8 +17,7 @@ struct CountryhouseData {
     let onlinebooking: Bool
     let heart: Bool
     let virtualtourpath: String
-    let reyting: Int
-    var company: [Company]
+    let reyting: Double
     var entertainmentdata: [Entertainmentdatum]
     let approved: Bool
     let location: String
@@ -27,13 +26,13 @@ struct CountryhouseData {
     let firstphone, secondphone: String
     let holidays: [String]
     let weekendsAreGivenToPerson: Bool
+    let company: [Company]
     let seen: Int
     let alcohol: Bool
     var weekday: [Int]
     let sleeping, bedroomsrooms, numberOfCalls, numberofpeople: Int
     let startTime, finishTime: String
-    let payment: [PaymentElement]
-    //let tileDisabled, paydaylist: [Any?]
+    let tileDisabled: [String]
     var listlocation: [Double]
     let date, card, cardowner: String
     let status: Bool
@@ -48,9 +47,9 @@ struct Company {
 // MARK: - Entertainmentdatum
 struct Entertainmentdatum {
     let id: Int
-    let tag: Bool?
+    let tag: Bool
     let type, name, image: String
-    let label: String?
+    let label: String
 }
 
 // MARK: - PaymentElement

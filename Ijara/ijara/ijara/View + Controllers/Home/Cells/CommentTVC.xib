@@ -26,8 +26,8 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oSH-51-bNU">
                         <rect key="frame" x="20" y="56.333333333333343" width="464" height="160"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hglhl;gfdlghlfhl gbflgbflgblfblf" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBm-NF-DRZ">
-                                <rect key="frame" x="10" y="19.999999999999993" width="449" height="20.333333333333336"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-:-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBm-NF-DRZ">
+                                <rect key="frame" x="10" y="9.9999999999999911" width="449" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                             <constraint firstAttribute="height" constant="160" id="PDR-Ji-LmV"/>
                             <constraint firstAttribute="bottom" secondItem="068-cr-CoZ" secondAttribute="bottom" id="Vjz-IH-MZO"/>
                             <constraint firstItem="068-cr-CoZ" firstAttribute="leading" secondItem="oSH-51-bNU" secondAttribute="leading" id="jxh-wE-liN"/>
-                            <constraint firstItem="mBm-NF-DRZ" firstAttribute="top" secondItem="oSH-51-bNU" secondAttribute="top" constant="20" id="whI-F0-viY"/>
+                            <constraint firstItem="mBm-NF-DRZ" firstAttribute="top" secondItem="oSH-51-bNU" secondAttribute="top" constant="10" id="whI-F0-viY"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

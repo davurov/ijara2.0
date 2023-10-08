@@ -17,5 +17,6 @@ struct AppColors{
     static var selectedTabbarCollor = #colorLiteral(red: 0.1126621142, green: 0.3022129238, blue: 0.3085300922, alpha: 1)
     static var tabBarBack = #colorLiteral(red: 0.9433211684, green: 0.9532695413, blue: 0.9617014527, alpha: 1)
     static var customGray6 = #colorLiteral(red: 0.8196078431, green: 0.8196078431, blue: 0.8392156863, alpha: 1)
+    static var customClear = #colorLiteral(red: 0.01568627451, green: 0.1411764706, blue: 0.1843137255, alpha: 0.1966059602)
 
 }

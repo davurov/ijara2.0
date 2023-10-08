@@ -15,6 +15,7 @@ enum Direction {
 
 protocol MapChildDelegate {
     func didSwipe(dir: Direction)
+    func moreInfoPressed(id: String, images: [String])
 }
 
 class MapChildVC: UIViewController {
@@ -118,7 +119,7 @@ class MapChildVC: UIViewController {
     }
     
     @IBAction func moreInfoPressed(_ sender: Any) {
-        
+        delegate?.moreInfoPressed(id: id, images: images)
     }
     
     @IBAction func directionPressed(_ sender: Any) {

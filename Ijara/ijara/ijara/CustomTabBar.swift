@@ -25,7 +25,7 @@ private extension CustomTabBar {
     func createMenuViewController() -> UIViewController {
         let vc = HomeVC()
         let image = SFSymbols.TabBarSymbols.homeSymbol
-        vc.tabBarItem = UITabBarItem(title: "Меню",
+        vc.tabBarItem = UITabBarItem(title: "Menu",
                                      image: image,
                                      tag: 0)
         
@@ -35,7 +35,7 @@ private extension CustomTabBar {
     func createContactViewController() -> UIViewController {
         let vc = LikedHousesVC()
         let image = SFSymbols.TabBarSymbols.heartSymbol
-        vc.tabBarItem = UITabBarItem(title: "Контакты",
+        vc.tabBarItem = UITabBarItem(title: "Liked",
                                      image: image,
                                      tag: 1)
         
@@ -45,7 +45,7 @@ private extension CustomTabBar {
     func createProfileViewController() -> UIViewController {
         let vc = ProfileVC()
         let image = SFSymbols.TabBarSymbols.profileSymbol
-        vc.tabBarItem = UITabBarItem(title: "Профиль",
+        vc.tabBarItem = UITabBarItem(title: "Profile",
                                      image: image,
                                      tag: 2)
         

@@ -19,20 +19,28 @@
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rBV-Ou-sND">
                         <rect key="frame" x="10" y="10.666666666666664" width="305" height="30"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soccerball.inverse" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GBP-qY-0Xx">
-                                <rect key="frame" x="0.0" y="0.99999999999999822" width="30" height="28.666666666666664"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GBP-qY-0Xx">
+                                <rect key="frame" x="0.0" y="1.6666666666666643" width="30" height="27.000000000000004"/>
                                 <color key="tintColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="6OI-8x-JPG"/>
                                     <constraint firstAttribute="width" constant="30" id="O3q-eJ-eKq"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stadium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aw1-Yf-ymb">
-                                <rect key="frame" x="40" y="4" width="265" height="21.666666666666668"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-:-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aw1-Yf-ymb">
+                                <rect key="frame" x="40" y="4" width="225" height="21.666666666666668"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="T8K-Qn-BuF">
+                                <rect key="frame" x="275" y="1.6666666666666643" width="30" height="27.000000000000004"/>
+                                <color key="tintColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="6UL-gc-T8t"/>
+                                    <constraint firstAttribute="height" constant="30" id="ehi-WC-Puj"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                     </stackView>
                 </subviews>
@@ -45,12 +53,13 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="additionalImg" destination="GBP-qY-0Xx" id="laa-Oj-2W4"/>
+                <outlet property="indicatorImg" destination="T8K-Qn-BuF" id="H09-d9-WdV"/>
                 <outlet property="nameLbl" destination="aw1-Yf-ymb" id="daW-Yp-pdO"/>
             </connections>
             <point key="canvasLocation" x="84.732824427480907" y="22.183098591549296"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="soccerball.inverse" catalog="system" width="128" height="123"/>
+        <image name="square" catalog="system" width="128" height="114"/>
     </resources>
 </document>

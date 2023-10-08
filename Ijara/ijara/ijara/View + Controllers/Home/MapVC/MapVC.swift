@@ -25,12 +25,15 @@ class MapVC: UIViewController {
             for i in houseDM {
                 putPin(latitude: i.listlocation[0], longitude: i.listlocation[1], name: i.name, id: i.id)
             }
-            getCountryHouse(id: "\(houseDM[0].id)")
+            let token = UserDefaults.standard.string(forKey: Keys.fStore) ?? ""
+            getCountryHouse(id: "\(houseDM[0].id)", token: token)
         }
     }
+    var price = (weekday: 0, working:0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        API.isMap = true
         setupMap()
         addChildHomeVC()
         setupDragGestureRecognizer()
@@ -67,13 +70,13 @@ class MapVC: UIViewController {
         showHomeChildNotRemove(isDraggingMap: false)
     }
     
-    func getCountryHouse(id: String) {
+    func getCountryHouse(id: String, token: String) {
         likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as! [String]
-        API.getProducts(id: id) { [self] result in
+        API.getProducts(id: id, token: token) { [self] result in
             if let result = result {
-                addressLbl.text = result["address"] as? String
-                childForMapVC.houseName.text = result["name"] as? String
-                childForMapVC.starLbl.text = "\(result["reyting"] as! Int).0"
+                addressLbl.text = result.address
+                childForMapVC.houseName.text = result.name
+                childForMapVC.starLbl.text = "\(result.reyting)"
                 for i in houseDM where "\(i.id)" == id {
                     //set up child map vc data
                     childForMapVC.housePrice.text = "\(i.workingdays)/ \(i.weekends) so'm"
@@ -81,6 +84,8 @@ class MapVC: UIViewController {
                     childForMapVC.houseCoordinates.longitude = i.listlocation[1]
                     childForMapVC.images = i.images
                     childForMapVC.id = id
+                    price.weekday = Int(i.weekends.replacingOccurrences(of: " ", with: "")) ?? 0
+                    price.working = Int(i.workingdays.replacingOccurrences(of: " ", with: "")) ?? 0
                     // check if the house liked or not
                     if likedHouses.contains(id) {
                         childForMapVC.likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
@@ -173,7 +178,8 @@ extension MapVC: MKMapViewDelegate {
                     view.transform = .identity
                 }
             }
-            getCountryHouse(id: anotation.subtitle!!)
+            let token = UserDefaults.standard.string(forKey: Keys.fStore) ?? ""
+            getCountryHouse(id: anotation.subtitle!!, token: token)
         }
     }
     
@@ -206,6 +212,16 @@ extension MapVC: UIGestureRecognizerDelegate {
 }
 
 extension MapVC: MapChildDelegate {
+    func moreInfoPressed(id: String, images: [String]) {
+        let vc = HomeDetailVC()
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
+        vc.images = images
+        vc.id = id
+        vc.price.weekday = price.weekday
+        vc.price.wrking = price.working
+    }
+    
     func didSwipe(dir: Direction) {
         if dir == .up && dir != direction {
             if screenSize.height / 2 > 400 {

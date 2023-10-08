@@ -22,6 +22,7 @@ class LikedHousesVC: UIViewController {
     var houseDM = [HouseDM]()
     var likedHouses = [HouseDM]()
     var lottieView: LottieAnimationView?
+    var selected = 0
     
     
     override func viewDidLoad() {
@@ -91,6 +92,16 @@ class LikedHousesVC: UIViewController {
         UserDefaults.standard.set(likedHousesID, forKey: Keys.likedHouses)
     }
     
+    func moreInfoPressed(id: String, images: [String]) {
+        let vc = HomeDetailVC()
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
+        vc.images = images
+        vc.id = id
+        vc.price.weekday = Int(likedHouses[selected].weekends.replacingOccurrences(of: " ", with: "")) ?? 0
+        vc.price.wrking = Int(likedHouses[selected].workingdays.replacingOccurrences(of: " ", with: "")) ?? 0
+    }
+    
 }
 
 extension LikedHousesVC: UITableViewDelegate, UITableViewDataSource {
@@ -109,6 +120,8 @@ extension LikedHousesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        moreInfoPressed(id: "\(likedHouses[indexPath.row].id)", images: likedHouses[indexPath.row].images)
+        selected = indexPath.row
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

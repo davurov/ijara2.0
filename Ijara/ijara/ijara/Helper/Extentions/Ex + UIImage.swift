@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 extension UIImage {
     func withSize(scaledToSize newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContext(newSize)
@@ -28,4 +29,11 @@ extension UIImage {
         let image = UIImage(data: decoded)
         return image
     }
+    
+    func isEqualToImage(_ image: UIImage) -> Bool {
+            let data1 = self.pngData()
+            let data2 = image.pngData()
+            return data1 == data2
+        }
+
 }

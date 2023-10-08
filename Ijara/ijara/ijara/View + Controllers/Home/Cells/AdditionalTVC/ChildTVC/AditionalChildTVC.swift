@@ -16,9 +16,18 @@ class AditionalChildTVC: UITableViewCell {
     @IBOutlet weak var additionalImg: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     
+    @IBOutlet weak var indicatorImg: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func update(isSelected: Bool) {
+        if isSelected {
+            indicatorImg.image = UIImage(systemName: "checkmark.square.fill")
+        } else {
+            indicatorImg.image = UIImage(systemName: "square")
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

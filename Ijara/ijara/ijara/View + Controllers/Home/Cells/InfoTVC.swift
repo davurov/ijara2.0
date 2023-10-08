@@ -12,7 +12,7 @@ class InfoTVC: UITableViewCell {
     static let identifier: String = String(describing: InfoTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
-    @IBOutlet weak var ownerLbl: UIStackView!
+    @IBOutlet weak var ownerLbl: UILabel!
     @IBOutlet weak var numberOfPeaople: UILabel!
     @IBOutlet weak var nemberOfBedrooms: UILabel!
     @IBOutlet weak var nemberOfBeds: UILabel!

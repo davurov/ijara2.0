@@ -43,6 +43,13 @@ var window: UIWindow?
                     UserDefaults.standard.set(encoded, forKey: Keys.houseData)
                 }
             }
+            
+            Firebase.getIdFromFirebase { token in
+                if let token = token {
+                    UserDefaults.standard.set(token, forKey: Keys.fStore)
+                }
+            }
+            
         }
         
         // set up liked house data
