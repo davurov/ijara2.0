@@ -33,6 +33,7 @@ class MapVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addressLbl.text = SetLanguage.setLang(type: .looking)
         API.isMap = true
         setupMap()
         addChildHomeVC()

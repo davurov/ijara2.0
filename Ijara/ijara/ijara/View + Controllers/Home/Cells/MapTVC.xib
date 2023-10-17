@@ -74,6 +74,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="locationLbl" destination="ZDc-GR-uwb" id="TTk-Sy-pjf"/>
                 <outlet property="map" destination="Isj-BZ-0em" id="xb4-bj-n9X"/>
             </connections>
             <point key="canvasLocation" x="239.69465648854961" y="82.74647887323944"/>

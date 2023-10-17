@@ -21,8 +21,18 @@ class AdditionalTVC: UITableViewCell {
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var showBtn: UIButton!
+    @IBOutlet weak var showBtn: UIButton! {
+        didSet {
+            showBtn.setTitle(SetLanguage.setLang(type: .showAllElementsBtn), for: .normal)
+        }
+    }
     @IBOutlet weak var tableViewConst: NSLayoutConstraint!
+    
+    @IBOutlet weak var additionalFeaturesLbl: UILabel! {
+        didSet {
+            additionalFeaturesLbl.text = SetLanguage.setLang(type: .additionalFeatures)
+        }
+    }
     
     var addedFeatures = Array(repeating: false, count: 27)
     var features = [Entertainmentdatum]()

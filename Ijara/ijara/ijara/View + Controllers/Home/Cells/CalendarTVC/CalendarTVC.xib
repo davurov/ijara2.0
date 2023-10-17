@@ -168,6 +168,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="calendarCont" destination="JlE-wx-mea" id="EuW-xu-aYQ"/>
+                <outlet property="chooseDayOfVacationLbl" destination="x0O-cw-4R8" id="XSX-wp-eZW"/>
+                <outlet property="numberOfPeopleLbl" destination="2Nj-F1-T2e" id="lRr-RJ-FDh"/>
                 <outlet property="peopleTF" destination="f54-eX-68E" id="Eel-XU-Esq"/>
                 <outlet property="peopleView" destination="qQF-tW-C0J" id="Gec-0J-4A0"/>
                 <outlet property="weakdayPrice" destination="IZ3-Ky-ZCN" id="FZx-yl-3Cg"/>

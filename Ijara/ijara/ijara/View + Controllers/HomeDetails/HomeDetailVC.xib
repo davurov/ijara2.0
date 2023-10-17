@@ -10,11 +10,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeDetailVC" customModule="ijara" customModuleProvider="target">
             <connections>
+                <outlet property="callBtn" destination="nNw-Tg-Vbg" id="8eS-gJ-z6W"/>
                 <outlet property="callCont" destination="cZm-i0-S4Q" id="dVb-Io-Zgq"/>
+                <outlet property="depositLbl" destination="P2i-rz-70L" id="fMK-hM-cnT"/>
                 <outlet property="likeBtn" destination="VGC-lT-1PU" id="XJA-GP-wfZ"/>
                 <outlet property="navView" destination="kZm-Pv-TiT" id="twz-Pp-LWK"/>
+                <outlet property="priceLbl" destination="BqS-JN-1Nq" id="32a-5S-VAK"/>
                 <outlet property="rollingDigits2" destination="ml8-6H-JHB" id="Xy0-90-aSu"/>
                 <outlet property="rollingDigitsLabel" destination="pLg-I6-p0y" id="zre-pT-a37"/>
+                <outlet property="sumLbl1" destination="EhS-UK-E8K" id="Edy-Lf-ukW"/>
+                <outlet property="sumLbl2" destination="8kc-kw-wuv" id="aTL-Jm-T2Z"/>
                 <outlet property="tableView" destination="65o-ay-C9q" id="VJQ-Z4-ro5"/>
                 <outlet property="tableviewSafeConst" destination="rNW-iq-KVu" id="Zpd-wS-ELh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

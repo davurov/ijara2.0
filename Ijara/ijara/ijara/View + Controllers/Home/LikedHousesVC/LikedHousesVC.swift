@@ -10,6 +10,7 @@ import Lottie
 
 class LikedHousesVC: UIViewController {
     
+    @IBOutlet weak var wishlistsLbl: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var animationView: UIView!
@@ -28,6 +29,7 @@ class LikedHousesVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
+        wishlistsLbl.text = SetLanguage.setLang(type: .wishlists)
         setUpViews()
         getData()
     }
@@ -129,7 +131,7 @@ extension LikedHousesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, actionView, actionPerformer: (Bool) -> ()) in
+        let delete = UIContextualAction(style: .destructive, title: SetLanguage.setLang(type: .delete)) { (contextualAction, actionView, actionPerformer: (Bool) -> ()) in
             self.deleteAt(ind: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             actionPerformer(true)

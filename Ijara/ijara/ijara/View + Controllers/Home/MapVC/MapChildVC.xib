@@ -16,6 +16,7 @@
                 <outlet property="houseName" destination="Kmh-VZ-kMJ" id="gzf-yr-l22"/>
                 <outlet property="housePrice" destination="6i1-sG-jGj" id="tlb-WX-Bnz"/>
                 <outlet property="likeBtn" destination="LZM-yS-Rck" id="sne-jj-gfX"/>
+                <outlet property="moreInfoBtn" destination="ra3-gd-Bis" id="jW5-NE-cDp"/>
                 <outlet property="pageController" destination="vcQ-Qz-Qix" id="fWV-f4-Obn"/>
                 <outlet property="starLbl" destination="LVb-FZ-oCz" id="DZf-8E-BA1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

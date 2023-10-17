@@ -20,7 +20,6 @@ class API {
     static var isMap = false
     
     class func getProducts(completion: @escaping ([HouseDM]?) -> Void){
-        
         Net.request(url: Endpoints.products, method: .get, params: nil, headers: nil, withLoader: false) { data in
             var houses = [HouseDM]()
             
@@ -76,6 +75,7 @@ class API {
             }
         }
     }
+    
     //MARK: - GET ENTETAINMENT DATA
     class func getEntertainmentData(lang: String,completion: @escaping ([Entertainmentdatum]?) -> Void) {
         Net.request(url: Endpoints.getEntData, method: .get, params: nil, headers: nil, withLoader: false) { data in
@@ -155,6 +155,7 @@ class API {
                         card: i["card"].stringValue,
                         cardowner: i["cardowner"].stringValue,
                         status: i["status"].boolValue)
+                    print("completion ga house ni berdi -> \(house) \n va data: \(data)")
                     completion(house)
             } else {
                 Firebase.changeTokenStatus()
@@ -187,3 +188,4 @@ class API {
             
         }
     }
+

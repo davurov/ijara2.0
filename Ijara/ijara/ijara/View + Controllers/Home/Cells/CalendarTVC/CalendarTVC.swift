@@ -16,12 +16,25 @@ protocol RangeDelegate {
 
 class CalendarTVC: UITableViewCell {
     
+    
+    @IBOutlet weak var chooseDayOfVacationLbl: UILabel! {
+        didSet {
+            chooseDayOfVacationLbl.text = SetLanguage.setLang(type: .chooseDayOfVacationLbl)
+        }
+    }
     @IBOutlet weak var weakdayPrice: UILabel!
     @IBOutlet weak var workingDayPrice: UILabel!
     @IBOutlet weak var peopleTF: UITextField!
     @IBOutlet weak var peopleView: UIView!
     @IBOutlet weak var calendarCont: UIView!
     weak var calendarView: FSCalendar!
+    
+    @IBOutlet weak var numberOfPeopleLbl: UILabel! {
+        didSet {
+            numberOfPeopleLbl.text = SetLanguage.setLang(type: .numberOfPeople)
+        }
+    }
+    
     
     static let identifier: String = String(describing: CalendarTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}

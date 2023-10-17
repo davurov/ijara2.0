@@ -12,6 +12,11 @@ class RulesTVC: UITableViewCell {
     static let identifier: String = String(describing: RulesTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
+    @IBOutlet weak var rulesLbl: UILabel!{
+        didSet{
+            rulesLbl.text = SetLanguage.setLang(type: .rules)
+        }
+    }
     @IBOutlet weak var collView: UICollectionView!
     var category = [Company]()
     

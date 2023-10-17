@@ -21,10 +21,18 @@ class CommentTVC: UITableViewCell {
     static let identifier: String = String(describing: CommentTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
-    @IBOutlet weak var ownerNameLbl: UILabel!
+    @IBOutlet weak var ownerNameLbl: UILabel! {
+        didSet {
+            ownerNameLbl.text = SetLanguage.setLang(type: .commentByOwner)
+        }
+    }
     @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var commentLbl: UILabel!
-    @IBOutlet weak var readBtn: UIButton!
+    @IBOutlet weak var readBtn: UIButton! {
+        didSet {
+            readBtn.setTitle(SetLanguage.setLang(type: .readMoreBtn), for: .normal)
+        }
+    }
     @IBOutlet weak var borderConst: NSLayoutConstraint!
     
     var commentState: CommentState = .less

@@ -53,6 +53,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="collView" destination="oeH-Cs-9pi" id="vpJ-4v-jBZ"/>
+                <outlet property="rulesLbl" destination="4t6-3s-aaU" id="Um1-bV-ZOi"/>
             </connections>
             <point key="canvasLocation" x="158.01526717557252" y="26.760563380281692"/>
         </tableViewCell>

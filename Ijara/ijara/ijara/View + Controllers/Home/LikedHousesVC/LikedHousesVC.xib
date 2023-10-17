@@ -13,6 +13,7 @@
                 <outlet property="animationView" destination="rzX-LH-Mdp" id="t8f-T6-4PF"/>
                 <outlet property="tableView" destination="vxu-Ke-w4S" id="bqv-z1-Juc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="wishlistsLbl" destination="9RC-5l-LFQ" id="rEO-uV-HCa"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

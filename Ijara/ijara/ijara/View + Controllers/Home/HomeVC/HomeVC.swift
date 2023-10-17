@@ -21,11 +21,14 @@ class HomeVC: UIViewController {
     @IBOutlet weak var categoryColView: UICollectionView!
     @IBOutlet weak var topContainer: UIView!
     @IBOutlet weak var filterBtn: UIButton!
-    
     @IBOutlet var topViews: [UIView]!
+    
+    @IBOutlet weak var mapLbl: UILabel!
+    @IBOutlet weak var newsLbl: UILabel!
+    @IBOutlet weak var contactsLbl: UILabel!
+    
     var scrollFlag = false
     let locationManager = CLLocationManager()
-
     
     // temporary
     let categoryNames = ["Hamma","Toshkent","Chorvoq","Chimyon","Qibray","Oq tosh"]
@@ -36,7 +39,6 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupColView()
         setupSubviews()
         locationManager.requestWhenInUseAuthorization()
@@ -78,11 +80,13 @@ class HomeVC: UIViewController {
         leftView.addSubview(imgView)
         imgView.center = leftView.center
         
+        searchTF.placeholder = SetLanguage.setLang(type: .searchTfPlaceholder)
         searchTF.leftView = leftView
         searchTF.leftViewMode = .always
         searchTF.layer.cornerRadius = searchTF.frame.height / 3
         searchTF.clipsToBounds = true
         searchTF.backgroundColor = AppColors.customGray6
+        searchTF.placeholder = SetLanguage.setLang(type: .searchTfPlaceholder)
     }
     
     func setupSubviews() {
@@ -107,6 +111,10 @@ class HomeVC: UIViewController {
             topViews[i].layer.shadowOffset = CGSize(width: 6, height: 6)
             topViews[i].layer.shadowOpacity = 0.6
         }
+        
+        mapLbl.text      = SetLanguage.setLang(type: .map)
+        newsLbl.text     = SetLanguage.setLang(type: .news)
+        contactsLbl.text = SetLanguage.setLang(type: .contacts)
     }
     
     func setupColView() {

@@ -17,6 +17,12 @@ class MapTVC: UITableViewCell {
     static let identifier: String = String(describing: MapTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
+    
+    @IBOutlet weak var locationLbl: UILabel! {
+        didSet {
+            locationLbl.text = SetLanguage.setLang(type: .locationLbl)
+        }
+    }
     @IBOutlet weak var map: MKMapView!
     var location = (lat: 0.0,long: 0.0)
     

@@ -10,7 +10,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileVC" customModule="ijara" customModuleProvider="target">
             <connections>
+                <outlet property="OtherAppsLbl" destination="43E-Ny-3VI" id="UZd-xb-XTM"/>
+                <outlet property="aboutLbl" destination="dld-uc-RgC" id="Bl0-W2-KtW"/>
+                <outlet property="appLanguageLbl" destination="Cli-fC-jYs" id="czC-i6-eVJ"/>
+                <outlet property="logOutLbl" destination="ad0-Pz-P7E" id="rI8-Es-tUC"/>
                 <outlet property="nameLbl" destination="iaF-Ax-St0" id="EPA-KU-3b4"/>
+                <outlet property="privacyPolicyLbl" destination="9Ec-mk-bJg" id="aYl-5p-0gG"/>
+                <outlet property="profileTitle" destination="6iP-jg-VbH" id="CeZ-Wg-URO"/>
+                <outlet property="settingsLbl" destination="CE0-EX-7x1" id="enX-f5-iAH"/>
+                <outlet property="showProfileLbl" destination="IoE-c4-Jo8" id="CBb-79-Ch5"/>
                 <outlet property="userImage" destination="9lH-E8-rOf" id="vtV-x3-Yd9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

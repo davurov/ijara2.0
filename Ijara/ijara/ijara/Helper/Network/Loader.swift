@@ -42,8 +42,6 @@ public class Loader {
         }
     }
     
-    
-    
     class func stop() {
         guard let d =  (UIApplication.shared.delegate as! AppDelegate).window?.subviews else {
             return

@@ -26,6 +26,7 @@ class MapChildVC: UIViewController {
     @IBOutlet weak var houseName: UILabel!
     @IBOutlet weak var housePrice: UILabel!
     @IBOutlet weak var starLbl: UILabel!
+    @IBOutlet weak var moreInfoBtn: UIButton!
     @IBOutlet weak var likeBtn: UIButton!
     
     @IBOutlet weak var animationView: UIView!
@@ -55,6 +56,8 @@ class MapChildVC: UIViewController {
     }
     
     func setViews() {
+        moreInfoBtn.setTitle(SetLanguage.setLang(type: .moreInfo), for: .normal)
+        
         contView.addShadowByHand(offset: CGSize(width: 0, height: 0), color: AppColors.customBlack.cgColor, radius: 5, opacity: 0.2)
         contView.layer.cornerRadius = 20
         contView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]

@@ -33,31 +33,6 @@ var window: UIWindow?
             window?.rootViewController = vc
         }
         
-        API.getProducts { result in
-            if let result = result {
-                guard !result.isEmpty else {return}
-                
-                let encoded = JSONEncoder()
-                
-                if let encoded = try? encoded.encode(result) {
-                    UserDefaults.standard.set(encoded, forKey: Keys.houseData)
-                }
-            }
-            
-            Firebase.getIdFromFirebase { token in
-                if let token = token {
-                    UserDefaults.standard.set(token, forKey: Keys.fStore)
-                }
-            }
-            
-        }
-        
-        // set up liked house data
-        if UserDefaults.standard.array(forKey: Keys.likedHouses) == nil{
-            let defVal = [String]()
-            UserDefaults.standard.set(defVal, forKey: Keys.likedHouses)
-        }
-        
         window?.makeKeyAndVisible()
         return true
     }

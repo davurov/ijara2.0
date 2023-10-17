@@ -12,7 +12,10 @@
             <connections>
                 <outlet property="categoryColView" destination="2mS-A7-8zJ" id="5BQ-vU-uGB"/>
                 <outlet property="colView" destination="wqi-zN-bSR" id="Bqu-MZ-F0m"/>
+                <outlet property="contactsLbl" destination="9ML-1d-stB" id="Vv1-cx-XFb"/>
                 <outlet property="filterBtn" destination="zzl-c6-uXF" id="nQK-en-P86"/>
+                <outlet property="mapLbl" destination="KRm-4Q-htp" id="4IU-aL-6dW"/>
+                <outlet property="newsLbl" destination="9ML-1d-stB" id="9yV-Jq-q4Z"/>
                 <outlet property="searchTF" destination="qRy-Lp-glZ" id="ap7-p4-fha"/>
                 <outlet property="topContainer" destination="SOH-fg-tGd" id="Kqj-Hi-qRL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
