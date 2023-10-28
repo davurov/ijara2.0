@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdditionalVC" customModule="ijara" customModuleProvider="target">
             <connections>
+                <outlet property="offersLbl" destination="SgZ-7D-Ms9" id="VyL-zv-8lf"/>
                 <outlet property="tableView" destination="IRY-3Q-vzV" id="gP3-8Z-bLE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

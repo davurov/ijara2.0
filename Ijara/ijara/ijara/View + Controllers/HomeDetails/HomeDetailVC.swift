@@ -17,11 +17,31 @@ class HomeDetailVC: UIViewController {
     @IBOutlet weak var callCont: UIView!
     @IBOutlet weak var likeBtn: UIButton!
     
-    @IBOutlet weak var priceLbl: UILabel!
-    @IBOutlet weak var depositLbl: UILabel!
-    @IBOutlet weak var sumLbl1: UILabel!
-    @IBOutlet weak var sumLbl2: UILabel!
-    @IBOutlet weak var callBtn: UIButton!
+    @IBOutlet weak var priceLbl: UILabel! {
+        didSet {
+            priceLbl.text = SetLanguage.setLang(type: .priceLbl)
+        }
+    }
+    @IBOutlet weak var depositLbl: UILabel! {
+        didSet {
+//            priceLbl.text = SetLanguage.setLang(type: .depositLbl)
+        }
+    }
+    @IBOutlet weak var sumLbl1: UILabel! {
+        didSet {
+            sumLbl1.text = SetLanguage.setLang(type: .sumLbl)
+        }
+    }
+    @IBOutlet weak var sumLbl2: UILabel! {
+        didSet {
+            sumLbl2.text = SetLanguage.setLang(type: .sumLbl)
+        }
+    }
+    @IBOutlet weak var callBtn: UIButton! {
+        didSet {
+            callBtn.setTitle(SetLanguage.setLang(type: .callBtn), for: .normal)
+        }
+    }
     
     @IBOutlet private var rollingDigitsLabel: RollingDigitsLabel? {
         didSet {
@@ -39,14 +59,19 @@ class HomeDetailVC: UIViewController {
         }
     }
     
-    
+    //MARK: Variables
     var previousContentOffset: CGFloat = 0.0
     var commentCellSize : CGFloat = 280
     var countryHouseDM: CountryhouseData?
+//    var detailData: HouseDM?
     var images = [String]()
     var totalSum = 0 // to count price
     var dayCount = 0 // number of days in range
     var lastPeopleNum = 0
+    
+    var priceForWorkingDays = 0
+    var priceForWeekends = 0
+    
     var price = (wrking: 0 ,weekday: 0) {
         didSet {
             setPriceAnimation(weekwnds: price.weekday, workingdays: price.wrking)
@@ -54,34 +79,67 @@ class HomeDetailVC: UIViewController {
     }
     var id = "" {
         didSet {
-            showLikeBtn()
-            getData(id: id)
+            getData(id: Int(id) ?? 0)
         }
     }
     
-    var likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as! [String]
+    var likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as? [String] ?? []
     
+    //MARK: Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         API.isMap = false
-        setUpViews()
-        setLanguagesLbl()
     }
     
-    func getData(id: String) {
-        Firebase.getIdFromFirebase { token in
-            if let token = token {
-                API.getProducts(id: id, token: token) { data in
-                    if let data = data {
-                        print("getData func da API.getProducts ni comletion dan kelgan data -> \(data)")
-                        self.countryHouseDM = data
-                        self.tableView.reloadData()
-                    } else {
-                        Alert.showAlert(forState: .error, message: "Unable to ge data")
-                    }
-                }
+    //MARK: @IBAction functions
+    
+    @IBAction func backPressed(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    
+    @IBAction func likePressed(_ sender: Any) {
+        likePressed()
+    }
+    
+    @IBAction func sharePressed(_ sender: Any) {
+        shareRoute()
+    }
+    
+    
+    @IBAction func callPressed(_ sender: Any) {
+        countryHouseDM?.firstphone.callNumber()
+    }
+        
+    //MARK: functions
+    
+    func getData(id: Int) {
+        Loader.start()
+        API.getDetailDataByID(id: id) { [self] countryhouseData in
+            Loader.stop()
+            guard let detailData = countryhouseData else {
+                print("can not get data")
+                return
             }
+
+            countryHouseDM = detailData
+            setUpViews()
+            tableView.reloadData()
         }
+        
+        
+//        Firebase.getIdFromFirebase { token in
+//            if let token = token {
+//                API.getProducts(id: id, token: token) { data in
+//                    if let data = data {
+//                        print("getData func da API.getProducts ni comletion dan kelgan data -> \(data)")
+//                        self.countryHouseDM = data
+//                        self.tableView.reloadData()
+//                    } else {
+//                        Alert.showAlert(forState: .error, message: "Unable to ge data")
+//                    }
+//                }
+//            }
+//        }
     }
     
     func setUpViews() {
@@ -107,6 +165,13 @@ class HomeDetailVC: UIViewController {
         callCont.addShadowByHand(offset: CGSize(width: 0, height: 0), color: AppColors.customBlack.cgColor, radius: 5, opacity: 0.2)
         callCont.layer.cornerRadius = 20
         callCont.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+        
+        guard let countryHouseDM = countryHouseDM else { return }
+        
+        sumLbl1.text = "\(countryHouseDM.priceForWeekends) \(SetLanguage.setLang(type: .sumLbl))"
+        
+        showLikeBtn()
+        
     }
     
     func setPriceAnimation(weekwnds: Int, workingdays: Int) {
@@ -154,30 +219,13 @@ class HomeDetailVC: UIViewController {
     }
     
     private func setLanguagesLbl(){
-        priceLbl.text = SetLanguage.setLang(type: .priceLbl)
+        priceLbl.text   = SetLanguage.setLang(type: .priceLbl)
         depositLbl.text = SetLanguage.setLang(type: .depositLbl)
-        sumLbl1.text = SetLanguage.setLang(type: .sumLbl)
-        sumLbl2.text = SetLanguage.setLang(type: .sumLbl)
+        sumLbl1.text    = SetLanguage.setLang(type: .sumLbl)
+        sumLbl2.text    = SetLanguage.setLang(type: .sumLbl)
         callBtn.setTitle(SetLanguage.setLang(type: .callBtn), for: .normal)
     }
     
-    @IBAction func backPressed(_ sender: Any) {
-        dismiss(animated: true)
-    }
-    
-    
-    @IBAction func likePressed(_ sender: Any) {
-        likePressed()
-    }
-    
-    @IBAction func sharePressed(_ sender: Any) {
-        shareRoute()
-    }
-    
-    
-    @IBAction func callPressed(_ sender: Any) {
-        countryHouseDM?.firstphone.callNumber()
-    }
 }
 
 extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
@@ -189,8 +237,9 @@ extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTVC.identifier, for: indexPath) as! PhotoTVC
-            
-            cell.houseImgs = images
+            guard let countryHouseDM = countryHouseDM else {return cell}
+            cell.houseImgs = countryHouseDM.images
+//            cell.houseImgs = images
             
             return cell
         } else if indexPath.row == 1 {
@@ -241,9 +290,17 @@ extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.row == 7 {
             let cell = tableView.dequeueReusableCell(withIdentifier: CalendarTVC.identifier, for: indexPath) as! CalendarTVC
+            
+            guard let countryHouseDM = countryHouseDM else { return cell }
+            
             cell.delegate = self
-            cell.workingDayPrice.text = "\(MoneyFormatter.df2so(price.wrking)) \(SetLanguage.setLang(type: .sumLbl))"
-            cell.weakdayPrice.text = "\(MoneyFormatter.df2so(price.weekday)) \(SetLanguage.setLang(type: .sumLbl))"
+            cell.workingDayPrice.text = "\(SetLanguage.setLang(type: .otherDays)) \(price.wrking)"
+            cell.workingDayPrice.text! += SetLanguage.setLang(type: .sumLbl)
+            
+            cell.weakdayPrice.text = "\(SetLanguage.setLang(type: .fridayAndSaturday)) \(price.weekday)"
+            cell.weakdayPrice.text! += SetLanguage.setLang(type: .sumLbl)
+            
+//            cell.weakdayPrice.text = "\(MoneyFormatter.df2so(price.weekday)) \(SetLanguage.setLang(type: .sumLbl))"
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MapTVC.identifier, for: indexPath) as! MapTVC
@@ -366,10 +423,10 @@ extension HomeDetailVC: RangeDelegate {
         weeks?.forEach({ i in
             if i == countryHouseDM?.weekday[0] || i == countryHouseDM?.weekday[1] {
                 totalSum += price.weekday
-                print(price.weekday)
+//                print(price.weekday)
             } else {
                 totalSum += price.wrking
-                print(price.wrking)
+//                print(price.wrking)
             }
         })
         

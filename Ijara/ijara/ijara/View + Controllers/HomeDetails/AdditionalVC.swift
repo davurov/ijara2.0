@@ -9,6 +9,12 @@ import UIKit
 
 class AdditionalVC: UIViewController {
 
+    @IBOutlet weak var offersLbl: UILabel! {
+        didSet {
+            offersLbl.text = SetLanguage.setLang(type: .additionaFeaturesOffers)
+        }
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     
     var features = [Entertainmentdatum]() {

@@ -14,7 +14,26 @@ class SwitchContTVC: UITableViewCell {
     
     @IBOutlet weak var alcoholSwitch: UISwitch!
     @IBOutlet weak var verifiedSwitch: UISwitch!
-    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var additionalLbl: UILabel! {
+        didSet {
+            additionalLbl.text = SetLanguage.setLang(type: .additional)
+        }
+    }
+    
+    @IBOutlet weak var alcoholLbl: UILabel! {
+        didSet {
+            alcoholLbl.text = SetLanguage.setLang(type: .alcohol)
+        }
+    }
+    
+    @IBOutlet weak var verifiedLbl: UILabel! {
+        didSet {
+            verifiedLbl.text = SetLanguage.setLang(type: .verified)
+        }
+    }
+    
+   static var selectedParametrs = (alcohol: false, verified: false)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,16 +41,24 @@ class SwitchContTVC: UITableViewCell {
     
     @IBAction func alcoholPressed(_ sender: Any) {
         alcoholSwitch.isOn = !alcoholSwitch.isOn
+        SwitchContTVC.selectedParametrs.alcohol = alcoholSwitch.isOn
+        print("alcohol presses \(SwitchContTVC.selectedParametrs.alcohol)", alcoholSwitch.isOn)
     }
     
     @IBAction func verifiedPressed(_ sender: Any) {
         verifiedSwitch.isOn = !verifiedSwitch.isOn
+        SwitchContTVC.selectedParametrs.verified = verifiedSwitch.isOn
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func clearChanges(){
+        alcoholSwitch.isOn = false
+        verifiedSwitch.isOn = false
     }
     
 }

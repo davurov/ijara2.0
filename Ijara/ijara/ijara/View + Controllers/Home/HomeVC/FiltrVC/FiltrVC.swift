@@ -12,6 +12,17 @@ class FiltrVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var showView: UIView!
     
+    @IBOutlet weak var clearAllBtn: UIButton! {
+        didSet {
+            clearAllBtn.setTitle(SetLanguage.setLang(type: .clearAll), for: .normal)
+        }
+    }
+    @IBOutlet weak var showBtn: UIButton!{
+        didSet {
+            showBtn.setTitle(SetLanguage.setLang(type: .show), for: .normal)
+        }
+    }
+    
     var priceRange = [Int]()
     var enterData = [Entertainmentdatum]()
     var houseDM = [HouseDM]() {
@@ -21,10 +32,50 @@ class FiltrVC: UIViewController {
     }
     var additionalHeight: CGFloat = 340
     
+    var isClearAllPressed = false
+    var filtrDelegate: FiltredDelegate!
+    
+    //MARK: Life cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         getData()
+    }
+    
+    @IBAction func clearAllPressed(_ sender: Any) {
+        isClearAllPressed = true
+        tableView.reloadData()
+    }
+    
+    @IBAction func showPressed(_ sender: Any) {
+        
+        var guestType = [Int]()
+        var additionalFetures = [Int]()
+        var isAllowedAlcohol = false
+        var isVerified = false
+        var numberOfPeople: Int?
+        
+        for rule in RuleFiltrTVC.btnPressed.enumerated() where rule.element == true {
+            guestType.append(rule.offset+1)
+        }
+        
+        for additional in AdditionalTVC.addedFeatures.enumerated() where additional.element == true {
+            additionalFetures.append(additional.offset+1)
+        }
+        
+        isAllowedAlcohol = SwitchContTVC.selectedParametrs.alcohol
+        isVerified = SwitchContTVC.selectedParametrs.verified
+        
+        if let beds = BedsTVC.numberOfPeople {
+            numberOfPeople = beds
+        }
+        
+        // give selected parametrs to homeVC
+        filtrDelegate.filtrData(guestType: guestType, additionalFetures: additionalFetures, isAllowedAlcohol: isAllowedAlcohol, isVerified: isVerified, numberOfPeople: numberOfPeople)
+        isClearAllPressed = true
+        tableView.reloadData()
+        dismiss(animated: true)
     }
     
     func setupViews() {
@@ -53,7 +104,9 @@ class FiltrVC: UIViewController {
 
 }
 
-extension FiltrVC: UITableViewDelegate, UITableViewDataSource {
+//MARK: UITableViewDataSource
+extension FiltrVC: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
@@ -66,30 +119,50 @@ extension FiltrVC: UITableViewDelegate, UITableViewDataSource {
             
             return cell
         } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: RuleFiltrTVC.identifier, for: indexPath) as! RuleFiltrTVC
+            /// This cell to choose guest type
+            let guestCell = tableView.dequeueReusableCell(withIdentifier: RuleFiltrTVC.identifier, for: indexPath) as! RuleFiltrTVC
             
-            return cell
+            if isClearAllPressed {
+                guestCell.clearChanges()
+            }
+            return guestCell
         } else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: AdditionalTVC.identifier, for: indexPath) as! AdditionalTVC
-            cell.delegate = self
-            cell.features = enterData
-            cell.imageHidden = true
-            cell.isFilter = true
-            cell.tableView.reloadData()
-            return cell
+            let additionalCell = tableView.dequeueReusableCell(withIdentifier: AdditionalTVC.identifier, for: indexPath) as! AdditionalTVC
+            additionalCell.delegate = self
+            additionalCell.features = enterData
+            additionalCell.imageHidden = true
+            additionalCell.isFilter = true
+            additionalCell.tableView.reloadData()
+            
+            if isClearAllPressed {
+                additionalCell.clearChanges()
+            }
+            
+            return additionalCell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: SwitchContTVC.identifier, for: indexPath) as! SwitchContTVC
-
-            return cell
-        } else if indexPath.row == 4 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: BedsTVC.identifier, for: indexPath) as! BedsTVC
+            
+            if isClearAllPressed {
+                cell.clearChanges()
+            }
             
             return cell
+        } else if indexPath.row == 4 {
+            let bedCell = tableView.dequeueReusableCell(withIdentifier: BedsTVC.identifier, for: indexPath) as! BedsTVC
+            
+            if isClearAllPressed {
+                bedCell.clearChanges()
+            }
+            
+            return bedCell
         }
     
         return UITableViewCell()
     }
-    
+}
+
+//MARK: UITableViewDelegate
+extension FiltrVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0: return 230
@@ -100,7 +173,15 @@ extension FiltrVC: UITableViewDelegate, UITableViewDataSource {
         default: return 160
         }
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == 4 {
+            isClearAllPressed = false
+        }
+    }
+    
 }
+
 extension FiltrVC: AdditionalDelegate, AddFeaturesDelegate {
     //TODO: - DEAL WITH FILTERED OBJECTS
     func featureSelected(id: Int) {

@@ -11,10 +11,10 @@ import Lottie
 class LikedHousesVC: UIViewController {
     
     @IBOutlet weak var wishlistsLbl: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var animationView: UIView!
     
+    //MARK: Variables
     var likedHousesID = [String]() {
         didSet {
             showAnimation()
@@ -25,21 +25,28 @@ class LikedHousesVC: UIViewController {
     var lottieView: LottieAnimationView?
     var selected = 0
     
-    
+    //MARK: Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         wishlistsLbl.text = SetLanguage.setLang(type: .wishlists)
         setUpViews()
         getData()
-    }
+     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        likedHousesID = UserDefaults.standard.array(forKey: Keys.likedHouses) as! [String]
+        likedHousesID = UserDefaults.standard.array(forKey: Keys.likedHouses) as? [String] ?? []
         getById()
         showAnimation()
+        tableView.reloadData()
+     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
+    
+    //MARK: Functions
     
     func setUpViews() {
         tableView.delegate = self
@@ -47,6 +54,7 @@ class LikedHousesVC: UIViewController {
         tableView.register(LikedCell.nib(), forCellReuseIdentifier: LikedCell.identifier)
     }
     
+    /// Animate lottieView if not liked houses
     func showAnimation() {
         guard likedHousesID.isEmpty else {
             lottieView?.stop()
@@ -58,7 +66,8 @@ class LikedHousesVC: UIViewController {
                 self.tableView.isHidden = true
             }
             lottieView!.play()
-            return}
+            return
+        }
         tableView.isHidden = true
         lottieView = .init(name: "animation_lmhzc44c")
         lottieView!.frame = animationView.bounds
@@ -70,12 +79,20 @@ class LikedHousesVC: UIViewController {
     }
     
     func getData() {
-        if let savedHouse = UserDefaults.standard.object(forKey: Keys.houseData) as? Data {
-            let decoder = JSONDecoder()
-            if let houses = try? decoder.decode([HouseDM].self , from: savedHouse) {
-                houseDM = houses
-            }
+        Loader.start()
+        API.getProducts { houses in
+            Loader.stop()
+            guard let houses = houses else { return }
+            self.houseDM = houses
+            self.tableView.reloadData()
         }
+        
+//        if let savedHouse = UserDefaults.standard.object(forKey: Keys.houseData) as? Data {
+//            let decoder = JSONDecoder()
+//            if let houses = try? decoder.decode([HouseDM].self , from: savedHouse) {
+//                houseDM = houses
+//            }
+//        }
     }
     
     func getById() {
@@ -96,7 +113,7 @@ class LikedHousesVC: UIViewController {
     
     func moreInfoPressed(id: String, images: [String]) {
         let vc = HomeDetailVC()
-        vc.modalPresentationStyle = .overFullScreen
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
         vc.images = images
         vc.id = id
@@ -106,7 +123,9 @@ class LikedHousesVC: UIViewController {
     
 }
 
-extension LikedHousesVC: UITableViewDelegate, UITableViewDataSource {
+//MARK: UITableViewDataSource
+extension LikedHousesVC: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return likedHouses.count
     }
@@ -119,15 +138,15 @@ extension LikedHousesVC: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+}
+
+//MARK: UITableViewDelegate
+extension LikedHousesVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        moreInfoPressed(id: "\(likedHouses[indexPath.row].id)", images: likedHouses[indexPath.row].images)
         selected = indexPath.row
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        moreInfoPressed(id: "\(likedHouses[indexPath.row].id)", images: likedHouses[indexPath.row].images)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -142,5 +161,9 @@ extension LikedHousesVC: UITableViewDelegate, UITableViewDataSource {
         
         
         return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110
     }
 }

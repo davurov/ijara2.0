@@ -26,7 +26,7 @@
                         <rect key="frame" x="30" y="56.333333333333343" width="458" height="70"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lad-7i-uTo">
-                                <rect key="frame" x="0.0" y="19.999999999999993" width="7.333333333333333" height="50.000000000000007"/>
+                                <rect key="frame" x="0.0" y="70" width="7.333333333333333" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="G9G-DW-w6R"/>
@@ -36,7 +36,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJF-59-rpI">
-                                <rect key="frame" x="9.3333333333333357" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="9.3333333333333357" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="H9R-mM-PjU"/>
@@ -46,7 +46,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0a-nE-yeC">
-                                <rect key="frame" x="18.333333333333336" y="19.999999999999993" width="7.3333333333333321" height="50.000000000000007"/>
+                                <rect key="frame" x="18.333333333333336" y="70" width="7.3333333333333321" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="gaM-QP-vJm"/>
@@ -56,7 +56,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Rb-NM-T8T">
-                                <rect key="frame" x="27.666666666666664" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="27.666666666666664" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="xTk-fZ-Ayp"/>
@@ -66,7 +66,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k46-VM-5PE">
-                                <rect key="frame" x="36.666666666666671" y="19.999999999999993" width="7.3333333333333357" height="50.000000000000007"/>
+                                <rect key="frame" x="36.666666666666671" y="70" width="7.3333333333333357" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="4D8-Mg-UqN"/>
@@ -76,7 +76,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mIN-mG-phS">
-                                <rect key="frame" x="46" y="19.999999999999993" width="7.3333333333333357" height="50.000000000000007"/>
+                                <rect key="frame" x="46" y="70" width="7.3333333333333357" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="n3m-Ka-nCK"/>
@@ -86,7 +86,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u60-Gn-oQw">
-                                <rect key="frame" x="55.333333333333329" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="55.333333333333329" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="M1m-MR-oqc"/>
@@ -96,7 +96,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bij-sg-WGB">
-                                <rect key="frame" x="64.333333333333329" y="19.999999999999993" width="7.3333333333333286" height="50.000000000000007"/>
+                                <rect key="frame" x="64.333333333333329" y="70" width="7.3333333333333286" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="Hvy-Sp-lsh"/>
@@ -106,7 +106,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HBx-VU-n0k">
-                                <rect key="frame" x="73.666666666666671" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="73.666666666666671" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="QF3-7d-NCW"/>
@@ -116,7 +116,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsZ-I1-JZX">
-                                <rect key="frame" x="82.666666666666671" y="19.999999999999993" width="7.3333333333333286" height="50.000000000000007"/>
+                                <rect key="frame" x="82.666666666666671" y="70" width="7.3333333333333286" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="PlC-bh-CYh"/>
@@ -126,7 +126,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XWK-bV-kgf">
-                                <rect key="frame" x="92" y="19.999999999999993" width="7.3333333333333286" height="50.000000000000007"/>
+                                <rect key="frame" x="92" y="70" width="7.3333333333333286" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="Uqe-Jb-N0p"/>
@@ -136,7 +136,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8AU-RG-HfS">
-                                <rect key="frame" x="101.33333333333334" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="101.33333333333334" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="tDn-Zv-HPj"/>
@@ -146,7 +146,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q1x-ke-lYd">
-                                <rect key="frame" x="110.33333333333334" y="19.999999999999993" width="7.3333333333333286" height="50.000000000000007"/>
+                                <rect key="frame" x="110.33333333333334" y="70" width="7.3333333333333286" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="5fT-VF-gre"/>
@@ -156,7 +156,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aPO-Af-F96">
-                                <rect key="frame" x="119.66666666666666" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="119.66666666666666" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="A1d-WR-8CW"/>
@@ -166,7 +166,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzs-Zg-uid">
-                                <rect key="frame" x="128.66666666666666" y="19.999999999999993" width="7.3333333333333428" height="50.000000000000007"/>
+                                <rect key="frame" x="128.66666666666666" y="70" width="7.3333333333333428" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="aEK-Yc-Zpm"/>
@@ -176,7 +176,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BMw-3D-sJU">
-                                <rect key="frame" x="138" y="19.999999999999993" width="7.3333333333333428" height="50.000000000000007"/>
+                                <rect key="frame" x="138" y="70" width="7.3333333333333428" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="hlc-H1-jYQ"/>
@@ -186,7 +186,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBz-nn-BCr">
-                                <rect key="frame" x="147.33333333333334" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="147.33333333333334" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="3AW-Nm-OWd"/>
@@ -196,7 +196,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qV7-Qt-0Ak">
-                                <rect key="frame" x="156.33333333333334" y="19.999999999999993" width="7.3333333333333428" height="50.000000000000007"/>
+                                <rect key="frame" x="156.33333333333334" y="70" width="7.3333333333333428" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="Cnb-9G-Qtc"/>
@@ -206,7 +206,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRE-k4-chN">
-                                <rect key="frame" x="165.66666666666666" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="165.66666666666666" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="Xz1-a1-es0"/>
@@ -216,7 +216,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zN-CW-h0z">
-                                <rect key="frame" x="174.66666666666666" y="19.999999999999993" width="7.3333333333333428" height="50.000000000000007"/>
+                                <rect key="frame" x="174.66666666666666" y="70" width="7.3333333333333428" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="ude-D7-FdG"/>
@@ -226,7 +226,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2q-Rk-hWH">
-                                <rect key="frame" x="184" y="19.999999999999993" width="7.3333333333333428" height="50.000000000000007"/>
+                                <rect key="frame" x="184" y="70" width="7.3333333333333428" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="Ju2-0R-lgx"/>
@@ -236,7 +236,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SqS-CN-yte">
-                                <rect key="frame" x="193.33333333333334" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="193.33333333333334" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="GUX-Fj-UvA"/>
@@ -246,7 +246,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GCe-nr-8Po">
-                                <rect key="frame" x="202.33333333333334" y="19.999999999999993" width="7.3333333333333428" height="50.000000000000007"/>
+                                <rect key="frame" x="202.33333333333334" y="70" width="7.3333333333333428" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="kSr-on-h50"/>
@@ -256,7 +256,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fME-em-baD">
-                                <rect key="frame" x="211.66666666666666" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="211.66666666666666" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="nJw-uH-QBG"/>
@@ -266,7 +266,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1BN-gE-8LR">
-                                <rect key="frame" x="220.66666666666666" y="19.999999999999993" width="7.3333333333333428" height="50.000000000000007"/>
+                                <rect key="frame" x="220.66666666666666" y="70" width="7.3333333333333428" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="usZ-J1-RNx"/>
@@ -287,7 +287,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jqo-dZ-9Df">
-                                <rect key="frame" x="239.33333333333331" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="239.33333333333331" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="tpl-62-X4c"/>
@@ -297,7 +297,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPz-ZG-7E7">
-                                <rect key="frame" x="248.33333333333331" y="19.999999999999993" width="7.3333333333333428" height="50.000000000000007"/>
+                                <rect key="frame" x="248.33333333333331" y="70" width="7.3333333333333428" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="1bC-hQ-U5m"/>
@@ -307,7 +307,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOi-E5-RI0">
-                                <rect key="frame" x="257.66666666666669" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="257.66666666666669" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="ZmX-tQ-Rhh"/>
@@ -317,7 +317,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gRc-cx-PHf">
-                                <rect key="frame" x="266.66666666666669" y="19.999999999999993" width="7.3333333333333144" height="50.000000000000007"/>
+                                <rect key="frame" x="266.66666666666669" y="70" width="7.3333333333333144" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="qUj-f0-21a"/>
@@ -327,7 +327,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3l-kQ-USH">
-                                <rect key="frame" x="276" y="19.999999999999993" width="7.3333333333333144" height="50.000000000000007"/>
+                                <rect key="frame" x="276" y="70" width="7.3333333333333144" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="9sl-pD-3gZ"/>
@@ -337,7 +337,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcX-CP-1NG">
-                                <rect key="frame" x="285.33333333333331" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="285.33333333333331" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="Bku-Jt-1ee"/>
@@ -347,7 +347,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlW-6E-a6H">
-                                <rect key="frame" x="294.33333333333331" y="19.999999999999993" width="7.3333333333333144" height="50.000000000000007"/>
+                                <rect key="frame" x="294.33333333333331" y="70" width="7.3333333333333144" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="bCI-70-Qqt"/>
@@ -357,7 +357,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rLw-95-qED">
-                                <rect key="frame" x="303.66666666666669" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="303.66666666666669" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="ljd-gp-MP7"/>
@@ -367,7 +367,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEH-bh-NnP">
-                                <rect key="frame" x="312.66666666666669" y="19.999999999999993" width="7.3333333333333144" height="50.000000000000007"/>
+                                <rect key="frame" x="312.66666666666669" y="70" width="7.3333333333333144" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="L2j-wD-ZcU"/>
@@ -377,7 +377,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RB4-vo-CIo">
-                                <rect key="frame" x="322" y="19.999999999999993" width="7.3333333333333144" height="50.000000000000007"/>
+                                <rect key="frame" x="322" y="70" width="7.3333333333333144" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="swb-BT-r9c"/>
@@ -387,7 +387,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0XB-u2-6Dp">
-                                <rect key="frame" x="331.33333333333331" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="331.33333333333331" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="IGF-5R-2hk"/>
@@ -397,7 +397,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qrH-Gy-ipy">
-                                <rect key="frame" x="340.33333333333331" y="19.999999999999993" width="7.3333333333333144" height="50.000000000000007"/>
+                                <rect key="frame" x="340.33333333333331" y="70" width="7.3333333333333144" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="o69-B2-kRW"/>
@@ -407,7 +407,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOu-PQ-POf">
-                                <rect key="frame" x="349.66666666666669" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="349.66666666666669" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="EbB-J9-loc"/>
@@ -417,7 +417,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9n-J1-Dcj">
-                                <rect key="frame" x="358.66666666666669" y="19.999999999999993" width="7.3333333333333144" height="50.000000000000007"/>
+                                <rect key="frame" x="358.66666666666669" y="70" width="7.3333333333333144" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="MXL-4V-xvL"/>
@@ -427,7 +427,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kK6-z9-0CP">
-                                <rect key="frame" x="368" y="19.999999999999993" width="7.3333333333333144" height="50.000000000000007"/>
+                                <rect key="frame" x="368" y="70" width="7.3333333333333144" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="F14-Ag-FDX"/>
@@ -437,7 +437,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F51-OA-uc9">
-                                <rect key="frame" x="377.33333333333331" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="377.33333333333331" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="tBp-CJ-xMb"/>
@@ -447,7 +447,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3V-6k-g14">
-                                <rect key="frame" x="386.33333333333331" y="19.999999999999993" width="7.3333333333333144" height="50.000000000000007"/>
+                                <rect key="frame" x="386.33333333333331" y="70" width="7.3333333333333144" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="2mw-AC-cJd"/>
@@ -457,7 +457,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SBt-3y-x4l">
-                                <rect key="frame" x="395.66666666666669" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="395.66666666666669" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="hz7-MM-52r"/>
@@ -467,7 +467,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YPg-0Q-vHP">
-                                <rect key="frame" x="404.66666666666669" y="19.999999999999993" width="7.3333333333333144" height="50.000000000000007"/>
+                                <rect key="frame" x="404.66666666666669" y="70" width="7.3333333333333144" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="bca-fi-Tqe"/>
@@ -477,7 +477,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4k2-Mo-s7F">
-                                <rect key="frame" x="414" y="19.999999999999993" width="7.3333333333333144" height="50.000000000000007"/>
+                                <rect key="frame" x="414" y="70" width="7.3333333333333144" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="6Fp-98-t2G"/>
@@ -487,7 +487,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Sf-y4-IM3">
-                                <rect key="frame" x="423.33333333333331" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="423.33333333333331" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="CIG-vF-pxf"/>
@@ -497,7 +497,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ihN-kx-u4d">
-                                <rect key="frame" x="432.33333333333331" y="19.999999999999993" width="7.3333333333333144" height="50.000000000000007"/>
+                                <rect key="frame" x="432.33333333333331" y="70" width="7.3333333333333144" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="0ND-D0-aAP"/>
@@ -507,7 +507,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vUp-Ns-cZY">
-                                <rect key="frame" x="441.66666666666669" y="19.999999999999993" width="7" height="50.000000000000007"/>
+                                <rect key="frame" x="441.66666666666669" y="70" width="7" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="8cq-B9-uR8"/>
@@ -517,7 +517,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Vg-By-Anb">
-                                <rect key="frame" x="450.66666666666669" y="19.999999999999993" width="7.3333333333333144" height="50.000000000000007"/>
+                                <rect key="frame" x="450.66666666666669" y="70" width="7.3333333333333144" height="0.0"/>
                                 <color key="backgroundColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="UoO-G0-IPj"/>
@@ -668,8 +668,11 @@
                 <outlet property="lineStack" destination="nxk-6c-irJ" id="clC-A3-o8c"/>
                 <outlet property="maxTF" destination="fHg-1y-73J" id="YWi-FK-Xyi"/>
                 <outlet property="maxView" destination="xoa-4e-rgq" id="kZS-cX-T6h"/>
+                <outlet property="maximumLbl" destination="cFx-AX-tD0" id="rwF-ST-GKT"/>
                 <outlet property="minTF" destination="tsQ-ow-u44" id="Gex-5c-d6X"/>
                 <outlet property="minView" destination="9n8-yJ-R99" id="WxM-jk-obV"/>
+                <outlet property="minimumLbl" destination="Yo8-gs-Xjv" id="gZ2-5j-zOS"/>
+                <outlet property="priceRangeLbl" destination="m2l-s9-r1Y" id="cWI-lt-IOL"/>
                 <outlet property="sliderView" destination="F1q-Dm-wiU" id="syQ-iL-Op6"/>
                 <outletCollection property="linesColection" destination="Lad-7i-uTo" collectionClass="NSMutableArray" id="7nZ-YH-OnL"/>
                 <outletCollection property="linesColection" destination="CJF-59-rpI" collectionClass="NSMutableArray" id="0Zv-yO-vP2"/>

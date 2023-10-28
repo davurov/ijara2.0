@@ -8,10 +8,15 @@
 
 import UIKit
 import CoreLocation
+import SwiftyJSON
 
 enum ScrollState {
     case up
     case down
+}
+
+protocol FiltredDelegate {
+    func filtrData(guestType: [Int], additionalFetures: [Int], isAllowedAlcohol: Bool, isVerified: Bool, numberOfPeople: Int?)
 }
 
 class HomeVC: UIViewController {
@@ -27,22 +32,35 @@ class HomeVC: UIViewController {
     @IBOutlet weak var newsLbl: UILabel!
     @IBOutlet weak var contactsLbl: UILabel!
     
-    var scrollFlag = false
-    let locationManager = CLLocationManager()
+    //MARK: Variables
     
+    let locationManager = CLLocationManager()
     // temporary
     let categoryNames = ["Hamma","Toshkent","Chorvoq","Chimyon","Qibray","Oq tosh"]
+    var selectedRegion = "Hamma"
+    var filteredVillasID = [Int]()
     var houseDM = [HouseDM]()
     var searchedData = [HouseDM]()
     var timer: Timer? = nil
     var isSelected = false
+    var scrollFlag = false
     
+    var allVillasID = [Int]()
+    
+    var selectedGuestType = [Int]()
+    var selectedAdditionalFeatures = [Int]()
+    var isUserSelectedAlcohol = false
+    var isVerified = false
+    var selectedNumberOfPeople: Int?
+    
+    //MARK: Life cycles
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        getData()
         setupColView()
         setupSubviews()
         locationManager.requestWhenInUseAuthorization()
-        getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,12 +78,32 @@ class HomeVC: UIViewController {
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 24
         }
+        vc.filtrDelegate = self
         present(vc, animated: true)
         vc.houseDM = houseDM
     }
+        
+    //MARK: - SHOW MAP
+    @IBAction func showMap(_ sender: Any) {
+        let vc = MapVC()
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true) 
+        vc.houseDM = houseDM
+        
+    }
+    
+    @IBAction func newsBtn(_ sender: Any) {
+        guard let botURL = URL.init(string: "https://bronla.uz/blog") else { return }
+        UIApplication.shared.open(botURL)
+    }
     
     
-    //MARK: - Setup Functions
+    @IBAction func contactsPressed(_ sender: Any) {
+        guard let botURL = URL.init(string: "https://bronla.uz/contact") else { return }
+        UIApplication.shared.open(botURL)
+    }
+    
+    //MARK: - Functions
     
     func setupSearchTextField() {
         
@@ -87,11 +125,12 @@ class HomeVC: UIViewController {
         searchTF.clipsToBounds = true
         searchTF.backgroundColor = AppColors.customGray6
         searchTF.placeholder = SetLanguage.setLang(type: .searchTfPlaceholder)
+        searchTF.delegate = self
+        
+        colView.reloadData()
     }
     
     func setupSubviews() {
-        
-        searchTF.delegate = self
         
         filterBtn.layer.borderWidth = 1
         filterBtn.layer.borderColor = AppColors.mainColor.cgColor
@@ -136,53 +175,114 @@ class HomeVC: UIViewController {
         colView.setCollectionViewLayout(createCustomLayout(), animated: true)
     }
     
-    // get data from userdefaults
     func getData() {
-        if let savedHouse = UserDefaults.standard.object(forKey: Keys.houseData) as? Data {
-            let decoder = JSONDecoder()
-            if let houses = try? decoder.decode([HouseDM].self , from: savedHouse) {
-                houseDM = houses
+        Loader.start()
+
+        API.getProducts { [self] houses in
+            Loader.stop()
+            if let villas = houses {
+                villas.map({ allVillasID.append($0.id) })
+                UserDefaults.standard.set(allVillasID, forKey: Keys.allVillas)
+                
+                houseDM = villas
                 searchedData = houseDM
+                colView.reloadData()
             }
         }
     }
     
-    // searches by tapped city category
+    /// Search by tapped city category
     func searchByCategory(str: String) {
         searchedData = []
+        var city = str
         
-        if str != "Hamma" {
-            var city = str
-            if city == "Toshkent" {
-                city.append(" sh.")
-            }
-            for i in houseDM where i.province == city {
-                searchedData.append(i)
+        if city == "Toshkent" {
+            city.append(" sh.")
+        }
+        
+        if !filteredVillasID.isEmpty {
+            ///``    filtred
+            if str != "Hamma" {
+                for i in houseDM where i.province == city && filteredVillasID.contains(i.id) {
+                    searchedData.append(i)
+                }
+            } else {
+                for i in houseDM where filteredVillasID.contains(i.id) {
+                    searchedData.append(i)
+                }
             }
         } else {
-            searchedData = houseDM
+            ///``  not filtred
+            if str != "Hamma" {
+                for i in houseDM where i.province == city {
+                    searchedData.append(i)
+                }
+            } else {
+                searchedData = houseDM
+            }
+
         }
+        
+//        if str != "Hamma" {
+//            var city = str
+//            if city == "Toshkent" {
+//                city.append(" sh.")
+//            }
+//            for i in houseDM where i.province == city && filteredVillasID.contains(i.id) && filteredVillasID.count != 0 {
+//                searchedData.append(i)
+//            }
+//        } else  {
+//            for i in houseDM where filteredVillasID.contains(i.id) {
+//                searchedData.append(i)
+//            }
+//        }
         colView.reloadData()
     }
     
-    //MARK: - SHOW MAP
-    @IBAction func showMap(_ sender: Any) {
-        let vc = MapVC()
-        vc.modalPresentationStyle = .overFullScreen
-        present(vc, animated: true) 
-        vc.houseDM = houseDM
+    func isFiltered(_ house: CountryhouseData) -> Bool {
         
-    }
-    
-    @IBAction func newsBtn(_ sender: Any) {
-        guard let botURL = URL.init(string: "https://bronla.uz/blog") else { return }
-        UIApplication.shared.open(botURL)
-    }
-    
-    
-    @IBAction func contactsPressed(_ sender: Any) {
-        guard let botURL = URL.init(string: "https://bronla.uz/contact") else { return }
-        UIApplication.shared.open(botURL)
+        ///# check guestType
+        if !selectedGuestType.isContainsSelectedParamentr(house.companiesId()) {
+            print("\(house.name) ni guestType db qayatarvordi", house.id)
+            return false
+        }
+        
+        ///# check additionFetures
+        if !selectedAdditionalFeatures.isContainsSelectedParamentr(house.additionFeaturesId()) {
+            print("\(house.name) ni additionFeatures db qayatarvordi", house.id)
+            return false
+        }
+        
+        ///# check alcohol
+        if house.alcohol != isUserSelectedAlcohol {
+            print("\(house.name) ni isUserSelectedAlcohol db qayatarvordi", house.id)
+            return false
+        }
+        
+        ///# check approved
+        if house.approved != self.isVerified {
+            print("\(house.name) ni isVerified db qayatarvordi", house.id)
+            return false
+        }
+        
+        ///# check number of beds
+        if let numPeople = selectedNumberOfPeople {
+            // user selected number of people
+            if numPeople == 9 && house.numberofpeople <= 8 {
+                print("\(house.name) ni numberofpeople db qayatarvordi", house.id)
+                return false
+            } else if numPeople != 9 && numPeople != house.numberofpeople {
+                print("\(house.name) ni numberofpeople db qayatarvordi", house.id)
+                return false
+            }
+        }
+        print(house.name, house.id)
+//        print("house.alcohol ->", house.alcohol)
+//        print("isUserSelectedAlcohol ->", isUserSelectedAlcohol)
+        print("beds ->", selectedNumberOfPeople)
+        print("house.numberofpeople ->", house.numberofpeople, "\n")
+
+        return true
     }
     
 }
@@ -310,11 +410,10 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         
     }
     
-    
-    
-    func collectionView(_ collectionView: UICollectionView,didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // changes unselected category background
         if collectionView == categoryColView {
+            selectedRegion = categoryNames[indexPath.item]
             if !isSelected {
                 let firstCell = categoryColView.cellForItem(at: IndexPath(row: 0, section: 0)) as? CategoryCVC
                 firstCell?.containerView.backgroundColor = .clear
@@ -327,12 +426,13 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             searchByCategory(str: categoryNames[indexPath.row])
         } else {
             let vc = HomeDetailVC()
+            vc.id = "\(searchedData[indexPath.row].id)"
+
+            vc.price.weekday = Int(searchedData[indexPath.row].weekends.replacingOccurrences(of: " ", with: "")) ?? 0
+            vc.price.wrking = Int(searchedData[indexPath.row].workingdays.replacingOccurrences(of: " ", with: "")) ?? 0
+
             vc.modalPresentationStyle = .overFullScreen
             present(vc, animated: true)
-            vc.images = searchedData[indexPath.row].images
-            vc.id = "\(searchedData[indexPath.row].id)"
-            vc.price.weekday = Int(searchedData[indexPath.row].weekends.replacingOccurrences(of: " ", with: ""))!
-            vc.price.wrking = Int(searchedData[indexPath.row].workingdays.replacingOccurrences(of: " ", with: ""))!
         }
     }
     
@@ -435,5 +535,52 @@ extension HomeVC: CellDelegate {
         vc.id = id
         vc.price.weekday = price.weekend
         vc.price.wrking = price.working
+    }
+}
+
+extension HomeVC: FiltredDelegate {
+    
+    func filtrData(guestType: [Int], additionalFetures: [Int], isAllowedAlcohol: Bool, isVerified: Bool, numberOfPeople: Int?) {
+        selectedGuestType = guestType
+        selectedAdditionalFeatures = additionalFetures
+        isUserSelectedAlcohol = isAllowedAlcohol
+        self.isVerified = isVerified
+        selectedNumberOfPeople = numberOfPeople
+        filteredVillasID = []
+        allVillasID.forEach { id in
+            // get houses by id
+            API.getDetailDataByID(id: id) { [self] detailData in
+                
+                guard let detailData = detailData else { return }
+                
+                if isFiltered(detailData) {
+                    filteredVillasID.append(detailData.id)
+                }
+                
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+3) { [self] in
+            print(self.filteredVillasID, "filteredVillasID")
+            searchedData = []
+            houseDM.forEach { house in
+                if self.filteredVillasID.contains(house.id) {
+                    searchedData.append(house)
+                }
+            }
+            colView.reloadData()
+        }
+        
+    }
+}
+
+extension Array {
+    func isContainsSelectedParamentr(_ arr: [Int]) -> Bool {
+        for i in self as! [Int] {
+            if !arr.contains(i) {
+                return false
+            }
+        }
+        return true
     }
 }

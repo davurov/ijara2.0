@@ -20,8 +20,15 @@ class API {
     static var isMap = false
     
     class func getProducts(completion: @escaping ([HouseDM]?) -> Void){
-        Net.request(url: Endpoints.products, method: .get, params: nil, headers: nil, withLoader: false) { data in
+        Net.request(url: Endpoints.products,
+                    method: .get, params: nil, headers: nil, withLoader: false) { data in
             var houses = [HouseDM]()
+            
+            Firebase.getIdFromFirebase { token in
+                if let tok = token {
+                    print("token", tok)
+                }
+            }
             
             if let data = data {
                 for i in data.arrayValue {
@@ -76,6 +83,83 @@ class API {
         }
     }
     
+    class func getDetailDataByID(id: Int,completion: @escaping (CountryhouseData?) -> Void) {
+        
+        Net.request(url: "https://bronla.uz/bronla/uz/data/api/CountryHouse/\(id)/", method: .get, params: nil, headers: nil, withLoader: false) { data in
+            guard let data = data else {
+                print("can not get detail data")
+                completion(nil)
+                return
+            }
+            
+            let i = data
+            var house = CountryhouseData(
+                id: i["id"].intValue,
+                name: i["name"].stringValue,
+                owner: i["owner"].stringValue,
+                comment: i["comment"].stringValue,
+                referencepoint: i["referencepoint"].stringValue,
+                image: i["image"].stringValue,
+                firstcalendar: i["firstcalendar"].stringValue,
+                secondcalendar: i["secondcalendar"].stringValue,
+                images: i["images"].arrayValue.map {$0.stringValue},
+                videos: i["videos"].arrayValue.map {$0.stringValue},
+                onlinebooking: i["onlinebooking"].boolValue,
+                heart: i["heart"].boolValue,
+                virtualtourpath: i["virtualtourpath"].stringValue,
+                reyting: i["reyting"].doubleValue,
+                entertainmentdata: i["entertainmentdata"].arrayValue.map {Entertainmentdatum(
+                    id: $0["id"].intValue,
+                    tag: $0["tag"].boolValue,
+                    type: $0["type"].stringValue,
+                    name: $0["name"].stringValue,
+                    image: $0["image"].stringValue,
+                    label: $0["label"].stringValue)},
+                approved: i["approved"].boolValue,
+                location: i["location"].stringValue,
+                address: i["address"].stringValue,
+                province: i["province"].stringValue,
+                provinceID: i["provinceID"].intValue,
+                firstphone: i["firstphone"].stringValue,
+                secondphone: i["secondphone"].stringValue,
+                holidays: i["holidays"].arrayValue.map {$0.stringValue},
+                weekendsAreGivenToPerson: i["weekendsAreGivenToPerson"].boolValue,
+                company: i["company"].arrayValue.map {Company(
+                    id: $0["id"].intValue,
+                    name: $0["name"].stringValue,
+                    image: $0["image"].stringValue)},
+                seen: i["seen"].intValue,
+                alcohol: i["alcohol"].boolValue,
+                weekday: i["weekday"].arrayValue.map {$0.intValue},
+                sleeping: i["sleeping"].intValue,
+                bedroomsrooms: i["bedroomsrooms"].intValue,
+                numberOfCalls: i["numberOfCalls"].intValue,
+                numberofpeople: i["numberofpeople"].intValue,
+                startTime: i["start_time"].stringValue,
+                finishTime: i["finish_time"].stringValue,
+                tileDisabled: i["tileDisabled"].arrayValue.map {$0.stringValue},
+                listlocation: i["listlocation"].arrayValue.map {$0.doubleValue},
+                date: i["date"].stringValue,
+                card: i["card"].stringValue,
+                cardowner: i["cardowner"].stringValue,
+                status: i["status"].boolValue,
+                priceForWorkingDays: 0,
+                priceForWeekends: 0
+            )
+            
+            i["payment"].arrayValue.forEach { paymentElement in
+                house.priceForWeekends = paymentElement["payment"]["weekends"].intValue
+            }
+            
+            i["payment"].arrayValue.forEach { paymentElement in
+                house.priceForWeekends = paymentElement["payment"]["workingdays"].intValue
+            }
+            
+            completion(house)
+            
+            }
+        }
+    
     //MARK: - GET ENTETAINMENT DATA
     class func getEntertainmentData(lang: String,completion: @escaping ([Entertainmentdatum]?) -> Void) {
         Net.request(url: Endpoints.getEntData, method: .get, params: nil, headers: nil, withLoader: false) { data in
@@ -103,9 +187,9 @@ class API {
     class func getProducts(id: String,token: String,completion: @escaping (CountryhouseData?) -> Void) {
         Net.request(url: Endpoints.getById + token + "/countryhouse/\(id).json?id=\(id)", method: .get, params: nil, headers: nil, withLoader: !API.isMap) { data in
             if let data = data {
-                
+
                     let i = data["pageProps"]["countryhousedata"]
-                    let house = CountryhouseData(
+                var house = CountryhouseData(
                         id: i["id"].intValue,
                         name: i["name"].stringValue,
                         owner: i["owner"].stringValue,
@@ -154,9 +238,20 @@ class API {
                         date: i["date"].stringValue,
                         card: i["card"].stringValue,
                         cardowner: i["cardowner"].stringValue,
-                        status: i["status"].boolValue)
-                    print("completion ga house ni berdi -> \(house) \n va data: \(data)")
-                    completion(house)
+                        status: i["status"].boolValue,
+                        priceForWorkingDays: 0,
+                        priceForWeekends: 0
+                    )
+                    
+                    i["payment"].arrayValue.forEach { paymentElement in
+                        house.priceForWeekends = paymentElement["payment"]["weekends"].intValue
+                    }
+                    
+                    i["payment"].arrayValue.forEach { paymentElement in
+                        house.priceForWeekends = paymentElement["payment"]["workingdays"].intValue
+                    }
+
+                        completion(house)
             } else {
                 Firebase.changeTokenStatus()
             }

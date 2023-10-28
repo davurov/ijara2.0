@@ -20,19 +20,21 @@ class RulesTVC: UITableViewCell {
     @IBOutlet weak var collView: UICollectionView!
     var category = [Company]()
     
+    //MARK: Life cycles
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpViews()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
     }
     
     func setUpViews() {
         collView.delegate = self
         collView.dataSource = self
         collView.register(RulesCVC.nib(), forCellWithReuseIdentifier: RulesCVC.identifier)
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
     
 }

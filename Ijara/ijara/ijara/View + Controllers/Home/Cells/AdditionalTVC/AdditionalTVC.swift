@@ -21,12 +21,7 @@ class AdditionalTVC: UITableViewCell {
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var showBtn: UIButton! {
-        didSet {
-            showBtn.setTitle(SetLanguage.setLang(type: .showAllElementsBtn), for: .normal)
-        }
-    }
-    @IBOutlet weak var tableViewConst: NSLayoutConstraint!
+    
     
     @IBOutlet weak var additionalFeaturesLbl: UILabel! {
         didSet {
@@ -34,7 +29,16 @@ class AdditionalTVC: UITableViewCell {
         }
     }
     
-    var addedFeatures = Array(repeating: false, count: 27)
+    @IBOutlet weak var showBtn: UIButton! {
+        didSet {
+            showBtn.setTitle(SetLanguage.setLang(type: .showAllElementsBtn), for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var tableViewConst: NSLayoutConstraint!
+    
+    static var addedFeatures = Array(repeating: false, count: 27)
+//    static var selectedParametrs = [Int]()
     var features = [Entertainmentdatum]()
     var delegate: AdditionalDelegate?
     var selectDelegete: AddFeaturesDelegate?
@@ -46,17 +50,12 @@ class AdditionalTVC: UITableViewCell {
         setUpViews()
     }
     
-    func setUpViews() {
-        showBtn.addBorder(size: 1)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(AditionalChildTVC.nib(), forCellReuseIdentifier: AditionalChildTVC.identifier)
-    }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
     }
+    
+    //MARK: @IBAction func
     
     @IBAction func showPressed(_ sender: Any) {
         delegate?.showAllPressed()
@@ -69,9 +68,24 @@ class AdditionalTVC: UITableViewCell {
         }
     }
     
+    //MARK: functions
+    
+    func setUpViews() {
+        showBtn.addBorder(size: 1)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(AditionalChildTVC.nib(), forCellReuseIdentifier: AditionalChildTVC.identifier)
+    }
+    
+    func clearChanges(){
+        AdditionalTVC.addedFeatures = Array(repeating: false, count: 27)
+        tableView.reloadData()
+    }
+    
 }
 
-extension AdditionalTVC: UITableViewDelegate, UITableViewDataSource {
+//MARK: UITableViewDataSource
+extension AdditionalTVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return features.count
@@ -86,17 +100,21 @@ extension AdditionalTVC: UITableViewDelegate, UITableViewDataSource {
         if !imageHidden {
             cell.loadImage(url: features[indexPath.row].image)
         } else {
-            cell.update(isSelected: addedFeatures[indexPath.row])
+            cell.update(isSelected: AdditionalTVC.addedFeatures[indexPath.row])
         }
         return cell
     }
+}
+
+//MARK: UITableViewDelegate
+extension AdditionalTVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if isFilter {
-            addedFeatures[indexPath.row] = !addedFeatures[indexPath.row]
+            AdditionalTVC.addedFeatures[indexPath.row] = !AdditionalTVC.addedFeatures[indexPath.row]
             if let cell = tableView.cellForRow(at: indexPath) as? AditionalChildTVC {
-                cell.update(isSelected: addedFeatures[indexPath.row])
+                cell.update(isSelected: AdditionalTVC.addedFeatures[indexPath.row])
             }
             selectDelegete?.featureSelected(id: indexPath.row)
         }

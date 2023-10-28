@@ -223,6 +223,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="famelyLbl" destination="dzY-YO-t1U" id="Fav-YT-e7t"/>
+                <outlet property="femaleLbl" destination="NhO-wU-zf9" id="5hs-kU-dJZ"/>
+                <outlet property="guestTypeLbl" destination="hcZ-xp-pn8" id="SBW-nf-1J4"/>
+                <outlet property="maleLbl" destination="SSp-Lo-sQu" id="FW2-ND-glZ"/>
+                <outlet property="mixLbl" destination="crU-Xd-Zux" id="AMU-bu-UEg"/>
                 <outletCollection property="guestView" destination="1Gi-vb-1gb" collectionClass="NSMutableArray" id="ZCn-Lp-VJh"/>
                 <outletCollection property="guestView" destination="iUv-sN-sBQ" collectionClass="NSMutableArray" id="Uny-Zj-5Vk"/>
                 <outletCollection property="guestView" destination="jWA-ap-rtn" collectionClass="NSMutableArray" id="bbN-7x-Fbd"/>

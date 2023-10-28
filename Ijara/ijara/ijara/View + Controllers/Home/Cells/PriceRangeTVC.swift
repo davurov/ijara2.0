@@ -10,7 +10,7 @@ import UIKit
 class PriceRangeTVC: UITableViewCell {
     
     static let identifier: String = String(describing: PriceRangeTVC.self)
-    static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
+    static func nib()->UINib { return UINib(nibName: identifier, bundle: nil) }
     
     @IBOutlet weak var sliderView: UIView!
     @IBOutlet weak var lineStack: UIStackView!
@@ -21,6 +21,25 @@ class PriceRangeTVC: UITableViewCell {
     @IBOutlet weak var maxView: UIView!
     @IBOutlet weak var minTF: UITextField!
     @IBOutlet weak var maxTF: UITextField!
+    
+    @IBOutlet weak var priceRangeLbl: UILabel! {
+        didSet {
+            priceRangeLbl.text = SetLanguage.setLang(type: .priceRange)
+        }
+    }
+    
+    @IBOutlet weak var minimumLbl: UILabel! {
+        didSet {
+            minimumLbl.text = SetLanguage.setLang(type: .minimum)
+        }
+    }
+    
+    @IBOutlet weak var maximumLbl: UILabel! {
+        didSet {
+            maximumLbl.text = SetLanguage.setLang(type: .maximum)
+        }
+    }
+    
     
     let rangeSlider = RangeSlider(frame: CGRectZero)
     

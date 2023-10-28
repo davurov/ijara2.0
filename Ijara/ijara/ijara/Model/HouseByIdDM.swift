@@ -36,7 +36,31 @@ struct CountryhouseData {
     var listlocation: [Double]
     let date, card, cardowner: String
     let status: Bool
+    var priceForWorkingDays: Int
+    var priceForWeekends: Int
 }
+
+extension CountryhouseData {
+    /// companiesId function return id of companies
+    func companiesId() -> [Int]{
+        var ids = [Int]()
+        for i in company {
+            ids.append(i.id)
+        }
+        return ids
+    }
+    
+    /// additionFeaturesId function return id of entertainmentdata
+    func additionFeaturesId () -> [Int]{
+        var ids = [Int]()
+        for i in entertainmentdata {
+            ids.append(i.id)
+        }
+        return ids
+    }
+}
+
+
 
 // MARK: - Company
 struct Company {

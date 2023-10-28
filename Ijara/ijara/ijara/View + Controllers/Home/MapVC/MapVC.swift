@@ -140,6 +140,7 @@ class MapVC: UIViewController {
     
     
     @IBAction func whereBtnPressed(_ sender: Any) {
+        print("whereBtnPressed")
         if let userLocation = mapView.userLocation.location?.coordinate {
             let newCenter = CLLocationCoordinate2D(latitude: userLocation.latitude - 0.0027, longitude: userLocation.longitude)
             let region = MKCoordinateRegion(center: newCenter, latitudinalMeters: 1000, longitudinalMeters: 1000)
@@ -192,6 +193,7 @@ extension MapVC: MKMapViewDelegate {
 
 extension MapVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("didUpdateLocations")
         if !didReceiveInitialLocationUpdate {
             //let userLocation = location.coordinate
             let userLocation = CLLocationCoordinate2D(latitude: houseDM[0].listlocation[0] - 0.0027, longitude: houseDM[0].listlocation[1])
@@ -224,6 +226,7 @@ extension MapVC: MapChildDelegate {
     }
     
     func didSwipe(dir: Direction) {
+        print("didSwipe \(dir)")
         if dir == .up && dir != direction {
             if screenSize.height / 2 > 400 {
                 liftChild(height: 395, child: childForMapVC)

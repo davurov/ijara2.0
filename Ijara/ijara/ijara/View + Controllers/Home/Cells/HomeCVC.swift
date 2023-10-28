@@ -24,8 +24,19 @@ class HomeCVC: UICollectionViewCell {
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var pirceLbl: UILabel!
+    @IBOutlet weak var nameLbl: UILabel! {
+        didSet {
+            nameLbl.setContentHuggingPriority(.required, for: .vertical)
+            nameLbl.setContentCompressionResistancePriority(.required, for: .vertical)
+        }
+    }
+    @IBOutlet weak var pirceLbl: UILabel! {
+        didSet {
+            pirceLbl.setContentHuggingPriority(.required, for: .vertical)
+            pirceLbl.setContentCompressionResistancePriority(.required, for: .vertical)
+            pirceLbl.lineBreakMode = .byCharWrapping
+        }
+    }
     @IBOutlet weak var locationLbl: UILabel!
     @IBOutlet weak var imageCont: UIView!
     

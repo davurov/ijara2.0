@@ -12,23 +12,20 @@ class BedsTVC: UITableViewCell {
     static let identifier: String = String(describing: BedsTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
-    @IBOutlet weak var collectionView: UICollectionView! {
+    static var numberOfPeople: Int?
+    
+    @IBOutlet weak var numberOfPeopleLbl: UILabel! {
         didSet {
-            
+            numberOfPeopleLbl.text = SetLanguage.setLang(type: .numberOfPeople)
         }
     }
-    var isSelect = false
     
-    var nums = ["1","2","3","4","5","6","8","9+"]
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    var nums = ["1","2","3","4","5","6","7","8","9+"]
     override func awakeFromNib() {
         super.awakeFromNib()
-       setupViews()
-    }
-    
-    func setupViews() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(CategoryCVC.nib(), forCellWithReuseIdentifier: CategoryCVC.identifier)
+        setupViews()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -36,8 +33,30 @@ class BedsTVC: UITableViewCell {
 
     }
     
+    //MARK: functions
+    
+    func setupViews() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(CategoryCVC.nib(), forCellWithReuseIdentifier: CategoryCVC.identifier)
+    }
+    
+    func clearChanges(){
+        if let numberOfPeople = BedsTVC.numberOfPeople {
+            
+            BedsTVC.numberOfPeople = nil
+            
+            let selectedCell = collectionView.cellForItem(at: IndexPath(item: numberOfPeople-1, section: 0)) as? CategoryCVC
+            selectedCell?.containerView.backgroundColor = .clear
+            selectedCell?.categoryNameLbl.textColor = .black
+        }
+    }
+    
 }
-extension BedsTVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+//MARK: UICollectionViewDataSource
+extension BedsTVC: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return nums.count
     }
@@ -48,8 +67,15 @@ extension BedsTVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         
         return cell
     }
+}
+
+//MARK: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+extension BedsTVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        BedsTVC.numberOfPeople = indexPath.item + 1
+        
         let selectedCell = collectionView.cellForItem(at: indexPath) as? CategoryCVC
         selectedCell?.containerView.backgroundColor = AppColors.mainColor
         selectedCell?.categoryNameLbl.textColor = .white

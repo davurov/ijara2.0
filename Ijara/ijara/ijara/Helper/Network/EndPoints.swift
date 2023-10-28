@@ -15,3 +15,4 @@ struct Endpoints {
     static let getNews = base_URL + "https://bronla.uz/bronla/uz/data/api/blog/"
     static let getEntData = base_URL + "/bronla/uz/data/api/Entertainment/?lang=uz"
 }
+

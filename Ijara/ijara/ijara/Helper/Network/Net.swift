@@ -19,19 +19,20 @@ class Net {
                 Loader.start()
             }
             
-            
             AF.request(url, method: method, parameters: params, encoding: isQuery ? URLEncoding.queryString : JSONEncoding.default, headers: headers).response { (response) in
                 Loader.stop()
+                
                 guard let data = response.data else {
+                    print("nil from response")
                     completion(nil)
                     return
                 }
                 let json = JSON(data)
-
                 completion(json)
             }
         } else {
             //Not connected to the internet
+            print("Not connected to the internet")
             completion(nil)
             
         }
@@ -44,4 +45,5 @@ class Net {
             return false
         }
     }
+    
 }

@@ -117,7 +117,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="additionalLbl" destination="TFQ-Xc-cMF" id="Tqi-vi-U2l"/>
+                <outlet property="alcoholLbl" destination="ro8-0i-GmF" id="0Wg-ct-cn2"/>
                 <outlet property="alcoholSwitch" destination="Mu9-Wj-d3u" id="Edy-xK-iif"/>
+                <outlet property="verifiedLbl" destination="2jf-kK-EQu" id="Ens-tt-wCH"/>
                 <outlet property="verifiedSwitch" destination="v2t-7R-Lz8" id="2Qp-NS-n4n"/>
             </connections>
             <point key="canvasLocation" x="213.74045801526717" y="64.788732394366207"/>

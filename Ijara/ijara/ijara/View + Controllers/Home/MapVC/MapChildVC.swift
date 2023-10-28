@@ -57,6 +57,8 @@ class MapChildVC: UIViewController {
     
     func setViews() {
         moreInfoBtn.setTitle(SetLanguage.setLang(type: .moreInfo), for: .normal)
+        moreInfoBtn.titleLabel?.numberOfLines = 0
+        
         
         contView.addShadowByHand(offset: CGSize(width: 0, height: 0), color: AppColors.customBlack.cgColor, radius: 5, opacity: 0.2)
         contView.layer.cornerRadius = 20
