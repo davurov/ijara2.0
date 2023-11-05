@@ -17,6 +17,7 @@ class BedsTVC: UITableViewCell {
     @IBOutlet weak var numberOfPeopleLbl: UILabel! {
         didSet {
             numberOfPeopleLbl.text = SetLanguage.setLang(type: .numberOfPeople)
+            numberOfPeopleLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         }
     }
     

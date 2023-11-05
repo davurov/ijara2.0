@@ -10,9 +10,9 @@ import UIKit
 protocol AdditionalDelegate {
     func showAllPressed()
 }
-protocol AddFeaturesDelegate {
-    func featureSelected(id: Int)
-}
+//protocol AddFeaturesDelegate {
+//    func featureSelected(id: Int)
+//}
 
 
 class AdditionalTVC: UITableViewCell {
@@ -26,6 +26,7 @@ class AdditionalTVC: UITableViewCell {
     @IBOutlet weak var additionalFeaturesLbl: UILabel! {
         didSet {
             additionalFeaturesLbl.text = SetLanguage.setLang(type: .additionalFeatures)
+            additionalFeaturesLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         }
     }
     
@@ -38,21 +39,15 @@ class AdditionalTVC: UITableViewCell {
     @IBOutlet weak var tableViewConst: NSLayoutConstraint!
     
     static var addedFeatures = Array(repeating: false, count: 27)
-//    static var selectedParametrs = [Int]()
     var features = [Entertainmentdatum]()
     var delegate: AdditionalDelegate?
-    var selectDelegete: AddFeaturesDelegate?
+//    var selectDelegete: AddFeaturesDelegate?
     var imageHidden = false
     var isFilter = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpViews()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
     }
     
     //MARK: @IBAction func
@@ -69,6 +64,11 @@ class AdditionalTVC: UITableViewCell {
     }
     
     //MARK: functions
+    
+    func updateCell(_ features: [Entertainmentdatum]){
+        self.features = features
+        tableView.reloadData()
+    }
     
     func setUpViews() {
         showBtn.addBorder(size: 1)
@@ -116,7 +116,7 @@ extension AdditionalTVC: UITableViewDelegate {
             if let cell = tableView.cellForRow(at: indexPath) as? AditionalChildTVC {
                 cell.update(isSelected: AdditionalTVC.addedFeatures[indexPath.row])
             }
-            selectDelegete?.featureSelected(id: indexPath.row)
+//            selectDelegete?.featureSelected(id: indexPath.row)
         }
     }
     

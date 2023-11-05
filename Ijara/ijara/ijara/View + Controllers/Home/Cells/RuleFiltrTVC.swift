@@ -35,6 +35,7 @@ class RuleFiltrTVC: UITableViewCell {
     @IBOutlet weak var guestTypeLbl: UILabel! {
         didSet {
             guestTypeLbl.text = SetLanguage.setLang(type: .guestType)
+            guestTypeLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         }
     }
     

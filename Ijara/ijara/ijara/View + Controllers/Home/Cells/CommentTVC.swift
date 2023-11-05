@@ -24,6 +24,7 @@ class CommentTVC: UITableViewCell {
     @IBOutlet weak var ownerNameLbl: UILabel! {
         didSet {
             ownerNameLbl.text = SetLanguage.setLang(type: .commentByOwner)
+            ownerNameLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         }
     }
     @IBOutlet weak var borderView: UIView!
@@ -46,6 +47,15 @@ class CommentTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpViews()
+    }
+    
+    //MARK: functions
+    
+    func updateCell(_ comment: String){
+        commentLbl.text = comment
+        commentLbl.setNeedsLayout()
+        commentLbl.layoutIfNeeded()
+        resizeComment()
     }
     
     func setUpViews() {

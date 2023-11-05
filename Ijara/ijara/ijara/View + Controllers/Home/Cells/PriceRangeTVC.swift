@@ -40,7 +40,6 @@ class PriceRangeTVC: UITableViewCell {
         }
     }
     
-    
     let rangeSlider = RangeSlider(frame: CGRectZero)
     
     override func awakeFromNib() {

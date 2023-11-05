@@ -30,7 +30,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Ur-hx-2dS">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="figure.wave.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Ur-hx-2dS">
                                 <rect key="frame" x="411" y="1" width="40" height="38.666666666666671"/>
                                 <color key="tintColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -74,8 +74,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="nemberOfBedrooms" destination="h4S-lB-qn5" id="wtP-MR-W9F"/>
-                <outlet property="nemberOfBeds" destination="JLJ-f3-FSN" id="60p-NU-egF"/>
+                <outlet property="numberOfBedrooms" destination="h4S-lB-qn5" id="wtP-MR-W9F"/>
+                <outlet property="numberOfBeds" destination="JLJ-f3-FSN" id="60p-NU-egF"/>
                 <outlet property="numberOfPeaople" destination="5ST-W8-qsz" id="HaY-lp-pNc"/>
                 <outlet property="ownerLbl" destination="emy-K0-mSO" id="qBm-q2-OqG"/>
             </connections>
@@ -83,6 +83,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="figure.wave.circle" catalog="system" width="128" height="123"/>
     </resources>
 </document>

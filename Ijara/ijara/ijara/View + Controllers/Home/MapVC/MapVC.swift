@@ -220,7 +220,7 @@ extension MapVC: MapChildDelegate {
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true)
         vc.images = images
-        vc.id = id
+        vc.id = Int(id) ?? 0
         vc.price.weekday = price.weekday
         vc.price.wrking = price.working
     }

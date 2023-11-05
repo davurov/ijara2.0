@@ -72,7 +72,8 @@ class FiltrVC: UIViewController {
         }
         
         // give selected parametrs to homeVC
-        filtrDelegate.filtrData(guestType: guestType, additionalFetures: additionalFetures, isAllowedAlcohol: isAllowedAlcohol, isVerified: isVerified, numberOfPeople: numberOfPeople)
+        filtrDelegate.filtrData(minPrice: NewPriceRangeTVC.minPriceFiltr, maxPrice: NewPriceRangeTVC.maxPriceFiltr, guestType: guestType, additionalFetures: additionalFetures, isAllowedAlcohol: isAllowedAlcohol, isVerified: isVerified, numberOfPeople: numberOfPeople)
+        
         isClearAllPressed = true
         tableView.reloadData()
         dismiss(animated: true)
@@ -82,7 +83,7 @@ class FiltrVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(PriceRangeTVC.nib(), forCellReuseIdentifier: PriceRangeTVC.identifier)
+        tableView.register(NewPriceRangeTVC.self, forCellReuseIdentifier: NewPriceRangeTVC.identifier)
         tableView.register(RuleFiltrTVC.nib(), forCellReuseIdentifier: RuleFiltrTVC.identifier)
         tableView.register(AdditionalTVC.nib(), forCellReuseIdentifier: AdditionalTVC.identifier)
         tableView.register(SwitchContTVC.nib(), forCellReuseIdentifier: SwitchContTVC.identifier)
@@ -91,6 +92,8 @@ class FiltrVC: UIViewController {
         showView.addShadowByHand(offset: CGSize(width: 0, height: 0), color: AppColors.customBlack.cgColor, radius: 5, opacity: 0.2)
         showView.layer.cornerRadius = 20
         showView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+        
+        clearAllBtn.titleLabel?.numberOfLines = 0
     }
     
     func getData() {
@@ -113,9 +116,15 @@ extension FiltrVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: PriceRangeTVC.identifier, for: indexPath) as! PriceRangeTVC
+            let cell = tableView.dequeueReusableCell(withIdentifier: NewPriceRangeTVC.identifier, for: indexPath) as! NewPriceRangeTVC
             
-            cell.setupPriceRange(priceRange)
+            cell.setupViews()
+            cell.minimumLbl.text = "\(SetLanguage.setLang(type: .minimum)): \n 500000"
+            cell.maximumLbl.text = "\(SetLanguage.setLang(type: .maximum)): \n 15000000"
+            
+            if isClearAllPressed {
+                cell.clearChanged()
+            }
             
             return cell
         } else if indexPath.row == 1 {
@@ -182,12 +191,7 @@ extension FiltrVC: UITableViewDelegate {
     
 }
 
-extension FiltrVC: AdditionalDelegate, AddFeaturesDelegate {
-    //TODO: - DEAL WITH FILTERED OBJECTS
-    func featureSelected(id: Int) {
-
-    }
-    
+extension FiltrVC: AdditionalDelegate {
     func showAllPressed() {
         if additionalHeight == 340 {
             additionalHeight = CGFloat(40 * enterData.count) + 140

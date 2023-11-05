@@ -24,17 +24,21 @@ class HomeDetailVC: UIViewController {
     }
     @IBOutlet weak var depositLbl: UILabel! {
         didSet {
-//            priceLbl.text = SetLanguage.setLang(type: .depositLbl)
+            depositLbl.text = SetLanguage.setLang(type: .depositLbl)
         }
     }
     @IBOutlet weak var sumLbl1: UILabel! {
         didSet {
             sumLbl1.text = SetLanguage.setLang(type: .sumLbl)
+            sumLbl1.textColor = .red
+//            sumLbl1.isHidden = true
         }
     }
     @IBOutlet weak var sumLbl2: UILabel! {
         didSet {
             sumLbl2.text = SetLanguage.setLang(type: .sumLbl)
+            sumLbl2.textColor = .red
+//            sumLbl2.isHidden = true
         }
     }
     @IBOutlet weak var callBtn: UIButton! {
@@ -63,27 +67,27 @@ class HomeDetailVC: UIViewController {
     var previousContentOffset: CGFloat = 0.0
     var commentCellSize : CGFloat = 280
     var countryHouseDM: CountryhouseData?
-//    var detailData: HouseDM?
     var images = [String]()
     var totalSum = 0 // to count price
     var dayCount = 0 // number of days in range
     var lastPeopleNum = 0
     
-    var priceForWorkingDays = 0
-    var priceForWeekends = 0
+//    var priceForWorkingDays = 0
+//    var priceForWeekends = 0
     
     var price = (wrking: 0 ,weekday: 0) {
         didSet {
             setPriceAnimation(weekwnds: price.weekday, workingdays: price.wrking)
         }
     }
-    var id = "" {
-        didSet {
-            getData(id: Int(id) ?? 0)
-        }
-    }
+    var id = 0
+//    "" {
+//        didSet {
+//            getData(id: Int(id) ?? 0)
+//        }
+//    }
     
-    var likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as? [String] ?? []
+    var likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as? [Int] ?? []
     
     //MARK: Life cycles
     override func viewDidLoad() {
@@ -105,27 +109,27 @@ class HomeDetailVC: UIViewController {
         shareRoute()
     }
     
-    
     @IBAction func callPressed(_ sender: Any) {
         countryHouseDM?.firstphone.callNumber()
     }
         
     //MARK: functions
-    
+    /// function to get houses from server by house id
     func getData(id: Int) {
+        self.id = id
         Loader.start()
         API.getDetailDataByID(id: id) { [self] countryhouseData in
             Loader.stop()
+            
             guard let detailData = countryhouseData else {
                 print("can not get data")
                 return
             }
-
+            
             countryHouseDM = detailData
             setUpViews()
             tableView.reloadData()
         }
-        
         
 //        Firebase.getIdFromFirebase { token in
 //            if let token = token {
@@ -168,8 +172,10 @@ class HomeDetailVC: UIViewController {
         
         guard let countryHouseDM = countryHouseDM else { return }
         
-        sumLbl1.text = "\(countryHouseDM.priceForWeekends) \(SetLanguage.setLang(type: .sumLbl))"
-        
+        let price = countryHouseDM.priceForWeekends
+        sumLbl1.text = "\(price) \(SetLanguage.setLang(type: .sumLbl))"
+        sumLbl2.text = "\(Double(price) * 0.4) \(SetLanguage.setLang(type: .sumLbl))"
+
         showLikeBtn()
         
     }
@@ -206,9 +212,10 @@ class HomeDetailVC: UIViewController {
         }
     }
     
+    /// func for liked or unliked houses
     func likePressed() {
         if likedHouses.contains(id) {
-            let index = likedHouses.firstIndex(of: id)!
+            let index = likedHouses.firstIndex(of: id) ?? 0
             likedHouses.remove(at: index)
             likeBtn.setImage(UIImage(systemName: "heart"), for: .normal)
         } else {
@@ -216,19 +223,13 @@ class HomeDetailVC: UIViewController {
             likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
         UserDefaults.standard.set(likedHouses, forKey: Keys.likedHouses)
-    }
-    
-    private func setLanguagesLbl(){
-        priceLbl.text   = SetLanguage.setLang(type: .priceLbl)
-        depositLbl.text = SetLanguage.setLang(type: .depositLbl)
-        sumLbl1.text    = SetLanguage.setLang(type: .sumLbl)
-        sumLbl2.text    = SetLanguage.setLang(type: .sumLbl)
-        callBtn.setTitle(SetLanguage.setLang(type: .callBtn), for: .normal)
+        
     }
     
 }
 
-extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
+//MARK: - UITableViewDataSource
+extension HomeDetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 9
     }
@@ -236,84 +237,108 @@ extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTVC.identifier, for: indexPath) as! PhotoTVC
-            guard let countryHouseDM = countryHouseDM else {return cell}
-            cell.houseImgs = countryHouseDM.images
-//            cell.houseImgs = images
+            let photoCell = tableView.dequeueReusableCell(withIdentifier: PhotoTVC.identifier, for: indexPath) as! PhotoTVC
             
-            return cell
+            guard let countryHouseDM = countryHouseDM else { return photoCell }
+            
+            photoCell.updateCell(countryHouseDM.images)
+ 
+            return photoCell
         } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: NameTVC.identifier, for: indexPath) as! NameTVC
-            guard let countryHouseDM = countryHouseDM else {return cell}
-            cell.nameLbl.text = countryHouseDM.name
-            cell.locationLbl.text = countryHouseDM.province + ", " + countryHouseDM.address
-            cell.starLbl.text = "\(countryHouseDM.reyting)"
-            cell.viewsLbl.text = "\(countryHouseDM.seen) \(SetLanguage.setLang(type: .viewsLbl))"
-            return cell
+            let nameCell = tableView.dequeueReusableCell(withIdentifier: NameTVC.identifier, for: indexPath) as! NameTVC
+            
+            guard let countryHouseDM = countryHouseDM else { return nameCell }
+            
+            nameCell.updateCell(
+                countryHouseDM.name,
+                countryHouseDM.province + ", " + countryHouseDM.address,
+                "\(countryHouseDM.reyting)   ·",
+                "\(countryHouseDM.seen) \(SetLanguage.setLang(type: .viewsLbl))"
+            )
+            
+            return nameCell
         } else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: InfoTVC.identifier, for: indexPath) as! InfoTVC
-            guard let countryHouseDM = countryHouseDM else {return cell}
-            cell.ownerLbl.text = "\(SetLanguage.setLang(type: .hostedByLbl)) " + countryHouseDM.owner
-            cell.nemberOfBeds.text = "\(countryHouseDM.sleeping) \(SetLanguage.setLang(type: .bedsLbl))"
-            cell.nemberOfBedrooms.text = "\(countryHouseDM.bedroomsrooms) \(SetLanguage.setLang(type: .bedroomsLbl)) | "
-            cell.numberOfPeaople.text = "\(countryHouseDM.numberofpeople) \(SetLanguage.setLang(type: .peopleLbl)) | "
-            return cell
+            let infoCell = tableView.dequeueReusableCell(withIdentifier: InfoTVC.identifier, for: indexPath) as! InfoTVC
+            
+            guard let countryHouseDM = countryHouseDM else { return infoCell }
+            
+            infoCell.updateCell(
+                "\(SetLanguage.setLang(type: .hostedByLbl)) " + countryHouseDM.owner,
+                "\(countryHouseDM.sleeping) \(SetLanguage.setLang(type: .bedsLbl))",
+                "\(countryHouseDM.bedroomsrooms) \(SetLanguage.setLang(type: .bedroomsLbl)) | ",
+                "\(countryHouseDM.numberofpeople) \(SetLanguage.setLang(type: .peopleLbl)) | "
+            )
+            
+            return infoCell
         } else if indexPath.row == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: RulesTVC.identifier, for: indexPath) as! RulesTVC
-            guard let countryHouseDM = countryHouseDM else {return cell}
-            cell.category = countryHouseDM.company
-            cell.collView.reloadData()
-            return cell
+            let rulesCell = tableView.dequeueReusableCell(withIdentifier: RulesTVC.identifier, for: indexPath) as! RulesTVC
+            guard let countryHouseDM = countryHouseDM else { return rulesCell }
+            
+            rulesCell.updateCell(countryHouseDM.company)
+            
+            return rulesCell
         } else if indexPath.row == 4 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: AdditionalTVC.identifier, for: indexPath) as! AdditionalTVC
-            guard let countryHouseDM = countryHouseDM else {return cell}
-            cell.features = countryHouseDM.entertainmentdata
-            cell.delegate = self
-            cell.tableView.reloadData()
-            return cell
+            let additionalCell = tableView.dequeueReusableCell(withIdentifier: AdditionalTVC.identifier, for: indexPath) as! AdditionalTVC
+            
+            guard let countryHouseDM = countryHouseDM else { return additionalCell }
+            
+            additionalCell.delegate = self
+            additionalCell.updateCell(countryHouseDM.entertainmentdata)
+            
+            return additionalCell
         } else if indexPath.row == 5 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: CommentTVC.identifier, for: indexPath) as! CommentTVC
-            guard let countryHouseDM = countryHouseDM else {return cell}
-            cell.delegate = self
-            cell.commentLbl.text = countryHouseDM.comment != "" ? countryHouseDM.comment : countryHouseDM.referencepoint
-            cell.commentLbl.setNeedsLayout()
-            cell.commentLbl.layoutIfNeeded()
-            cell.resizeComment()
-            return cell
+            let commentCell = tableView.dequeueReusableCell(withIdentifier: CommentTVC.identifier, for: indexPath) as! CommentTVC
+            
+            guard let countryHouseDM = countryHouseDM else { return commentCell }
+            
+            commentCell.delegate = self
+            commentCell.updateCell(countryHouseDM.comment)
+
+            return commentCell
         } else if indexPath.row == 6 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: ContactTVC.identifier, for: indexPath) as! ContactTVC
-            guard let countryHouseDM = countryHouseDM else {return cell}
-            cell.firstNumberLbl.text = "\(SetLanguage.setLang(type: .phoneLbl)) 1: \(countryHouseDM.firstphone)"
-            cell.secondNumber.text = "\(SetLanguage.setLang(type: .phoneLbl)) 2: \(countryHouseDM.secondphone)"
-            cell.comingLbl.text = "\(SetLanguage.setLang(type: .comingTime)): \(countryHouseDM.startTime)"
-            cell.leavingLbl.text = "\(SetLanguage.setLang(type: .leavingTime)): \(countryHouseDM.finishTime)"
-            return cell
+            let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactTVC.identifier, for: indexPath) as! ContactTVC
+         
+            guard let countryHouseDM = countryHouseDM else { return contactCell }
+            
+            contactCell.updateCell(
+                countryHouseDM.firstphone,
+                countryHouseDM.secondphone,
+                countryHouseDM.startTime,
+                countryHouseDM.finishTime
+            )
+            
+            return contactCell
         } else if indexPath.row == 7 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: CalendarTVC.identifier, for: indexPath) as! CalendarTVC
+            let calendarCell = tableView.dequeueReusableCell(withIdentifier: CalendarTVC.identifier, for: indexPath) as! CalendarTVC
             
-            guard let countryHouseDM = countryHouseDM else { return cell }
+            guard let countryHouseDM = countryHouseDM else { return calendarCell }
             
-            cell.delegate = self
-            cell.workingDayPrice.text = "\(SetLanguage.setLang(type: .otherDays)) \(price.wrking)"
-            cell.workingDayPrice.text! += SetLanguage.setLang(type: .sumLbl)
-            
-            cell.weakdayPrice.text = "\(SetLanguage.setLang(type: .fridayAndSaturday)) \(price.weekday)"
-            cell.weakdayPrice.text! += SetLanguage.setLang(type: .sumLbl)
-            
-//            cell.weakdayPrice.text = "\(MoneyFormatter.df2so(price.weekday)) \(SetLanguage.setLang(type: .sumLbl))"
-            return cell
+            calendarCell.delegate = self
+            calendarCell.updateCell(countryHouseDM.priceForWorkingDays, countryHouseDM.priceForWeekends)
+
+            return calendarCell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: MapTVC.identifier, for: indexPath) as! MapTVC
-            guard let countryHouseDM = countryHouseDM else {return cell}
-            cell.addMapPin(with: CLLocation(latitude: countryHouseDM.listlocation.first ?? 0, longitude: countryHouseDM.listlocation.last ?? 0))
-            cell.location.lat = countryHouseDM.listlocation.first ?? 0
-            cell.location.long = countryHouseDM.listlocation.last ?? 0
-            cell.delegate = self
+            let mapCell = tableView.dequeueReusableCell(withIdentifier: MapTVC.identifier, for: indexPath) as! MapTVC
+            guard let countryHouseDM = countryHouseDM else { return mapCell }
             
-            return cell
+            mapCell.delegate = self
+            
+            mapCell.updateCell(
+                countryHouseDM.listlocation.first ?? 0,
+                countryHouseDM.listlocation.last ?? 0
+            )
+            
+            mapCell.addMapPin(with: CLLocation(
+                latitude: countryHouseDM.listlocation.first ?? 0, longitude: countryHouseDM.listlocation.last ?? 0
+            ))
+            
+            return mapCell
         }
     }
-    
+}
+
+//MARK: - UITableViewDelegate
+extension HomeDetailVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 300
@@ -322,7 +347,12 @@ extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.row == 2 {
             return 80
         } else if indexPath.row == 3 {
-            return 140
+            guard let villa = countryHouseDM  else { return 250 }
+                if villa.company.count == 3 || villa.company.count == 4 {
+                    return 230
+                } else {
+                    return 120
+                }
         } else if indexPath.row == 4 {
             return 340
         } else if indexPath.row == 5 {
@@ -335,6 +365,7 @@ extension HomeDetailVC: UITableViewDelegate, UITableViewDataSource {
             return 300
         }
     }
+
 }
 
 extension HomeDetailVC {
@@ -347,6 +378,7 @@ extension HomeDetailVC {
     }
 }
 
+//MARK: - UIScrollViewDelegate
 extension HomeDetailVC: UIScrollViewDelegate {
     //MARK: - TELLS SCROLLED UP OR DAWN
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -376,6 +408,7 @@ extension HomeDetailVC: UIScrollViewDelegate {
     }
 }
 
+//MARK: - CommentDelegate
 extension HomeDetailVC: CommentDelegate {
     func readMorePressed(size: CGFloat) {
         commentCellSize = size
@@ -383,12 +416,14 @@ extension HomeDetailVC: CommentDelegate {
     }
 }
 
+//MARK: - MapDelegate
 extension HomeDetailVC: MapDelegate {
     func mapPressed(lat: Double, long: Double) {
         OpenMapDirections.present(in: self,latitude: lat,longitude: long, sourceView: UIView())
     }
 }
 
+//MARK: - AdditionalDelegate
 extension HomeDetailVC: AdditionalDelegate {
     func showAllPressed() {
         let vc = AdditionalVC()
@@ -403,6 +438,7 @@ extension HomeDetailVC: AdditionalDelegate {
     }
 }
 
+//MARK: - RangeDelegate
 extension HomeDetailVC: RangeDelegate {
     func personAdded(num: Int) {
         let diff = num - (countryHouseDM?.numberofpeople ?? 0)

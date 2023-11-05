@@ -12,21 +12,25 @@ class InfoTVC: UITableViewCell {
     static let identifier: String = String(describing: InfoTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
-    @IBOutlet weak var ownerLbl: UILabel!
+    @IBOutlet weak var ownerLbl: UILabel! {
+        didSet {
+            ownerLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
+        }
+    }
     @IBOutlet weak var numberOfPeaople: UILabel!
-    @IBOutlet weak var nemberOfBedrooms: UILabel!
-    @IBOutlet weak var nemberOfBeds: UILabel!
+    @IBOutlet weak var numberOfBedrooms: UILabel!
+    @IBOutlet weak var numberOfBeds: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
     
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func updateCell(_ ownerName: String,  _ numberOfBeds: String, _ numberOfBedrooms: String, _ numberOfPeaople: String){
+        self.ownerLbl.text = ownerName
+        self.numberOfBeds.text = numberOfBeds
+        self.numberOfBedrooms.text = numberOfBedrooms
+        self.numberOfPeaople.text = numberOfPeaople
     }
     
 }

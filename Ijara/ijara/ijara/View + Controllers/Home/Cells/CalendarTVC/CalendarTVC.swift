@@ -16,10 +16,10 @@ protocol RangeDelegate {
 
 class CalendarTVC: UITableViewCell {
     
-    
     @IBOutlet weak var chooseDayOfVacationLbl: UILabel! {
         didSet {
             chooseDayOfVacationLbl.text = SetLanguage.setLang(type: .chooseDayOfVacationLbl)
+            chooseDayOfVacationLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         }
     }
     @IBOutlet weak var weakdayPrice: UILabel!
@@ -32,6 +32,7 @@ class CalendarTVC: UITableViewCell {
     @IBOutlet weak var numberOfPeopleLbl: UILabel! {
         didSet {
             numberOfPeopleLbl.text = SetLanguage.setLang(type: .numberOfPeople)
+            numberOfPeopleLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         }
     }
     
@@ -55,6 +56,13 @@ class CalendarTVC: UITableViewCell {
         setUpViews()
     }
     
+    func updateCell(_ priceForWorkingDays: Int, _ priceForWeekends: Int){
+        workingDayPrice.text = "\(SetLanguage.setLang(type: .otherDays)) \(priceForWorkingDays)"
+        workingDayPrice.text! += SetLanguage.setLang(type: .sumLbl)
+        weakdayPrice.text = "\(SetLanguage.setLang(type: .fridayAndSaturday)) \(priceForWeekends)"
+        weakdayPrice.text! += SetLanguage.setLang(type: .sumLbl)
+    }
+    
     func setUpViews() {
         let calendarView = FSCalendar(frame: CGRect(x: 0, y: 0, width: calendarCont.frame.width, height: 300))
         calendarView.delegate = self
@@ -65,16 +73,10 @@ class CalendarTVC: UITableViewCell {
         
         peopleTF.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
-        //calendarView.appearance.selectionColor = AppColors.mainColor
         calendarView.register(CalendarCVC.self, forCellReuseIdentifier: "cell")
         self.calendarView = calendarView
         self.calendarCont.addSubview(calendarView)
         peopleView.addBorder(size: 0.5)
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
     }
     
     @objc func textFieldDidChange() {

@@ -21,6 +21,7 @@ class MapTVC: UITableViewCell {
     @IBOutlet weak var locationLbl: UILabel! {
         didSet {
             locationLbl.text = SetLanguage.setLang(type: .locationLbl)
+            locationLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         }
     }
     @IBOutlet weak var map: MKMapView!
@@ -32,12 +33,12 @@ class MapTVC: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func updateCell(_ lat: Double, _ long: Double){
+        location.lat = lat
+        location.long = long
     }
+    
     
     func addMapPin (with location: CLLocation) {
         let pin = MKPointAnnotation()

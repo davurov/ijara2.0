@@ -36,6 +36,10 @@ class PhotoTVC: UITableViewCell {
         setUpViews()
     }
     
+    func updateCell(_ images: [String]){
+        houseImgs = images
+    }
+    
     func setUpViews() {
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -43,11 +47,11 @@ class PhotoTVC: UITableViewCell {
     }
     
 }
-extension PhotoTVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//MARK: UICollectionViewDataSource
+extension PhotoTVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return houseImgs.count
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCVC.identifier, for: indexPath) as! PhotoCVC
@@ -56,7 +60,10 @@ extension PhotoTVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         
         return cell
     }
-    
+}
+
+//MARK: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+extension PhotoTVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -81,5 +88,4 @@ extension PhotoTVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         
         previousOffset = currentOffset
     }
-    
 }

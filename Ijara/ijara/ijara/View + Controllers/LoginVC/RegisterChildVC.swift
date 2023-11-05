@@ -15,7 +15,7 @@ protocol RegisterDelegete {
 }
 
 class RegisterChildVC: UIViewController {
-    
+
     
     @IBOutlet weak var infoStack: UIStackView!
     @IBOutlet var contViews: [UIView]!

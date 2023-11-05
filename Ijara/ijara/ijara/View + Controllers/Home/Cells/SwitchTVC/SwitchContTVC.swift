@@ -18,6 +18,7 @@ class SwitchContTVC: UITableViewCell {
     @IBOutlet weak var additionalLbl: UILabel! {
         didSet {
             additionalLbl.text = SetLanguage.setLang(type: .additional)
+            additionalLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         }
     }
     

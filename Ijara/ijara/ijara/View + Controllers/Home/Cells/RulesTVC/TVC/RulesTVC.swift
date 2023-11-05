@@ -15,6 +15,7 @@ class RulesTVC: UITableViewCell {
     @IBOutlet weak var rulesLbl: UILabel!{
         didSet{
             rulesLbl.text = SetLanguage.setLang(type: .rules)
+            rulesLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         }
     }
     @IBOutlet weak var collView: UICollectionView!
@@ -31,6 +32,13 @@ class RulesTVC: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    //MARK: functions
+    
+    func updateCell(_ category: [Company]){
+        self.category = category
+        collView.reloadData()
+    }
+    
     func setUpViews() {
         collView.delegate = self
         collView.dataSource = self
@@ -39,7 +47,8 @@ class RulesTVC: UITableViewCell {
     
 }
 
-extension RulesTVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//MARK: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+extension RulesTVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return category.count
     }
@@ -54,6 +63,6 @@ extension RulesTVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: 80)
+        return CGSize(width: 175, height: 80)
     }
 }

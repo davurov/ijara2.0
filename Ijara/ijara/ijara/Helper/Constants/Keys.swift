@@ -19,5 +19,5 @@ struct Keys {
     static let token = "token"
     static let userInfo = "info"
     static let userImage = "image"
-    static let allVillas = "allVillas"
+    static let allVillas_Id = "allVillas"
 }

@@ -18,36 +18,29 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oeH-Cs-9pi">
-                        <rect key="frame" x="0.0" y="56.333333333333343" width="343" height="80"/>
+                        <rect key="frame" x="3" y="41.333333333333336" width="337" height="101.66666666666666"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="80" id="iMi-1W-X3b"/>
-                        </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="e7n-M7-PRx">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="e7n-M7-PRx">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
-                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wym-15-URJ">
-                        <rect key="frame" x="10.000000000000004" y="20" width="55.333333333333343" height="26.333333333333329"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rules" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4t6-3s-aaU">
-                                <rect key="frame" x="0.0" y="0.0" width="55.333333333333336" height="26.333333333333332"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
-                                <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rules" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4t6-3s-aaU">
+                        <rect key="frame" x="5.0000000000000036" y="4.9999999999999982" width="55.333333333333343" height="26.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                        <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="oeH-Cs-9pi" firstAttribute="top" secondItem="wym-15-URJ" secondAttribute="bottom" constant="10" id="7Zc-Fg-8kb"/>
-                    <constraint firstAttribute="trailing" secondItem="oeH-Cs-9pi" secondAttribute="trailing" id="W18-xD-ZPQ"/>
-                    <constraint firstItem="wym-15-URJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="ZsE-oS-OFH"/>
-                    <constraint firstItem="oeH-Cs-9pi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pYh-uG-CcI"/>
-                    <constraint firstItem="wym-15-URJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="vXm-AW-xaT"/>
+                    <constraint firstAttribute="trailing" secondItem="oeH-Cs-9pi" secondAttribute="trailing" constant="3" id="3bM-tu-gVK"/>
+                    <constraint firstItem="4t6-3s-aaU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="DhR-CP-gIt"/>
+                    <constraint firstItem="oeH-Cs-9pi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="TYa-Qy-9Gd"/>
+                    <constraint firstItem="oeH-Cs-9pi" firstAttribute="top" secondItem="4t6-3s-aaU" secondAttribute="bottom" constant="10" id="jt3-dX-VII"/>
+                    <constraint firstItem="4t6-3s-aaU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="l1U-ZK-T5R"/>
+                    <constraint firstAttribute="bottom" secondItem="oeH-Cs-9pi" secondAttribute="bottom" constant="3" id="sXr-JC-OeP"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

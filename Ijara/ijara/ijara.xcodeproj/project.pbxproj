@@ -114,6 +114,7 @@
 		DBD74E3A2AA26C81003096BB /* HomeCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD74E342AA26C81003096BB /* HomeCVC.swift */; };
 		DBD74E3E2AA26C8F003096BB /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD74E3C2AA26C8F003096BB /* Header.swift */; };
 		DBD74E3F2AA26C8F003096BB /* Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD74E3D2AA26C8F003096BB /* Header.xib */; };
+		FFC03EA72AF0067C00AAF45C /* NewPriceRangeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC03EA62AF0067C00AAF45C /* NewPriceRangeTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -227,6 +228,7 @@
 		DBD74E342AA26C81003096BB /* HomeCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCVC.swift; sourceTree = "<group>"; };
 		DBD74E3C2AA26C8F003096BB /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		DBD74E3D2AA26C8F003096BB /* Header.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Header.xib; sourceTree = "<group>"; };
+		FFC03EA62AF0067C00AAF45C /* NewPriceRangeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPriceRangeTVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -591,6 +593,7 @@
 				3D8A72BB2ABEBA420051DE9D /* MapTVC.xib */,
 				3D8A72FC2AC1B4400051DE9D /* PriceRangeTVC.swift */,
 				3D8A72FD2AC1B4400051DE9D /* PriceRangeTVC.xib */,
+				FFC03EA62AF0067C00AAF45C /* NewPriceRangeTVC.swift */,
 				3D8A73002AC205EA0051DE9D /* RuleFiltrTVC.swift */,
 				3D8A73012AC205EA0051DE9D /* RuleFiltrTVC.xib */,
 				3D8A73042AC210330051DE9D /* PickerTVC.swift */,
@@ -814,6 +817,7 @@
 				3D0D05742A8BA85900BDAFF3 /* OTPFieldView.swift in Sources */,
 				3D0D05882A961B4300BDAFF3 /* API.swift in Sources */,
 				3D70CB5A2AB8A6AC0016C0B4 /* RulesCVC.swift in Sources */,
+				FFC03EA72AF0067C00AAF45C /* NewPriceRangeTVC.swift in Sources */,
 				3D8A72BC2ABEBA420051DE9D /* MapTVC.swift in Sources */,
 				3D73595B2A6DE0C200BA329F /* AppDelegate.swift in Sources */,
 				3D8A73022AC205EA0051DE9D /* RuleFiltrTVC.swift in Sources */,

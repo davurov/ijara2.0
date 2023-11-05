@@ -13,7 +13,7 @@ public class Loader {
     
     ///Shows custom Alert for a while
     class func start() {
-
+        print("Loader started")
         let loadV = UIView()
         loadV.backgroundColor = .red
         loadV.tag = 19995
@@ -43,6 +43,8 @@ public class Loader {
     }
     
     class func stop() {
+        print("Loader stoped")
+        
         guard let d =  (UIApplication.shared.delegate as! AppDelegate).window?.subviews else {
             return
         }

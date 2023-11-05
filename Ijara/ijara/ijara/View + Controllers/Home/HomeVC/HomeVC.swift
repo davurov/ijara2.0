@@ -16,7 +16,7 @@ enum ScrollState {
 }
 
 protocol FiltredDelegate {
-    func filtrData(guestType: [Int], additionalFetures: [Int], isAllowedAlcohol: Bool, isVerified: Bool, numberOfPeople: Int?)
+    func filtrData(minPrice: Int, maxPrice: Int, guestType: [Int], additionalFetures: [Int], isAllowedAlcohol: Bool, isVerified: Bool, numberOfPeople: Int?)
 }
 
 class HomeVC: UIViewController {
@@ -44,9 +44,12 @@ class HomeVC: UIViewController {
     var timer: Timer? = nil
     var isSelected = false
     var scrollFlag = false
-    
+    var allHouses = [CountryhouseData]()
+    var allVillas = [CountryhouseData]()
     var allVillasID = [Int]()
     
+    var selectedMinimumPrice = 500000
+    var selectedMaximumPrice = 15000000
     var selectedGuestType = [Int]()
     var selectedAdditionalFeatures = [Int]()
     var isUserSelectedAlcohol = false
@@ -177,23 +180,30 @@ class HomeVC: UIViewController {
     
     func getData() {
         Loader.start()
-
-        API.getProducts { [self] houses in
-            Loader.stop()
-            if let villas = houses {
-                villas.map({ allVillasID.append($0.id) })
-                UserDefaults.standard.set(allVillasID, forKey: Keys.allVillas)
-                
-                houseDM = villas
-                searchedData = houseDM
-                colView.reloadData()
+        
+        allVillasID = UserDefaults.standard.object(forKey: Keys.allVillas_Id) as? [Int] ?? []
+        print("allVillasID in HomeVC")
+//        DispatchQueue.main.asyncAfter(deadline: .now()+5) { [self] in
+            for villaID in allVillasID {
+                API.getDetailDataByID(id: villaID) { villa in
+                    guard let house = villa else {return }
+                    self.allHouses.append(house)
+                }
             }
+//        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+5) { [self] in
+            allVillas = allHouses
+            colView.reloadData()
+            Loader.stop()
+            print("allVillas.count:", allVillas.count, "allHouses.count:", allHouses.count, "in Home vc")
         }
     }
     
     /// Search by tapped city category
     func searchByCategory(str: String) {
-        searchedData = []
+        allHouses = []
+//        searchedData = []
         var city = str
         
         if city == "Toshkent" {
@@ -203,24 +213,28 @@ class HomeVC: UIViewController {
         if !filteredVillasID.isEmpty {
             ///``    filtred
             if str != "Hamma" {
-                for i in houseDM where i.province == city && filteredVillasID.contains(i.id) {
-                    searchedData.append(i)
+                for i in allVillas where i.province == city && filteredVillasID.contains(i.id) {
+                    allHouses.append(i)
+//                    searchedData.append(i)
                 }
             } else {
-                for i in houseDM where filteredVillasID.contains(i.id) {
-                    searchedData.append(i)
+                for i in allVillas where filteredVillasID.contains(i.id) {
+                    allHouses.append(i)
+//                    searchedData.append(i)
                 }
             }
         } else {
             ///``  not filtred
             if str != "Hamma" {
-                for i in houseDM where i.province == city {
-                    searchedData.append(i)
+                for i in allVillas where i.province == city {
+                    allHouses.append(i)
+//                    searchedData.append(i)
                 }
             } else {
-                searchedData = houseDM
+                allHouses = allVillas
+//                searchedData = houseDM
             }
-
+            
         }
         
 //        if str != "Hamma" {
@@ -240,48 +254,41 @@ class HomeVC: UIViewController {
     }
     
     func isFiltered(_ house: CountryhouseData) -> Bool {
-        
+        ///# check price range
+        if house.priceForWorkingDays < selectedMinimumPrice || house.priceForWeekends > selectedMaximumPrice {
+            return false
+        }
+
         ///# check guestType
         if !selectedGuestType.isContainsSelectedParamentr(house.companiesId()) {
-            print("\(house.name) ni guestType db qayatarvordi", house.id)
             return false
         }
         
         ///# check additionFetures
         if !selectedAdditionalFeatures.isContainsSelectedParamentr(house.additionFeaturesId()) {
-            print("\(house.name) ni additionFeatures db qayatarvordi", house.id)
             return false
         }
         
         ///# check alcohol
-        if house.alcohol != isUserSelectedAlcohol {
-            print("\(house.name) ni isUserSelectedAlcohol db qayatarvordi", house.id)
+        if isUserSelectedAlcohol && !house.alcohol {
             return false
         }
         
         ///# check approved
-        if house.approved != self.isVerified {
-            print("\(house.name) ni isVerified db qayatarvordi", house.id)
+        if self.isVerified && !house.approved {
             return false
         }
         
-        ///# check number of beds
+        ///# check number of people
         if let numPeople = selectedNumberOfPeople {
             // user selected number of people
             if numPeople == 9 && house.numberofpeople <= 8 {
-                print("\(house.name) ni numberofpeople db qayatarvordi", house.id)
                 return false
             } else if numPeople != 9 && numPeople != house.numberofpeople {
-                print("\(house.name) ni numberofpeople db qayatarvordi", house.id)
                 return false
             }
         }
-        print(house.name, house.id)
-//        print("house.alcohol ->", house.alcohol)
-//        print("isUserSelectedAlcohol ->", isUserSelectedAlcohol)
-        print("beds ->", selectedNumberOfPeople)
-        print("house.numberofpeople ->", house.numberofpeople, "\n")
-
+        
         return true
     }
     
@@ -363,7 +370,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         if collectionView == categoryColView {
             return categoryNames.count
         } else {
-            return searchedData.count
+            return allHouses.count
         }
     }
     
@@ -374,6 +381,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             let cell = categoryColView.dequeueReusableCell(withReuseIdentifier: "CategoryCVC", for: indexPath) as! CategoryCVC
             
             // cell configure
+            
             cell.layer.cornerRadius = 12
             cell.clipsToBounds = true
             cell.sizeToFit()
@@ -391,19 +399,30 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             let cell = colView.dequeueReusableCell(withReuseIdentifier: HomeCVC.identifier, for: indexPath) as! HomeCVC
             
             cell.cellDelegate = self
-            cell.id = searchedData[indexPath.row].id
-            cell.nameLbl.text = searchedData[indexPath.row].name
-            cell.pirceLbl.text = "\(searchedData[indexPath.row].workingdays)" + "/" + " " + "\(searchedData[indexPath.row].weekends)" + "so'm"
-            let workingDay = Int(searchedData[indexPath.row].workingdays.replacingOccurrences(of: " ", with: ""))!
-            let weekend = Int(searchedData[indexPath.row].weekends.replacingOccurrences(of: " ", with: ""))!
-            cell.price = (working: workingDay, weekend: weekend)
-            cell.locationLbl.text = searchedData[indexPath.row].province
-            cell.isVerified(v: searchedData[indexPath.row].approved,
-                            alco: searchedData[indexPath.row].alcohol,
-                            typeId: searchedData[indexPath.row].companylist,
-                            pool: searchedData[indexPath.row].swimmingpool)
+//            cell.id = allHouses[indexPath.item].id//searchedData[indexPath.row].id
+//            cell.nameLbl.text = allHouses[indexPath.item].name//searchedData[indexPath.row].name
+//            cell.pirceLbl.text = "\(searchedData[indexPath.row].workingdays)" + "/" + " " + "\(searchedData[indexPath.row].weekends)" + "so'm"
+//            let workingDay = Int(searchedData[indexPath.row].workingdays.replacingOccurrences(of: " ", with: "")) ?? 0
+//            let weekend = Int(searchedData[indexPath.row].weekends.replacingOccurrences(of: " ", with: "")) ?? 0
+//            cell.price = (working: workingDay, weekend: weekend)
+//            cell.locationLbl.text = allHouses[indexPath.item].province//searchedData[indexPath.row].province
+//            cell.images = searchedData[indexPath.row].images
+            
+            cell.updateCell(
+                id: allHouses[indexPath.item].id,
+                name: allHouses[indexPath.item].name,
+                price: (allHouses[indexPath.item].priceForWorkingDays, allHouses[indexPath.item].priceForWeekends),
+                location: allHouses[indexPath.item].province,
+                images: allHouses[indexPath.item].images
+            )
+            
+            cell.isVerified(
+                v: allHouses[indexPath.item].approved,  //searchedData[indexPath.row].approved,
+                alco: allHouses[indexPath.item].alcohol,    //searchedData[indexPath.row].alcohol,
+                typeId: allHouses[indexPath.item].company.map({Companylist(id: $0.id, name: $0.name, image: $0.image)}),
+                pool: []   //searchedData[indexPath.row].swimmingpool
+            )
             cell.configureCell()
-            cell.images = searchedData[indexPath.row].images
             
             return cell
         }
@@ -426,11 +445,9 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             searchByCategory(str: categoryNames[indexPath.row])
         } else {
             let vc = HomeDetailVC()
-            vc.id = "\(searchedData[indexPath.row].id)"
-
-            vc.price.weekday = Int(searchedData[indexPath.row].weekends.replacingOccurrences(of: " ", with: "")) ?? 0
-            vc.price.wrking = Int(searchedData[indexPath.row].workingdays.replacingOccurrences(of: " ", with: "")) ?? 0
-
+            vc.getData(id: allHouses[indexPath.row].id)
+            vc.price.weekday = allHouses[indexPath.item].priceForWeekends
+            vc.price.wrking = allHouses[indexPath.item].priceForWorkingDays
             vc.modalPresentationStyle = .overFullScreen
             present(vc, animated: true)
         }
@@ -456,7 +473,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         if collectionView == categoryColView {
                 return CGSize(width: 100, height: 40)
             } else {
-                return CGSize(width: view.frame.width - 24, height: 300)
+                return CGSize(width: view.frame.width - 24, height: 350)
             }
         }
 }
@@ -526,29 +543,44 @@ extension HomeVC: UITextFieldDelegate {
     
 }
 
+//MARK: CellDelegate
 extension HomeVC: CellDelegate {
-    func cellSelected(id: String, images: [String], price: (working: Int, weekend: Int)) {
+    func cellSelected(id: Int, images: [String], price: (working: Int, weekend: Int)) {
         let vc = HomeDetailVC()
+        vc.getData(id: id)
+        print(id, "id in homeVC ")
+        vc.price.weekday = price.weekend//allHouses[indexPath.item].priceForWeekends
+        vc.price.wrking = price.working//allHouses[indexPath.item].priceForWorkingDays
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true)
-        vc.images = images
-        vc.id = id
-        vc.price.weekday = price.weekend
-        vc.price.wrking = price.working
+//        let vc = HomeDetailVC()
+//        vc.modalPresentationStyle = .overFullScreen
+//        present(vc, animated: true)
+//        vc.images = images
+//        vc.id = Int(id) ?? 0
+//        vc.price.weekday = price.weekend
+//        vc.price.wrking = price.working
     }
 }
 
+//MARK: FiltredDelegate
 extension HomeVC: FiltredDelegate {
     
-    func filtrData(guestType: [Int], additionalFetures: [Int], isAllowedAlcohol: Bool, isVerified: Bool, numberOfPeople: Int?) {
+    func filtrData(minPrice: Int, maxPrice: Int, guestType: [Int], additionalFetures: [Int], isAllowedAlcohol: Bool, isVerified: Bool, numberOfPeople: Int?) {
+        print(minPrice, maxPrice, "got from protocol func filtrData")
+        Loader.start()
+        
+        selectedMinimumPrice = minPrice
+        selectedMaximumPrice = maxPrice
         selectedGuestType = guestType
         selectedAdditionalFeatures = additionalFetures
         isUserSelectedAlcohol = isAllowedAlcohol
         self.isVerified = isVerified
         selectedNumberOfPeople = numberOfPeople
         filteredVillasID = []
+        
+        // get houses by id
         allVillasID.forEach { id in
-            // get houses by id
             API.getDetailDataByID(id: id) { [self] detailData in
                 
                 guard let detailData = detailData else { return }
@@ -556,19 +588,20 @@ extension HomeVC: FiltredDelegate {
                 if isFiltered(detailData) {
                     filteredVillasID.append(detailData.id)
                 }
-                
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now()+3) { [self] in
-            print(self.filteredVillasID, "filteredVillasID")
-            searchedData = []
-            houseDM.forEach { house in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [self] in
+            
+            allHouses = []
+            allVillas.forEach { house in
                 if self.filteredVillasID.contains(house.id) {
-                    searchedData.append(house)
+                    allHouses.append(house)
                 }
             }
             colView.reloadData()
+            Loader.stop()
+            
         }
         
     }
@@ -584,3 +617,7 @@ extension Array {
         return true
     }
 }
+
+//        allVillasID = [
+//            1, 93, 151, 358, 295, 198, 315, 203, 569, 402, 567, 574, 568, 560, 236, 202, 571, 22, 323, 16, 119, 284, 540, 123, 561, 248, 501, 357, 81, 269, 538, 281, 293
+//        ]

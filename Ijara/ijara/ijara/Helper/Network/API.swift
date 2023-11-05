@@ -92,8 +92,21 @@ class API {
                 return
             }
             
+            let calendar = Calendar.current
+            let currentMonth = calendar.component(.month, from: Date())
             let i = data
-            var house = CountryhouseData(
+
+            var workPrice = 0
+            var weekendPrice = 0
+            
+            for element in i["payment"].arrayValue {
+                if element["id"].intValue == currentMonth {
+                    workPrice = element["payment"]["workingdays"].intValue
+                    weekendPrice = element["payment"]["weekends"].intValue
+                }
+            }
+            
+             var house = CountryhouseData(
                 id: i["id"].intValue,
                 name: i["name"].stringValue,
                 owner: i["owner"].stringValue,
@@ -143,22 +156,15 @@ class API {
                 card: i["card"].stringValue,
                 cardowner: i["cardowner"].stringValue,
                 status: i["status"].boolValue,
-                priceForWorkingDays: 0,
-                priceForWeekends: 0
+                priceForWorkingDays: workPrice,
+                priceForWeekends: weekendPrice
             )
-            
-            i["payment"].arrayValue.forEach { paymentElement in
-                house.priceForWeekends = paymentElement["payment"]["weekends"].intValue
-            }
-            
-            i["payment"].arrayValue.forEach { paymentElement in
-                house.priceForWeekends = paymentElement["payment"]["workingdays"].intValue
-            }
             
             completion(house)
             
             }
         }
+    
     
     //MARK: - GET ENTETAINMENT DATA
     class func getEntertainmentData(lang: String,completion: @escaping ([Entertainmentdatum]?) -> Void) {
