@@ -23,17 +23,12 @@ class FiltrVC: UIViewController {
         }
     }
     
-    var priceRange = [Int]()
+    var priceRange: (minPrice: Int, maxPrice: Int) = (500000,15000000)
     var enterData = [Entertainmentdatum]()
-    var houseDM = [HouseDM]() {
-        didSet {
-            priceRange = houseDM.map {Int($0.workingdays.replacingOccurrences(of: " ", with: "")) ?? 0}
-        }
-    }
     var additionalHeight: CGFloat = 340
     
     var isClearAllPressed = false
-    var filtrDelegate: FiltredDelegate!
+    weak var filtrDelegate: FiltredDelegate?
     
     //MARK: Life cycles
     
@@ -72,7 +67,18 @@ class FiltrVC: UIViewController {
         }
         
         // give selected parametrs to homeVC
-        filtrDelegate.filtrData(minPrice: NewPriceRangeTVC.minPriceFiltr, maxPrice: NewPriceRangeTVC.maxPriceFiltr, guestType: guestType, additionalFetures: additionalFetures, isAllowedAlcohol: isAllowedAlcohol, isVerified: isVerified, numberOfPeople: numberOfPeople)
+        
+        guard let filtrDelegate = filtrDelegate else { return }
+        
+        filtrDelegate.filtrData(
+            minPrice: NewPriceRangeTVC.minPriceFiltr,
+            maxPrice: NewPriceRangeTVC.maxPriceFiltr,
+            guestType: guestType,
+            additionalFetures: additionalFetures,
+            isAllowedAlcohol: isAllowedAlcohol,
+            isVerified: isVerified,
+            numberOfPeople: numberOfPeople
+        )
         
         isClearAllPressed = true
         tableView.reloadData()
@@ -89,9 +95,10 @@ class FiltrVC: UIViewController {
         tableView.register(SwitchContTVC.nib(), forCellReuseIdentifier: SwitchContTVC.identifier)
         tableView.register(BedsTVC.nib(), forCellReuseIdentifier: BedsTVC.identifier)
         
-        showView.addShadowByHand(offset: CGSize(width: 0, height: 0), color: AppColors.customBlack.cgColor, radius: 5, opacity: 0.2)
+        showView.addShadowByHand(offset: CGSize(width: 10, height: 10), color: AppColors.customBlack.cgColor, radius: 5, opacity: 0.2)
         showView.layer.cornerRadius = 20
         showView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+        showView.addBorder(size: 2)
         
         clearAllBtn.titleLabel?.numberOfLines = 0
     }
@@ -117,10 +124,8 @@ extension FiltrVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: NewPriceRangeTVC.identifier, for: indexPath) as! NewPriceRangeTVC
-            
-            cell.setupViews()
-            cell.minimumLbl.text = "\(SetLanguage.setLang(type: .minimum)): \n 500000"
-            cell.maximumLbl.text = "\(SetLanguage.setLang(type: .maximum)): \n 15000000"
+
+            cell.handleSlider(initMinPrice: priceRange.minPrice, initMaxPrice: priceRange.maxPrice)
             
             if isClearAllPressed {
                 cell.clearChanged()
@@ -134,6 +139,7 @@ extension FiltrVC: UITableViewDataSource {
             if isClearAllPressed {
                 guestCell.clearChanges()
             }
+            
             return guestCell
         } else if indexPath.row == 2 {
             let additionalCell = tableView.dequeueReusableCell(withIdentifier: AdditionalTVC.identifier, for: indexPath) as! AdditionalTVC

@@ -12,54 +12,24 @@ class EditProfileVC: UIViewController {
     @IBOutlet weak var profileIMG: UIImageView!
     @IBOutlet weak var profileBtn: UIButton!
     
-    @IBOutlet weak var saveBtn: UIButton!{
-        didSet{
-            saveBtn.setTitle("Save", for: .normal)
-            saveBtn.backgroundColor = AppColors.mainColor
-        }
-    }
+    @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var phoneNumberLbl: UILabel!
     
-    @IBOutlet weak var profileView: UIView!{
-        didSet{
-            profileView.layer.borderColor = AppColors.customGray6.cgColor
-            profileView.layer.borderWidth = 1
-        }
-    }
-    @IBOutlet weak var nameTF: UITextField!{
-        didSet{
-            nameTF.layer.cornerRadius = 8
-            nameTF.layer.borderColor = AppColors.customGray6.cgColor
-            nameTF.layer.borderWidth = 1
-            nameTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 7))
-            nameTF.leftViewMode = .always
-            nameTF.contentVerticalAlignment = .center
-            
-        }
-    }
-    @IBOutlet weak var lastNameTF: UITextField!{
-        didSet{
-            lastNameTF.layer.cornerRadius = 8
-            lastNameTF.layer.borderColor = AppColors.customGray6.cgColor
-            lastNameTF.layer.borderWidth = 1
-            lastNameTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 7))
-            lastNameTF.leftViewMode = .always
-            lastNameTF.contentVerticalAlignment = .center
-        }
-    }
+    @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var nameTF: UITextField!
+    @IBOutlet weak var lastNameTF: UITextField!
+    
     var imgUrl = ""
+    
+    //MARK: Life cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
         getProfileData()
-        profileIMG.image = UIImage().loadImage() ?? UIImage(systemName: "person.fill")
     }
     
-    func getProfileData(){
-        let info = UserDefaults.standard.array(forKey: Keys.userInfo) as? [String]
-        phoneNumberLbl.text = info?.first ?? ""
-        nameTF.text = info?.last ?? "User"
-    }
+    //MARK: @IBAction functions
     
     @IBAction func backPressed(_ sender: Any) {
         dismiss(animated: true)
@@ -77,18 +47,71 @@ class EditProfileVC: UIViewController {
         updateProfile()
     }
     
+    //MARK: functions
+    
+    func getProfileData(){
+        let info = UserDefaults.standard.array(forKey: Keys.userInfo) as? [String]
+        print(info?[0], "phone")
+        phoneNumberLbl.text = info?[0] ?? ""
+        nameTF.text = info?[1] ?? "User"
+        if info?.count ?? 0 > 2 {
+            lastNameTF.text = info?[2] ?? ""
+        } else {
+            lastNameTF.text = ""
+        }
+        
+    }
+    
+    func setupViews(){
+        profileIMG.image = UIImage().loadImage() ?? UIImage(systemName: "person.fill")
+        
+        profileView.layer.borderColor = AppColors.customGray6.cgColor
+        profileView.layer.borderWidth = 1
+        
+        nameTF.layer.cornerRadius = 8
+        nameTF.layer.borderColor = AppColors.customGray6.cgColor
+        nameTF.layer.borderWidth = 1
+        nameTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 7))
+        nameTF.leftViewMode = .always
+        nameTF.contentVerticalAlignment = .center
+        
+        lastNameTF.layer.cornerRadius = 8
+        lastNameTF.layer.borderColor = AppColors.customGray6.cgColor
+        lastNameTF.layer.borderWidth = 1
+        lastNameTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 7))
+        lastNameTF.leftViewMode = .always
+        lastNameTF.contentVerticalAlignment = .center
+        
+        saveBtn.setTitle(SetLanguage.setLang(type: .saveBtn), for: .normal)
+        saveBtn.backgroundColor = AppColors.mainColor
+    }
+    
 }
 
 //MARK: Update Profile
 extension EditProfileVC {
     
     func updateProfile(){
-        if !nameTF.text!.isEmpty && !lastNameTF.text!.isEmpty{
+        if !(nameTF.text ?? "").isEmpty && !(lastNameTF.text ?? "").isEmpty {
             var info = UserDefaults.standard.array(forKey: Keys.userInfo) as? [String]
-            info![1] = nameTF.text!
+            guard var info = info else { return }
+            
+            let newName = nameTF.text!
+            let newLastName = lastNameTF.text!
+            
+            info[1] = newName
+            if info.count > 2 {
+                info[2] = newLastName
+            } else {
+                info.append(newLastName)
+            }
+            
+            
             UserDefaults.standard.set(info, forKey: Keys.userInfo)
-        }else{
-            Alert.showAlert(forState: .warning, message: "Please complete name field")
+            
+            dismiss(animated: true)
+        } else {
+            Alert.showAlert(forState: .warning, message: SetLanguage.setLang(type: .emptyTfError))
         }
     }
     
@@ -102,8 +125,6 @@ extension EditProfileVC: UIImagePickerControllerDelegate, UINavigationController
         editedImage.saveImage()
         dismiss(animated: true, completion: nil)
     }
-    
-    
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)

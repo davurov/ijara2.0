@@ -15,7 +15,7 @@ enum ScrollState {
     case down
 }
 
-protocol FiltredDelegate {
+protocol FiltredDelegate: AnyObject {
     func filtrData(minPrice: Int, maxPrice: Int, guestType: [Int], additionalFetures: [Int], isAllowedAlcohol: Bool, isVerified: Bool, numberOfPeople: Int?)
 }
 
@@ -36,18 +36,17 @@ class HomeVC: UIViewController {
     
     let locationManager = CLLocationManager()
     // temporary
-    let categoryNames = ["Hamma","Toshkent","Chorvoq","Chimyon","Qibray","Oq tosh"]
-    var selectedRegion = "Hamma"
+    let categoryNames = [SetLanguage.setLang(type: .allCategory),"Toshkent","Chorvoq","Chimyon","Qibray","Oq tosh"]
+    var selectedRegion = SetLanguage.setLang(type: .allCategory)
     var filteredVillasID = [Int]()
     var houseDM = [HouseDM]()
     var searchedData = [HouseDM]()
-    var timer: Timer? = nil
     var isSelected = false
     var scrollFlag = false
     var allHouses = [CountryhouseData]()
     var allVillas = [CountryhouseData]()
-    var allVillasID = [Int]()
     
+    // variables for filtring
     var selectedMinimumPrice = 500000
     var selectedMaximumPrice = 15000000
     var selectedGuestType = [Int]()
@@ -56,6 +55,8 @@ class HomeVC: UIViewController {
     var isVerified = false
     var selectedNumberOfPeople: Int?
     
+    var priceInterval: (minHousePrice: Int, maxHousePrice: Int) = (500000, 15000000)
+        
     //MARK: Life cycles
 
     override func viewDidLoad() {
@@ -68,7 +69,8 @@ class HomeVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
+//        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.backItem?.backButtonTitle = SetLanguage.setLang(type: .homeForBackButton)
     }
     
     //MARK: - @IBActions
@@ -82,17 +84,22 @@ class HomeVC: UIViewController {
             sheet.preferredCornerRadius = 24
         }
         vc.filtrDelegate = self
+        
+        if allHouses.count != 0 {
+            findPriceInterval()
+        }
+        
+        vc.priceRange.minPrice = priceInterval.minHousePrice
+        vc.priceRange.maxPrice = priceInterval.maxHousePrice
+        
         present(vc, animated: true)
-        vc.houseDM = houseDM
     }
         
     //MARK: - SHOW MAP
     @IBAction func showMap(_ sender: Any) {
         let vc = MapVC()
         vc.modalPresentationStyle = .overFullScreen
-        present(vc, animated: true) 
-        vc.houseDM = houseDM
-        
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func newsBtn(_ sender: Any) {
@@ -100,10 +107,11 @@ class HomeVC: UIViewController {
         UIApplication.shared.open(botURL)
     }
     
-    
     @IBAction func contactsPressed(_ sender: Any) {
-        guard let botURL = URL.init(string: "https://bronla.uz/contact") else { return }
-        UIApplication.shared.open(botURL)
+        let vc = ContactVC(nibName: "ContactVC", bundle: nil)
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .coverVertical
+        present(vc, animated: true)
     }
     
     //MARK: - Functions
@@ -114,10 +122,8 @@ class HomeVC: UIViewController {
         imgView.tintColor = AppColors.mainColor
         imgView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         
-        let leftView = UIView(frame: CGRect(x: 0,
-                                            y: 0,
-                                            width: 52,
-                                            height: 52))
+        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 52, height: 52))
+        
         leftView.addSubview(imgView)
         imgView.center = leftView.center
         
@@ -134,7 +140,7 @@ class HomeVC: UIViewController {
     }
     
     func setupSubviews() {
-        
+        view.backgroundColor = AppColors.sar
         filterBtn.layer.borderWidth = 1
         filterBtn.layer.borderColor = AppColors.mainColor.cgColor
         filterBtn.layer.cornerRadius = filterBtn.frame.height / 3
@@ -162,48 +168,65 @@ class HomeVC: UIViewController {
     func setupColView() {
         colView.delegate = self
         colView.dataSource = self
+
+        let layoutForColView: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layoutForColView.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layoutForColView.itemSize = CGSize(width: UIScreen.main.bounds.width - 30, height: 355)
+        layoutForColView.scrollDirection = .vertical
+        print(UIScreen.main.bounds.width, "UIScreen.main.bounds.width")
+        
+        colView.collectionViewLayout = layoutForColView
         
         categoryColView.delegate = self
         categoryColView.dataSource = self
+
+        let layoutForCategoryView: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layoutForCategoryView.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layoutForCategoryView.itemSize = CGSize(width: 110, height: 40)
+        layoutForCategoryView.scrollDirection = .horizontal
+        
+        categoryColView.collectionViewLayout = layoutForCategoryView
         
         //register cell
-        categoryColView.register(UINib(nibName: CategoryCVC.identifier,
-                                       bundle: nil),
-                                 forCellWithReuseIdentifier: CategoryCVC.identifier)
-        colView.register(UINib(nibName: HomeCVC.identifier,
-                               bundle: nil),
-                         forCellWithReuseIdentifier: HomeCVC.identifier)
+        categoryColView.register(
+            UINib(nibName: CategoryCVC.identifier, bundle: nil),
+            forCellWithReuseIdentifier: CategoryCVC.identifier
+        )
         
-        // setup Layout
-        colView.setCollectionViewLayout(createCustomLayout(), animated: true)
+        colView.register(HomeCVC.self, forCellWithReuseIdentifier: HomeCVC.identifier)
+        
+        colView.backgroundColor = .clear
     }
     
     func getData() {
         Loader.start()
-        
-        allVillasID = UserDefaults.standard.object(forKey: Keys.allVillas_Id) as? [Int] ?? []
-        print("allVillasID in HomeVC")
-//        DispatchQueue.main.asyncAfter(deadline: .now()+5) { [self] in
-            for villaID in allVillasID {
-                API.getDetailDataByID(id: villaID) { villa in
-                    guard let house = villa else {return }
-                    self.allHouses.append(house)
-                }
-            }
-//        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()+5) { [self] in
-            allVillas = allHouses
-            colView.reloadData()
+        API.getAllHouses { allHouses in
+            guard let allHouses = allHouses else { return }
+            
+            self.allHouses = allHouses
+            self.allVillas = allHouses
+            self.colView.reloadData()
             Loader.stop()
-            print("allVillas.count:", allVillas.count, "allHouses.count:", allHouses.count, "in Home vc")
+        }
+    }
+    
+    func findPriceInterval() {
+        
+        priceInterval.minHousePrice = allHouses.first!.priceForWorkingDays
+        priceInterval.maxHousePrice = allHouses.first!.priceForWeekends
+        
+        for house in allHouses {
+            if house.priceForWorkingDays < priceInterval.minHousePrice {
+                priceInterval.minHousePrice = house.priceForWorkingDays
+            } else if house.priceForWeekends > priceInterval.maxHousePrice {
+                priceInterval.maxHousePrice = house.priceForWeekends
+            }
         }
     }
     
     /// Search by tapped city category
     func searchByCategory(str: String) {
         allHouses = []
-//        searchedData = []
         var city = str
         
         if city == "Toshkent" {
@@ -212,44 +235,26 @@ class HomeVC: UIViewController {
         
         if !filteredVillasID.isEmpty {
             ///``    filtred
-            if str != "Hamma" {
+            if str != SetLanguage.setLang(type: .allCategory)   {
                 for i in allVillas where i.province == city && filteredVillasID.contains(i.id) {
                     allHouses.append(i)
-//                    searchedData.append(i)
                 }
             } else {
                 for i in allVillas where filteredVillasID.contains(i.id) {
                     allHouses.append(i)
-//                    searchedData.append(i)
                 }
             }
         } else {
             ///``  not filtred
-            if str != "Hamma" {
+            if str != SetLanguage.setLang(type: .allCategory) {
                 for i in allVillas where i.province == city {
                     allHouses.append(i)
-//                    searchedData.append(i)
                 }
             } else {
                 allHouses = allVillas
-//                searchedData = houseDM
             }
             
         }
-        
-//        if str != "Hamma" {
-//            var city = str
-//            if city == "Toshkent" {
-//                city.append(" sh.")
-//            }
-//            for i in houseDM where i.province == city && filteredVillasID.contains(i.id) && filteredVillasID.count != 0 {
-//                searchedData.append(i)
-//            }
-//        } else  {
-//            for i in houseDM where filteredVillasID.contains(i.id) {
-//                searchedData.append(i)
-//            }
-//        }
         colView.reloadData()
     }
     
@@ -298,71 +303,71 @@ class HomeVC: UIViewController {
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // layout
-    func createCustomLayout() -> UICollectionViewCompositionalLayout {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
-            return self.createHomeSection()
-        }
-        
-        let config: UICollectionViewCompositionalLayoutConfiguration = .init()
-        config.scrollDirection = .vertical
-        //        config.interSectionSpacing = 20
-        
-        layout.configuration = config
-        return layout
-    }
+//    func createCustomLayout() -> UICollectionViewCompositionalLayout {
+//        let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
+//            return self.createHomeSection()
+//        }
+//
+//        let config: UICollectionViewCompositionalLayoutConfiguration = .init()
+//        config.scrollDirection = .vertical
+//        //        config.interSectionSpacing = 20
+//
+//        layout.configuration = config
+//        return layout
+//    }
     
     // layout -> Headers
-    func createHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-        
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            // height of header
-            heightDimension: .absolute(52))
-        let headerItem = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                     elementKind: "Header",
-                                                                     alignment: .top)
-        headerItem.pinToVisibleBounds = true
-        return headerItem
-    }
+//    func createHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+//
+//        let headerSize = NSCollectionLayoutSize(
+//            widthDimension: .fractionalWidth(1),
+//            // height of header
+//            heightDimension: .absolute(52))
+//        let headerItem = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+//                                                                     elementKind: "Header",
+//                                                                     alignment: .top)
+//        headerItem.pinToVisibleBounds = true
+//        return headerItem
+//    }
     
     // Layout -> Sections
-    func createBannerSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
-                                               heightDimension: .fractionalWidth(1/3)))
-        
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .fractionalWidth(1/3)),
-            subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
-        
-        return section
-    }
+//    func createBannerSection() -> NSCollectionLayoutSection {
+//        let item = NSCollectionLayoutItem(
+//            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
+//                                               heightDimension: .fractionalWidth(1/3)))
+//
+//        let group = NSCollectionLayoutGroup.horizontal(
+//            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+//                                               heightDimension: .fractionalWidth(1/3)),
+//            subitems: [item])
+//
+//        let section = NSCollectionLayoutSection(group: group)
+//        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
+//
+//        return section
+//    }
     
-    func createHomeSection() -> NSCollectionLayoutSection {
-        
-        let item = NSCollectionLayoutItem(
-            layoutSize: .init(widthDimension: .fractionalWidth(1.0),
-                              heightDimension: .fractionalHeight(1.0)))
-        
-        item.contentInsets = .init(top: 8,
-                                   leading: 0,
-                                   bottom: 8,
-                                   trailing: 0)
-        
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: .init(widthDimension: .fractionalWidth(1.0),
-                              heightDimension: .fractionalWidth(1.0)),
-            subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
-        
-        return section
-    }
+//    func createHomeSection() -> NSCollectionLayoutSection {
+//
+//        let item = NSCollectionLayoutItem(
+//            layoutSize: .init(widthDimension: .fractionalWidth(1.0),
+//                              heightDimension: .fractionalHeight(1.0)))
+//
+//        item.contentInsets = .init(top: 8,
+//                                   leading: 0,
+//                                   bottom: 8,
+//                                   trailing: 0)
+//
+//        let group = NSCollectionLayoutGroup.vertical(
+//            layoutSize: .init(widthDimension: .fractionalWidth(1.0),
+//                              heightDimension: .fractionalWidth(1.0)),
+//            subitems: [item])
+//
+//        let section = NSCollectionLayoutSection(group: group)
+//        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
+//
+//        return section
+//    }
     
     
     func collectionView(_ collectionView: UICollectionView,
@@ -399,14 +404,6 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             let cell = colView.dequeueReusableCell(withReuseIdentifier: HomeCVC.identifier, for: indexPath) as! HomeCVC
             
             cell.cellDelegate = self
-//            cell.id = allHouses[indexPath.item].id//searchedData[indexPath.row].id
-//            cell.nameLbl.text = allHouses[indexPath.item].name//searchedData[indexPath.row].name
-//            cell.pirceLbl.text = "\(searchedData[indexPath.row].workingdays)" + "/" + " " + "\(searchedData[indexPath.row].weekends)" + "so'm"
-//            let workingDay = Int(searchedData[indexPath.row].workingdays.replacingOccurrences(of: " ", with: "")) ?? 0
-//            let weekend = Int(searchedData[indexPath.row].weekends.replacingOccurrences(of: " ", with: "")) ?? 0
-//            cell.price = (working: workingDay, weekend: weekend)
-//            cell.locationLbl.text = allHouses[indexPath.item].province//searchedData[indexPath.row].province
-//            cell.images = searchedData[indexPath.row].images
             
             cell.updateCell(
                 id: allHouses[indexPath.item].id,
@@ -417,12 +414,13 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             )
             
             cell.isVerified(
-                v: allHouses[indexPath.item].approved,  //searchedData[indexPath.row].approved,
-                alco: allHouses[indexPath.item].alcohol,    //searchedData[indexPath.row].alcohol,
+                v: allHouses[indexPath.item].approved,
+                alco: allHouses[indexPath.item].alcohol,
                 typeId: allHouses[indexPath.item].company.map({Companylist(id: $0.id, name: $0.name, image: $0.image)}),
-                pool: []   //searchedData[indexPath.row].swimmingpool
+                pool: []
             )
-            cell.configureCell()
+//            cell.configureCell()
+            cell.backgroundColor = .clear
             
             return cell
         }
@@ -468,15 +466,8 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         didScroll(scrollView.contentOffset.y)
     }
-    
-    func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == categoryColView {
-                return CGSize(width: 100, height: 40)
-            } else {
-                return CGSize(width: view.frame.width - 24, height: 350)
-            }
-        }
 }
+
 //MARK: - HIDES AND UNHIDE TOPVIEW
 extension HomeVC {
     func didScroll(_ y: CGFloat) {
@@ -510,32 +501,34 @@ extension HomeVC {
 //MARK: TEXTFIELD
 
 extension HomeVC: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
         NSObject.cancelPreviousPerformRequests(
             withTarget: self,
             selector: #selector(self.serchByName),
             object: textField)
+        
         self.perform(
             #selector(self.serchByName),
             with: textField,
             afterDelay: 0.5)
+        
         return true
     }
 
     @objc func serchByName(textField: UITextField) {
-        searchedData = []
+        allHouses = []
         if let name = searchTF.text {
             if name.replacingOccurrences(of: " ", with: "") != "" {
-                for i in houseDM {
+                for i in allVillas {
                     let houseName = i.name.lowercased().replacingOccurrences(of: " ", with: "")
                     let searchName = name.lowercased().replacingOccurrences(of: " ", with: "")
                     if houseName.contains(searchName) {
-                        searchedData.append(i)
+                        allHouses.append(i)
                     }
                 }
             } else {
-                searchedData = houseDM
+                allHouses = allVillas
             }
         }
         colView.reloadData()
@@ -548,18 +541,10 @@ extension HomeVC: CellDelegate {
     func cellSelected(id: Int, images: [String], price: (working: Int, weekend: Int)) {
         let vc = HomeDetailVC()
         vc.getData(id: id)
-        print(id, "id in homeVC ")
-        vc.price.weekday = price.weekend//allHouses[indexPath.item].priceForWeekends
-        vc.price.wrking = price.working//allHouses[indexPath.item].priceForWorkingDays
+        vc.price.weekday = price.weekend
+        vc.price.wrking = price.working
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true)
-//        let vc = HomeDetailVC()
-//        vc.modalPresentationStyle = .overFullScreen
-//        present(vc, animated: true)
-//        vc.images = images
-//        vc.id = Int(id) ?? 0
-//        vc.price.weekday = price.weekend
-//        vc.price.wrking = price.working
     }
 }
 
@@ -567,7 +552,6 @@ extension HomeVC: CellDelegate {
 extension HomeVC: FiltredDelegate {
     
     func filtrData(minPrice: Int, maxPrice: Int, guestType: [Int], additionalFetures: [Int], isAllowedAlcohol: Bool, isVerified: Bool, numberOfPeople: Int?) {
-        print(minPrice, maxPrice, "got from protocol func filtrData")
         Loader.start()
         
         selectedMinimumPrice = minPrice
@@ -580,44 +564,44 @@ extension HomeVC: FiltredDelegate {
         filteredVillasID = []
         
         // get houses by id
-        allVillasID.forEach { id in
-            API.getDetailDataByID(id: id) { [self] detailData in
-                
-                guard let detailData = detailData else { return }
-                
-                if isFiltered(detailData) {
-                    filteredVillasID.append(detailData.id)
-                }
+        allHouses = []
+        allVillas.forEach { house in
+            if isFiltered(house) {
+                allHouses.append(house)
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [self] in
-            
-            allHouses = []
-            allVillas.forEach { house in
-                if self.filteredVillasID.contains(house.id) {
-                    allHouses.append(house)
-                }
-            }
-            colView.reloadData()
-            Loader.stop()
-            
-        }
+        print(allHouses.count, " in homeCVC")
+        colView.reloadData()
+        Loader.stop()
+//        allVillasID.forEach { id in
+//            API.getDetailDataByID(id: id) { [self] detailData in
+//                countOfResponses += 1
+//                guard let detailData = detailData else { return }
+//
+//                if isFiltered(detailData) {
+//                    allHouses.append(detailData)
+//                    filteredVillasID.append(detailData.id)
+//                }
+//
+////                if allVillasID.count == countOfResponses {
+////                    allHouses = []
+////                    allVillas.forEach { house in
+////                        if self.filteredVillasID.contains(house.id) {
+////                            allHouses.append(house)
+////                        }
+////                    }
+////                    colView.reloadData()
+////                    Loader.stop()
+////                }
+//
+//            }
+//        }
         
     }
 }
 
-extension Array {
-    func isContainsSelectedParamentr(_ arr: [Int]) -> Bool {
-        for i in self as! [Int] {
-            if !arr.contains(i) {
-                return false
-            }
-        }
-        return true
-    }
-}
 
-//        allVillasID = [
-//            1, 93, 151, 358, 295, 198, 315, 203, 569, 402, 567, 574, 568, 560, 236, 202, 571, 22, 323, 16, 119, 284, 540, 123, 561, 248, 501, 357, 81, 269, 538, 281, 293
-//        ]
+
+
+

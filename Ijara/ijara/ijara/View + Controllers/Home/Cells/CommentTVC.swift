@@ -10,7 +10,7 @@ enum CommentState {
     case less
     case noBtn
 }
-protocol CommentDelegate {
+protocol CommentDelegate:AnyObject {
     func readMorePressed(size: CGFloat)
 }
 
@@ -37,7 +37,7 @@ class CommentTVC: UITableViewCell {
     @IBOutlet weak var borderConst: NSLayoutConstraint!
     
     var commentState: CommentState = .less
-    var delegate: CommentDelegate?
+    weak var delegate: CommentDelegate?
     var comment = "" {
         didSet {
             resizeComment()
@@ -85,13 +85,13 @@ class CommentTVC: UITableViewCell {
         if commentState == .less {
             let height = commentLbl.frame.height + 10
             borderConst.constant = height
-            readBtn.setTitle("Read less", for: .normal)
+            readBtn.setTitle(SetLanguage.setLang(type: .readLess), for: .normal)
             commentState = .more
             delegate?.readMorePressed(size: height + 120)
         } else {
             delegate?.readMorePressed(size: 280)
             borderConst.constant = 160
-            readBtn.setTitle("Read more", for: .normal)
+            readBtn.setTitle(SetLanguage.setLang(type: .readMoreBtn), for: .normal)
             commentState = .less
         }
     }

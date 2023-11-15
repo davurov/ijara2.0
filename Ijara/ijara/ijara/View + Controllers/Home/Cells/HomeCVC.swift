@@ -16,131 +16,248 @@ public enum SCPageStyle: Int {
     case SCJAFlatBar
 }
 
-protocol CellDelegate {
+protocol CellDelegate: AnyObject {
     func cellSelected(id: Int, images: [String], price: (working: Int, weekend:Int))
 }
 
 class HomeCVC: UICollectionViewCell {
     
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var nameLbl: UILabel! {
-        didSet {
-            nameLbl.setContentHuggingPriority(.required, for: .vertical)
-            nameLbl.setContentCompressionResistancePriority(.required, for: .vertical)
-        }
-    }
-    @IBOutlet weak var priceLbl: UILabel! {
-        didSet {
-            priceLbl.setContentHuggingPriority(.required, for: .vertical)
-            priceLbl.setContentCompressionResistancePriority(.required, for: .vertical)
-            priceLbl.lineBreakMode = .byCharWrapping
-        }
-    }
-    @IBOutlet weak var locationLbl: UILabel!
-    @IBOutlet weak var imageCont: UIView!
-    @IBOutlet weak var verifiedImg: UIImageView!
-    @IBOutlet weak var alcoholImg: UIImageView!
-    @IBOutlet weak var onlyFamilyImg: UIImageView!
-    @IBOutlet weak var womenImg: UIImageView!
-    @IBOutlet weak var menImg: UIImageView!
-    @IBOutlet weak var mixImg: UIImageView!
-    @IBOutlet weak var innirPool: UIImageView!
-    @IBOutlet weak var outerPool: UIImageView!
-    @IBOutlet weak var pageController: UIView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    
     //elements copy
-    let containerView2  = UIView()
-    var collectionView2 : UICollectionView!
-    var pageController2 = UIView()
-    let verifiedImg2    = UIImageView()
-    let nameLbl2        = UILabel()
-    let priceLbl2       = UILabel()
-    let locationImg2    = UIImageView()
-    let locationLbl2    = UILabel()
-    let familyImg2      = UIImageView()
-    let womens2         = UIImageView()
-    let mans2           = UIImageView()
-    let mixImg2         = UIImageView()
-    let alcoholImg2     = UIImageView()
+    let containerView   = UIView()
+    var collectionView  : UICollectionView!
+    var pageController  = UIView()
+    let verifiedImg     = UIImageView()
+    let nameLbl         = UILabel()
+    let priceLbl        = UILabel()
+    let locationImg     = UIImageView()
+    let locationLbl     = UILabel()
+    let familyImg       = UIImageView()
+    let womens          = UIImageView()
+    let mans            = UIImageView()
+    let mixImg          = UIImageView()
+    let s_vForGuestType = UIStackView()
+    let innirPool       = UIImageView()
+    let outerPool       = UIImageView()
+    let s_vForPool      = UIStackView()
+    var alcoholImg      = UIImageView()
     
     
     var images = [String]()
     var price = (working: 0, weekend:0)
     var id = 0
-    var cellDelegate: CellDelegate?
+    weak var cellDelegate: CellDelegate?
     // Home Cell Identifier
     static let identifier: String = String(describing: HomeCVC.self)
     let sc = SCPageControlView()
+    /// variable to check that is it first time called
+    var isConfigured = false
     
+    //MARK: init
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupSubviews()
-        setupCollView()
-        setupPageController()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
     }
     
     //MARK: functions
     
-//    func setupViews(){
-//        locationImg2 // ni setup
-//        for hideViews in [containerView, imgView, nameLbl, priceLbl, locationLbl, imageCont, verifiedImg, alcoholImg, onlyFamilyImg, womenImg, meni] {
-//
-//        }
-//    }
+    private func commonInit() {
+        // This setup will only run once, even if the cell is reused
+        if !isConfigured {
+            setupViews()
+            isConfigured = true
+        }
+    }
+    
+    func setupViews(){
+        setupCollView()
+        setupPageController()
+
+        contentView.backgroundColor = .clear
+        
+        contentView.addSubview(containerView)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.layer.cornerRadius = 20
+        containerView.clipsToBounds = true
+        containerView.backgroundColor = AppColors.customGray
+        
+        containerView.layer.borderColor = AppColors.customGray6.cgColor
+        containerView.layer.borderWidth = 2
+        
+        containerView.addSubview(collectionView)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.clipsToBounds = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isPagingEnabled = true
+        
+        collectionView.addSubview(verifiedImg)
+        verifiedImg.translatesAutoresizingMaskIntoConstraints = false
+        verifiedImg.image = #imageLiteral(resourceName: "guaranteeuz")
+        
+        containerView.addSubview(pageController)
+        pageController.translatesAutoresizingMaskIntoConstraints = false
+        pageController.backgroundColor = .clear
+        
+        containerView.addSubview(nameLbl)
+        nameLbl.translatesAutoresizingMaskIntoConstraints = false
+        nameLbl.font = .monospacedSystemFont(ofSize: 21, weight: .semibold)
+        nameLbl.numberOfLines = 2
+        
+        containerView.addSubview(priceLbl)
+        priceLbl.translatesAutoresizingMaskIntoConstraints = false
+        priceLbl.textAlignment = .right
+        priceLbl.numberOfLines = 0
+        
+        containerView.addSubview(locationImg)
+        locationImg.translatesAutoresizingMaskIntoConstraints = false
+        locationImg.image = #imageLiteral(resourceName: "location")
+        
+        containerView.addSubview(locationLbl)
+        locationLbl.translatesAutoresizingMaskIntoConstraints = false
+        locationLbl.numberOfLines = 0
+        
+        s_vForGuestType.addArrangedSubview(familyImg)
+        familyImg.translatesAutoresizingMaskIntoConstraints = false
+        familyImg.image = #imageLiteral(resourceName: "1")
+        
+        s_vForGuestType.addArrangedSubview(womens)
+        womens.translatesAutoresizingMaskIntoConstraints = false
+        womens.image = #imageLiteral(resourceName: "2")
+        
+        s_vForGuestType.addArrangedSubview(mans)
+        mans.translatesAutoresizingMaskIntoConstraints = false
+        mans.image = #imageLiteral(resourceName: "3")
+        
+        s_vForGuestType.addArrangedSubview(mixImg)
+        mixImg.translatesAutoresizingMaskIntoConstraints = false
+        mixImg.image = #imageLiteral(resourceName: "4")
+        
+        containerView.addSubview(s_vForGuestType)
+        s_vForGuestType.translatesAutoresizingMaskIntoConstraints = false
+        s_vForGuestType.axis = .horizontal
+        s_vForGuestType.spacing = 3
+        
+        s_vForPool.addArrangedSubview(innirPool)
+        innirPool.translatesAutoresizingMaskIntoConstraints = false
+        innirPool.image = #imageLiteral(resourceName: "34746")
+        
+        s_vForPool.addArrangedSubview(outerPool)
+        outerPool.translatesAutoresizingMaskIntoConstraints = false
+        outerPool.image = #imageLiteral(resourceName: "pngwing")
+        
+        containerView.addSubview(s_vForPool)
+        s_vForPool.translatesAutoresizingMaskIntoConstraints = false
+        s_vForPool.axis = .horizontal
+        s_vForPool.spacing = 3
+        
+        containerView.addSubview(alcoholImg)
+        alcoholImg.translatesAutoresizingMaskIntoConstraints = false
+        alcoholImg.image = #imageLiteral(resourceName: "true")
+        
+        NSLayoutConstraint.activate([
+            containerView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 0),
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            containerView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 0),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
+            
+            collectionView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 5),
+            collectionView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
+            collectionView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -5),
+            collectionView.heightAnchor.constraint(equalToConstant: 215),
+            
+            verifiedImg.leftAnchor.constraint(equalTo: collectionView.leftAnchor, constant: 0),
+            verifiedImg.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0),
+            
+            pageController.heightAnchor.constraint(equalToConstant: 30),
+            pageController.widthAnchor.constraint(equalToConstant: 150),
+            pageController.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            pageController.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 170),
+            
+            nameLbl.leftAnchor.constraint(equalTo: collectionView.leftAnchor, constant: 0),
+            nameLbl.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
+            nameLbl.rightAnchor.constraint(equalTo: collectionView.rightAnchor, constant: -175),
+            
+            priceLbl.rightAnchor.constraint(equalTo: collectionView.rightAnchor, constant: -5),
+            priceLbl.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
+            priceLbl.leftAnchor.constraint(equalTo: nameLbl.rightAnchor, constant: 10),
+            
+            locationImg.leftAnchor.constraint(equalTo: collectionView.leftAnchor, constant: 0),
+            locationImg.topAnchor.constraint(equalTo: nameLbl.bottomAnchor, constant: 5),
+            locationImg.widthAnchor.constraint(equalToConstant: 20),
+            locationImg.heightAnchor.constraint(equalToConstant: 20),
+            
+            locationLbl.leftAnchor.constraint(equalTo: locationImg.rightAnchor, constant: 5),
+            locationLbl.topAnchor.constraint(equalTo: locationImg.topAnchor, constant: 0),
+            
+            s_vForGuestType.leftAnchor.constraint(equalTo: collectionView.leftAnchor, constant: 0),
+            s_vForGuestType.topAnchor.constraint(equalTo: locationImg.bottomAnchor, constant: 7),
+            
+            innirPool.heightAnchor.constraint(equalToConstant: 30),
+            innirPool.widthAnchor.constraint(equalToConstant: 30),
+           
+            outerPool.heightAnchor.constraint(equalToConstant: 30),
+            outerPool.widthAnchor.constraint(equalToConstant: 30),
+            
+            s_vForPool.topAnchor.constraint(equalTo: s_vForGuestType.topAnchor, constant: 0),
+            s_vForPool.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            
+            alcoholImg.rightAnchor.constraint(equalTo: collectionView.rightAnchor, constant: 0),
+            alcoholImg.topAnchor.constraint(equalTo: locationLbl.bottomAnchor, constant: 0),
+            alcoholImg.heightAnchor.constraint(equalToConstant: 40),
+            alcoholImg.widthAnchor.constraint(equalToConstant: 40)
+        ])
+        
+        for guestType in [familyImg, womens, mans, mixImg] {
+            NSLayoutConstraint.activate([
+                guestType.heightAnchor.constraint(equalToConstant: 25),
+                guestType.widthAnchor.constraint(equalToConstant: 25)
+            ])
+        }
+        
+        configureCell()
+    }
     
     func updateCell(id: Int, name: String, price: (workingDay: Int, weekend: Int), location: String, images: [String]){
         self.id = id
-        nameLbl2.text = name
-        nameLbl2.numberOfLines = 0
-        priceLbl2.text = "\(price.workingDay)/\(price.weekend)"
-//        priceLbl.text = "\(price.workingDay)/\(price.weekend)"
-        priceLbl2.numberOfLines = 0
-//        priceLbl.numberOfLines = 0
-        locationLbl2.text = location
-//        locationLbl.text = location
+        nameLbl.text = name
+        nameLbl.numberOfLines = 0
+        priceLbl.text = "\(price.workingDay)/\(price.weekend) \(SetLanguage.setLang(type: .sumLbl))"
+        priceLbl.numberOfLines = 0
+        locationLbl.text = location
         self.images = images
     }
     
-    func setupSubviews() {
-        containerView2.layer.cornerRadius = 20
-        containerView2.clipsToBounds = true
-
-//        containerView.layer.cornerRadius = 20
-//        containerView.clipsToBounds = true
-        imageCont.layer.cornerRadius = 10
-        imageCont.clipsToBounds = true
-        
-    }
-    
     func setupPageController() {
-        sc.frame = CGRect(x: 0, y: 0, width: pageController2.frame.width, height: pageController2.frame.height)
+        sc.translatesAutoresizingMaskIntoConstraints = false
+        pageController.addSubview(sc)
+        sc.frame = CGRect(x: 0, y: 0, width: 150, height: 30)
         
         sc.scp_style = .SCNormal
         sc.set_view(5, current: 0, current_color: .white, disable_color: nil)
-        
-        pageController2.addSubview(sc)
     }
     
     func setupCollView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         
-        collectionView2 = UICollectionView(frame: containerView.frame, collectionViewLayout: layout)
-        collectionView2.delegate = self
-        collectionView2.dataSource = self
-        collectionView2.register(PhotoCVC.nib(), forCellWithReuseIdentifier: PhotoCVC.identifier)
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
-//        collectionView.register(PhotoCVC.nib(), forCellWithReuseIdentifier: PhotoCVC.identifier)
+        collectionView = UICollectionView(frame: containerView.frame, collectionViewLayout: layout)
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(PhotoCVC.nib(), forCellWithReuseIdentifier: PhotoCVC.identifier)
     }
     
     func configureCell() {
-        collectionView2.scrollRectToVisible(CGRect(x: 0, y: 0, width: collectionView2.frame.width, height: collectionView2.frame.height
-                                                 ), animated: true)
-        collectionView2.reloadData()
+        collectionView.scrollRectToVisible(
+            CGRect(x: 0, y: 0, width: collectionView.frame.width, height: collectionView.frame.height),
+            animated: true
+        )
+        collectionView.reloadData()
     }
     
     func isVerified(v: Bool,
@@ -148,8 +265,8 @@ class HomeCVC: UICollectionViewCell {
                     typeId: [Companylist],
                     pool: [Swimmingpool]) {
         
-        verifiedImg2.isHidden = !v
-        alcoholImg2.image = UIImage(named: "\(alco)")
+        verifiedImg.isHidden = !v
+        alcoholImg.image = UIImage(named: "\(alco)")
 //        alcoholImg.image = UIImage(named: "\(alco)")
         
         var compId = [Int]()
@@ -162,18 +279,18 @@ class HomeCVC: UICollectionViewCell {
         for i in 1...4 {
             if compId.contains(i) {
                 switch i {
-                case 1: familyImg2.isHidden = false //onlyFamilyImg.isHidden = false
-                case 2: womens2.isHidden = false //womenImg.isHidden = false
-                case 3: mans2.isHidden = false //menImg.isHidden = false
-                case 4: mixImg2.isHidden = false //mixImg.isHidden = false
+                case 1: familyImg.isHidden = false
+                case 2: womens.isHidden = false
+                case 3: mans.isHidden = false
+                case 4: mixImg.isHidden = false
                 default: break
                 }
             } else {
                 switch i {
-                case 1: familyImg2.isHidden = true //onlyFamilyImg.isHidden = true
-                case 2: womens2.isHidden = true //womenImg.isHidden = true
-                case 3: mans2.isHidden = true //menImg.isHidden = true
-                case 4: mixImg2.isHidden = true
+                case 1: familyImg.isHidden = true
+                case 2: womens.isHidden = true
+                case 3: mans.isHidden = true
+                case 4: mixImg.isHidden = true
                 default: break
                 }
             }
@@ -207,8 +324,10 @@ extension HomeCVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCVC.identifier, for: indexPath) as! PhotoCVC
+        
         cell.imageCont.layer.cornerRadius = 10
         cell.loadImage(url: images[indexPath.row])
+        
         return cell
     }
     

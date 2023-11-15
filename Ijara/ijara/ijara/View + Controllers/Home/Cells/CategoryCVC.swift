@@ -18,7 +18,10 @@ class CategoryCVC: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        setupCell()
+    }
+    
+    func setupCell(){
         categoryNameLbl.textAlignment = .center
         categoryNameLbl.textColor = AppColors.mainColor
         categoryNameLbl.font = .systemFont(ofSize: 15, weight: .bold)
@@ -27,5 +30,5 @@ class CategoryCVC: UICollectionViewCell {
         containerView.layer.borderWidth = 2
         containerView.backgroundColor = .clear
     }
-
+    
 }

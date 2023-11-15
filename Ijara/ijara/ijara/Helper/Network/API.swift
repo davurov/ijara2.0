@@ -19,17 +19,55 @@ class API {
     static let db = Firestore.firestore()
     static var isMap = false
     
+    class func getAllHouses(completion: @escaping ([CountryhouseData]?) -> Void){
+        
+        // 1. get all ids of villas
+        
+        var allVillasID: [Int] = []
+        API.getProducts {  houses in
+            guard let villas = houses else { completion(nil);  return  }
+            
+            for villa in villas {
+                allVillasID.append(villa.id)
+            }
+            
+            receivedAllIds()
+        }
+        
+        func receivedAllIds(){
+            // 2. get all houses by id of each house
+            
+            var allHouses: [CountryhouseData] = []
+            
+            var counter = 0
+            for villaID in allVillasID {
+                API.getDetailDataByID(id: villaID) { villa in
+                    counter += 1
+                    
+                    guard let house = villa else { completion(nil);  return }
+                    
+                    allHouses.append(house)
+                    
+                    if counter == allVillasID.count {
+                        completion(allHouses)
+                    }
+                }
+            }
+        }
+    }
+    
     class func getProducts(completion: @escaping ([HouseDM]?) -> Void){
+        
         Net.request(url: Endpoints.products,
                     method: .get, params: nil, headers: nil, withLoader: false) { data in
             var houses = [HouseDM]()
-            
+
             Firebase.getIdFromFirebase { token in
                 if let tok = token {
                     print("token", tok)
                 }
             }
-            
+
             if let data = data {
                 for i in data.arrayValue {
                     var house = HouseDM(
@@ -49,7 +87,7 @@ class API {
                         heart: i["heart"].boolValue,
                         checkperday: i["checkperday"].intValue,
                         listlocation: [])
-                    
+
                     for j in  i["swimmingpool"].arrayValue {
                         house.swimmingpool.append(Swimmingpool(
                             id: j["id"].intValue,
@@ -57,25 +95,25 @@ class API {
                             size: j["size"].stringValue,
                             image: j["image"].stringValue))
                     }
-                    
+
                     for j in i["images"].arrayValue {
                         house.images.append(j.stringValue)
                     }
-                    
+
                     for j in i["listlocation"].arrayValue {
                         house.listlocation.append(j.doubleValue)
                     }
-                    
+
                     for j in i["companylist"].arrayValue {
                         house.companylist.append(Companylist(
                             id: j["id"].intValue,
                             name: j["name"].stringValue,
                             image: j["image"].stringValue))
                     }
-                    
+
                     houses.append(house)
                 }
-                
+
                 completion(houses)
             } else {
                 completion(nil)
@@ -83,6 +121,7 @@ class API {
         }
     }
     
+    /// `getDetailDataByID` function return house type of `CountryhouseData` by id
     class func getDetailDataByID(id: Int,completion: @escaping (CountryhouseData?) -> Void) {
         
         Net.request(url: "https://bronla.uz/bronla/uz/data/api/CountryHouse/\(id)/", method: .get, params: nil, headers: nil, withLoader: false) { data in
@@ -190,7 +229,7 @@ class API {
     
     
     //MARK: GET PRODUCTS BY ID
-    class func getProducts(id: String,token: String,completion: @escaping (CountryhouseData?) -> Void) {
+    class func getProducts(id: Int,token: String,completion: @escaping (CountryhouseData?) -> Void) {
         Net.request(url: Endpoints.getById + token + "/countryhouse/\(id).json?id=\(id)", method: .get, params: nil, headers: nil, withLoader: !API.isMap) { data in
             if let data = data {
 

@@ -12,13 +12,9 @@ class RulesTVC: UITableViewCell {
     static let identifier: String = String(describing: RulesTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
-    @IBOutlet weak var rulesLbl: UILabel!{
-        didSet{
-            rulesLbl.text = SetLanguage.setLang(type: .rules)
-            rulesLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
-        }
-    }
+    @IBOutlet weak var rulesLbl: UILabel!
     @IBOutlet weak var collView: UICollectionView!
+    
     var category = [Company]()
     
     //MARK: Life cycles
@@ -43,6 +39,9 @@ class RulesTVC: UITableViewCell {
         collView.delegate = self
         collView.dataSource = self
         collView.register(RulesCVC.nib(), forCellWithReuseIdentifier: RulesCVC.identifier)
+        
+        rulesLbl.text = SetLanguage.setLang(type: .rules)
+        rulesLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
     }
     
 }

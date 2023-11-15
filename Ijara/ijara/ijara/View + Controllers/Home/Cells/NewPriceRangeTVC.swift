@@ -10,62 +10,76 @@ import UIKit
 class NewPriceRangeTVC: UITableViewCell {
 
     //MARK: Elements
-    let priceRangeLbl = UILabel()
-    let sliderView = UIView()
-    let leftCircle = UIView()
-    let rightCircle = UIView()
+    
+    let priceRangeLbl    = UILabel()
+    let sliderView       = UIView()
+    let leftCircle       = UIView()
+    let rightCircle      = UIView()
     let swipeControlView = UIView()
-    let minimumLbl = UILabel()
-    let maximumLbl = UILabel()
-    var statisticViews: [UIView] = []
+    let minimumLbl       = UILabel()
+    let maximumLbl       = UILabel()
+    var statisticViews   : [UIView] = []
     
     //MARK: Variables
+    
     static let identifier: String = String(describing: NewPriceRangeTVC.self)
-    let sliderWidth: CGFloat = 330
+    let sliderWidth: Int = 330
     let circleSize: CGFloat = 30
+    var initMinPrice = 0
+    var initMaxPrice = 0
+    var singleCordinate: CGFloat = 0
     /// `numberOfParts` this variable equal to number of costs which user can choose
-    let numberOfParts: CGFloat = 30
+    var numberOfParts: Int = 30
     var leftCircleX: CGFloat = 15 {
         didSet {
-            minPrice = Int(leftCircleX/(rightCircleMaxX/numberOfParts)) * 500000
+            minPrice = initMinPrice-200000 + Int(leftCircleX/singleCordinate) * 100000
         }
     }
     var rightCircleX: CGFloat = 315 {
         didSet {
-            maxPrice = Int(rightCircleX/(rightCircleMaxX/numberOfParts)) * 500000
+            maxPrice = initMinPrice-200000 + Int(rightCircleX/singleCordinate) * 100000
         }
         
     }
-     var minPrice = 500000 {
+    var minPrice: Int = 100000 {
         didSet {
             minimumLbl.text = "\(SetLanguage.setLang(type: .minimum)): \n \(minPrice)"
             NewPriceRangeTVC.minPriceFiltr = minPrice
         }
     }
-     var maxPrice = 15000000 {
+    var maxPrice: Int = 15000000 {
         didSet {
             maximumLbl.text = "\(SetLanguage.setLang(type: .maximum)): \n \(maxPrice)"
             NewPriceRangeTVC.maxPriceFiltr = maxPrice
         }
     }
-    
-    var rightCircleMaxX: CGFloat {
-        return sliderWidth - circleSize/2
+    /// `rightCircleMaxX` always should be Int. Otherway app can be crash
+    var rightCircleMaxX: Int {
+        return sliderWidth - Int(circleSize)/2
     }
     
     static var maxPriceFiltr = 15000000
     static var minPriceFiltr = 500000
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-    }
+    var defaultState: ((Int) -> Void)!
+    var isConfigured = false
+    var minP = 0
+    var maxP = 0
     
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        commonInit()
+//    }
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        commonInit()
+        print("override init in npr")
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+        print("required init in npr")
+    }
     //MARK: @objc functions
     
     @objc func sliderSwiping(_ gesture: UIPanGestureRecognizer){
@@ -85,18 +99,42 @@ class NewPriceRangeTVC: UITableViewCell {
         
     }
     
+    //MARK: functions
+
+    private func commonInit() {
+        // This setup will only run once, even if the cell is reused
+        if !isConfigured {
+            setupViews()
+            isConfigured = true
+        }
+    }
+    
+    func handleSlider(initMinPrice: Int, initMaxPrice: Int){
+        self.initMinPrice = initMinPrice
+        self.initMaxPrice = initMaxPrice
+        
+        NewPriceRangeTVC.minPriceFiltr = initMinPrice
+        NewPriceRangeTVC.maxPriceFiltr = initMaxPrice
+        
+        numberOfParts = (initMaxPrice - initMinPrice)/100000
+        
+        singleCordinate = 300/CGFloat(numberOfParts)
+        
+        minimumLbl.text = "\(SetLanguage.setLang(type: .minimum)): \n \(initMinPrice)"
+        maximumLbl.text = "\(SetLanguage.setLang(type: .minimum)): \n \(initMaxPrice)"
+        
+    }
+    
     func clearChanged(){
         leftCircleX = 15
         rightCircleX = 315
-        minPrice = 500000
-        maxPrice = 15000000
+        minPrice = initMinPrice
+        maxPrice = initMaxPrice
     }
-    
-    //MARK: Functions
-    
+        
     ///Check that circls is not over border from horizonal and vertical
     func isNotOverBorder(_ locationX: CGFloat, _ locationY: CGFloat) -> Bool {
-        if locationY > 0 && locationY < circleSize && locationX > circleSize/2 && locationX <= rightCircleMaxX {
+        if locationY > 0 && locationY < circleSize && locationX > circleSize/2 && locationX <= CGFloat(rightCircleMaxX) {
             return true
         } else {
             return false
@@ -193,7 +231,7 @@ class NewPriceRangeTVC: UITableViewCell {
     }
     
     func setStatisticViews(){
-        for line in 0...14 {
+        for line in 0...4 {
             let lineView = UIView()
             contentView.addSubview(lineView)
             lineView.translatesAutoresizingMaskIntoConstraints = false
@@ -207,17 +245,15 @@ class NewPriceRangeTVC: UITableViewCell {
             switch line {
             case 0:  lineHeight = height
             case 1:  lineHeight = height*3
-            case 2:  lineHeight = height*2.5
-            case 3:  lineHeight = height*2
-            case 4:  lineHeight = height
-            case 5:  lineHeight = height/3
-            default: lineHeight = 0
+            case 2:  lineHeight = height*2
+            case 3:  lineHeight = height/1.5
+            default: lineHeight = height/3
             }
             
             NSLayoutConstraint.activate([
                 lineView.widthAnchor.constraint(equalToConstant: 3),
                 lineView.heightAnchor.constraint(equalToConstant: lineHeight),
-                lineView.leftAnchor.constraint(equalTo: leftCircle.leftAnchor, constant: 15 + CGFloat(20 * line)),
+                lineView.leftAnchor.constraint(equalTo: leftCircle.leftAnchor, constant: 15 + CGFloat(20 + 40*line)),
                 lineView.bottomAnchor.constraint(equalTo: leftCircle.topAnchor, constant: -10)
             ])
             

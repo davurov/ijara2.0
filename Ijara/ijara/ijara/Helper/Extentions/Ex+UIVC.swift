@@ -192,8 +192,8 @@ extension UIViewController {
     }
     
     func remove() {
-        UIView.animate(withDuration: 12){[self] in
-            self.view.transform = CGAffineTransform(translationX: 0, y: screenSize.height)
+        UIView.animate(withDuration: 12){[ self] in
+            view.transform = CGAffineTransform(translationX: 0, y: screenSize.height)
             view.removeFromSuperview()
             removeFromParent()
         }

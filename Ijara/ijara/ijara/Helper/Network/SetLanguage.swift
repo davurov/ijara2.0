@@ -28,7 +28,7 @@ class SetLanguage {
 }
 
 extension SetLanguage{
-    class func getUzValue(type: ClassType)-> String {
+    class private func getUzValue(type: ClassType)-> String {
         switch type{
             ///`          Login
         case .selectLangLbl:       return "Tilni tanlang"
@@ -46,6 +46,7 @@ extension SetLanguage{
         case .map                 : return "Xarita"
         case .news                : return "Yangiliklar"
         case .contacts            : return "Kontaktlar"
+        case .allCategory         : return "Hammasi"
             
             ///`        HomeDetailVC
         case .priceLbl                : return "Narx"
@@ -67,11 +68,14 @@ extension SetLanguage{
         case .comingTime              : return "Kelish vaqti"
         case .leavingTime             : return "Ketish vaqti"
         case .readMoreBtn             : return "Batafsil"
+        case .readLess                : return "Kamroq o`qish"
         case .locationLbl             : return "Manzil"
         case .chooseDayOfVacationLbl  : return "Ta'til kunini tanlang"
-        case .fridayAndSaturday       : return "Juma va shanba kunlari:"
+        case .fridayAndSaturday       : return "Juma va shanba:"
         case .otherDays               : return "Boshqa kunlar:"
-        case .numberOfPeople        : return "Odamlar soni"
+        case .numberOfPeople          : return "Odamlar soni"
+        case .openLocation            : return "Manzilni ochish"
+        case .openLocationMessage     : return "Yo'nalishni ochish uchun dasturni tanlang"
             
             ///`        LikedHousesVC
         case .wishlists: return "Istaklar ro'yxati"
@@ -79,12 +83,14 @@ extension SetLanguage{
             
             ///`        Tabbar
         case .menu:  return "Menu"
-        case .liked: return "Yoqqan vidiolar"
+        case .liked: return "Yoqqan dachalar"
             
             ///`           ProfileVC
         case .profileTitle                : return "Shaxsiy kabinet"
         case .user                        : return "Foydalanuvchini ismi"
         case .showProfile                 : return "Profilni ko`rish"
+        case .emptyTfError                : return "Iltimos, barcha maydonlarni to'ldiring"
+        case .saveBtn                     : return "Saqlash"
         case .settings                    : return "Sozlamalar"
         case .about                       : return "Ilova haqida"
         case .appLanguage                 : return "Ilova tili"
@@ -116,12 +122,27 @@ extension SetLanguage{
         case .verified  : return "Tasdiqlangan"
         case .clearAll  : return "Hammasini tozalash"
         case .show      : return "Ko'rsatish"
+            
+            ///`           ContactVC
+        case .contactUs           : return "Biz bilan bog'laning"
+        case .mainPage            : return "Asosiy sahifa"
+        case .companyAdress       : return "O'zbekiston, Toshkent"
+        case .companyAdressDetail : return "Muxtor Ashrafiy Ko'chasi, 51"
+        case .workingTimeForCall  : return "Dushanbadan shanbagacha 9:00 dan 18:00 gacha"
+        case .sendAnyTime         : return "Bizga istalgan vaqtda so'rov yuboring"
+        case .enterNameTF         : return "Ismingizni kiriting"
+        case .enterEmailTF        : return "Elektron pochtangizni kiriting"
+        case .enterThemTF         : return "Ularni kiriting"
+        case .enterMessageTF      : return "Xabarni kiriting"
+        case .sendMessage         : return "Xabar yuborish"
+        case .doneToolButton      : return "Bajarildi"
+        case .homeForBackButton   : return "Bosh sahifa"
         }
     }
 }
 
 extension SetLanguage{
-    class func getRuValue(type: ClassType)-> String {
+    class private func getRuValue(type: ClassType)-> String {
         switch type {
             ///`          Login
         case .selectLangLbl       : return "Выберите язык"
@@ -139,6 +160,7 @@ extension SetLanguage{
         case .map                 : return "Карта"
         case .news                : return "Новости"
         case .contacts            : return "Контакты"
+        case .allCategory         : return "Все"
             
             ///`        HomeDetailVC
         case .priceLbl                : return "Цена"
@@ -151,6 +173,7 @@ extension SetLanguage{
         case .bedroomsLbl             : return "спальни"
         case .bedsLbl                 : return "кровати"
         case .readMoreBtn             : return "Читать далее"
+        case .readLess                : return "Читать меньше"
         case .rules                   : return "Правила"
         case .additionalFeatures      : return "Дополнительные возможности"
         case .showAllElementsBtn      : return "Показать все элементы"
@@ -165,6 +188,9 @@ extension SetLanguage{
         case .fridayAndSaturday       : return "Пятница и суббота:"
         case .otherDays               : return "Другие дни:"
         case .numberOfPeople          : return "Количество человек"
+        case .openLocation            : return "Открыть адрес"
+        case .openLocationMessage     : return "Выберите приложение, чтобы открыть направление"
+        
             
             ///`        LikedHousesVC
         case .wishlists: return "Списки желаний"
@@ -178,6 +204,8 @@ extension SetLanguage{
         case .profileTitle                : return "Профиль"
         case .user                        : return "Имя пользователя"
         case .showProfile                 : return "Показать профиль"
+        case .emptyTfError                : return "Пожалуйста, заполните все поля"
+        case .saveBtn                     : return "Сохранить"
         case .settings                    : return "Настройки"
         case .about                       : return "О нас"
         case .appLanguage                 : return "Язык приложения"
@@ -209,12 +237,27 @@ extension SetLanguage{
         case .verified  : return "Проверенный"
         case .clearAll  : return "Очистить все"
         case .show      : return "Показать"
+            
+            ///`           ContactVC
+        case .contactUs           : return "Свяжитесь с нами"
+        case .mainPage            : return "Главная страница"
+        case .companyAdress       : return "Узбекистан, Ташкент"
+        case .companyAdressDetail : return "Улица Мухтара Ашрафи, 51"
+        case .workingTimeForCall  : return "С понедельника по субботу с 9:00 до 18:00"
+        case .sendAnyTime         : return "Присылайте нам запрос в любое время"
+        case .enterNameTF         : return "Введите свое имя"
+        case .enterEmailTF        : return "Введите свой адрес электронной почты"
+        case .enterThemTF         : return "Введите тему"
+        case .enterMessageTF      : return "Введите сообщение"
+        case .sendMessage         : return "Отправить сообщение"
+        case .doneToolButton      : return "Cделано"
+        case .homeForBackButton   : return "Домой"
         }
     }
 }
 
 extension SetLanguage{
-    class func getEnValue(type: ClassType)-> String {
+    class private func getEnValue(type: ClassType)-> String {
         switch type{
             ///`          Login
         case .selectLangLbl       : return "Choose language"
@@ -232,6 +275,7 @@ extension SetLanguage{
         case .map                 : return "Map"
         case .news                : return "News"
         case .contacts            : return "Contacts"
+        case .allCategory         : return "All"
             
             ///`        HomeDetailVC
         case .priceLbl                : return "Price"
@@ -253,11 +297,14 @@ extension SetLanguage{
         case .comingTime              : return "Coming time"
         case .leavingTime             : return "Leaving time"
         case .readMoreBtn             : return "Read more"
+        case .readLess                : return "Read less"
         case .locationLbl             : return "Location"
         case .chooseDayOfVacationLbl  : return "Choose day of vacation"
         case .fridayAndSaturday       : return "Friday and Saturday:"
         case .otherDays               : return "Other days:"
         case .numberOfPeople          : return "Number of people"
+        case .openLocation            : return "Open :ocation"
+        case .openLocationMessage     : return "Choose an app to open direction"
             
             ///`        LikedHousesVC
         case .wishlists          : return "Wishlists"
@@ -271,6 +318,8 @@ extension SetLanguage{
         case .profileTitle                : return "Profile"
         case .user                        : return "Name of user"
         case .showProfile                 : return "Show profile"
+        case .emptyTfError                : return "Please complete all fields"
+        case .saveBtn                     : return "Save"
         case .settings                    : return "Settings"
         case .about                       : return "About"
         case .appLanguage                 : return "App language"
@@ -302,6 +351,21 @@ extension SetLanguage{
         case .verified  : return "Verified"
         case .clearAll  : return "Clear all"
         case .show      : return "Show"
+            
+            ///`           ContactVC
+        case .contactUs           : return "Contact us"
+        case .mainPage            : return "Main page"
+        case .companyAdress       : return "Uzbekistan, Tashkent"
+        case .companyAdressDetail : return "Mukhtar Ashrafi Street, 51"
+        case .workingTimeForCall  : return "From Monday to Saturday from 9:00 to 18:00"
+        case .sendAnyTime         : return "Send us a request at any time"
+        case .enterNameTF         : return "Enter your name"
+        case .enterEmailTF        : return "Enter your email"
+        case .enterThemTF         : return "Enter them"
+        case .enterMessageTF      : return "Enter message"
+        case .sendMessage         : return "Send message"
+        case .doneToolButton      : return "Done"
+        case .homeForBackButton   : return "Home"
         }
     }
 }
@@ -320,17 +384,20 @@ enum ClassType {
     //Tabbar
     case menu, liked
     //HomeVC
-    case searchTfPlaceholder, nearBy, map, news, contacts
+    case searchTfPlaceholder, nearBy, map, news, contacts, allCategory
     //HomeDetailVC
-    case priceLbl, depositLbl, sumLbl, viewsLbl, hostedByLbl, peopleLbl, bedsLbl, bedroomsLbl, readMoreBtn, locationLbl, chooseDayOfVacationLbl, fridayAndSaturday, otherDays, numberOfPeople
+    case priceLbl, depositLbl, sumLbl, viewsLbl, hostedByLbl, peopleLbl, bedsLbl, bedroomsLbl, readMoreBtn, readLess,  locationLbl, chooseDayOfVacationLbl, fridayAndSaturday, otherDays, numberOfPeople, openLocation, openLocationMessage
     //LikedVC
     case wishlists, delete
     //ProfileVC
-    case profileTitle, user, showProfile, settings, about, appLanguage, chooseLanguage, cancelTitle, privcyPolicy, otherApps, logOut, deleteAccaunt, deleteAccauntWarningMessage, no, yes
+    case profileTitle, user, showProfile, emptyTfError, saveBtn, settings, about, appLanguage, chooseLanguage, cancelTitle, privcyPolicy, otherApps, logOut, deleteAccaunt, deleteAccauntWarningMessage, no, yes
     //HomeDetailVC
     case rules, additionalFeatures, showAllElementsBtn, additionaFeaturesOffers, commentByOwner, contactInfo, phoneLbl, comingTime, leavingTime, callBtn
     //MapVC
     case looking, moreInfo
     //FilterVC
     case priceRange, minimum, maximum, guestType, famely, female, male, mix, additional, alcohol, verified, clearAll, show
+    //Contact
+    case contactUs, mainPage, companyAdress, companyAdressDetail, workingTimeForCall, sendAnyTime, enterNameTF, enterEmailTF, enterThemTF, enterMessageTF, sendMessage, doneToolButton, homeForBackButton
 }
+

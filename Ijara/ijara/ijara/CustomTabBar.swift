@@ -29,7 +29,7 @@ private extension CustomTabBar {
                                      image: image,
                                      tag: 0)
         
-        return UINavigationController(rootViewController: vc)
+        return vc//UINavigationController(rootViewController: vc)
     }
     
     func createContactViewController() -> UIViewController {

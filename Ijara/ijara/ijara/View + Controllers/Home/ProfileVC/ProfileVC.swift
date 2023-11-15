@@ -27,20 +27,21 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        userImage.image = UIImage().loadImage() ?? UIImage(systemName: "person.fill")
         setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("viewWillAppear in profile")
+        userImage.image = UIImage().loadImage() ?? UIImage(systemName: "person.fill")
         let info = UserDefaults.standard.array(forKey: Keys.userInfo) as? [String]
-        nameLbl.text = info?.last ?? "User"
+        nameLbl.text = info?[1] ?? "User"
     }
     
     //MARK: @IBAction functions
     @IBAction func profilePressed(_ sender: Any) {
         let vc = EditProfileVC()
-        vc.modalPresentationStyle = .overFullScreen
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
     

@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-protocol MapDelegate {
+protocol MapDelegate: AnyObject {
     func mapPressed(lat: Double,long: Double)
 }
 
@@ -27,7 +27,7 @@ class MapTVC: UITableViewCell {
     @IBOutlet weak var map: MKMapView!
     var location = (lat: 0.0,long: 0.0)
     
-    var delegate: MapDelegate?
+    weak var delegate: MapDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()

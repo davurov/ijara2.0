@@ -36,7 +36,6 @@
 		3D70CB4D2AB7A49A0016C0B4 /* PhotoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CB4B2AB7A49A0016C0B4 /* PhotoTVC.swift */; };
 		3D70CB4E2AB7A49A0016C0B4 /* PhotoTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D70CB4C2AB7A49A0016C0B4 /* PhotoTVC.xib */; };
 		3D70CB512AB898C80016C0B4 /* NameTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CB4F2AB898C80016C0B4 /* NameTVC.swift */; };
-		3D70CB522AB898C80016C0B4 /* NameTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D70CB502AB898C80016C0B4 /* NameTVC.xib */; };
 		3D70CB552AB8A1510016C0B4 /* RulesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CB532AB8A1510016C0B4 /* RulesTVC.swift */; };
 		3D70CB562AB8A1510016C0B4 /* RulesTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D70CB542AB8A1510016C0B4 /* RulesTVC.xib */; };
 		3D70CB5A2AB8A6AC0016C0B4 /* RulesCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CB582AB8A6AC0016C0B4 /* RulesCVC.swift */; };
@@ -108,13 +107,25 @@
 		DBD74E2D2AA26C70003096BB /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD74E2B2AA26C70003096BB /* HomeVC.xib */; };
 		DBD74E352AA26C81003096BB /* TopItemCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD74E2F2AA26C81003096BB /* TopItemCVC.swift */; };
 		DBD74E362AA26C81003096BB /* CategoryCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD74E302AA26C81003096BB /* CategoryCVC.xib */; };
-		DBD74E372AA26C81003096BB /* HomeCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD74E312AA26C81003096BB /* HomeCVC.xib */; };
 		DBD74E382AA26C81003096BB /* TopItemCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD74E322AA26C81003096BB /* TopItemCVC.xib */; };
 		DBD74E392AA26C81003096BB /* CategoryCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD74E332AA26C81003096BB /* CategoryCVC.swift */; };
 		DBD74E3A2AA26C81003096BB /* HomeCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD74E342AA26C81003096BB /* HomeCVC.swift */; };
 		DBD74E3E2AA26C8F003096BB /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD74E3C2AA26C8F003096BB /* Header.swift */; };
 		DBD74E3F2AA26C8F003096BB /* Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD74E3D2AA26C8F003096BB /* Header.xib */; };
+		FF568C902B03964600E56EB9 /* Ex+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF568C8F2B03964600E56EB9 /* Ex+Array.swift */; };
 		FFC03EA72AF0067C00AAF45C /* NewPriceRangeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC03EA62AF0067C00AAF45C /* NewPriceRangeTVC.swift */; };
+		FFC03EAB2AF9E55900AAF45C /* ContactVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC03EA82AF9E55700AAF45C /* ContactVC.xib */; };
+		FFC03EAC2AF9E55900AAF45C /* ContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC03EA92AF9E55800AAF45C /* ContactVC.swift */; };
+		FFC03EAD2AF9E55900AAF45C /* ContactVC+tableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC03EAA2AF9E55800AAF45C /* ContactVC+tableView.swift */; };
+		FFC03EAF2AF9E5B500AAF45C /* ContactInfoDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC03EAE2AF9E5B500AAF45C /* ContactInfoDM.swift */; };
+		FFC03EB22AF9E6B100AAF45C /* SendMessageTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC03EB02AF9E6B000AAF45C /* SendMessageTVC.xib */; };
+		FFC03EB32AF9E6B100AAF45C /* SendMessageTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC03EB12AF9E6B000AAF45C /* SendMessageTVC.swift */; };
+		FFC03EB62AF9E6DD00AAF45C /* ContactInfoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC03EB42AF9E6DD00AAF45C /* ContactInfoTVC.swift */; };
+		FFC03EB72AF9E6DD00AAF45C /* ContactInfoTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC03EB52AF9E6DD00AAF45C /* ContactInfoTVC.xib */; };
+		FFC03EBA2AF9E7CA00AAF45C /* HeaderOfContactTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC03EB82AF9E7C900AAF45C /* HeaderOfContactTVC.swift */; };
+		FFC03EBB2AF9E7CA00AAF45C /* HeaderOfContactTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC03EB92AF9E7C900AAF45C /* HeaderOfContactTVC.xib */; };
+		FFC03EBE2AF9E7EF00AAF45C /* CompanyLocationDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC03EBC2AF9E7EE00AAF45C /* CompanyLocationDetailVC.xib */; };
+		FFC03EBF2AF9E7EF00AAF45C /* CompanyLocationDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC03EBD2AF9E7EF00AAF45C /* CompanyLocationDetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -147,7 +158,6 @@
 		3D70CB4B2AB7A49A0016C0B4 /* PhotoTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTVC.swift; sourceTree = "<group>"; };
 		3D70CB4C2AB7A49A0016C0B4 /* PhotoTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoTVC.xib; sourceTree = "<group>"; };
 		3D70CB4F2AB898C80016C0B4 /* NameTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTVC.swift; sourceTree = "<group>"; };
-		3D70CB502AB898C80016C0B4 /* NameTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameTVC.xib; sourceTree = "<group>"; };
 		3D70CB532AB8A1510016C0B4 /* RulesTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesTVC.swift; sourceTree = "<group>"; };
 		3D70CB542AB8A1510016C0B4 /* RulesTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RulesTVC.xib; sourceTree = "<group>"; };
 		3D70CB582AB8A6AC0016C0B4 /* RulesCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesCVC.swift; sourceTree = "<group>"; };
@@ -222,13 +232,25 @@
 		DBD74E2B2AA26C70003096BB /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		DBD74E2F2AA26C81003096BB /* TopItemCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopItemCVC.swift; sourceTree = "<group>"; };
 		DBD74E302AA26C81003096BB /* CategoryCVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCVC.xib; sourceTree = "<group>"; };
-		DBD74E312AA26C81003096BB /* HomeCVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCVC.xib; sourceTree = "<group>"; };
 		DBD74E322AA26C81003096BB /* TopItemCVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopItemCVC.xib; sourceTree = "<group>"; };
 		DBD74E332AA26C81003096BB /* CategoryCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCVC.swift; sourceTree = "<group>"; };
 		DBD74E342AA26C81003096BB /* HomeCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCVC.swift; sourceTree = "<group>"; };
 		DBD74E3C2AA26C8F003096BB /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		DBD74E3D2AA26C8F003096BB /* Header.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Header.xib; sourceTree = "<group>"; };
+		FF568C8F2B03964600E56EB9 /* Ex+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Array.swift"; sourceTree = "<group>"; };
 		FFC03EA62AF0067C00AAF45C /* NewPriceRangeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPriceRangeTVC.swift; sourceTree = "<group>"; };
+		FFC03EA82AF9E55700AAF45C /* ContactVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactVC.xib; sourceTree = "<group>"; };
+		FFC03EA92AF9E55800AAF45C /* ContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactVC.swift; sourceTree = "<group>"; };
+		FFC03EAA2AF9E55800AAF45C /* ContactVC+tableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ContactVC+tableView.swift"; sourceTree = "<group>"; };
+		FFC03EAE2AF9E5B500AAF45C /* ContactInfoDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoDM.swift; sourceTree = "<group>"; };
+		FFC03EB02AF9E6B000AAF45C /* SendMessageTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendMessageTVC.xib; sourceTree = "<group>"; };
+		FFC03EB12AF9E6B000AAF45C /* SendMessageTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMessageTVC.swift; sourceTree = "<group>"; };
+		FFC03EB42AF9E6DD00AAF45C /* ContactInfoTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoTVC.swift; sourceTree = "<group>"; };
+		FFC03EB52AF9E6DD00AAF45C /* ContactInfoTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactInfoTVC.xib; sourceTree = "<group>"; };
+		FFC03EB82AF9E7C900AAF45C /* HeaderOfContactTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderOfContactTVC.swift; sourceTree = "<group>"; };
+		FFC03EB92AF9E7C900AAF45C /* HeaderOfContactTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderOfContactTVC.xib; sourceTree = "<group>"; };
+		FFC03EBC2AF9E7EE00AAF45C /* CompanyLocationDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanyLocationDetailVC.xib; sourceTree = "<group>"; };
+		FFC03EBD2AF9E7EF00AAF45C /* CompanyLocationDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyLocationDetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,6 +487,7 @@
 				DBD74E252AA26B8D003096BB /* Ex + UIImage.swift */,
 				3DC928592AB4BA9700A56389 /* Ex+UINavigationController.swift */,
 				3DAE87F22AC463E800C73E96 /* Ex+Date.swift */,
+				FF568C8F2B03964600E56EB9 /* Ex+Array.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -484,6 +507,7 @@
 			children = (
 				3D0D05852A929DC200BDAFF3 /* HouseDM.swift */,
 				3DBDDB1C2AAB97A90068E065 /* HouseByIdDM.swift */,
+				FFC03EAE2AF9E5B500AAF45C /* ContactInfoDM.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -546,6 +570,7 @@
 		DBD74E212AA26AF1003096BB /* View + Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FF568C912B04A33500E56EB9 /* ContactsVC */,
 				3DD6DD282AA1BC9A0023E392 /* LoginVC */,
 				DBD74E292AA26C64003096BB /* Home */,
 				3D70CB4A2AB5FF0F0016C0B4 /* HomeDetails */,
@@ -572,7 +597,6 @@
 				DBD74E332AA26C81003096BB /* CategoryCVC.swift */,
 				DBD74E302AA26C81003096BB /* CategoryCVC.xib */,
 				DBD74E342AA26C81003096BB /* HomeCVC.swift */,
-				DBD74E312AA26C81003096BB /* HomeCVC.xib */,
 				DBD74E2F2AA26C81003096BB /* TopItemCVC.swift */,
 				DBD74E322AA26C81003096BB /* TopItemCVC.xib */,
 				3DBDDB0C2AA5E7800068E065 /* PhotoCVC.swift */,
@@ -582,7 +606,6 @@
 				3D70CB4B2AB7A49A0016C0B4 /* PhotoTVC.swift */,
 				3D70CB4C2AB7A49A0016C0B4 /* PhotoTVC.xib */,
 				3D70CB4F2AB898C80016C0B4 /* NameTVC.swift */,
-				3D70CB502AB898C80016C0B4 /* NameTVC.xib */,
 				3D8A72902AB8F7E60051DE9D /* InfoTVC.swift */,
 				3D8A72912AB8F7E60051DE9D /* InfoTVC.xib */,
 				3D8A72942AB902610051DE9D /* CommentTVC.swift */,
@@ -604,6 +627,7 @@
 				3D8A72B12ABC82240051DE9D /* CalendarTVC */,
 				3D70CB572AB8A6700016C0B4 /* RulesTVC */,
 				3D8A728A2AB8E83B0051DE9D /* AdditionalTVC */,
+				FFC03EC02AF9E84B00AAF45C /* ContactTVCs */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -615,6 +639,31 @@
 				DBD74E3D2AA26C8F003096BB /* Header.xib */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		FF568C912B04A33500E56EB9 /* ContactsVC */ = {
+			isa = PBXGroup;
+			children = (
+				FFC03EA92AF9E55800AAF45C /* ContactVC.swift */,
+				FFC03EA82AF9E55700AAF45C /* ContactVC.xib */,
+				FFC03EAA2AF9E55800AAF45C /* ContactVC+tableView.swift */,
+				FFC03EBD2AF9E7EF00AAF45C /* CompanyLocationDetailVC.swift */,
+				FFC03EBC2AF9E7EE00AAF45C /* CompanyLocationDetailVC.xib */,
+			);
+			path = ContactsVC;
+			sourceTree = "<group>";
+		};
+		FFC03EC02AF9E84B00AAF45C /* ContactTVCs */ = {
+			isa = PBXGroup;
+			children = (
+				FFC03EB12AF9E6B000AAF45C /* SendMessageTVC.swift */,
+				FFC03EB02AF9E6B000AAF45C /* SendMessageTVC.xib */,
+				FFC03EB42AF9E6DD00AAF45C /* ContactInfoTVC.swift */,
+				FFC03EB52AF9E6DD00AAF45C /* ContactInfoTVC.xib */,
+				FFC03EB82AF9E7C900AAF45C /* HeaderOfContactTVC.swift */,
+				FFC03EB92AF9E7C900AAF45C /* HeaderOfContactTVC.xib */,
+			);
+			path = ContactTVCs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -687,23 +736,27 @@
 				3D8A73152AC312A30051DE9D /* BedsTVC.xib in Resources */,
 				3D7359672A6DE0C500BA329F /* LaunchScreen.storyboard in Resources */,
 				3DBDDB282AB0B8490068E065 /* LikedHousesVC.xib in Resources */,
+				FFC03EBB2AF9E7CA00AAF45C /* HeaderOfContactTVC.xib in Resources */,
 				DBD74E3F2AA26C8F003096BB /* Header.xib in Resources */,
 				3D8A72BD2ABEBA420051DE9D /* MapTVC.xib in Resources */,
 				3D9502EF2AB4561C00F0D3A8 /* ProfileVC.xib in Resources */,
 				3D8A73032AC205EA0051DE9D /* RuleFiltrTVC.xib in Resources */,
 				3D0D05722A8B7A1B00BDAFF3 /* VerificationChildVC.xib in Resources */,
+				FFC03EB72AF9E6DD00AAF45C /* ContactInfoTVC.xib in Resources */,
 				3D8A72FF2AC1B4400051DE9D /* PriceRangeTVC.xib in Resources */,
 				3D0D055C2A8A068600BDAFF3 /* RegisterChildVC.xib in Resources */,
 				DBD74E2D2AA26C70003096BB /* HomeVC.xib in Resources */,
 				3D8A72B72ABC84370051DE9D /* CalendarCVC.xib in Resources */,
+				FFC03EBE2AF9E7EF00AAF45C /* CompanyLocationDetailVC.xib in Resources */,
 				DBD74E382AA26C81003096BB /* TopItemCVC.xib in Resources */,
 				3D8A72EF2AC0C2030051DE9D /* AdditionalVC.xib in Resources */,
-				3D70CB522AB898C80016C0B4 /* NameTVC.xib in Resources */,
 				3D7359642A6DE0C500BA329F /* Assets.xcassets in Resources */,
 				3D8A729F2ABA198D0051DE9D /* CalendarTVC.xib in Resources */,
 				3D8A72932AB8F7E60051DE9D /* InfoTVC.xib in Resources */,
+				FFC03EB22AF9E6B100AAF45C /* SendMessageTVC.xib in Resources */,
 				3DBDDB2D2AB20CED0068E065 /* LikedCell.xib in Resources */,
 				3D8A72892AB8CDD90051DE9D /* AdditionalTVC.xib in Resources */,
+				FFC03EAB2AF9E55900AAF45C /* ContactVC.xib in Resources */,
 				3D70CB5B2AB8A6AC0016C0B4 /* RulesCVC.xib in Resources */,
 				DBD74E362AA26C81003096BB /* CategoryCVC.xib in Resources */,
 				3D0D05672A8A162B00BDAFF3 /* SingInLangVC.xib in Resources */,
@@ -712,7 +765,6 @@
 				3DBDDB1B2AAB689A0068E065 /* MapChildVC.xib in Resources */,
 				3DC9283F2AB46B9D00A56389 /* EditProfileVC.xib in Resources */,
 				3D70CB492AB5FF050016C0B4 /* HomeDetailVC.xib in Resources */,
-				DBD74E372AA26C81003096BB /* HomeCVC.xib in Resources */,
 				3D0D05782A8DA1E900BDAFF3 /* GoogleService-Info.plist in Resources */,
 				3D8A729B2AB9DFA10051DE9D /* ContactTVC.xib in Resources */,
 				3D70CB4E2AB7A49A0016C0B4 /* PhotoTVC.xib in Resources */,
@@ -780,12 +832,15 @@
 				3D8A728D2AB8E8C50051DE9D /* AditionalChildTVC.swift in Sources */,
 				3D8A729E2ABA198D0051DE9D /* CalendarTVC.swift in Sources */,
 				DBD74E352AA26C81003096BB /* TopItemCVC.swift in Sources */,
+				FFC03EAF2AF9E5B500AAF45C /* ContactInfoDM.swift in Sources */,
 				3D8A73102AC3059D0051DE9D /* SwitchContTVC.swift in Sources */,
 				3D0D05682A8A162B00BDAFF3 /* SingInLangVC.swift in Sources */,
+				FFC03EAD2AF9E55900AAF45C /* ContactVC+tableView.swift in Sources */,
 				3D8A72F12AC188DF0051DE9D /* RangeSlider.swift in Sources */,
 				3D9502EE2AB4561C00F0D3A8 /* ProfileVC.swift in Sources */,
 				3D0D05762A8BA92F00BDAFF3 /* OTPTextField.swift in Sources */,
 				DBD74E3A2AA26C81003096BB /* HomeCVC.swift in Sources */,
+				FFC03EAC2AF9E55900AAF45C /* ContactVC.swift in Sources */,
 				3D0D05602A8A0A4800BDAFF3 /* Alert.swift in Sources */,
 				3D8A729A2AB9DFA10051DE9D /* ContactTVC.swift in Sources */,
 				3DBDDB312AB30D5E0068E065 /* SFSymbols.swift in Sources */,
@@ -798,8 +853,10 @@
 				DBD74E232AA26B1C003096BB /* CustomTabBar.swift in Sources */,
 				3D8A72F92AC18AD60051DE9D /* FiltrVC.swift in Sources */,
 				3D0D05862A929DC200BDAFF3 /* HouseDM.swift in Sources */,
+				FFC03EBA2AF9E7CA00AAF45C /* HeaderOfContactTVC.swift in Sources */,
 				3D7359702A6DE14400BA329F /* WelcomePageVC.swift in Sources */,
 				3D0D05802A8F35E000BDAFF3 /* Reachability.swift in Sources */,
+				FFC03EBF2AF9E7EF00AAF45C /* CompanyLocationDetailVC.swift in Sources */,
 				3D8A73142AC312A30051DE9D /* BedsTVC.swift in Sources */,
 				3D70CB512AB898C80016C0B4 /* NameTVC.swift in Sources */,
 				DBD74E2C2AA26C70003096BB /* HomeVC.swift in Sources */,
@@ -821,6 +878,7 @@
 				3D8A72BC2ABEBA420051DE9D /* MapTVC.swift in Sources */,
 				3D73595B2A6DE0C200BA329F /* AppDelegate.swift in Sources */,
 				3D8A73022AC205EA0051DE9D /* RuleFiltrTVC.swift in Sources */,
+				FFC03EB32AF9E6B100AAF45C /* SendMessageTVC.swift in Sources */,
 				3DBDDB1D2AAB97A90068E065 /* HouseByIdDM.swift in Sources */,
 				3D0D056A2A8A172C00BDAFF3 /* Keys.swift in Sources */,
 				3D0D05712A8B7A1B00BDAFF3 /* VerificationChildVC.swift in Sources */,
@@ -833,7 +891,9 @@
 				3D8A72FE2AC1B4400051DE9D /* PriceRangeTVC.swift in Sources */,
 				3D8A72922AB8F7E60051DE9D /* InfoTVC.swift in Sources */,
 				3D0D056E2A8B752700BDAFF3 /* Ex+String.swift in Sources */,
+				FFC03EB62AF9E6DD00AAF45C /* ContactInfoTVC.swift in Sources */,
 				3DBDDB222AAEDB600068E065 /* OpenMapDirections.swift in Sources */,
+				FF568C902B03964600E56EB9 /* Ex+Array.swift in Sources */,
 				3DC9285A2AB4BA9700A56389 /* Ex+UINavigationController.swift in Sources */,
 				3D0D057C2A8F338D00BDAFF3 /* Loader.swift in Sources */,
 				3D70CB552AB8A1510016C0B4 /* RulesTVC.swift in Sources */,

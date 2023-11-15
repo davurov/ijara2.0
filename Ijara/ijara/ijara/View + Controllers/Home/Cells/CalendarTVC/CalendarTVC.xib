@@ -31,13 +31,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of people" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Nj-F1-T2e">
-                        <rect key="frame" x="10" y="486.33333333333331" width="152.66666666666666" height="23"/>
+                        <rect key="frame" x="10" y="448.33333333333331" width="152.66666666666666" height="23"/>
                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                         <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQF-tW-C0J">
-                        <rect key="frame" x="136" y="529.33333333333337" width="150" height="40"/>
+                        <rect key="frame" x="136" y="491.33333333333331" width="150" height="39.999999999999943"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHG-J7-PNf">
                                 <rect key="frame" x="40" y="0.0" width="1" height="40"/>
@@ -75,7 +75,7 @@
                                     <action selector="plusPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="s8Y-Dg-g6u"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f54-eX-68E">
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f54-eX-68E">
                                 <rect key="frame" x="41" y="0.0" width="68" height="40"/>
                                 <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -111,38 +111,38 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kye-BA-ast">
-                        <rect key="frame" x="10.000000000000007" y="366.33333333333331" width="114.66666666666669" height="110"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="kye-BA-ast">
+                        <rect key="frame" x="25" y="366.33333333333331" width="372" height="57"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sBC-BF-pZ7">
-                                <rect key="frame" x="0.0" y="0.0" width="113" height="50"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sBC-BF-pZ7">
+                                <rect key="frame" x="0.0" y="0.0" width="200.66666666666666" height="21"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEC-cl-o7k">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weakday Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEC-cl-o7k">
+                                        <rect key="frame" x="0.0" y="0.0" width="133.33333333333334" height="21"/>
+                                        <fontDescription key="fontDescription" name="Charter-BlackItalic" family="Charter" pointSize="17"/>
                                         <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 sum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZ3-Ky-ZCN">
-                                        <rect key="frame" x="58" y="0.0" width="55" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 sum" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZ3-Ky-ZCN">
+                                        <rect key="frame" x="141.33333333333334" y="1.3333333333333712" width="59.333333333333343" height="18.333333333333332"/>
+                                        <fontDescription key="fontDescription" name="Charter-BoldItalic" family="Charter" pointSize="15"/>
                                         <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RGY-rn-rSK">
-                                <rect key="frame" x="0.0" y="60" width="114.66666666666667" height="50"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RGY-rn-rSK">
+                                <rect key="frame" x="0.0" y="36" width="234.66666666666666" height="21"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMG-CB-Wzf">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Working Day Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMG-CB-Wzf">
+                                        <rect key="frame" x="0.0" y="0.0" width="167.33333333333334" height="21"/>
+                                        <fontDescription key="fontDescription" name="Charter-BlackItalic" family="Charter" pointSize="17"/>
                                         <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200 sum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afY-Dn-bbf">
-                                        <rect key="frame" x="58" y="0.0" width="56.666666666666657" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200 sum" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afY-Dn-bbf">
+                                        <rect key="frame" x="175.33333333333334" y="1.3333333333333712" width="59.333333333333343" height="18.333333333333332"/>
+                                        <fontDescription key="fontDescription" name="Charter-BoldItalic" family="Charter" pointSize="15"/>
                                         <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -157,11 +157,12 @@
                     <constraint firstItem="JlE-wx-mea" firstAttribute="top" secondItem="x0O-cw-4R8" secondAttribute="bottom" constant="10" id="CZ9-i7-eVS"/>
                     <constraint firstItem="qQF-tW-C0J" firstAttribute="top" secondItem="2Nj-F1-T2e" secondAttribute="bottom" constant="20" id="DYS-JL-cdq"/>
                     <constraint firstAttribute="trailing" secondItem="JlE-wx-mea" secondAttribute="trailing" constant="20" id="FpE-cW-M4h"/>
+                    <constraint firstItem="kye-BA-ast" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="Ipf-k7-Dia"/>
                     <constraint firstItem="JlE-wx-mea" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PZ5-KO-zom"/>
-                    <constraint firstItem="kye-BA-ast" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="U0z-Od-AMW"/>
                     <constraint firstItem="2Nj-F1-T2e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="VKL-ZG-ZOb"/>
-                    <constraint firstItem="2Nj-F1-T2e" firstAttribute="top" secondItem="kye-BA-ast" secondAttribute="bottom" constant="10" id="VXa-TD-sHE"/>
+                    <constraint firstItem="2Nj-F1-T2e" firstAttribute="top" secondItem="kye-BA-ast" secondAttribute="bottom" constant="25" id="VXa-TD-sHE"/>
                     <constraint firstItem="kye-BA-ast" firstAttribute="top" secondItem="JlE-wx-mea" secondAttribute="bottom" constant="10" id="Vuh-HT-P7V"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="kye-BA-ast" secondAttribute="trailing" constant="5" id="il0-tY-7WW"/>
                     <constraint firstItem="x0O-cw-4R8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="pw5-EB-x98"/>
                 </constraints>
             </tableViewCellContentView>
@@ -173,7 +174,9 @@
                 <outlet property="peopleTF" destination="f54-eX-68E" id="Eel-XU-Esq"/>
                 <outlet property="peopleView" destination="qQF-tW-C0J" id="Gec-0J-4A0"/>
                 <outlet property="weakdayPrice" destination="IZ3-Ky-ZCN" id="FZx-yl-3Cg"/>
+                <outlet property="weekendPriceLbl" destination="lEC-cl-o7k" id="dix-y0-c1a"/>
                 <outlet property="workingDayPrice" destination="afY-Dn-bbf" id="Ob9-sA-L8d"/>
+                <outlet property="workingPriceLbl" destination="FMG-CB-Wzf" id="tWh-te-EZH"/>
             </connections>
             <point key="canvasLocation" x="103.81679389312977" y="144.36619718309859"/>
         </tableViewCell>

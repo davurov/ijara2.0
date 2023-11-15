@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Countryhousedata
-struct CountryhouseData {
+struct CountryhouseData: Codable {
     let id: Int
     let name, owner: String
     let comment: String
@@ -63,13 +63,13 @@ extension CountryhouseData {
 
 
 // MARK: - Company
-struct Company {
+struct Company: Codable {
     let id: Int
     let name, image: String
 }
 
 // MARK: - Entertainmentdatum
-struct Entertainmentdatum {
+struct Entertainmentdatum: Codable {
     let id: Int
     let tag: Bool
     let type, name, image: String

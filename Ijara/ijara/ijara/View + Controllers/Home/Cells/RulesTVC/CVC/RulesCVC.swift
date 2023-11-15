@@ -19,7 +19,7 @@ class RulesCVC: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        contView.addBorder(size: 0.5)
+        contView.addBorder(size: 1)
     }
     
     func loadImage(url: String) {

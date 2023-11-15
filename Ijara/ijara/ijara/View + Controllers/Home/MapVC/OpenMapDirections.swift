@@ -12,7 +12,7 @@ class OpenMapDirections {
     // If you are calling the coordinate from a Model, don't forgot to pass it in the function parenthesis.
     static func present(in viewController: UIViewController, latitude: Double, longitude:Double, sourceView: UIView) {
         let coordinates = "\(latitude),\(longitude)"
-        let actionSheet = UIAlertController(title: "Open Location", message: "Choose an app to open direction", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: SetLanguage.setLang(type: .openLocation), message: SetLanguage.setLang(type: .openLocationMessage), preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Google Maps", style: .default, handler: { _ in
             // Pass the coordinate inside this URL
             if let url = URL(string: "comgooglemaps://?q=\(coordinates)") {
@@ -34,7 +34,7 @@ class OpenMapDirections {
         }))
         actionSheet.popoverPresentationController?.sourceRect = sourceView.bounds
         actionSheet.popoverPresentationController?.sourceView = sourceView
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: SetLanguage.setLang(type: .cancelTitle), style: .cancel, handler: nil))
         viewController.present(actionSheet, animated: true, completion: nil)
     }
 }

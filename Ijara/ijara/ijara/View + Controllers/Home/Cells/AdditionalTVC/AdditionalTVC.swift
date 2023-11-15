@@ -7,13 +7,9 @@
 
 import UIKit
 
-protocol AdditionalDelegate {
+protocol AdditionalDelegate: AnyObject {
     func showAllPressed()
 }
-//protocol AddFeaturesDelegate {
-//    func featureSelected(id: Int)
-//}
-
 
 class AdditionalTVC: UITableViewCell {
     
@@ -21,7 +17,6 @@ class AdditionalTVC: UITableViewCell {
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
     @IBOutlet weak var tableView: UITableView!
-    
     
     @IBOutlet weak var additionalFeaturesLbl: UILabel! {
         didSet {
@@ -40,8 +35,7 @@ class AdditionalTVC: UITableViewCell {
     
     static var addedFeatures = Array(repeating: false, count: 27)
     var features = [Entertainmentdatum]()
-    var delegate: AdditionalDelegate?
-//    var selectDelegete: AddFeaturesDelegate?
+    weak var delegate: AdditionalDelegate?
     var imageHidden = false
     var isFilter = false
     
@@ -116,7 +110,6 @@ extension AdditionalTVC: UITableViewDelegate {
             if let cell = tableView.cellForRow(at: indexPath) as? AditionalChildTVC {
                 cell.update(isSelected: AdditionalTVC.addedFeatures[indexPath.row])
             }
-//            selectDelegete?.featureSelected(id: indexPath.row)
         }
     }
     

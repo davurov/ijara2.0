@@ -19,26 +19,24 @@ class HomeDetailVC: UIViewController {
     
     @IBOutlet weak var priceLbl: UILabel! {
         didSet {
-            priceLbl.text = SetLanguage.setLang(type: .priceLbl)
+            priceLbl.text = "\(SetLanguage.setLang(type: .priceLbl)): "
         }
     }
     @IBOutlet weak var depositLbl: UILabel! {
         didSet {
-            depositLbl.text = SetLanguage.setLang(type: .depositLbl)
+            depositLbl.text = "\(SetLanguage.setLang(type: .depositLbl)): "
         }
     }
     @IBOutlet weak var sumLbl1: UILabel! {
         didSet {
             sumLbl1.text = SetLanguage.setLang(type: .sumLbl)
             sumLbl1.textColor = .red
-//            sumLbl1.isHidden = true
         }
     }
     @IBOutlet weak var sumLbl2: UILabel! {
         didSet {
             sumLbl2.text = SetLanguage.setLang(type: .sumLbl)
             sumLbl2.textColor = .red
-//            sumLbl2.isHidden = true
         }
     }
     @IBOutlet weak var callBtn: UIButton! {
@@ -72,24 +70,17 @@ class HomeDetailVC: UIViewController {
     var dayCount = 0 // number of days in range
     var lastPeopleNum = 0
     
-//    var priceForWorkingDays = 0
-//    var priceForWeekends = 0
-    
     var price = (wrking: 0 ,weekday: 0) {
         didSet {
             setPriceAnimation(weekwnds: price.weekday, workingdays: price.wrking)
         }
     }
     var id = 0
-//    "" {
-//        didSet {
-//            getData(id: Int(id) ?? 0)
-//        }
-//    }
     
     var likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as? [Int] ?? []
     
     //MARK: Life cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         API.isMap = false
@@ -151,7 +142,7 @@ class HomeDetailVC: UIViewController {
         tableView.dataSource = self
         
         tableView.register(PhotoTVC.nib(), forCellReuseIdentifier: PhotoTVC.identifier)
-        tableView.register(NameTVC.nib(), forCellReuseIdentifier: NameTVC.identifier)
+        tableView.register(NameTVC.self, forCellReuseIdentifier: NameTVC.identifier)
         tableView.register(RulesTVC.nib(), forCellReuseIdentifier: RulesTVC.identifier)
         tableView.register(AdditionalTVC.nib(), forCellReuseIdentifier: AdditionalTVC.identifier)
         tableView.register(InfoTVC.nib(), forCellReuseIdentifier: InfoTVC.identifier)
@@ -173,8 +164,8 @@ class HomeDetailVC: UIViewController {
         guard let countryHouseDM = countryHouseDM else { return }
         
         let price = countryHouseDM.priceForWeekends
-        sumLbl1.text = "\(price) \(SetLanguage.setLang(type: .sumLbl))"
-        sumLbl2.text = "\(Double(price) * 0.4) \(SetLanguage.setLang(type: .sumLbl))"
+        sumLbl1.text = ""//\(countryHouseDM.priceForWorkingDays) \(SetLanguage.setLang(type: .sumLbl))"
+        sumLbl2.text = ""//\(Double(countryHouseDM.priceForWorkingDays) * 0.4) \(SetLanguage.setLang(type: .sumLbl))"
 
         showLikeBtn()
         
@@ -223,7 +214,6 @@ class HomeDetailVC: UIViewController {
             likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
         UserDefaults.standard.set(likedHouses, forKey: Keys.likedHouses)
-        
     }
     
 }
@@ -272,6 +262,7 @@ extension HomeDetailVC: UITableViewDataSource {
             return infoCell
         } else if indexPath.row == 3 {
             let rulesCell = tableView.dequeueReusableCell(withIdentifier: RulesTVC.identifier, for: indexPath) as! RulesTVC
+           
             guard let countryHouseDM = countryHouseDM else { return rulesCell }
             
             rulesCell.updateCell(countryHouseDM.company)
@@ -299,7 +290,7 @@ extension HomeDetailVC: UITableViewDataSource {
             let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactTVC.identifier, for: indexPath) as! ContactTVC
          
             guard let countryHouseDM = countryHouseDM else { return contactCell }
-            
+
             contactCell.updateCell(
                 countryHouseDM.firstphone,
                 countryHouseDM.secondphone,
@@ -360,7 +351,7 @@ extension HomeDetailVC: UITableViewDelegate {
         } else if indexPath.row == 6 {
             return 230
         } else if indexPath.row == 7 {
-            return 520
+            return 575
         } else {
             return 300
         }
@@ -369,7 +360,7 @@ extension HomeDetailVC: UITableViewDelegate {
 }
 
 extension HomeDetailVC {
-    //TELS WHEATER CELL IN THE SCREEN OR NOT
+    //IT TELLS WHEATER CELL IN THE SCREEN OR NOT
     func isCellVisible(indexPath: IndexPath) -> Bool {
         if let visibleIndexPaths = tableView.indexPathsForVisibleRows {
             return visibleIndexPaths.contains(indexPath)
@@ -459,10 +450,8 @@ extension HomeDetailVC: RangeDelegate {
         weeks?.forEach({ i in
             if i == countryHouseDM?.weekday[0] || i == countryHouseDM?.weekday[1] {
                 totalSum += price.weekday
-//                print(price.weekday)
             } else {
                 totalSum += price.wrking
-//                print(price.wrking)
             }
         })
         

@@ -42,7 +42,7 @@ class SCP_SCNormal: UIView {
         let f_all_width: CGFloat = CGFloat((numberOfPage-1)*20 + 25)
         
         guard f_all_width < self.frame.size.width else {
-            print("frame.Width over Number Of Page")
+            print("issue with sc_Page \(f_all_width), \(self.frame.size.width)")
             return
         }
         

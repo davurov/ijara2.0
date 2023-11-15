@@ -18,7 +18,7 @@ extension UIView {
     }
     
     func addBorder(size: CGFloat) {
-        layer.borderColor = AppColors.mainColor.cgColor
+        layer.borderColor = AppColors.customGray6.cgColor
         layer.borderWidth = size
     }
     

@@ -47,7 +47,6 @@ class RegisterChildVC: UIViewController {
         setupViews()
     }
     
-    
     /// Registers number to firebase
     /// - Parameter number: string from number textfield
     func register(number: String) {

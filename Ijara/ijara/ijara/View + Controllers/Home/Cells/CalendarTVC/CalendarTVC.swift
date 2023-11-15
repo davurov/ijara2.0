@@ -9,7 +9,7 @@ import UIKit
 import FSCalendar
 import RollingDigitsLabel
 
-protocol RangeDelegate {
+protocol RangeDelegate: AnyObject {
     func rangeSelected(dates: [Date]?)
     func personAdded(num: Int)
 }
@@ -22,6 +22,9 @@ class CalendarTVC: UITableViewCell {
             chooseDayOfVacationLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         }
     }
+    
+    @IBOutlet weak var weekendPriceLbl: UILabel!
+    @IBOutlet weak var workingPriceLbl: UILabel!
     @IBOutlet weak var weakdayPrice: UILabel!
     @IBOutlet weak var workingDayPrice: UILabel!
     @IBOutlet weak var peopleTF: UITextField!
@@ -29,20 +32,14 @@ class CalendarTVC: UITableViewCell {
     @IBOutlet weak var calendarCont: UIView!
     weak var calendarView: FSCalendar!
     
-    @IBOutlet weak var numberOfPeopleLbl: UILabel! {
-        didSet {
-            numberOfPeopleLbl.text = SetLanguage.setLang(type: .numberOfPeople)
-            numberOfPeopleLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
-        }
-    }
-    
+    @IBOutlet weak var numberOfPeopleLbl: UILabel!
     
     static let identifier: String = String(describing: CalendarTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
     private var firstDate: Date?
     private var lastDate: Date?
-    var delegate: RangeDelegate?
+    weak var delegate: RangeDelegate?
     var datesRange: [Date]?
     var dateFormatter: DateFormatter!
     var sum = 1 {
@@ -57,10 +54,11 @@ class CalendarTVC: UITableViewCell {
     }
     
     func updateCell(_ priceForWorkingDays: Int, _ priceForWeekends: Int){
-        workingDayPrice.text = "\(SetLanguage.setLang(type: .otherDays)) \(priceForWorkingDays)"
-        workingDayPrice.text! += SetLanguage.setLang(type: .sumLbl)
-        weakdayPrice.text = "\(SetLanguage.setLang(type: .fridayAndSaturday)) \(priceForWeekends)"
-        weakdayPrice.text! += SetLanguage.setLang(type: .sumLbl)
+        workingPriceLbl.text = "\((SetLanguage.setLang(type: .otherDays))) "
+        weekendPriceLbl.text = "\(SetLanguage.setLang(type: .fridayAndSaturday)) "
+        
+        workingDayPrice.text = "\(priceForWorkingDays) \(SetLanguage.setLang(type: .sumLbl))"
+        weakdayPrice.text = "\(priceForWeekends) \(SetLanguage.setLang(type: .sumLbl))"
     }
     
     func setUpViews() {
@@ -70,6 +68,8 @@ class CalendarTVC: UITableViewCell {
         calendarView.allowsMultipleSelection = true
         calendarView.swipeToChooseGesture.isEnabled = true
         
+        numberOfPeopleLbl.text = SetLanguage.setLang(type: .numberOfPeople)
+        numberOfPeopleLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         
         peopleTF.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         

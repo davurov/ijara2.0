@@ -15,6 +15,7 @@
                 <outlet property="phoneNumberLbl" destination="GqO-IH-pUf" id="wpp-Ii-W0o"/>
                 <outlet property="profileBtn" destination="cbm-NU-YiQ" id="bdL-ea-Wry"/>
                 <outlet property="profileIMG" destination="LYg-QC-YTA" id="yaA-UQ-EzP"/>
+                <outlet property="profileView" destination="Sst-3j-Yxj" id="oeU-9m-79A"/>
                 <outlet property="saveBtn" destination="1Qn-nw-fkK" id="ElJ-dz-cAe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

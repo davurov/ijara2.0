@@ -37,7 +37,7 @@ class ContactTVC: UITableViewCell {
         secondNumber.text = "\(SetLanguage.setLang(type: .phoneLbl)) 2 : "
         phone2Lbl.text = phone2
         comingLbl.text = "\(SetLanguage.setLang(type: .comingTime)): "
-        comingTimeLbl.text = "\(SetLanguage.setLang(type: .comingTime)): "
+        comingTimeLbl.text = comingTime
         leavingLbl.text = "\(SetLanguage.setLang(type: .leavingTime)): "
         leavingTimeLbl.text = leavingTime
     }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompanyLocationDetailVC" customModule="ijara" customModuleProvider="target">
+            <connections>
+                <outlet property="companyLocationMap" destination="Rno-4L-Dkc" id="Mq1-Mh-zhP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rno-4L-Dkc">
+                    <rect key="frame" x="0.0" y="63" width="393" height="789"/>
+                    <imageryMapConfiguration key="preferredConfiguration"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </mapView>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snL-K1-fku">
+                    <rect key="frame" x="180" y="45" width="33" height="7"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="7" id="Rh1-5i-8o6"/>
+                        <constraint firstAttribute="width" constant="33" id="bT0-na-CGa"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Rno-4L-Dkc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="02b-zx-SAX"/>
+                <constraint firstAttribute="bottom" secondItem="Rno-4L-Dkc" secondAttribute="bottom" id="11m-Mc-VJI"/>
+                <constraint firstItem="Rno-4L-Dkc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="63" id="AmT-kF-Lel"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Rno-4L-Dkc" secondAttribute="trailing" id="Hgu-sT-IBE"/>
+                <constraint firstItem="Rno-4L-Dkc" firstAttribute="top" secondItem="snL-K1-fku" secondAttribute="bottom" constant="11" id="qFv-ch-xgf"/>
+                <constraint firstItem="snL-K1-fku" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xSD-fO-dpm"/>
+            </constraints>
+            <point key="canvasLocation" x="126" y="20"/>
+        </view>
+    </objects>
+</document>

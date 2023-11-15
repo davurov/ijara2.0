@@ -20,7 +20,7 @@ class Net {
             }
             
             AF.request(url, method: method, parameters: params, encoding: isQuery ? URLEncoding.queryString : JSONEncoding.default, headers: headers).response { (response) in
-//                Loader.stop()
+                Loader.stop()
                 
                 guard let data = response.data else {
                     print("nil from response")

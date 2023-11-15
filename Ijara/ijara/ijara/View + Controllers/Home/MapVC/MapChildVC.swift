@@ -13,9 +13,9 @@ enum Direction {
     case down
 }
 
-protocol MapChildDelegate {
+protocol MapChildDelegate: AnyObject {
     func didSwipe(dir: Direction)
-    func moreInfoPressed(id: String, images: [String])
+    func moreInfoPressed(id: Int, images: [String])
 }
 
 class MapChildVC: UIViewController {
@@ -28,12 +28,18 @@ class MapChildVC: UIViewController {
     @IBOutlet weak var starLbl: UILabel!
     @IBOutlet weak var moreInfoBtn: UIButton!
     @IBOutlet weak var likeBtn: UIButton!
-    
     @IBOutlet weak var animationView: UIView!
+    
+    //MARK: Variables
     
     var lottieView: LottieAnimationView?
     var houseCoordinates = (latitude: 0.0, longitude: 0.0)
-    var id = ""
+    var id: Int?
+    weak var delegate: MapChildDelegate?
+    var currentIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+    let partial = screenSize.height - screenSize.height / 2
+    let full = screenSize.height
+    
     var images : [String] = [] {
         didSet {
             currentIndexPath.row = 0
@@ -43,35 +49,41 @@ class MapChildVC: UIViewController {
         }
     }
     
-    var delegate: MapChildDelegate?
-    var likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as! [String]
-    var currentIndexPath: IndexPath = IndexPath(row: 0, section: 0)
-    let partial = screenSize.height - screenSize.height / 2
-    let full = screenSize.height
+    var likedHouses = {
+        return UserDefaults.standard.array(forKey: Keys.likedHouses) as? [Int] ?? []
+    }()
 
+    //MARK: life cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
         addSwipeRecognizer()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        pageController.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+    }
+    
+    //MARK: function
+    
     func setViews() {
         moreInfoBtn.setTitle(SetLanguage.setLang(type: .moreInfo), for: .normal)
         moreInfoBtn.titleLabel?.numberOfLines = 0
         
-        
-        contView.addShadowByHand(offset: CGSize(width: 0, height: 0), color: AppColors.customBlack.cgColor, radius: 5, opacity: 0.2)
+        contView.addShadowByHand(
+            offset: CGSize(width: 0, height: 0),
+            color: AppColors.customBlack.cgColor,
+            radius: 5,
+            opacity: 0.2
+        )
         contView.layer.cornerRadius = 20
         contView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
         
         collView.delegate = self
         collView.dataSource = self
         collView.register(PhotoCVC.nib(), forCellWithReuseIdentifier: PhotoCVC.identifier)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        pageController.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
     }
     
     func addSwipeRecognizer() {
@@ -92,10 +104,38 @@ class MapChildVC: UIViewController {
     }
     
     func configureCell() {
-        collView.scrollRectToVisible(CGRect(x: 0, y: 0, width: collView.frame.width, height: collView.frame.height
-                                                 ), animated: true)
+        collView.scrollRectToVisible(
+            CGRect(x: 0, y: 0, width: collView.frame.width, height: collView.frame.height),
+            animated: true)
     }
     
+    //MARK: @IBAction functions
+    
+    @IBAction func moreInfoPressed(_ sender: Any) {
+        delegate?.moreInfoPressed(id: id ?? 0, images: images)
+    }
+    
+    @IBAction func directionPressed(_ sender: Any) {
+        OpenMapDirections.present(in: self,latitude: houseCoordinates.latitude,longitude: houseCoordinates.longitude, sourceView: UIView())
+    }
+    
+    @IBAction func likePressed(_ sender: Any) {
+        
+        guard let id = id else { return }
+        
+        if likedHouses.contains(id) {
+            let index = likedHouses.firstIndex(of: id)
+            guard let index = index else { return }
+            likedHouses.remove(at: index)
+            likeBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+        } else {
+            likedHouses.append(id)
+            likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }
+        UserDefaults.standard.set(likedHouses, forKey: Keys.likedHouses)
+    }
+    
+    //MARK: @objc functions
     
     @objc func leftSwipe() {
         if currentIndexPath.row > 0 {
@@ -123,29 +163,10 @@ class MapChildVC: UIViewController {
         delegate?.didSwipe(dir: .down)
     }
     
-    @IBAction func moreInfoPressed(_ sender: Any) {
-        delegate?.moreInfoPressed(id: id, images: images)
-    }
-    
-    @IBAction func directionPressed(_ sender: Any) {
-        OpenMapDirections.present(in: self,latitude: houseCoordinates.latitude,longitude: houseCoordinates.longitude, sourceView: UIView())
-    }
-    
-    
-    @IBAction func likePressed(_ sender: Any) {
-        if likedHouses.contains(id) {
-           let index = likedHouses.firstIndex(of: id)!
-            likedHouses.remove(at: index)
-            likeBtn.setImage(UIImage(systemName: "heart"), for: .normal)
-        } else {
-            likedHouses.append(id)
-            likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        }
-        UserDefaults.standard.set(likedHouses, forKey: Keys.likedHouses)
-    }
 }
 
-extension MapChildVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//MARK: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+extension MapChildVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count >= 5 ? 5 : images.count
     }

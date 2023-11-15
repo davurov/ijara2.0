@@ -17,7 +17,8 @@ struct Keys {
     static let fStore = "Token"
     static let likedHouses = "like"
     static let token = "token"
-    static let userInfo = "info"
+    static let userInfo = "info" //[phoneNumber, name, lastName]
     static let userImage = "image"
     static let allVillas_Id = "allVillas"
+    static let allHouses = "allHouses"
 }
