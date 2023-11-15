@@ -302,74 +302,6 @@ class HomeVC: UIViewController {
 //MARK: - Collection View Layout & Protocol Functions
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    // layout
-//    func createCustomLayout() -> UICollectionViewCompositionalLayout {
-//        let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
-//            return self.createHomeSection()
-//        }
-//
-//        let config: UICollectionViewCompositionalLayoutConfiguration = .init()
-//        config.scrollDirection = .vertical
-//        //        config.interSectionSpacing = 20
-//
-//        layout.configuration = config
-//        return layout
-//    }
-    
-    // layout -> Headers
-//    func createHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-//
-//        let headerSize = NSCollectionLayoutSize(
-//            widthDimension: .fractionalWidth(1),
-//            // height of header
-//            heightDimension: .absolute(52))
-//        let headerItem = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-//                                                                     elementKind: "Header",
-//                                                                     alignment: .top)
-//        headerItem.pinToVisibleBounds = true
-//        return headerItem
-//    }
-    
-    // Layout -> Sections
-//    func createBannerSection() -> NSCollectionLayoutSection {
-//        let item = NSCollectionLayoutItem(
-//            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
-//                                               heightDimension: .fractionalWidth(1/3)))
-//
-//        let group = NSCollectionLayoutGroup.horizontal(
-//            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-//                                               heightDimension: .fractionalWidth(1/3)),
-//            subitems: [item])
-//
-//        let section = NSCollectionLayoutSection(group: group)
-//        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
-//
-//        return section
-//    }
-    
-//    func createHomeSection() -> NSCollectionLayoutSection {
-//
-//        let item = NSCollectionLayoutItem(
-//            layoutSize: .init(widthDimension: .fractionalWidth(1.0),
-//                              heightDimension: .fractionalHeight(1.0)))
-//
-//        item.contentInsets = .init(top: 8,
-//                                   leading: 0,
-//                                   bottom: 8,
-//                                   trailing: 0)
-//
-//        let group = NSCollectionLayoutGroup.vertical(
-//            layoutSize: .init(widthDimension: .fractionalWidth(1.0),
-//                              heightDimension: .fractionalWidth(1.0)),
-//            subitems: [item])
-//
-//        let section = NSCollectionLayoutSection(group: group)
-//        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
-//
-//        return section
-//    }
-    
-    
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         if collectionView == categoryColView {
@@ -419,7 +351,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                 typeId: allHouses[indexPath.item].company.map({Companylist(id: $0.id, name: $0.name, image: $0.image)}),
                 pool: []
             )
-//            cell.configureCell()
+
             cell.backgroundColor = .clear
             
             return cell
@@ -571,33 +503,8 @@ extension HomeVC: FiltredDelegate {
             }
         }
         
-        print(allHouses.count, " in homeCVC")
         colView.reloadData()
         Loader.stop()
-//        allVillasID.forEach { id in
-//            API.getDetailDataByID(id: id) { [self] detailData in
-//                countOfResponses += 1
-//                guard let detailData = detailData else { return }
-//
-//                if isFiltered(detailData) {
-//                    allHouses.append(detailData)
-//                    filteredVillasID.append(detailData.id)
-//                }
-//
-////                if allVillasID.count == countOfResponses {
-////                    allHouses = []
-////                    allVillas.forEach { house in
-////                        if self.filteredVillasID.contains(house.id) {
-////                            allHouses.append(house)
-////                        }
-////                    }
-////                    colView.reloadData()
-////                    Loader.stop()
-////                }
-//
-//            }
-//        }
-        
     }
 }
 
