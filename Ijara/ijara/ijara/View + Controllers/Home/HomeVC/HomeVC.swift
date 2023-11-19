@@ -54,14 +54,14 @@ class HomeVC: UIViewController {
     var isUserSelectedAlcohol = false
     var isVerified = false
     var selectedNumberOfPeople: Int?
-    
     var priceInterval: (minHousePrice: Int, maxHousePrice: Int) = (500000, 15000000)
-        
+    
+    var isConfigured = false
+    
     //MARK: Life cycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
         setupColView()
         setupSubviews()
         locationManager.requestWhenInUseAuthorization()
@@ -69,7 +69,12 @@ class HomeVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        navigationController?.navigationBar.isHidden = true
+        
+        if !isConfigured {
+            getData()
+            isConfigured = true
+        }
+        
         navigationController?.navigationBar.backItem?.backButtonTitle = SetLanguage.setLang(type: .homeForBackButton)
     }
     

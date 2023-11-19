@@ -444,17 +444,22 @@ extension HomeDetailVC: RangeDelegate {
     
     func rangeSelected(dates: [Date]?) {
         var weeks = dates?.map{$0.currentDay != 1 ? $0.currentDay - 1 : 7}
-        weeks?.removeLast()
+        
         totalSum = 0
         dayCount = (dates?.count ?? 0) - 1
-        weeks?.forEach({ i in
-            if i == countryHouseDM?.weekday[0] || i == countryHouseDM?.weekday[1] {
-                totalSum += price.weekday
+        
+        guard let weeks = weeks else { return }
+        guard let countryHouseDM = countryHouseDM else { return }
+
+        weeks.forEach({ i in
+            if i == 5 || i == 6 {
+                totalSum += countryHouseDM.priceForWeekends
             } else {
-                totalSum += price.wrking
+                totalSum += countryHouseDM.priceForWorkingDays
             }
         })
-        
+    
         changePrice(sum: totalSum)
+        
     }
 }

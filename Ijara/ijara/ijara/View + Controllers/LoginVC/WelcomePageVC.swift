@@ -28,8 +28,6 @@ class WelcomePageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        API.getProducts { data in
-        }
         addChildForWelcomeVC()
     }
     

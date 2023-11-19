@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class ContactVC: UIViewController {
     
@@ -61,14 +62,38 @@ class ContactVC: UIViewController {
                     cell.sendMessageTF.layer.borderColor = UIColor.clear.cgColor
                     let text = cell.sendMessageTF.text ?? ""
                     if text.isEmpty {
-                        Alert.showAlert(forState: .warning, message: "Empty field")
+                        Alert.showAlert(forState: .warning, message: SetLanguage.setLang(type: .emptyField))
                         cell.sendMessageTF.layer.borderColor = UIColor.red.cgColor
                         cell.sendMessageTF.layer.borderWidth = 2
+                    } else {
+                        sendMessage()
                     }
                 }
             }
         }
-        
+    }
+
+    func sendMessage(){
+        if MFMailComposeViewController.canSendMail() {
+            let mailComposeViewController = MFMailComposeViewController()
+            mailComposeViewController.mailComposeDelegate = self
+            mailComposeViewController.setToRecipients(["sarvarqosimov094@gmail.com"])
+            mailComposeViewController.setSubject("My subject")
+            mailComposeViewController.setMessageBody("Body of message, sms from Sarvar", isHTML: false)
+            
+            Alert.showAlertWithBool(forState: .success, message: SetLanguage.setLang(type: .successfullySend), isShow: true)
+            DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                self.dismiss(animated: true)
+            }
+        } else {
+            print("Device not configured to send mail.")
+        }
     }
     
+}
+
+extension ContactVC: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true)
+    }
 }

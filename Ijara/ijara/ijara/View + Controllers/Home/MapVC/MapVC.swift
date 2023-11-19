@@ -29,6 +29,8 @@ class MapVC: UIViewController {
     var price = (weekday: 0, working:0)
     var idOfHouseForChild = 1
     
+    var isConfigured = false
+    
     //MARK: life cycles
     
     override func viewDidLoad() {
@@ -39,7 +41,15 @@ class MapVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("viewWillAppear in mapVC")
         likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as? [Int] ?? []
+        
+        if !isConfigured {
+            addChildHomeVC()
+            childForMapVC.view.isHidden = true
+            isConfigured = true
+        }
+        
         checkIsLikedForMapChildVC(idOfHouseForChild)
     }
     
@@ -71,6 +81,7 @@ class MapVC: UIViewController {
     }
     
     func addChildHomeVC() {
+        print("addChildHomeVC")
         childForMapVC = MapChildVC(nibName: "MapChildVC", bundle: nil)
         childForMapVC.delegate = self
         self.add(childForMapVC)
@@ -93,7 +104,7 @@ class MapVC: UIViewController {
             
             API.isMap = true
             strongSelf.setupMap()
-            strongSelf.addChildHomeVC()
+//            strongSelf.addChildHomeVC()
             strongSelf.setupDragGestureRecognizer()
             mapView.delegate = self
             locationManager.delegate = self
@@ -103,6 +114,7 @@ class MapVC: UIViewController {
                 strongSelf.setPinsAndRegion()
                 strongSelf.updateChildMapView(allHouses.first!.id)
             }
+            strongSelf.childForMapVC.view.isHidden = false
         }
     }
     

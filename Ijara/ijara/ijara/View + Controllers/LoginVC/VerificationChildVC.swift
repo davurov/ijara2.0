@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol VerificationDelegate {
+protocol VerificationDelegate: AnyObject {
     func verified()
 }
 
@@ -34,7 +34,7 @@ class VerificationChildVC: UIViewController {
     }
     
     @IBOutlet weak var otpView: OTPFieldView!
-    var delegete: VerificationDelegate?
+    weak var delegete: VerificationDelegate?
     var otpNumber = ""
     
     let partial = screenSize.height / 1.6

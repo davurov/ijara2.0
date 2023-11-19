@@ -137,6 +137,8 @@ extension SetLanguage{
         case .sendMessage         : return "Xabar yuborish"
         case .doneToolButton      : return "Bajarildi"
         case .homeForBackButton   : return "Bosh sahifa"
+        case .successfullySend    : return "Xabar muvaffaqiyatli yuborildi"
+        case .emptyField          : return "Maydon bo`sh"
         }
     }
 }
@@ -252,6 +254,8 @@ extension SetLanguage{
         case .sendMessage         : return "Отправить сообщение"
         case .doneToolButton      : return "Cделано"
         case .homeForBackButton   : return "Домой"
+        case .successfullySend    : return "Сообщение успешно отправлено"
+        case .emptyField          : return "Пустое поле"
         }
     }
 }
@@ -366,6 +370,8 @@ extension SetLanguage{
         case .sendMessage         : return "Send message"
         case .doneToolButton      : return "Done"
         case .homeForBackButton   : return "Home"
+        case .successfullySend    : return "Message successfully send"
+        case .emptyField          : return "Empty field"
         }
     }
 }
@@ -398,6 +404,6 @@ enum ClassType {
     //FilterVC
     case priceRange, minimum, maximum, guestType, famely, female, male, mix, additional, alcohol, verified, clearAll, show
     //Contact
-    case contactUs, mainPage, companyAdress, companyAdressDetail, workingTimeForCall, sendAnyTime, enterNameTF, enterEmailTF, enterThemTF, enterMessageTF, sendMessage, doneToolButton, homeForBackButton
+    case contactUs, mainPage, companyAdress, companyAdressDetail, workingTimeForCall, sendAnyTime, enterNameTF, enterEmailTF, enterThemTF, enterMessageTF, sendMessage, doneToolButton, homeForBackButton, successfullySend, emptyField
 }
 

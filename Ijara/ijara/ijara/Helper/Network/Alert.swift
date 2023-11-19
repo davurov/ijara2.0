@@ -30,7 +30,6 @@ class Alert {
         view.layer.masksToBounds = false
         view.backgroundColor = .white
         
-        
         let titleLbl = UILabel()
         titleLbl.frame = view.frame
         titleLbl.textColor = .white

@@ -15,12 +15,12 @@ class Net {
     class func request(isQuery: Bool = false, url: String, method: HTTPMethod, params: [String:Any]?, headers: HTTPHeaders?, withLoader: Bool, completion: @escaping (JSON?)->Void) {
         
         if ReachabilityDemo.isConnectedToNetwork() {
-            if withLoader {
-                Loader.start()
-            }
+//            if withLoader {
+//                Loader.start()
+//            }
             
             AF.request(url, method: method, parameters: params, encoding: isQuery ? URLEncoding.queryString : JSONEncoding.default, headers: headers).response { (response) in
-                Loader.stop()
+//                Loader.stop()
                 
                 guard let data = response.data else {
                     print("nil from response")

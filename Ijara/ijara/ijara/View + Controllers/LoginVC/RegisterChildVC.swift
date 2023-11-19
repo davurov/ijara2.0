@@ -64,7 +64,8 @@ class RegisterChildVC: UIViewController {
         AuthManager.shared.startAuth(phoneNumber: numberWithCode) { success in
             
             guard success else {
-                //Alert.showAlert(forState: .error, message: "Enter valid phone number")
+                Alert.showAlert(forState: .error, message: "Enter valid phone number")
+                print("AuthManager, error")
                 return
             }
             
@@ -76,6 +77,7 @@ class RegisterChildVC: UIViewController {
     
     @IBAction func startPressed(_ sender: Any) {
         if btnPressed == 1 {
+            print("phoneTF.text:", phoneTF.text ?? "")
             register(number: phoneTF.text ?? "")
         } else {
             delegete?.startPressed()

@@ -40,7 +40,6 @@
 		3D70CB562AB8A1510016C0B4 /* RulesTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D70CB542AB8A1510016C0B4 /* RulesTVC.xib */; };
 		3D70CB5A2AB8A6AC0016C0B4 /* RulesCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CB582AB8A6AC0016C0B4 /* RulesCVC.swift */; };
 		3D70CB5B2AB8A6AC0016C0B4 /* RulesCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D70CB592AB8A6AC0016C0B4 /* RulesCVC.xib */; };
-		3D73595B2A6DE0C200BA329F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D73595A2A6DE0C200BA329F /* AppDelegate.swift */; };
 		3D7359642A6DE0C500BA329F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D7359632A6DE0C500BA329F /* Assets.xcassets */; };
 		3D7359672A6DE0C500BA329F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D7359652A6DE0C500BA329F /* LaunchScreen.storyboard */; };
 		3D7359702A6DE14400BA329F /* WelcomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D73596E2A6DE14400BA329F /* WelcomePageVC.swift */; };
@@ -113,6 +112,7 @@
 		DBD74E3E2AA26C8F003096BB /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD74E3C2AA26C8F003096BB /* Header.swift */; };
 		DBD74E3F2AA26C8F003096BB /* Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD74E3D2AA26C8F003096BB /* Header.xib */; };
 		FF568C902B03964600E56EB9 /* Ex+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF568C8F2B03964600E56EB9 /* Ex+Array.swift */; };
+		FF568CC42B09CA7C00E56EB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF568CC32B09CA7C00E56EB9 /* AppDelegate.swift */; };
 		FFC03EA72AF0067C00AAF45C /* NewPriceRangeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC03EA62AF0067C00AAF45C /* NewPriceRangeTVC.swift */; };
 		FFC03EAB2AF9E55900AAF45C /* ContactVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC03EA82AF9E55700AAF45C /* ContactVC.xib */; };
 		FFC03EAC2AF9E55900AAF45C /* ContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC03EA92AF9E55800AAF45C /* ContactVC.swift */; };
@@ -163,7 +163,6 @@
 		3D70CB582AB8A6AC0016C0B4 /* RulesCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesCVC.swift; sourceTree = "<group>"; };
 		3D70CB592AB8A6AC0016C0B4 /* RulesCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RulesCVC.xib; sourceTree = "<group>"; };
 		3D7359572A6DE0C200BA329F /* ijara.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ijara.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D73595A2A6DE0C200BA329F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D7359632A6DE0C500BA329F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D7359662A6DE0C500BA329F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D7359682A6DE0C500BA329F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -238,6 +237,7 @@
 		DBD74E3C2AA26C8F003096BB /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		DBD74E3D2AA26C8F003096BB /* Header.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Header.xib; sourceTree = "<group>"; };
 		FF568C8F2B03964600E56EB9 /* Ex+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Array.swift"; sourceTree = "<group>"; };
+		FF568CC32B09CA7C00E56EB9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFC03EA62AF0067C00AAF45C /* NewPriceRangeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPriceRangeTVC.swift; sourceTree = "<group>"; };
 		FFC03EA82AF9E55700AAF45C /* ContactVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactVC.xib; sourceTree = "<group>"; };
 		FFC03EA92AF9E55800AAF45C /* ContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactVC.swift; sourceTree = "<group>"; };
@@ -458,7 +458,7 @@
 		3DD6DD212AA1B9320023E392 /* MainWindow */ = {
 			isa = PBXGroup;
 			children = (
-				3D73595A2A6DE0C200BA329F /* AppDelegate.swift */,
+				FF568CC32B09CA7C00E56EB9 /* AppDelegate.swift */,
 			);
 			path = MainWindow;
 			sourceTree = "<group>";
@@ -861,6 +861,7 @@
 				3D70CB512AB898C80016C0B4 /* NameTVC.swift in Sources */,
 				DBD74E2C2AA26C70003096BB /* HomeVC.swift in Sources */,
 				3D8A72882AB8CDD90051DE9D /* AdditionalTVC.swift in Sources */,
+				FF568CC42B09CA7C00E56EB9 /* AppDelegate.swift in Sources */,
 				3D70CB4D2AB7A49A0016C0B4 /* PhotoTVC.swift in Sources */,
 				3D0D05822A92947C00BDAFF3 /* Net.swift in Sources */,
 				3D0D05842A92975900BDAFF3 /* EndPoints.swift in Sources */,
@@ -876,7 +877,6 @@
 				3D70CB5A2AB8A6AC0016C0B4 /* RulesCVC.swift in Sources */,
 				FFC03EA72AF0067C00AAF45C /* NewPriceRangeTVC.swift in Sources */,
 				3D8A72BC2ABEBA420051DE9D /* MapTVC.swift in Sources */,
-				3D73595B2A6DE0C200BA329F /* AppDelegate.swift in Sources */,
 				3D8A73022AC205EA0051DE9D /* RuleFiltrTVC.swift in Sources */,
 				FFC03EB32AF9E6B100AAF45C /* SendMessageTVC.swift in Sources */,
 				3DBDDB1D2AAB97A90068E065 /* HouseByIdDM.swift in Sources */,

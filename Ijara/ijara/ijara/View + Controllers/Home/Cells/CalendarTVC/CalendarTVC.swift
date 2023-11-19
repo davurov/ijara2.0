@@ -16,13 +16,7 @@ protocol RangeDelegate: AnyObject {
 
 class CalendarTVC: UITableViewCell {
     
-    @IBOutlet weak var chooseDayOfVacationLbl: UILabel! {
-        didSet {
-            chooseDayOfVacationLbl.text = SetLanguage.setLang(type: .chooseDayOfVacationLbl)
-            chooseDayOfVacationLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
-        }
-    }
-    
+    @IBOutlet weak var chooseDayOfVacationLbl: UILabel!
     @IBOutlet weak var weekendPriceLbl: UILabel!
     @IBOutlet weak var workingPriceLbl: UILabel!
     @IBOutlet weak var weakdayPrice: UILabel!
@@ -31,19 +25,31 @@ class CalendarTVC: UITableViewCell {
     @IBOutlet weak var peopleView: UIView!
     @IBOutlet weak var calendarCont: UIView!
     weak var calendarView: FSCalendar!
-    
     @IBOutlet weak var numberOfPeopleLbl: UILabel!
     
     static let identifier: String = String(describing: CalendarTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
-    private var firstDate: Date?
-    private var lastDate: Date?
+    private var firstDate: Date? {
+        didSet {
+            print("firstData: ", firstDate)
+        }
+    }
+    private var lastDate: Date? {
+        didSet {
+            print("lastData: ", lastDate)
+        }
+    }
     weak var delegate: RangeDelegate?
-    var datesRange: [Date]?
+    var datesRange: [Date]? {
+        didSet {
+            print("datesRange: ", datesRange ?? [])
+        }
+    }
     var dateFormatter: DateFormatter!
     var sum = 1 {
         didSet {
+            print("sum: \(sum)")
             delegate?.personAdded(num: sum)
         }
     }
@@ -71,6 +77,9 @@ class CalendarTVC: UITableViewCell {
         numberOfPeopleLbl.text = SetLanguage.setLang(type: .numberOfPeople)
         numberOfPeopleLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         
+        chooseDayOfVacationLbl.text = SetLanguage.setLang(type: .chooseDayOfVacationLbl)
+        chooseDayOfVacationLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
+        
         peopleTF.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
         calendarView.register(CalendarCVC.self, forCellReuseIdentifier: "cell")
@@ -90,14 +99,13 @@ class CalendarTVC: UITableViewCell {
         }
     }
     
-    
     @IBAction func plusPressed(_ sender: Any) {
         sum += 1
         peopleTF.text = "\(sum)"
     }
 }
 
-extension CalendarTVC: FSCalendarDataSource, FSCalendarDelegate, UIScrollViewDelegate {
+extension CalendarTVC: FSCalendarDataSource, FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         // Customize the appearance of calendar cells here
         let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position) as! CalendarCVC
