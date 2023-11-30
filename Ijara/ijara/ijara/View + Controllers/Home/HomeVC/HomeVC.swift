@@ -27,7 +27,6 @@ class HomeVC: UIViewController {
     @IBOutlet weak var topContainer: UIView!
     @IBOutlet weak var filterBtn: UIButton!
     @IBOutlet var topViews: [UIView]!
-    
     @IBOutlet weak var mapLbl: UILabel!
     @IBOutlet weak var newsLbl: UILabel!
     @IBOutlet weak var contactsLbl: UILabel!
@@ -35,12 +34,9 @@ class HomeVC: UIViewController {
     //MARK: Variables
     
     let locationManager = CLLocationManager()
-    // temporary
-    let categoryNames = [SetLanguage.setLang(type: .allCategory),"Toshkent","Chorvoq","Chimyon","Qibray","Oq tosh"]
+    let categoryNames = [SetLanguage.setLang(type: .allCategory),"Toshkent","Chorvoq","Chimyon","Qibray"]
     var selectedRegion = SetLanguage.setLang(type: .allCategory)
     var filteredVillasID = [Int]()
-    var houseDM = [HouseDM]()
-    var searchedData = [HouseDM]()
     var isSelected = false
     var scrollFlag = false
     var allHouses = [CountryhouseData]()
@@ -62,6 +58,7 @@ class HomeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backButtonTitle = SetLanguage.setLang(type: .homeForBackButton)
         setupColView()
         setupSubviews()
         locationManager.requestWhenInUseAuthorization()
@@ -74,7 +71,8 @@ class HomeVC: UIViewController {
             getData()
             isConfigured = true
         }
-        
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.tintColor = AppColors.mainColor
         navigationController?.navigationBar.backItem?.backButtonTitle = SetLanguage.setLang(type: .homeForBackButton)
     }
     
@@ -103,20 +101,22 @@ class HomeVC: UIViewController {
     //MARK: - SHOW MAP
     @IBAction func showMap(_ sender: Any) {
         let vc = MapVC()
-        vc.modalPresentationStyle = .overFullScreen
-        self.present(vc, animated: true, completion: nil)
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func newsBtn(_ sender: Any) {
-        guard let botURL = URL.init(string: "https://bronla.uz/blog") else { return }
-        UIApplication.shared.open(botURL)
+        
+        let vc = NewsVC()
+        vc.hidesBottomBarWhenPushed = true
+        vc.navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func contactsPressed(_ sender: Any) {
         let vc = ContactVC(nibName: "ContactVC", bundle: nil)
-        vc.modalPresentationStyle = .fullScreen
-        vc.modalTransitionStyle = .coverVertical
-        present(vc, animated: true)
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: - Functions
@@ -178,7 +178,6 @@ class HomeVC: UIViewController {
         layoutForColView.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layoutForColView.itemSize = CGSize(width: UIScreen.main.bounds.width - 30, height: 355)
         layoutForColView.scrollDirection = .vertical
-        print(UIScreen.main.bounds.width, "UIScreen.main.bounds.width")
         
         colView.collectionViewLayout = layoutForColView
         
@@ -307,8 +306,7 @@ class HomeVC: UIViewController {
 //MARK: - Collection View Layout & Protocol Functions
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == categoryColView {
             return categoryNames.count
         } else {
@@ -368,12 +366,14 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         // changes unselected category background
         if collectionView == categoryColView {
             selectedRegion = categoryNames[indexPath.item]
+            
             if !isSelected {
                 let firstCell = categoryColView.cellForItem(at: IndexPath(row: 0, section: 0)) as? CategoryCVC
                 firstCell?.containerView.backgroundColor = .clear
                 firstCell?.categoryNameLbl.textColor = .black
                 isSelected = true
             }
+            
             let selectedCell = categoryColView.cellForItem(at: indexPath) as? CategoryCVC
             selectedCell?.containerView.backgroundColor = AppColors.mainColor
             selectedCell?.categoryNameLbl.textColor = .white
@@ -383,8 +383,9 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             vc.getData(id: allHouses[indexPath.row].id)
             vc.price.weekday = allHouses[indexPath.item].priceForWeekends
             vc.price.wrking = allHouses[indexPath.item].priceForWorkingDays
-            vc.modalPresentationStyle = .overFullScreen
-            present(vc, animated: true)
+            vc.hidesBottomBarWhenPushed = true
+            vc.navigationController?.navigationBar.prefersLargeTitles = false
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -480,8 +481,8 @@ extension HomeVC: CellDelegate {
         vc.getData(id: id)
         vc.price.weekday = price.weekend
         vc.price.wrking = price.working
-        vc.modalPresentationStyle = .overFullScreen
-        present(vc, animated: true)
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -509,7 +510,10 @@ extension HomeVC: FiltredDelegate {
         }
         
         colView.reloadData()
-        Loader.stop()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            Loader.stop()
+        }
     }
 }
 

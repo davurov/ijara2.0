@@ -69,14 +69,13 @@ class NewPriceRangeTVC: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
-        print("override init in npr")
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
-        print("required init in npr")
     }
+    
     //MARK: @objc functions
     
     @objc func sliderSwiping(_ gesture: UIPanGestureRecognizer){
@@ -118,7 +117,7 @@ class NewPriceRangeTVC: UITableViewCell {
         singleCordinate = 300/CGFloat(numberOfParts)
         
         minimumLbl.text = "\(SetLanguage.setLang(type: .minimum)): \n \(initMinPrice)"
-        maximumLbl.text = "\(SetLanguage.setLang(type: .minimum)): \n \(initMaxPrice)"
+        maximumLbl.text = "\(SetLanguage.setLang(type: .maximum)): \n \(initMaxPrice)"
         
     }
     

@@ -10,7 +10,6 @@ import Lottie
 
 public class Loader {
     
-    ///Shows custom Alert for a while
     class func start() {
         let loadV = UIView()
         loadV.tag = 1

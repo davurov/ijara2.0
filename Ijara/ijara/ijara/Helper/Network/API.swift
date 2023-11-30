@@ -9,28 +9,22 @@ import Foundation
 import UIKit
 import Alamofire
 import SwiftyJSON
-import Firebase
-import FirebaseFirestore
-import FirebaseAuth
-
 
 class API {
-    //MARK: - GET DATA
-    static let db = Firestore.firestore()
-    static var isMap = false
     
     class func getAllHouses(completion: @escaping ([CountryhouseData]?) -> Void){
         
         // 1. get all ids of villas
         
         var allVillasID: [Int] = []
-        API.getProducts {  houses in
-            guard let villas = houses else { completion(nil);  return  }
+        
+        API.getProducts { IDsOfHouses in
             
-            for villa in villas {
-                allVillasID.append(villa.id)
+            guard let IDsOfHouses = IDsOfHouses else { completion(nil); return }
+            
+            for id in IDsOfHouses {
+                allVillasID.append(id)
             }
-            
             receivedAllIds()
         }
         
@@ -56,75 +50,26 @@ class API {
         }
     }
     
-    class func getProducts(completion: @escaping ([HouseDM]?) -> Void){
+    class func getProducts(completion: @escaping ([Int]?) -> Void){
         
-        Net.request(url: Endpoints.products,
-                    method: .get, params: nil, headers: nil, withLoader: false) { data in
-            var houses = [HouseDM]()
-
-            Firebase.getIdFromFirebase { token in
-                if let tok = token {
-                    print("token", tok)
-                }
+        Net.request(url: Endpoints.products, method: .get, params: nil, headers: nil) { data in
+            
+            guard let data = data else { completion(nil) ; return }
+            
+            var housesIDs: [Int] = []
+            
+            for ID in data.arrayValue {
+                housesIDs.append(ID["id"].intValue)
             }
-
-            if let data = data {
-                for i in data.arrayValue {
-                    var house = HouseDM(
-                        id: i["id"].intValue,
-                        name: i["name"].stringValue,
-                        numberOfPeople: i["numberofpeople"].intValue,
-                        swimmingpool: [],
-                        province: i["province"].stringValue,
-                        provincename: i["provincename"].stringValue,
-                        workingdays: i["workingdays"].stringValue,
-                        weekends: i["weekends"].stringValue,
-                        images: [],
-                        approved: i["approved"].boolValue,
-                        alcohol: i["alcohol"].boolValue,
-                        reyting: i["reyting"].intValue,
-                        companylist: [],
-                        heart: i["heart"].boolValue,
-                        checkperday: i["checkperday"].intValue,
-                        listlocation: [])
-
-                    for j in  i["swimmingpool"].arrayValue {
-                        house.swimmingpool.append(Swimmingpool(
-                            id: j["id"].intValue,
-                            nsme: j["name"].stringValue,
-                            size: j["size"].stringValue,
-                            image: j["image"].stringValue))
-                    }
-
-                    for j in i["images"].arrayValue {
-                        house.images.append(j.stringValue)
-                    }
-
-                    for j in i["listlocation"].arrayValue {
-                        house.listlocation.append(j.doubleValue)
-                    }
-
-                    for j in i["companylist"].arrayValue {
-                        house.companylist.append(Companylist(
-                            id: j["id"].intValue,
-                            name: j["name"].stringValue,
-                            image: j["image"].stringValue))
-                    }
-
-                    houses.append(house)
-                }
-
-                completion(houses)
-            } else {
-                completion(nil)
-            }
+            
+            completion(housesIDs)
         }
     }
     
     /// `getDetailDataByID` function return house type of `CountryhouseData` by id
     class func getDetailDataByID(id: Int,completion: @escaping (CountryhouseData?) -> Void) {
         
-        Net.request(url: "https://bronla.uz/bronla/uz/data/api/CountryHouse/\(id)/", method: .get, params: nil, headers: nil, withLoader: false) { data in
+        Net.request(url: "\(Endpoints.products)\(id)/", method: .get, params: nil, headers: nil) { data in
             guard let data = data else {
                 print("can not get detail data")
                 completion(nil)
@@ -145,7 +90,7 @@ class API {
                 }
             }
             
-             var house = CountryhouseData(
+            let house = CountryhouseData(
                 id: i["id"].intValue,
                 name: i["name"].stringValue,
                 owner: i["owner"].stringValue,
@@ -204,10 +149,9 @@ class API {
             }
         }
     
-    
     //MARK: - GET ENTETAINMENT DATA
-    class func getEntertainmentData(lang: String,completion: @escaping ([Entertainmentdatum]?) -> Void) {
-        Net.request(url: Endpoints.getEntData, method: .get, params: nil, headers: nil, withLoader: false) { data in
+    class func getEntertainmentData(completion: @escaping ([Entertainmentdatum]?) -> Void) {
+        Net.request(url: Endpoints.getEntData, method: .get, params: nil, headers: nil) { data in
             if let data = data {
                 var enterData = [Entertainmentdatum]()
                 for i in data.arrayValue {
@@ -227,105 +171,16 @@ class API {
         }
     }
     
-    
-    //MARK: GET PRODUCTS BY ID
-    class func getProducts(id: Int,token: String,completion: @escaping (CountryhouseData?) -> Void) {
-        Net.request(url: Endpoints.getById + token + "/countryhouse/\(id).json?id=\(id)", method: .get, params: nil, headers: nil, withLoader: !API.isMap) { data in
-            if let data = data {
-
-                    let i = data["pageProps"]["countryhousedata"]
-                var house = CountryhouseData(
-                        id: i["id"].intValue,
-                        name: i["name"].stringValue,
-                        owner: i["owner"].stringValue,
-                        comment: i["comment"].stringValue,
-                        referencepoint: i["referencepoint"].stringValue,
-                        image: i["image"].stringValue,
-                        firstcalendar: i["firstcalendar"].stringValue,
-                        secondcalendar: i["secondcalendar"].stringValue,
-                        images: i["images"].arrayValue.map {$0.stringValue},
-                        videos: i["videos"].arrayValue.map {$0.stringValue},
-                        onlinebooking: i["onlinebooking"].boolValue,
-                        heart: i["heart"].boolValue,
-                        virtualtourpath: i["virtualtourpath"].stringValue,
-                        reyting: i["reyting"].doubleValue,
-                        entertainmentdata: i["entertainmentdata"].arrayValue.map {Entertainmentdatum(
-                            id: $0["id"].intValue,
-                            tag: $0["tag"].boolValue,
-                            type: $0["type"].stringValue,
-                            name: $0["name"].stringValue,
-                            image: $0["image"].stringValue,
-                            label: $0["label"].stringValue)},
-                        approved: i["approved"].boolValue,
-                        location: i["location"].stringValue,
-                        address: i["address"].stringValue,
-                        province: i["province"].stringValue,
-                        provinceID: i["provinceID"].intValue,
-                        firstphone: i["firstphone"].stringValue,
-                        secondphone: i["secondphone"].stringValue,
-                        holidays: i["holidays"].arrayValue.map {$0.stringValue},
-                        weekendsAreGivenToPerson: i["weekendsAreGivenToPerson"].boolValue,
-                        company: i["company"].arrayValue.map {Company(
-                            id: $0["id"].intValue,
-                            name: $0["name"].stringValue,
-                            image: $0["image"].stringValue)},
-                        seen: i["seen"].intValue,
-                        alcohol: i["alcohol"].boolValue,
-                        weekday: i["weekday"].arrayValue.map {$0.intValue},
-                        sleeping: i["sleeping"].intValue,
-                        bedroomsrooms: i["bedroomsrooms"].intValue,
-                        numberOfCalls: i["numberOfCalls"].intValue,
-                        numberofpeople: i["numberofpeople"].intValue,
-                        startTime: i["start_time"].stringValue,
-                        finishTime: i["finish_time"].stringValue,
-                        tileDisabled: i["tileDisabled"].arrayValue.map {$0.stringValue},
-                        listlocation: i["listlocation"].arrayValue.map {$0.doubleValue},
-                        date: i["date"].stringValue,
-                        card: i["card"].stringValue,
-                        cardowner: i["cardowner"].stringValue,
-                        status: i["status"].boolValue,
-                        priceForWorkingDays: 0,
-                        priceForWeekends: 0
-                    )
-                    
-                    i["payment"].arrayValue.forEach { paymentElement in
-                        house.priceForWeekends = paymentElement["payment"]["weekends"].intValue
-                    }
-                    
-                    i["payment"].arrayValue.forEach { paymentElement in
-                        house.priceForWeekends = paymentElement["payment"]["workingdays"].intValue
-                    }
-
-                        completion(house)
-            } else {
-                Firebase.changeTokenStatus()
-            }
-        }
-    }
-        
-        
-    }
-    
-    class Firebase {
-        class func getIdFromFirebase(completion: @escaping (String?) -> Void) {
-            let docRef = API.db.collection(Keys.fStore).document("1")
-            docRef.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    if let dataDescription = document.data() {
-                        if dataDescription["is_valid"] as! Bool {
-                            let data = dataDescription["token"] as? String
-                            completion(data)
-                        }
-                    }
-                } else {
-                    print("error")
-                    completion(nil)
-                }
-            }
-        }
-        
-        class func changeTokenStatus() {
+    class func getNews(){
+        Net.request(url: "https://bronla.uz/blog", method: .get, params: nil, headers: nil) { json in
+            guard let data = json else { return }
             
+            let blogData = data["pageProps"]["blogdata"]
+            
+            print("news datas: \n title: \(blogData["title"].stringValue), \n description: \(blogData["description"].stringValue), \n image: \(blogData["image"].stringValue) ")
         }
     }
+    
+}
+
 

@@ -14,29 +14,23 @@ class BedsTVC: UITableViewCell {
     
     static var numberOfPeople: Int?
     
-    @IBOutlet weak var numberOfPeopleLbl: UILabel! {
-        didSet {
-            numberOfPeopleLbl.text = SetLanguage.setLang(type: .numberOfPeople)
-            numberOfPeopleLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
-        }
-    }
+    @IBOutlet weak var numberOfPeopleLbl: UILabel!
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     var nums = ["1","2","3","4","5","6","7","8","9+"]
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupViews()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
     }
     
     //MARK: functions
     
     func setupViews() {
+        numberOfPeopleLbl.text = SetLanguage.setLang(type: .numberOfPeople)
+        numberOfPeopleLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(CategoryCVC.nib(), forCellWithReuseIdentifier: CategoryCVC.identifier)
@@ -64,6 +58,7 @@ extension BedsTVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCVC.identifier, for: indexPath) as! CategoryCVC
+        
         cell.categoryNameLbl.text = nums[indexPath.row]
         
         return cell

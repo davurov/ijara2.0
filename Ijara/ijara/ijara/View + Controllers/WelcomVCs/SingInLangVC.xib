@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SingInLangVC" customModule="ijara" customModuleProvider="target">
+            <connections>
+                <outlet property="chooseLangLbl" destination="8ON-mw-lsT" id="OlT-iU-N5t"/>
+                <outlet property="getStartBtn" destination="8VN-fb-vT9" id="06G-DT-tmI"/>
+                <outlet property="headerView" destination="luO-aB-V62" id="Yxb-sb-5Ij"/>
+                <outlet property="popView" destination="vQO-RN-jl6" id="0Md-Z0-BTK"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="langBtnConViews" destination="KcJ-nU-jFb" collectionClass="NSMutableArray" id="wdD-rS-8ss"/>
+                <outletCollection property="langBtnConViews" destination="0pC-gK-UPn" collectionClass="NSMutableArray" id="kOT-gA-Eqe"/>
+                <outletCollection property="langBtnConViews" destination="jRO-Ez-Qgw" collectionClass="NSMutableArray" id="6Co-Jm-br2"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nature" translatesAutoresizingMaskIntoConstraints="NO" id="luO-aB-V62">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
+                    <color key="backgroundColor" red="0.41176474089999998" green="0.18039217590000001" blue="0.6784313917" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="luO-aB-V62" secondAttribute="height" multiplier="207:118" id="8F7-jU-FyU"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZF-yf-R34">
+                    <rect key="frame" x="0.0" y="236" width="414" height="626"/>
+                    <color key="backgroundColor" red="0.96078431610000004" green="0.96078431610000004" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQO-RN-jl6">
+                    <rect key="frame" x="16" y="133.66666666666669" width="382" height="728.33333333333326"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="vUV-QG-Kne">
+                            <rect key="frame" x="60" y="49" width="262" height="280"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tilni tanlang" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ON-mw-lsT">
+                                    <rect key="frame" x="0.0" y="0.0" width="262" height="24"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="mab-pt-Xh0">
+                                    <rect key="frame" x="0.0" y="48" width="262" height="232"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcJ-nU-jFb">
+                                            <rect key="frame" x="0.0" y="0.0" width="262" height="56"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rJa-Nq-EkI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="262" height="56"/>
+                                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="O'zbekcha" image="uzFlag">
+                                                        <color key="titleColor" red="0.031372549020000001" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="langBtnsPressed:" destination="-1" eventType="touchUpInside" id="9rf-qS-u0A"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="rJa-Nq-EkI" firstAttribute="top" secondItem="KcJ-nU-jFb" secondAttribute="top" id="8Wg-xt-93I"/>
+                                                <constraint firstAttribute="bottom" secondItem="rJa-Nq-EkI" secondAttribute="bottom" id="KxR-vR-Dwr"/>
+                                                <constraint firstAttribute="trailing" secondItem="rJa-Nq-EkI" secondAttribute="trailing" id="a49-4g-riS"/>
+                                                <constraint firstAttribute="height" constant="56" id="edj-tu-jas"/>
+                                                <constraint firstItem="rJa-Nq-EkI" firstAttribute="leading" secondItem="KcJ-nU-jFb" secondAttribute="leading" id="xXf-4D-mvh"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <integer key="value" value="24"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0pC-gK-UPn">
+                                            <rect key="frame" x="0.0" y="88.000000000000028" width="262" height="56"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Go-Lw-laJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="262" height="56"/>
+                                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="Русский" image="ruFlag">
+                                                        <color key="titleColor" red="0.031372549020000001" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="langBtnsPressed:" destination="-1" eventType="touchUpInside" id="pbE-4d-py5"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="56" id="ITe-XQ-tIQ"/>
+                                                <constraint firstItem="7Go-Lw-laJ" firstAttribute="top" secondItem="0pC-gK-UPn" secondAttribute="top" id="W1K-B6-dyc"/>
+                                                <constraint firstAttribute="bottom" secondItem="7Go-Lw-laJ" secondAttribute="bottom" id="e0P-r3-rw0"/>
+                                                <constraint firstItem="7Go-Lw-laJ" firstAttribute="leading" secondItem="0pC-gK-UPn" secondAttribute="leading" id="pMD-3N-AUP"/>
+                                                <constraint firstAttribute="trailing" secondItem="7Go-Lw-laJ" secondAttribute="trailing" id="yxc-Ye-cn4"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <integer key="value" value="24"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jRO-Ez-Qgw">
+                                            <rect key="frame" x="0.0" y="176.00000000000003" width="262" height="56"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wa0-ry-qWm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="262" height="56"/>
+                                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="English" image="engFlag">
+                                                        <color key="titleColor" red="0.031372549020000001" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="langBtnsPressed:" destination="-1" eventType="touchUpInside" id="brE-Jz-9Fa"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="wa0-ry-qWm" firstAttribute="leading" secondItem="jRO-Ez-Qgw" secondAttribute="leading" id="9os-Ww-TSr"/>
+                                                <constraint firstAttribute="bottom" secondItem="wa0-ry-qWm" secondAttribute="bottom" id="IAm-Ao-6a9"/>
+                                                <constraint firstAttribute="trailing" secondItem="wa0-ry-qWm" secondAttribute="trailing" id="PkJ-pm-BdU"/>
+                                                <constraint firstItem="wa0-ry-qWm" firstAttribute="top" secondItem="jRO-Ez-Qgw" secondAttribute="top" id="SP3-ef-66C"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <integer key="value" value="24"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VN-fb-vT9">
+                            <rect key="frame" x="21" y="667.33333333333337" width="340" height="45"/>
+                            <color key="backgroundColor" name="customGreen"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="VhR-gU-g5z"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Get started!">
+                                <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </buttonConfiguration>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="goToSignUpBtnPressed:" destination="-1" eventType="touchUpInside" id="koI-xr-5Hf"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="vUV-QG-Kne" firstAttribute="top" secondItem="vQO-RN-jl6" secondAttribute="top" constant="49" id="0xg-Ad-ei5"/>
+                        <constraint firstAttribute="trailing" secondItem="vUV-QG-Kne" secondAttribute="trailing" constant="60" id="1ya-sq-jpf"/>
+                        <constraint firstAttribute="trailing" secondItem="8VN-fb-vT9" secondAttribute="trailing" constant="21" id="45t-pC-jsO"/>
+                        <constraint firstItem="8VN-fb-vT9" firstAttribute="leading" secondItem="vQO-RN-jl6" secondAttribute="leading" constant="21" id="WGm-H0-VM2"/>
+                        <constraint firstAttribute="bottom" secondItem="8VN-fb-vT9" secondAttribute="bottom" constant="16" id="kGP-8k-eUv"/>
+                        <constraint firstItem="vUV-QG-Kne" firstAttribute="leading" secondItem="vQO-RN-jl6" secondAttribute="leading" constant="60" id="xDW-A5-reg"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="vQO-RN-jl6" secondAttribute="bottom" id="E4f-yR-J2e"/>
+                <constraint firstItem="CZF-yf-R34" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Qug-xH-MEv"/>
+                <constraint firstItem="vQO-RN-jl6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="RZG-xP-TLX"/>
+                <constraint firstItem="CZF-yf-R34" firstAttribute="top" secondItem="luO-aB-V62" secondAttribute="bottom" id="UGg-GX-Xo2"/>
+                <constraint firstItem="CZF-yf-R34" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ZjZ-JR-zsp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vQO-RN-jl6" secondAttribute="trailing" constant="16" id="dVJ-GT-xo3"/>
+                <constraint firstItem="luO-aB-V62" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="e1g-Ct-FQV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="luO-aB-V62" secondAttribute="trailing" id="fN1-1T-2fb"/>
+                <constraint firstItem="vQO-RN-jl6" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.812872" id="rML-iT-yqz"/>
+                <constraint firstItem="CZF-yf-R34" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="vKH-8b-cG6"/>
+                <constraint firstItem="luO-aB-V62" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ygM-Td-iPX"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="124.55357142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="engFlag" width="24.333333969116211" height="24.333333969116211"/>
+        <image name="nature" width="375" height="236"/>
+        <image name="ruFlag" width="24.333333969116211" height="24.333333969116211"/>
+        <image name="uzFlag" width="24.333333969116211" height="24.333333969116211"/>
+        <namedColor name="customGreen">
+            <color red="0.41200000047683716" green="0.18000000715255737" blue="0.67799997329711914" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

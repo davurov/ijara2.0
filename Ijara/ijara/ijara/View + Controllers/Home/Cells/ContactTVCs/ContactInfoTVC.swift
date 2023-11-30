@@ -17,6 +17,7 @@ class ContactInfoTVC: UITableViewCell {
     @IBOutlet weak var contactDescription: UILabel!
     
     //MARK: Elements
+    
     var index = 0
     var openLocationMap: (() -> Void)?
     

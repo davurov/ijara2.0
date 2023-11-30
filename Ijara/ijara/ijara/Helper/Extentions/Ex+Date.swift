@@ -6,12 +6,13 @@
 //
 
 import Foundation
+
 extension Date {
     static var yesterday: Date { return Date().dayBefore }
     static var tomorrow:  Date { return Date().dayAfter }
-    static var morning: Date {return Date().morning}
-    static var night: Date {return Date().night}
-    static var currentHour : Int {return Date().currentHour}
+    static var morning: Date { return Date().morning }
+    static var night: Date { return Date().night }
+    static var currentHour : Int { return Date().currentHour }
     
     var noon: Date {
         return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
@@ -45,7 +46,6 @@ extension Date {
     var month: Int {
         return Calendar.current.component(.month,  from: self)
     }
-    
     
     var isLastDayOfMonth: Bool {
         return dayAfter.month != month

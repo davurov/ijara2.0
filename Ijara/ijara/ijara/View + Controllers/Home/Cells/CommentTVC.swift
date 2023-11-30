@@ -10,7 +10,7 @@ enum CommentState {
     case less
     case noBtn
 }
-protocol CommentDelegate:AnyObject {
+protocol CommentDelegate: AnyObject {
     func readMorePressed(size: CGFloat)
 }
 
@@ -21,12 +21,7 @@ class CommentTVC: UITableViewCell {
     static let identifier: String = String(describing: CommentTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
-    @IBOutlet weak var ownerNameLbl: UILabel! {
-        didSet {
-            ownerNameLbl.text = SetLanguage.setLang(type: .commentByOwner)
-            ownerNameLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
-        }
-    }
+    @IBOutlet weak var ownerNameLbl: UILabel!
     @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var commentLbl: UILabel!
     @IBOutlet weak var readBtn: UIButton! {
@@ -34,6 +29,7 @@ class CommentTVC: UITableViewCell {
             readBtn.setTitle(SetLanguage.setLang(type: .readMoreBtn), for: .normal)
         }
     }
+    
     @IBOutlet weak var borderConst: NSLayoutConstraint!
     
     var commentState: CommentState = .less
@@ -59,6 +55,10 @@ class CommentTVC: UITableViewCell {
     }
     
     func setUpViews() {
+        contentView.backgroundColor = .clear
+        borderView.backgroundColor = .clear
+        ownerNameLbl.text = SetLanguage.setLang(type: .commentByOwner)
+        ownerNameLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         
         borderView.addBorder(size: 0.5)
         readBtn.addBorder(size: 1)
@@ -72,13 +72,6 @@ class CommentTVC: UITableViewCell {
             delegate?.readMorePressed(size: height + 110)
         }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
     
     @IBAction func readPressed(_ sender: Any) {
         

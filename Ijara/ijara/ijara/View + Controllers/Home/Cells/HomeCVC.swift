@@ -22,7 +22,6 @@ protocol CellDelegate: AnyObject {
 
 class HomeCVC: UICollectionViewCell {
     
-    //elements copy
     let containerView   = UIView()
     var collectionView  : UICollectionView!
     var pageController  = UIView()
@@ -40,15 +39,13 @@ class HomeCVC: UICollectionViewCell {
     let outerPool       = UIImageView()
     let s_vForPool      = UIStackView()
     var alcoholImg      = UIImageView()
+    let sc              = SCPageControlView()
     
-    
+    static let identifier: String = String(describing: HomeCVC.self)
     var images = [String]()
     var price = (working: 0, weekend:0)
     var id = 0
     weak var cellDelegate: CellDelegate?
-    // Home Cell Identifier
-    static let identifier: String = String(describing: HomeCVC.self)
-    let sc = SCPageControlView()
     /// variable to check that is it first time called
     var isConfigured = false
     
@@ -74,7 +71,7 @@ class HomeCVC: UICollectionViewCell {
         }
     }
     
-    func setupViews(){
+    private func setupViews(){
         setupCollView()
         setupPageController()
 
@@ -159,6 +156,19 @@ class HomeCVC: UICollectionViewCell {
         alcoholImg.translatesAutoresizingMaskIntoConstraints = false
         alcoholImg.image = #imageLiteral(resourceName: "true")
         
+        setupConstraints()
+        
+        for guestType in [familyImg, womens, mans, mixImg] {
+            NSLayoutConstraint.activate([
+                guestType.heightAnchor.constraint(equalToConstant: 25),
+                guestType.widthAnchor.constraint(equalToConstant: 25)
+            ])
+        }
+        
+        configureCell()
+    }
+    
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             containerView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 0),
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
@@ -211,15 +221,7 @@ class HomeCVC: UICollectionViewCell {
             alcoholImg.heightAnchor.constraint(equalToConstant: 40),
             alcoholImg.widthAnchor.constraint(equalToConstant: 40)
         ])
-        
-        for guestType in [familyImg, womens, mans, mixImg] {
-            NSLayoutConstraint.activate([
-                guestType.heightAnchor.constraint(equalToConstant: 25),
-                guestType.widthAnchor.constraint(equalToConstant: 25)
-            ])
-        }
-        
-        configureCell()
+
     }
     
     func updateCell(id: Int, name: String, price: (workingDay: Int, weekend: Int), location: String, images: [String]){
@@ -260,21 +262,16 @@ class HomeCVC: UICollectionViewCell {
         collectionView.reloadData()
     }
     
-    func isVerified(v: Bool,
-                    alco: Bool,
-                    typeId: [Companylist],
-                    pool: [Swimmingpool]) {
+    func isVerified(v: Bool, alco: Bool, typeId: [Companylist], pool: [Swimmingpool]) {
         
         verifiedImg.isHidden = !v
         alcoholImg.image = UIImage(named: "\(alco)")
-//        alcoholImg.image = UIImage(named: "\(alco)")
         
         var compId = [Int]()
         
         for i in typeId {
             compId.append(i.id)
         }
-        
         
         for i in 1...4 {
             if compId.contains(i) {
@@ -321,8 +318,8 @@ extension HomeCVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         return images.count >= 5 ? 5 : images.count
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCVC.identifier, for: indexPath) as! PhotoCVC
         
         cell.imageCont.layer.cornerRadius = 10
@@ -331,12 +328,11 @@ extension HomeCVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         return cell
     }
     
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width,
-                      height: collectionView.frame.height)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(
+            width: collectionView.frame.width,
+            height: collectionView.frame.height
+        )
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

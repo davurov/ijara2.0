@@ -15,7 +15,6 @@ class CategoryCVC: UICollectionViewCell {
     static let identifier: String = String(describing: CategoryCVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCell()

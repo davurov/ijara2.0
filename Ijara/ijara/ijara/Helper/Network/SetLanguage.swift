@@ -5,13 +5,6 @@
 //  Created by Abduraxmon on 14/08/23.
 //
 
-//
-//  SetLanguage.swift
-//  ijara
-//
-//  Created by Abduraxmon on 14/08/23.
-//
-
 import Foundation
 
 class SetLanguage {
@@ -19,7 +12,7 @@ class SetLanguage {
         let lang = UserDefaults.standard.string(forKey: Keys.LANG)
         if lang == "uz" {
             return SetLanguage.getUzValue(type: type)
-        }else if lang == "ru" {
+        } else if lang == "ru" {
             return SetLanguage.getRuValue(type: type)
         } else {
             return SetLanguage.getEnValue(type: type)
@@ -42,7 +35,6 @@ extension SetLanguage{
             
             ///`        HouseVC
         case .searchTfPlaceholder : return "Qidirish"
-        case .nearBy              : return "Yaqindagi"
         case .map                 : return "Xarita"
         case .news                : return "Yangiliklar"
         case .contacts            : return "Kontaktlar"
@@ -78,8 +70,9 @@ extension SetLanguage{
         case .openLocationMessage     : return "Yo'nalishni ochish uchun dasturni tanlang"
             
             ///`        LikedHousesVC
-        case .wishlists: return "Istaklar ro'yxati"
-        case .delete   : return "O'chirish"
+        case .wishlists           : return "Istaklar ro'yxati"
+        case .wishlistsForBackBtn : return "Ro`yxat"
+        case .delete              : return "O'chirish"
             
             ///`        Tabbar
         case .menu:  return "Menu"
@@ -87,6 +80,7 @@ extension SetLanguage{
             
             ///`           ProfileVC
         case .profileTitle                : return "Shaxsiy kabinet"
+        case .profileForBackBtn           : return "Kabinet"
         case .user                        : return "Foydalanuvchini ismi"
         case .showProfile                 : return "Profilni ko`rish"
         case .emptyTfError                : return "Iltimos, barcha maydonlarni to'ldiring"
@@ -103,6 +97,8 @@ extension SetLanguage{
         case .deleteAccauntWarningMessage : return "Akkauntingizni o'chirishni xohlayotganingizga aminmisiz ?"
         case .no                          : return "Yo`q"
         case .yes                         : return "Ha"
+        case .firstNameTF                 : return "Ism"
+        case .lastNameTF                  : return "Familiya"
             
             ///`           MapVC
         case .looking  : return "Qidirilmoqda..."
@@ -132,7 +128,7 @@ extension SetLanguage{
         case .sendAnyTime         : return "Bizga istalgan vaqtda so'rov yuboring"
         case .enterNameTF         : return "Ismingizni kiriting"
         case .enterEmailTF        : return "Elektron pochtangizni kiriting"
-        case .enterThemTF         : return "Ularni kiriting"
+        case .enterThemTF         : return "Mavzularni kiriting"
         case .enterMessageTF      : return "Xabarni kiriting"
         case .sendMessage         : return "Xabar yuborish"
         case .doneToolButton      : return "Bajarildi"
@@ -158,7 +154,6 @@ extension SetLanguage{
             
             ///`        HouseVC
         case .searchTfPlaceholder : return "Ищите сейчас"
-        case .nearBy              : return "Рядом"
         case .map                 : return "Карта"
         case .news                : return "Новости"
         case .contacts            : return "Контакты"
@@ -170,7 +165,7 @@ extension SetLanguage{
         case .sumLbl                  : return "Сум"
         case .callBtn                 : return "Вызов"
         case .viewsLbl                : return "Просмотры"
-        case .hostedByLbl             : return "Размещенный"
+        case .hostedByLbl             : return "Владелец"
         case .peopleLbl               : return "люди"
         case .bedroomsLbl             : return "спальни"
         case .bedsLbl                 : return "кровати"
@@ -189,14 +184,15 @@ extension SetLanguage{
         case .chooseDayOfVacationLbl  : return "Выберите день отпуска"
         case .fridayAndSaturday       : return "Пятница и суббота:"
         case .otherDays               : return "Другие дни:"
-        case .numberOfPeople          : return "Количество человек"
+        case .numberOfPeople          : return "Количество людей"
         case .openLocation            : return "Открыть адрес"
         case .openLocationMessage     : return "Выберите приложение, чтобы открыть направление"
         
             
             ///`        LikedHousesVC
-        case .wishlists: return "Списки желаний"
-        case .delete   : return "Удалить"
+        case .wishlists           : return "Список желаний"
+        case .wishlistsForBackBtn : return "Список"
+        case .delete              : return "Удалить"
             
             ///`        Tabbar
         case .menu:  return "Меню"
@@ -204,6 +200,7 @@ extension SetLanguage{
             
             ///`           ProfileVC
         case .profileTitle                : return "Профиль"
+        case .profileForBackBtn           : return "Профиль"
         case .user                        : return "Имя пользователя"
         case .showProfile                 : return "Показать профиль"
         case .emptyTfError                : return "Пожалуйста, заполните все поля"
@@ -220,6 +217,8 @@ extension SetLanguage{
         case .deleteAccauntWarningMessage : return "Вы уверены, что хотите удалить свою учетную запись?"
         case .no                          : return "Нет"
         case .yes                         : return "Да"
+        case .firstNameTF                 : return "Имя"
+        case .lastNameTF                  : return "Фамилия"
             
             ///`           MapVC
         case .looking  : return "Поиск..."
@@ -230,10 +229,10 @@ extension SetLanguage{
         case .minimum   : return "Минимальный"
         case .maximum   : return "Максимальный"
         case .guestType : return "Гостевой тип"
-        case .famely    : return "Семья"
-        case .female    : return "Женский"
-        case .male      : return "Mужчина"
-        case .mix       : return "Cмешение"
+        case .famely    : return "Для семейных"
+        case .female    : return "Для женщин"
+        case .male      : return "Для мужчин"
+        case .mix       : return "Смешанный"
         case .additional: return "Дополнительный"
         case .alcohol   : return "Алкоголь"
         case .verified  : return "Проверенный"
@@ -271,11 +270,10 @@ extension SetLanguage{
         case .enterCodeLbl        : return "Enter OTP code here"
         case .verifyBtn           : return "Verify now"
         case .getStartBtn         : return "Start"
-        case .introLbl            : return "We will find a house for rent for you"
+        case .introLbl            : return "We will find a house for renting for you"
             
             ///`        HouseVC
         case .searchTfPlaceholder : return "Search now"
-        case .nearBy              : return "Near by"
         case .map                 : return "Map"
         case .news                : return "News"
         case .contacts            : return "Contacts"
@@ -287,7 +285,7 @@ extension SetLanguage{
         case .sumLbl                  : return "Sum"
         case .callBtn                 : return "Call"
         case .viewsLbl                : return "Views"
-        case .hostedByLbl             : return "Hosted by"
+        case .hostedByLbl             : return "Owner"
         case .peopleLbl               : return "people"
         case .bedroomsLbl             : return "bedrooms"
         case .bedsLbl                 : return "beds"
@@ -307,12 +305,13 @@ extension SetLanguage{
         case .fridayAndSaturday       : return "Friday and Saturday:"
         case .otherDays               : return "Other days:"
         case .numberOfPeople          : return "Number of people"
-        case .openLocation            : return "Open :ocation"
+        case .openLocation            : return "Open location"
         case .openLocationMessage     : return "Choose an app to open direction"
             
             ///`        LikedHousesVC
-        case .wishlists          : return "Wishlists"
-        case .delete             : return "Delete"
+        case .wishlists           : return "Wishlists"
+        case .wishlistsForBackBtn : return "List"
+        case .delete              : return "Delete"
             
             ///`        Tabbar
         case .menu               :  return "Menu"
@@ -320,6 +319,7 @@ extension SetLanguage{
             
             ///`          ProfileVC
         case .profileTitle                : return "Profile"
+        case .profileForBackBtn           : return "Profile"
         case .user                        : return "Name of user"
         case .showProfile                 : return "Show profile"
         case .emptyTfError                : return "Please complete all fields"
@@ -330,15 +330,17 @@ extension SetLanguage{
         case .chooseLanguage              : return "Choose language"
         case .cancelTitle                 : return "Cancel"
         case .privcyPolicy                : return "Privcy policy"
-        case .otherApps                   : return "Other app"
+        case .otherApps                   : return "Other apps"
         case .logOut                      : return "Log out"
         case .deleteAccaunt               : return "Delete accaunt"
         case .deleteAccauntWarningMessage : return "Are you sure that you want to delete your account ?"
         case .no                          : return "No"
         case .yes                         : return "Yes"
+        case .firstNameTF                 : return "First name"
+        case .lastNameTF                  : return "Last name"
             
             ///`           MapVC
-        case .looking  : return "Lookin..."
+        case .looking  : return "Looking..."
         case .moreInfo : return "More info"
             
             ///`        FilterVC
@@ -346,7 +348,7 @@ extension SetLanguage{
         case .minimum   : return "Minimum"
         case .maximum   : return "Maximum"
         case .guestType : return "Guest type"
-        case .famely    : return "Famely"
+        case .famely    : return "Family"
         case .female    : return "Female"
         case .male      : return "Male"
         case .mix       : return "Mix"
@@ -365,12 +367,12 @@ extension SetLanguage{
         case .sendAnyTime         : return "Send us a request at any time"
         case .enterNameTF         : return "Enter your name"
         case .enterEmailTF        : return "Enter your email"
-        case .enterThemTF         : return "Enter them"
+        case .enterThemTF         : return "Enter theme"
         case .enterMessageTF      : return "Enter message"
         case .sendMessage         : return "Send message"
         case .doneToolButton      : return "Done"
         case .homeForBackButton   : return "Home"
-        case .successfullySend    : return "Message successfully send"
+        case .successfullySend    : return "Message is successfully sent"
         case .emptyField          : return "Empty field"
         }
     }
@@ -390,13 +392,13 @@ enum ClassType {
     //Tabbar
     case menu, liked
     //HomeVC
-    case searchTfPlaceholder, nearBy, map, news, contacts, allCategory
+    case searchTfPlaceholder, map, news, contacts, allCategory
     //HomeDetailVC
     case priceLbl, depositLbl, sumLbl, viewsLbl, hostedByLbl, peopleLbl, bedsLbl, bedroomsLbl, readMoreBtn, readLess,  locationLbl, chooseDayOfVacationLbl, fridayAndSaturday, otherDays, numberOfPeople, openLocation, openLocationMessage
     //LikedVC
-    case wishlists, delete
+    case wishlists, wishlistsForBackBtn, delete
     //ProfileVC
-    case profileTitle, user, showProfile, emptyTfError, saveBtn, settings, about, appLanguage, chooseLanguage, cancelTitle, privcyPolicy, otherApps, logOut, deleteAccaunt, deleteAccauntWarningMessage, no, yes
+    case profileTitle, profileForBackBtn, user, showProfile, emptyTfError, saveBtn, settings, about, appLanguage, chooseLanguage, cancelTitle, privcyPolicy, otherApps, logOut, deleteAccaunt, deleteAccauntWarningMessage, no, yes, firstNameTF, lastNameTF
     //HomeDetailVC
     case rules, additionalFeatures, showAllElementsBtn, additionaFeaturesOffers, commentByOwner, contactInfo, phoneLbl, comingTime, leavingTime, callBtn
     //MapVC

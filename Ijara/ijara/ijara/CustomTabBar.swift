@@ -28,8 +28,10 @@ private extension CustomTabBar {
         vc.tabBarItem = UITabBarItem(title: SetLanguage.setLang(type: .menu),
                                      image: image,
                                      tag: 0)
-        
-        return vc//UINavigationController(rootViewController: vc)
+//        vc.navigationController?.navigationBar.prefersLargeTitles = true
+//        vc.navigationController?.navigationBar.largeContentTitle = "Bronla"
+//        vc.title = "Bronla"
+        return UINavigationController(rootViewController: vc)
     }
     
     func createContactViewController() -> UIViewController {

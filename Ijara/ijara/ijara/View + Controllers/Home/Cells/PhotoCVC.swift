@@ -22,15 +22,6 @@ class PhotoCVC: UICollectionViewCell {
         houseImage.sd_cancelCurrentImageLoad()
     }
     
-    func toggleSize() {
-        isExpanded.toggle()
-        
-        UIView.animate(withDuration: 0.3) {
-            self.houseImage.transform = self.isExpanded ? CGAffineTransform(scaleX: 1.2, y: 1.2) : .identity
-            self.layoutIfNeeded()
-        }
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -38,6 +29,15 @@ class PhotoCVC: UICollectionViewCell {
     
     func loadImage(url: String) {
         houseImage.sd_setImage(with: URL(string: base_URL + url), placeholderImage: UIImage(named: "1"))
+    }
+    
+    func toggleSize() {
+        isExpanded.toggle()
+        
+        UIView.animate(withDuration: 0.3) {
+            self.houseImage.transform = self.isExpanded ? CGAffineTransform(scaleX: 1.2, y: 1.2) : .identity
+            self.layoutIfNeeded()
+        }
     }
     
 }

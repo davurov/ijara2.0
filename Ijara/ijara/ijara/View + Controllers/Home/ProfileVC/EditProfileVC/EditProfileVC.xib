@@ -12,7 +12,6 @@
             <connections>
                 <outlet property="lastNameTF" destination="h5a-5r-C5V" id="tSy-Bk-gbW"/>
                 <outlet property="nameTF" destination="m37-EH-i5f" id="44Y-TK-UkO"/>
-                <outlet property="phoneNumberLbl" destination="GqO-IH-pUf" id="wpp-Ii-W0o"/>
                 <outlet property="profileBtn" destination="cbm-NU-YiQ" id="bdL-ea-Wry"/>
                 <outlet property="profileIMG" destination="LYg-QC-YTA" id="yaA-UQ-EzP"/>
                 <outlet property="profileView" destination="Sst-3j-Yxj" id="oeU-9m-79A"/>
@@ -26,10 +25,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="239-gk-l87">
-                    <rect key="frame" x="20" y="109" width="353" height="270"/>
+                    <rect key="frame" x="20" y="109" width="353" height="239"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fKf-4K-Qd2">
-                            <rect key="frame" x="0.0" y="0.0" width="353" height="121"/>
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="90"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sst-3j-Yxj">
                                     <rect key="frame" x="131.66666666666666" y="0.0" width="90" height="90"/>
@@ -63,19 +62,10 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+998 90 010-85-10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GqO-IH-pUf">
-                                    <rect key="frame" x="112" y="100" width="129" height="21"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="21" id="8Kd-6v-xFP"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="IZN-ic-q4n">
-                            <rect key="frame" x="0.0" y="145" width="353" height="125"/>
+                            <rect key="frame" x="0.0" y="114" width="353" height="125"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m37-EH-i5f">
                                     <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
@@ -116,33 +106,21 @@
                         <action selector="saveInformationBtnPressed:" destination="-1" eventType="touchUpInside" id="Vl7-L9-zbY"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hav-dm-p68">
-                    <rect key="frame" x="0.0" y="64" width="86" height="34.333333333333343"/>
-                    <color key="tintColor" red="0.16078431369999999" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system" title="  Back"/>
-                    <connections>
-                        <action selector="backPressed:" destination="-1" eventType="touchUpInside" id="PBA-5p-clw"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="239-gk-l87" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="8kt-ta-tha"/>
                 <constraint firstItem="1Qn-nw-fkK" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="-20" id="FUg-pa-DpY"/>
-                <constraint firstItem="hav-dm-p68" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="5" id="Qx2-4K-ROQ"/>
                 <constraint firstItem="239-gk-l87" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Ysd-5L-t3k"/>
                 <constraint firstAttribute="trailing" secondItem="1Qn-nw-fkK" secondAttribute="trailing" constant="20" id="Zfi-hd-cCp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="239-gk-l87" secondAttribute="trailing" constant="20" id="doP-fJ-1KR"/>
                 <constraint firstItem="1Qn-nw-fkK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="egZ-Bt-CYY"/>
-                <constraint firstItem="hav-dm-p68" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="mxT-8A-L2j"/>
             </constraints>
             <point key="canvasLocation" x="136.64122137404578" y="19.718309859154932"/>
         </view>
     </objects>
     <resources>
-        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

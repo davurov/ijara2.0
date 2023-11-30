@@ -15,29 +15,43 @@ class LikedHousesVC: UIViewController {
     @IBOutlet weak var animationView: UIView!
     
     //MARK: Variables
-    var likedHousesID = [Int]()
-    var likedHouses = [CountryhouseData]() {
+    var likedHousesID = [Int]() {
         didSet {
-            tableView.reloadData()
+            if likedHousesID.isEmpty {
+                showAnimation(true)
+            } else {
+                showAnimation(false)
+            }
         }
     }
-    var lottieView: LottieAnimationView?
+    
+    var likedDates: [String] = [] {
+        didSet {
+            likedDates = UserDefaults.standard.stringArray(forKey: Keys.likedDate) ?? []
+        }
+    }
+    
+    var likedHouses = [CountryhouseData]()
+    var lottieView = LottieAnimationView()
     
     //MARK: Life cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
+        
+        navigationItem.backButtonTitle = SetLanguage.setLang(type: .wishlistsForBackBtn)
+        navigationController?.navigationBar.tintColor = AppColors.mainColor
         wishlistsLbl.text = SetLanguage.setLang(type: .wishlists)
         setUpViews()
-     }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+        
         likedHousesID = UserDefaults.standard.array(forKey: Keys.likedHouses) as? [Int] ?? []
         getData()
-        showAnimation()
-     }
+    }
     
     //MARK: Functions
     
@@ -46,33 +60,27 @@ class LikedHousesVC: UIViewController {
         tableView.dataSource = self
         tableView.register(LikedCell.nib(), forCellReuseIdentifier: LikedCell.identifier)
         tableView.backgroundColor = .clear
-    }
-    
-    /// Animate lottieView if not liked houses
-    func showAnimation() {
-        guard likedHousesID.isEmpty else {
-            lottieView?.stop()
-            tableView.isHidden = false
-            return
-        }
-        guard lottieView == nil else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.tableView.isHidden = true
-            }
-            lottieView!.play()
-            return
-        }
         
-        guard var lottieView = lottieView else { return }
-        
-        tableView.isHidden = true
         lottieView = .init(name: "animation_lmhzc44c")
         lottieView.frame = animationView.bounds
         lottieView.contentMode = .scaleAspectFit
         lottieView.loopMode = .loop
         lottieView.animationSpeed = 0.5
         animationView.addSubview(lottieView)
-        lottieView.play()
+        
+    }
+    
+    /// Animate lottieView if not liked houses
+    func showAnimation(_ shouldShow: Bool) {
+        if shouldShow {
+            tableView.isHidden = true
+            lottieView.isHidden = false
+            lottieView.play()
+        } else {
+            lottieView.stop()
+            lottieView.isHidden = true
+            tableView.isHidden = false
+        }
     }
     
     func getData() {
@@ -94,10 +102,10 @@ class LikedHousesVC: UIViewController {
                 self.likedHouses.append(likedHouse)
                 
                 if counterOfResponses == self.likedHousesID.count {
+                    self.likedDates = UserDefaults.standard.stringArray(forKey: Keys.likedDate) ?? []
                     self.tableView.reloadData()
                     Loader.stop()
                 }
-                
             }
         }
     }
@@ -105,6 +113,7 @@ class LikedHousesVC: UIViewController {
     func deleteAt(ind: Int) {
         likedHouses.remove(at: ind)
         likedHousesID.remove(at: ind)
+        likedDates.remove(at: ind)
         UserDefaults.standard.set(likedHousesID, forKey: Keys.likedHouses)
         tableView.reloadData()
     }
@@ -112,8 +121,9 @@ class LikedHousesVC: UIViewController {
     func moreInfoPressed(id: Int) {
         let vc = HomeDetailVC()
         vc.getData(id: id)
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        vc.hidesBottomBarWhenPushed = true
+        vc.navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -128,9 +138,11 @@ extension LikedHousesVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LikedCell.identifier, for: indexPath) as! LikedCell
         
-        cell.loadImage(url: likedHouses[indexPath.row].images[0])
+        cell.loadImage(url: likedHouses[indexPath.row].images[0], likedDate: likedDates[indexPath.row])
         cell.nameLbl.text = likedHouses[indexPath.row].name
         cell.backgroundColor = .clear
+        cell.layer.cornerRadius = 10
+        cell.clipsToBounds = true
         
         return cell
     }
@@ -153,7 +165,6 @@ extension LikedHousesVC: UITableViewDelegate {
         
         delete.image = UIImage(systemName: "trash.fill")
         delete.backgroundColor = .systemPink
-        
         
         return UISwipeActionsConfiguration(actions: [delete])
     }

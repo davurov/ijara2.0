@@ -6,11 +6,11 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class ProfileVC: UIViewController {
     
     //MARK: Elements
+    
     @IBOutlet weak var profileTitle: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var userImage: UIImageView!
@@ -21,86 +21,62 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var appLanguageLbl: UILabel!
     @IBOutlet weak var privacyPolicyLbl: UILabel!
     @IBOutlet weak var OtherAppsLbl: UILabel!
-    @IBOutlet weak var logOutLbl: UILabel!
     
     //MARK: Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
+        navigationItem.backButtonTitle = SetLanguage.setLang(type: .profileTitle)
+        navigationController?.navigationBar.tintColor = AppColors.mainColor
         setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppear in profile")
+        
         userImage.image = UIImage().loadImage() ?? UIImage(systemName: "person.fill")
-        let info = UserDefaults.standard.array(forKey: Keys.userInfo) as? [String]
-        nameLbl.text = info?[1] ?? "User"
+        
+        let userInfos = UserDefaults.standard
+        nameLbl.text = userInfos.string(forKey: Keys.userName) ?? SetLanguage.setLang(type: .user)
     }
     
     //MARK: @IBAction functions
     @IBAction func profilePressed(_ sender: Any) {
+        navigationItem.backButtonTitle = SetLanguage.setLang(type: .profileForBackBtn)
+        navigationItem.backBarButtonItem?.tintColor = AppColors.mainColor
         let vc = EditProfileVC()
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func aboutPressed(_ sender: Any) {
-        guard let botURL = URL.init(string: "https://bronla.uz/about") else { return }
-        UIApplication.shared.open(botURL)
+        let vc = AboutAppVC()
+        vc.infos = StaticDatas.aboutsUs
+        vc.title = SetLanguage.setLang(type: .about)
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func appLanguagePressed(_ sender: Any) {
-        let english : ((UIAlertAction) -> Void) = { (action) in
-            UserDefaults.standard.setValue("en", forKey: Keys.LANG)
-            self.reloadApp()
-        }
-        
-        let uzbek : ((UIAlertAction) -> Void) = { (action) in
-            UserDefaults.standard.setValue("uz", forKey: Keys.LANG)
-            self.reloadApp()
-        }
-        let russian : ((UIAlertAction) -> Void) = { (action) in
-            UserDefaults.standard.setValue("ru", forKey: Keys.LANG)
-            self.reloadApp()
-        }
-        
-        showSystemAlert(title: SetLanguage.setLang(type: .chooseLanguage), message: nil, alertType: .actionSheet, actionTitles: ["English", "Русский","O`zbekcha", SetLanguage.setLang(type: .cancelTitle)], style: [.default, .default, .default, .cancel], actions: [english,russian,uzbek,nil])
+        let vc = ChooseLanguageVC()
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
     }
     
     @IBAction func privacyPolice(_ sender: Any) {
-        guard let botURL = URL.init(string: "https://bronla.uz/privacy-policy") else { return }
-        UIApplication.shared.open(botURL)
+        let vc = AboutAppVC()
+        vc.infos = StaticDatas.privcyPolicy
+        vc.title = SetLanguage.setLang(type: .privcyPolicy)
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func otherApps(_ sender: Any) {
-        guard let botURL = URL.init(string: "https://apps.apple.com/us/developer/uchqun-tulavov") else { return }
-        UIApplication.shared.open(botURL)
-    }
-    
-    @IBAction func deletePressed(_ sender: Any) {
-        showAlertDelete()
+        let vc = OtherAppsVC()
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: functions
-    func showAlertDelete() {
-        let vc = UIAlertController(title: SetLanguage.setLang(type: .deleteAccaunt), message: SetLanguage.setLang(type: .deleteAccauntWarningMessage), preferredStyle: .alert)
-        
-        let ok = UIAlertAction(title: SetLanguage.setLang(type: .yes), style: .destructive) { _ in
-            let vc = SingInLangVC(nibName: "SingInLangVC", bundle: nil)
-            let nav = UINavigationController(rootViewController: vc)
-            UserDefaults.standard.set(nil, forKey: Keys.token)
-            (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = nav
-        }
-        
-        let no = UIAlertAction(title: SetLanguage.setLang(type: .no), style: .default)
-        
-        vc.addAction(no)
-        vc.addAction(ok)
-        
-        present(vc, animated: true)
-        
-    }
     
     private func setupViews(){
         profileTitle.text     = SetLanguage.setLang(type: .profileTitle)
@@ -110,16 +86,6 @@ class ProfileVC: UIViewController {
         appLanguageLbl.text   = SetLanguage.setLang(type: .appLanguage)
         privacyPolicyLbl.text = SetLanguage.setLang(type: .privcyPolicy)
         OtherAppsLbl.text     = SetLanguage.setLang(type: .otherApps)
-        logOutLbl.text        = SetLanguage.setLang(type: .logOut)
-    }
-    
-    private func reloadApp(){
-        setupViews()
-        Loader.start()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            Loader.stop()
-            (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = CustomTabBar()
-        }
     }
     
 }

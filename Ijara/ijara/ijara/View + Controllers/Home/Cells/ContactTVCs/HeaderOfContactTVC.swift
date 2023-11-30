@@ -26,7 +26,6 @@ class HeaderOfContactTVC: UITableViewCell {
         setupViews()
     }
     
-    
     @IBAction func mainPageBtnPressed(_ sender: Any) {
         guard let backDelegate = backDelegate else { return }
         backDelegate.backPressed()

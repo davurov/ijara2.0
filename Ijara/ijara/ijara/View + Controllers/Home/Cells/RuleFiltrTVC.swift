@@ -12,66 +12,25 @@ class RuleFiltrTVC: UITableViewCell {
     static let identifier: String = String(describing: RuleFiltrTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
-    static var btnPressed = Array(repeating: false, count: 4) //{
-//        didSet {
-//            RuleFiltrTVC.selectedParametrs = []
-//            for role in btnPressed.enumerated() {
-//                if role.element {
-//                    switch role.offset {
-//                    case 0: RuleFiltrTVC.selectedParametrs.append(1)
-//                    case 1: RuleFiltrTVC.selectedParametrs.append(2)
-//                    case 2: RuleFiltrTVC.selectedParametrs.append(3)
-//                    default: RuleFiltrTVC.selectedParametrs.append(4)
-//                    }
-//                }
-//            }
-//        }
-  //  }
+    static var btnPressed = Array(repeating: false, count: 4)
     
-//    static var selectedParametrs = [Int]()
-        
     @IBOutlet var guestView: [UIView]!
     
-    @IBOutlet weak var guestTypeLbl: UILabel! {
-        didSet {
-            guestTypeLbl.text = SetLanguage.setLang(type: .guestType)
-            guestTypeLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
-        }
-    }
+    @IBOutlet weak var guestTypeLbl: UILabel!
     
-    @IBOutlet weak var famelyLbl: UILabel!{
-        didSet {
-            famelyLbl.text = SetLanguage.setLang(type: .famely)
-        }
-    }
+    @IBOutlet weak var famelyLbl: UILabel!
     
-    @IBOutlet weak var femaleLbl: UILabel!{
-        didSet {
-            femaleLbl.text = SetLanguage.setLang(type: .female)
-        }
-    }
+    @IBOutlet weak var femaleLbl: UILabel!
     
-    @IBOutlet weak var maleLbl: UILabel!{
-        didSet {
-            maleLbl.text = SetLanguage.setLang(type: .male)
-        }
-    }
+    @IBOutlet weak var maleLbl: UILabel!
     
-    @IBOutlet weak var mixLbl: UILabel!{
-        didSet {
-            mixLbl.text = SetLanguage.setLang(type: .mix)
-        }
-    }
+    @IBOutlet weak var mixLbl: UILabel!
+    
     //MARK: Life cycles
     
     override func awakeFromNib() {
         super.awakeFromNib()
        setUpViews()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
     }
     
     //MARK: @IBAction functions
@@ -104,8 +63,15 @@ class RuleFiltrTVC: UITableViewCell {
     }
     
     func setUpViews() {
+        guestTypeLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
+        guestTypeLbl.text = SetLanguage.setLang(type: .guestType)
+        famelyLbl.text    = SetLanguage.setLang(type: .famely)
+        femaleLbl.text    = SetLanguage.setLang(type: .female)
+        mixLbl.text       = SetLanguage.setLang(type: .mix)
+        maleLbl.text      = SetLanguage.setLang(type: .male)
+        
         for i in 0..<guestView.count {
-            guestView[i].addBorder(size: 0.5)
+            guestView[i].addBorder(size: 1)
             guestView[i].layer.cornerRadius = 20
         }
     }

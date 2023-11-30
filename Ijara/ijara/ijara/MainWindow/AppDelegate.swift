@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import FirebaseCore
-import FirebaseAuth
 import IQKeyboardManager
 
 @main
@@ -18,17 +16,17 @@ var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         IQKeyboardManager.shared().isEnabled = true
-        FirebaseApp.configure()
         
         window = UIWindow()
-        // if user not signed up
-        let token = UserDefaults.standard.string(forKey: Keys.token)
-        if Auth.auth().currentUser == nil {
+        /// If user firs time entered to app , `isFirstTime` will equal to false. Because  default value of `isFirstTime` is false and befor get values, we did not set any value yet.
+        var isFirstTime = UserDefaults.standard.bool(forKey: Keys.isUserEnteredFirstTime)
+        
+        if !isFirstTime {
+            UserDefaults.standard.set(true, forKey: Keys.isUserEnteredFirstTime)
             let vc = SingInLangVC(nibName: "SingInLangVC", bundle: nil)
             let nav = UINavigationController(rootViewController: vc)
             window?.rootViewController = nav
         } else {
-            //if user signed in
             let vc = CustomTabBar()
             window?.rootViewController = vc
         }

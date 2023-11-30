@@ -13,7 +13,6 @@
                 <outlet property="OtherAppsLbl" destination="43E-Ny-3VI" id="UZd-xb-XTM"/>
                 <outlet property="aboutLbl" destination="dld-uc-RgC" id="Bl0-W2-KtW"/>
                 <outlet property="appLanguageLbl" destination="Cli-fC-jYs" id="czC-i6-eVJ"/>
-                <outlet property="logOutLbl" destination="ad0-Pz-P7E" id="rI8-Es-tUC"/>
                 <outlet property="nameLbl" destination="iaF-Ax-St0" id="EPA-KU-3b4"/>
                 <outlet property="privacyPolicyLbl" destination="9Ec-mk-bJg" id="aYl-5p-0gG"/>
                 <outlet property="profileTitle" destination="6iP-jg-VbH" id="CeZ-Wg-URO"/>
@@ -119,7 +118,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GjB-rE-yWs">
-                    <rect key="frame" x="9" y="287" width="368" height="300"/>
+                    <rect key="frame" x="9" y="287" width="368" height="240"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCp-fg-zVe">
                             <rect key="frame" x="0.0" y="0.0" width="368" height="60"/>
@@ -365,50 +364,6 @@
                                 <constraint firstAttribute="height" constant="60" id="vmr-wx-p93"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXQ-UY-quW">
-                            <rect key="frame" x="0.0" y="240" width="368" height="60"/>
-                            <subviews>
-                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZI-o5-C6j">
-                                    <rect key="frame" x="0.0" y="59" width="368" height="1"/>
-                                    <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="1" id="Dvt-v2-xK3"/>
-                                    </constraints>
-                                </view>
-                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="8cR-LQ-JTQ">
-                                    <rect key="frame" x="10" y="19.333333333333371" width="348" height="21.666666666666671"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ad0-Pz-P7E">
-                                            <rect key="frame" x="0.0" y="0.0" width="348" height="21.666666666666668"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" systemColor="systemPinkColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </stackView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwG-BR-njE">
-                                    <rect key="frame" x="0.0" y="0.0" width="368" height="59"/>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                    <connections>
-                                        <action selector="deletePressed:" destination="-1" eventType="touchUpInside" id="zPg-1x-Ki4"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="8cR-LQ-JTQ" secondAttribute="trailing" constant="10" id="0Za-NC-SIP"/>
-                                <constraint firstItem="8cR-LQ-JTQ" firstAttribute="centerY" secondItem="YXQ-UY-quW" secondAttribute="centerY" id="2Lu-xn-hbF"/>
-                                <constraint firstAttribute="bottom" secondItem="rZI-o5-C6j" secondAttribute="bottom" id="3cf-vW-yCL"/>
-                                <constraint firstItem="rZI-o5-C6j" firstAttribute="top" secondItem="dwG-BR-njE" secondAttribute="bottom" id="8EC-pZ-BRX"/>
-                                <constraint firstItem="rZI-o5-C6j" firstAttribute="leading" secondItem="YXQ-UY-quW" secondAttribute="leading" id="Hte-pZ-Hbt"/>
-                                <constraint firstItem="dwG-BR-njE" firstAttribute="leading" secondItem="YXQ-UY-quW" secondAttribute="leading" id="Hvk-MU-P3L"/>
-                                <constraint firstAttribute="height" constant="60" id="NPp-T1-IN3"/>
-                                <constraint firstItem="dwG-BR-njE" firstAttribute="top" secondItem="YXQ-UY-quW" secondAttribute="top" id="SfI-Xn-HHr"/>
-                                <constraint firstAttribute="trailing" secondItem="dwG-BR-njE" secondAttribute="trailing" id="VtC-H6-SwM"/>
-                                <constraint firstItem="8cR-LQ-JTQ" firstAttribute="leading" secondItem="YXQ-UY-quW" secondAttribute="leading" constant="10" id="akB-Bl-pzu"/>
-                                <constraint firstAttribute="trailing" secondItem="rZI-o5-C6j" secondAttribute="trailing" id="yj5-oB-E6M"/>
-                            </constraints>
-                        </view>
                     </subviews>
                 </stackView>
             </subviews>
@@ -444,9 +399,6 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

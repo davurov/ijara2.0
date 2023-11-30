@@ -17,7 +17,6 @@ class MapTVC: UITableViewCell {
     static let identifier: String = String(describing: MapTVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
-    
     @IBOutlet weak var locationLbl: UILabel! {
         didSet {
             locationLbl.text = SetLanguage.setLang(type: .locationLbl)

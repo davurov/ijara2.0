@@ -104,7 +104,7 @@ class FiltrVC: UIViewController {
     }
     
     func getData() {
-        API.getEntertainmentData(lang: "uz") { data in
+        API.getEntertainmentData() { data in
             if let data = data {
                 self.enterData = data
                 self.tableView.reloadData()

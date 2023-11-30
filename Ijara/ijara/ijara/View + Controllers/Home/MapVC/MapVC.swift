@@ -41,7 +41,11 @@ class MapVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppear in mapVC")
+        
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.backgroundColor = .clear
+        navigationItem.backButtonTitle = SetLanguage.setLang(type: .map)
+        
         likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as? [Int] ?? []
         
         if !isConfigured {
@@ -53,8 +57,8 @@ class MapVC: UIViewController {
         checkIsLikedForMapChildVC(idOfHouseForChild)
     }
     
-    deinit {
-        print("deinit map vc")
+    override func viewDidDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.backgroundColor = .white
     }
     
     //MARK: functions
@@ -81,7 +85,6 @@ class MapVC: UIViewController {
     }
     
     func addChildHomeVC() {
-        print("addChildHomeVC")
         childForMapVC = MapChildVC(nibName: "MapChildVC", bundle: nil)
         childForMapVC.delegate = self
         self.add(childForMapVC)
@@ -102,9 +105,7 @@ class MapVC: UIViewController {
             
             strongSelf.allHouses = allHouses
             
-            API.isMap = true
             strongSelf.setupMap()
-//            strongSelf.addChildHomeVC()
             strongSelf.setupDragGestureRecognizer()
             mapView.delegate = self
             locationManager.delegate = self
@@ -218,10 +219,6 @@ class MapVC: UIViewController {
     }
 
     //MARK: @IBAction functions
-
-    @IBAction func backButton(_ sender: Any) {
-        dismiss(animated: true)
-    }
     
     @IBAction func whereBtnPressed(_ sender: Any) {
         
@@ -316,15 +313,13 @@ extension MapVC: UIGestureRecognizerDelegate {
 //MARK: MapChildDelegate
 extension MapVC: MapChildDelegate {
     func moreInfoPressed(id: Int, images: [String]) {
-        print("\(id) from moreInfo")
         let vc = HomeDetailVC()
         vc.getData(id: id)
-        vc.modalPresentationStyle = .overFullScreen
-        present(vc, animated: true)
         vc.images = images
         vc.id = id
         vc.price.weekday = price.weekday
         vc.price.wrking = price.working
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func didSwipe(dir: Direction) {

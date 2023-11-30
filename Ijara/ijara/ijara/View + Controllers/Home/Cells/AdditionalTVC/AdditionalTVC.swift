@@ -18,18 +18,9 @@ class AdditionalTVC: UITableViewCell {
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var additionalFeaturesLbl: UILabel! {
-        didSet {
-            additionalFeaturesLbl.text = SetLanguage.setLang(type: .additionalFeatures)
-            additionalFeaturesLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
-        }
-    }
+    @IBOutlet weak var additionalFeaturesLbl: UILabel!
     
-    @IBOutlet weak var showBtn: UIButton! {
-        didSet {
-            showBtn.setTitle(SetLanguage.setLang(type: .showAllElementsBtn), for: .normal)
-        }
-    }
+    @IBOutlet weak var showBtn: UIButton!
     
     @IBOutlet weak var tableViewConst: NSLayoutConstraint!
     
@@ -69,6 +60,10 @@ class AdditionalTVC: UITableViewCell {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(AditionalChildTVC.nib(), forCellReuseIdentifier: AditionalChildTVC.identifier)
+        
+        showBtn.setTitle(SetLanguage.setLang(type: .showAllElementsBtn), for: .normal)
+        additionalFeaturesLbl.text = SetLanguage.setLang(type: .additionalFeatures)
+        additionalFeaturesLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
     }
     
     func clearChanges(){

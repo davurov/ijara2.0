@@ -10,45 +10,44 @@ import UIKit
 
 //MARK: Lift Child
 extension UIViewController {
-     func liftChild(height: CGFloat, child: UIViewController) {
+    func liftChild(height: CGFloat, child: UIViewController) {
         UIView.animate(withDuration: 0.2) {
             child.view.transform = CGAffineTransform(translationX: 0, y: height)
         }
     }
 }
 
-
-extension UIViewController{
+extension UIViewController {
     
     func setUpNavigation(title: String, titleFontSize: Int, barBtnColor: UIColor, largetitle: Bool) {
         
         navigationController?.navigationBar.topItem?.title = ""
         
         navigationController?.navigationBar.prefersLargeTitles = largetitle
-           
+        
         navigationItem.title = title
         navigationController?.navigationBar.tintColor = barBtnColor
         
     }
     
-        func hideBar(){
-            let nav = UINavigationController()
-            
-            nav.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            nav.navigationBar.shadowImage = UIImage()
-            nav.navigationBar.isTranslucent = true
-            nav.view.backgroundColor = .clear
-        }
-
+    func hideBar(){
+        let nav = UINavigationController()
+        
+        nav.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        nav.navigationBar.shadowImage = UIImage()
+        nav.navigationBar.isTranslucent = true
+        nav.view.backgroundColor = .clear
+    }
+    
     
     func backBtn(nav: UINavigationController?, name: String = "chevronLeft", tinColor: UIColor = .white) {
         
-            let yourBackImage = UIImage(named: name)
-            nav?.navigationBar.backIndicatorImage = yourBackImage
-            nav?.navigationBar.topItem?.title = ""
-            nav?.navigationBar.tintColor = tinColor
-            nav?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
-        }
+        let yourBackImage = UIImage(named: name)
+        nav?.navigationBar.backIndicatorImage = yourBackImage
+        nav?.navigationBar.topItem?.title = ""
+        nav?.navigationBar.tintColor = tinColor
+        nav?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
+    }
     
     var isSmallScreen : Bool {
         if UIScreen.main.bounds.height < 670 {
@@ -56,7 +55,7 @@ extension UIViewController{
         }
         return false
     }
-
+    
 }
 
 //MARK: Small screen for collection view
@@ -71,7 +70,6 @@ extension UICollectionViewCell {
     
 }
 
-
 //MARK: Small screen for table view
 extension UITableViewCell {
     
@@ -79,7 +77,7 @@ extension UITableViewCell {
         
         if UIScreen.main.bounds.height < 670 {
             return true
-        }else {
+        } else {
             return false
         }
         
@@ -93,12 +91,12 @@ extension UITableViewCell {
 extension UIViewController{
     //System alert shows
     public func showSystemAlert(title: String?,
-                          message: String?,
-                          alertType: UIAlertController.Style,
-                          actionTitles: [String?],
-                          style: [UIAlertAction.Style],
-                          actions: [((UIAlertAction) -> Void)?],
-                          preferredActionIndex: Int? = nil) {
+                                message: String?,
+                                alertType: UIAlertController.Style,
+                                actionTitles: [String?],
+                                style: [UIAlertAction.Style],
+                                actions: [((UIAlertAction) -> Void)?],
+                                preferredActionIndex: Int? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: alertType)
         alert.view.tintColor = AppColors.mainColor
         
@@ -117,7 +115,7 @@ extension UIViewController{
 //MARK: PanGesture
 extension UIViewController {
     
-     static let minimumVelocityToHide: CGFloat = 1500
+    static let minimumVelocityToHide: CGFloat = 1500
     
     static let minimumScreenRatioToHide: CGFloat = 0.2
     
@@ -138,20 +136,20 @@ extension UIViewController {
             let y = max(0, translation.y)
             slideViewVerticallyTo(y)
             self.view.backgroundColor = .clear
-
+            
         case .ended:
             // If pan ended, decide it we should close or reset the view
             // based on the final position and the speed of the gesture
             let translation = panGesture.translation(in: view)
             let velocity = panGesture.velocity(in: view)
             let closing = (translation.y > self.view.frame.size.height * UIViewController.minimumScreenRatioToHide) ||
-                (velocity.y > UIViewController.minimumVelocityToHide)
+            (velocity.y > UIViewController.minimumVelocityToHide)
             
             if closing {
                 UIView.animate(withDuration: UIViewController.animationDuration, animations: {
                     // If closing, animate to the bottom of the view
                 }, completion: { (isCompleted) in
-                
+                    
                     self.dismiss(animated: true, completion: nil)
                     if isCompleted {
                         // Dismiss the view when it dissapeared
@@ -172,7 +170,7 @@ extension UIViewController {
             
         }
     }
-  
+    
 }
 
 //MARK: SHOW and HIDE CHILD
@@ -182,7 +180,6 @@ extension UIViewController {
         addChild(child)
         
         // saving view controllerts name to defoults. not to add two exact childs
-        let name = String(describing: type(of: child))
         
         child.view.frame = self.view.bounds
         child.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -203,13 +200,13 @@ extension UIViewController {
 
 //MARK: This is to remove child view controllers
 extension UIViewController {
-        
-  func removeChild() {
-    self.children.forEach {
-      $0.willMove(toParent: nil)
-      $0.view.removeFromSuperview()
-      $0.removeFromParent()
+    
+    func removeChild() {
+        self.children.forEach {
+            $0.willMove(toParent: nil)
+            $0.view.removeFromSuperview()
+            $0.removeFromParent()
+        }
     }
-  }
     
 }
