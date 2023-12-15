@@ -18,7 +18,7 @@ class API {
         
         var allVillasID: [Int] = []
         
-        API.getProducts { IDsOfHouses in
+        API.getProductsID { IDsOfHouses in
             
             guard let IDsOfHouses = IDsOfHouses else { completion(nil); return }
             
@@ -31,6 +31,7 @@ class API {
         func receivedAllIds(){
             // 2. get all houses by id of each house
             
+//            let lang = UserDefaults.standard.string(forKey: Keys.LANG) ?? "uz"
             var allHouses: [CountryhouseData] = []
             
             var counter = 0
@@ -50,7 +51,7 @@ class API {
         }
     }
     
-    class func getProducts(completion: @escaping ([Int]?) -> Void){
+    class func getProductsID(completion: @escaping ([Int]?) -> Void){
         
         Net.request(url: Endpoints.products, method: .get, params: nil, headers: nil) { data in
             
@@ -67,9 +68,10 @@ class API {
     }
     
     /// `getDetailDataByID` function return house type of `CountryhouseData` by id
-    class func getDetailDataByID(id: Int,completion: @escaping (CountryhouseData?) -> Void) {
+    class func getDetailDataByID(id: Int, completion: @escaping (CountryhouseData?) -> Void) {
+        let currentLang = UserDefaults.standard.string(forKey: Keys.LANG) ?? "uz"
         
-        Net.request(url: "\(Endpoints.products)\(id)/", method: .get, params: nil, headers: nil) { data in
+        Net.request(url: "\(Endpoints.products)\(id)/?lang=\(currentLang)", method: .get, params: nil, headers: nil) { data in
             guard let data = data else {
                 print("can not get detail data")
                 completion(nil)
@@ -151,7 +153,13 @@ class API {
     
     //MARK: - GET ENTETAINMENT DATA
     class func getEntertainmentData(completion: @escaping ([Entertainmentdatum]?) -> Void) {
-        Net.request(url: Endpoints.getEntData, method: .get, params: nil, headers: nil) { data in
+        var currentLang = UserDefaults.standard.string(forKey: Keys.LANG) ?? "uz"
+        
+        if currentLang == "en" {
+            currentLang = "uz"
+        }
+        
+        Net.request(url: Endpoints.getEntData + "/?lang=\(currentLang)", method: .get, params: nil, headers: nil) { data in
             if let data = data {
                 var enterData = [Entertainmentdatum]()
                 for i in data.arrayValue {
@@ -171,16 +179,139 @@ class API {
         }
     }
     
-    class func getNews(){
-        Net.request(url: "https://bronla.uz/blog", method: .get, params: nil, headers: nil) { json in
-            guard let data = json else { return }
+    //MARK: - getTaxiServices
+    class func getTaxiServices(completion: @escaping ([TaxiDM]?) -> Void) {
+        let currentLang = UserDefaults.standard.string(forKey: Keys.LANG) ?? "uz"
+
+        Net.request(url: Endpoints.getTaxi + "?lang=\(currentLang)", method: .get, params: nil, headers: nil) { json in
+            guard let data = json else { completion(nil); return }
             
-            let blogData = data["pageProps"]["blogdata"]
+            var taxi: TaxiDM!
+            var taxiServices: [TaxiDM] = []
             
-            print("news datas: \n title: \(blogData["title"].stringValue), \n description: \(blogData["description"].stringValue), \n image: \(blogData["image"].stringValue) ")
+            for i in data.arrayValue {
+                taxi = TaxiDM(
+                    id: i["id"].intValue,
+                    title: i["title"].stringValue,
+                    taxiType: i["taxitype"].stringValue,
+                    taxiDirection: i["taxidirection"].stringValue,
+                    passengers: i["passenger"].stringValue,
+                    startingPrice: i["startingprice"].stringValue,
+                    carImages:  [],
+                    driverName: i["owner"].stringValue,
+                    coments: i["comment"].stringValue,
+                    telNumber1: i["firstphone"].stringValue,
+                    telNumber2: i["secondphone"].stringValue,
+                    minimumConditions: i["minconditions"].stringValue
+                )
+                for img in i["images"].arrayValue {
+                    taxi.carImages.append(img.stringValue)
+                }
+                taxiServices.append(taxi)
+            }
+            completion(taxiServices)
+            
+        }
+        
+    }
+    
+    //MARK: - GET ENTETAINMENT DATA
+    class func getChildrensParty(completion: @escaping ([ChildrensParty]?) -> Void){
+        Net.request(url: Endpoints.getChildrensParty, method: .get, params: nil, headers: nil) { json in
+            guard let events = json else { completion(nil); return }
+            var eventsForChildrens: [ChildrensParty] = []
+            
+            for event in events.arrayValue {
+                var children = ChildrensParty(
+                    id: event["id"].intValue,
+                    title: event["title"].stringValue,
+                    owner: event["owner"].stringValue,
+                    images: [],
+                    forchildrenzone: event["forchildrenzone"].stringValue,
+                    forchildrenstatus: event["forchildrenstatus"].stringValue,
+                    startingprice: event["startingprice"].stringValue,
+                    minconditions: event["minconditions"].stringValue,
+                    comment: event["comment"].stringValue,
+                    firstphone: event["firstphone"].stringValue,
+                    secondphone: event["secondphone"].stringValue,
+                    currency: event["currency"].stringValue
+                )
+                
+                for image in event["images"].arrayValue {
+                    children.images.append(image.stringValue)
+                }
+                
+                eventsForChildrens.append(children)
+            }
+            
+            completion(eventsForChildrens)
         }
     }
     
 }
 
+extension API {
+        
+   class func getAllTaxiServices(completion: @escaping ([TaxiDM]?) -> Void){
+       var timer: Timer?
+       var allTaxiServices: [TaxiDM] = []
+       var existIDs: [Int] = []
+       var counter: Int?
 
+        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true, block: { [self] _ in
+            
+            API.getTaxiServices { taxiServices in
+                guard let taxiServices = taxiServices else { completion (nil); return }
+                
+                counter = taxiServices.count
+                
+                for taxiService in taxiServices {
+                    if taxiService.title != "" && !existIDs.contains(taxiService.id) {
+                        existIDs.append(taxiService.id)
+                        allTaxiServices.append(taxiService)
+                    }
+                }
+            }
+            
+            // if allTaxiServices is full, stop timer and return
+            
+            if let counter = counter, allTaxiServices.count == counter {
+                timer?.invalidate()
+                timer = nil
+                completion (allTaxiServices)
+            }
+        })
+    }
+    
+   class func getAllChildrenParties(completion: @escaping ([ChildrensParty]?) -> Void){
+       var timer: Timer?
+       var allChildrenParties: [ChildrensParty] = []
+       var existIDs: [Int] = []
+       var counter: Int?
+       
+        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true, block: { [self] _ in
+            
+            API.getChildrensParty { childrenParties in
+                guard let childrenParties = childrenParties else { completion (nil); return }
+                
+                counter = childrenParties.count
+                
+                for party in childrenParties {
+                    if party.title != "" && !existIDs.contains(party.id) {
+                        existIDs.append(party.id)
+                        allChildrenParties.append(party)
+                    }
+                }
+            }
+            
+            // if allTaxiServices is full, stop timer and return
+            
+            if let counter = counter, allChildrenParties.count == counter {
+                timer?.invalidate()
+                timer = nil
+                completion (allChildrenParties)
+            }
+        })
+    }
+
+}

@@ -17,14 +17,16 @@ class AdditionalVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var features = [Entertainmentdatum]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var features = [Entertainmentdatum]()
+//    {
+//        didSet {
+//            tableView.reloadData()
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = false
         setUptableView()
     }
     

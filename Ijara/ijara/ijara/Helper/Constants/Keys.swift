@@ -10,8 +10,9 @@ import Foundation
 struct Keys {
     static let isUserEnteredFirstTime = "isUserEnteredFirstTime"
     static let LANG = "lang"
-    static let likedHouses = "like"
-    static let likedDate = "likedDate"
+    static let likedHouses = "likedHousesIDs"
+    static let likedTaxis = "likedTaxisIDs"
+    static let likedParties = "likedPartiesIDs"
     static let userImage = "userImage"
     static let userName = "userName"
     static let userLastName = "iuserLastNamemage"

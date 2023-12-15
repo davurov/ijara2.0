@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -118,7 +119,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GjB-rE-yWs">
-                    <rect key="frame" x="9" y="287" width="368" height="240"/>
+                    <rect key="frame" x="9" y="287" width="368" height="300"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCp-fg-zVe">
                             <rect key="frame" x="0.0" y="0.0" width="368" height="60"/>
@@ -303,8 +304,69 @@
                                 <constraint firstItem="gHy-aT-a0U" firstAttribute="centerY" secondItem="njy-M8-jzx" secondAttribute="centerY" id="vur-4s-zNg"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9w7-N8-heK">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfF-8A-N8p">
                             <rect key="frame" x="0.0" y="180" width="368" height="60"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3mA-22-OoY">
+                                    <rect key="frame" x="0.0" y="59" width="368" height="1"/>
+                                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="0ZM-Dj-NAq"/>
+                                    </constraints>
+                                </view>
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="zZ0-9C-VSx">
+                                    <rect key="frame" x="10" y="15" width="348" height="30"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="companyLocation" translatesAutoresizingMaskIntoConstraints="NO" id="Qor-oQ-hwu">
+                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="yj5-o3-Vjc"/>
+                                                <constraint firstAttribute="width" constant="30" id="z6h-nC-0Ec"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aix-0V-ybw">
+                                            <rect key="frame" x="37" y="4.3333333333333144" width="284" height="21.666666666666668"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nJx-mF-APh">
+                                            <rect key="frame" x="328" y="7" width="20" height="16.333333333333332"/>
+                                            <color key="tintColor" systemColor="labelColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="4wd-o6-WUv"/>
+                                                <constraint firstAttribute="width" constant="20" id="wC3-NY-wjO"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                </stackView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDB-V3-rWy">
+                                    <rect key="frame" x="0.0" y="0.0" width="368" height="59"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <connections>
+                                        <action selector="companyLocationPressed:" destination="-2" eventType="touchUpInside" id="d90-oy-Oz1"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="dDB-V3-rWy" secondAttribute="trailing" id="22g-wY-Zg9"/>
+                                <constraint firstItem="dDB-V3-rWy" firstAttribute="leading" secondItem="dfF-8A-N8p" secondAttribute="leading" id="GOP-Kt-rF6"/>
+                                <constraint firstItem="dDB-V3-rWy" firstAttribute="top" secondItem="dfF-8A-N8p" secondAttribute="top" id="M9I-nV-8qs"/>
+                                <constraint firstItem="3mA-22-OoY" firstAttribute="top" secondItem="dDB-V3-rWy" secondAttribute="bottom" id="PU1-qw-o4r"/>
+                                <constraint firstAttribute="height" constant="60" id="XrP-Dd-H1R"/>
+                                <constraint firstItem="zZ0-9C-VSx" firstAttribute="centerY" secondItem="dfF-8A-N8p" secondAttribute="centerY" id="bJe-1a-FnJ"/>
+                                <constraint firstAttribute="trailing" secondItem="3mA-22-OoY" secondAttribute="trailing" id="cYF-Q7-UHI"/>
+                                <constraint firstItem="3mA-22-OoY" firstAttribute="leading" secondItem="dfF-8A-N8p" secondAttribute="leading" id="lHB-L7-zBT"/>
+                                <constraint firstAttribute="bottom" secondItem="3mA-22-OoY" secondAttribute="bottom" id="pWe-Ib-ZOg"/>
+                                <constraint firstItem="zZ0-9C-VSx" firstAttribute="leading" secondItem="dfF-8A-N8p" secondAttribute="leading" constant="10" id="v3N-Kc-xKY"/>
+                                <constraint firstAttribute="trailing" secondItem="zZ0-9C-VSx" secondAttribute="trailing" constant="10" id="xjQ-wL-vXK"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9w7-N8-heK">
+                            <rect key="frame" x="0.0" y="240" width="368" height="60"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbs-DG-CFh">
                                     <rect key="frame" x="0.0" y="59" width="368" height="1"/>
@@ -325,7 +387,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other apps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43E-Ny-3VI">
-                                            <rect key="frame" x="37" y="4.3333333333333144" width="284" height="21.666666666666668"/>
+                                            <rect key="frame" x="37" y="4.3333333333333712" width="284" height="21.666666666666668"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -387,6 +449,7 @@
     <resources>
         <image name="book" catalog="system" width="128" height="99"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
+        <image name="companyLocation" width="225" height="225"/>
         <image name="iphone.rear.camera" catalog="system" width="112" height="128"/>
         <image name="lock" catalog="system" width="125" height="128"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>

@@ -45,10 +45,20 @@ class CommentTVC: UITableViewCell {
         setUpViews()
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if selected {
+            contentView.backgroundColor = .white
+        }
+    }
+    
     //MARK: functions
     
     func updateCell(_ comment: String){
-        commentLbl.text = comment
+        if comment.isEmpty {
+            commentLbl.text = "Owner did not write any comment" // should translate
+        } else {
+            commentLbl.text = comment
+        }
         commentLbl.setNeedsLayout()
         commentLbl.layoutIfNeeded()
         resizeComment()
@@ -58,7 +68,7 @@ class CommentTVC: UITableViewCell {
         contentView.backgroundColor = .clear
         borderView.backgroundColor = .clear
         ownerNameLbl.text = SetLanguage.setLang(type: .commentByOwner)
-        ownerNameLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
+//        ownerNameLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         
         borderView.addBorder(size: 0.5)
         readBtn.addBorder(size: 1)

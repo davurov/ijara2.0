@@ -102,12 +102,13 @@ class HomeCVC: UICollectionViewCell {
         
         containerView.addSubview(nameLbl)
         nameLbl.translatesAutoresizingMaskIntoConstraints = false
-        nameLbl.font = .monospacedSystemFont(ofSize: 21, weight: .semibold)
+        nameLbl.font = UIFont(name: "American Typewriter Bold", size: 21)//.monospacedSystemFont(ofSize: 21, weight: .semibold)
         nameLbl.numberOfLines = 2
         
         containerView.addSubview(priceLbl)
         priceLbl.translatesAutoresizingMaskIntoConstraints = false
         priceLbl.textAlignment = .right
+        priceLbl.font = UIFont(name: "Futura Medium", size: 17)
         priceLbl.numberOfLines = 0
         
         containerView.addSubview(locationImg)
@@ -116,6 +117,7 @@ class HomeCVC: UICollectionViewCell {
         
         containerView.addSubview(locationLbl)
         locationLbl.translatesAutoresizingMaskIntoConstraints = false
+        locationLbl.font = UIFont(name: "Futura Medium", size: 17)
         locationLbl.numberOfLines = 0
         
         s_vForGuestType.addArrangedSubview(familyImg)

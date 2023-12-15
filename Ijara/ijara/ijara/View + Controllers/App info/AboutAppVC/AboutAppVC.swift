@@ -56,7 +56,7 @@ class AboutAppVC: UIViewController {
         if segment.selectedSegmentIndex == 0 {
             view.backgroundColor = .white
             navigationController?.navigationBar.tintColor = AppColors.mainColor
-            
+            navigationController?.navigationBar.backgroundColor = .clear
             contactUsBtn.backgroundColor = AppColors.mainColor
             
             sendMessageBtn.setTitleColor(AppColors.customBlackText, for: .normal)
@@ -71,7 +71,8 @@ class AboutAppVC: UIViewController {
         } else {
             view.backgroundColor = AppColors.customBlack
             navigationController?.navigationBar.tintColor = .white
-            
+            navigationController?.navigationBar.backgroundColor = .clear
+
             contactUsBtn.backgroundColor = .white
             
             sendMessageBtn.setTitleColor(.white, for: .normal)

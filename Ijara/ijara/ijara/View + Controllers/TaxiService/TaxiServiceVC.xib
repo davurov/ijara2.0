@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TaxiServiceVC" customModule="ijara" customModuleProvider="target">
+            <connections>
+                <outlet property="cheaperBtn" destination="Jxm-Ji-NKc" id="GBj-rk-13t"/>
+                <outlet property="expensiveBtn" destination="44g-64-PB2" id="k55-fW-3ld"/>
+                <outlet property="recommendedBtn" destination="2CH-1s-3V0" id="Dy0-kQ-3xc"/>
+                <outlet property="tableView" destination="wRR-qh-Gut" id="rBT-ej-ZFx"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wRR-qh-Gut">
+                    <rect key="frame" x="0.0" y="128" width="393" height="690"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="5qx-qF-iBY">
+                    <rect key="frame" x="25" y="74" width="343" height="39"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CH-1s-3V0">
+                            <rect key="frame" x="0.0" y="0.0" width="123" height="39"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="39" id="Wcv-Ef-F3C"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Tavfsiya etilganlar"/>
+                            <connections>
+                                <action selector="recommendedBtnPressed:" destination="-1" eventType="touchUpInside" id="Yzm-3B-h4h"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jxm-Ji-NKc">
+                            <rect key="frame" x="178.66666666666666" y="0.0" width="66" height="39"/>
+                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Arzonroq"/>
+                            <connections>
+                                <action selector="cheaperBtnPressed:" destination="-1" eventType="touchUpInside" id="cB4-Ur-OCY"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44g-64-PB2">
+                            <rect key="frame" x="300" y="0.0" width="43" height="39"/>
+                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="expansiveBtnPressed:" destination="-1" eventType="touchUpInside" id="5Rq-Ok-9HY"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5qx-qF-iBY" secondAttribute="trailing" constant="25" id="5bH-m3-HDd"/>
+                <constraint firstItem="wRR-qh-Gut" firstAttribute="top" secondItem="5qx-qF-iBY" secondAttribute="bottom" constant="15" id="6tC-TS-cPR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wRR-qh-Gut" secondAttribute="bottom" id="Boo-vU-7ns"/>
+                <constraint firstItem="wRR-qh-Gut" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Do2-of-7st"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wRR-qh-Gut" secondAttribute="trailing" id="Q0I-qv-31X"/>
+                <constraint firstItem="5qx-qF-iBY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="dGq-SF-hno"/>
+                <constraint firstItem="5qx-qF-iBY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="tei-6c-wEI"/>
+            </constraints>
+            <point key="canvasLocation" x="136.64122137404578" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

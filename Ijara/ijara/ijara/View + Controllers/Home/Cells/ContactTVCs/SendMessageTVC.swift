@@ -11,6 +11,9 @@ class SendMessageTVC: UITableViewCell {
     
     @IBOutlet weak var sendMessageTF: UITextField!
     
+    static let identifire = String(describing: SendMessageTVC.self)
+    static func nib() -> UINib { UINib(nibName: identifire, bundle: nil) }
+    
     var cellIndex = 0
     
     override func awakeFromNib() {
@@ -30,9 +33,13 @@ class SendMessageTVC: UITableViewCell {
     @objc func doneButtonTapped() {
         sendMessageTF.resignFirstResponder()
     }
-
+    
     func updateCell(_ messagePlaceholder: String){
         sendMessageTF.placeholder = messagePlaceholder
+        
+        if messagePlaceholder == SetLanguage.setLang(type: .enterNameTF) {
+            sendMessageTF.text = UserDefaults.standard.string(forKey: Keys.userName)
+        }
     }
     
 }

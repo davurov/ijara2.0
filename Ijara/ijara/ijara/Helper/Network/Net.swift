@@ -28,7 +28,7 @@ class Net {
         } else {
             //Not connected to the internet
             print("Not connected to the internet")
-            Alert.showAlertWithBool(forState: .error, message: "Not conected to the internet", isShow: true)
+            Alert.showAlertWithBool(forState: .error, message: SetLanguage.setLang(type: .noInternetMessage), isShow: true)
             completion(nil)
             
         }

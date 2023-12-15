@@ -53,13 +53,6 @@ class MapChildVC: UIViewController {
         return UserDefaults.standard.array(forKey: Keys.likedHouses) as? [Int] ?? []
     }()
     
-    var likedDates: [String] = [] {
-        didSet {
-            likedDates = UserDefaults.standard.stringArray(forKey: Keys.likedDate) ?? []
-            print("likedDates: \(likedDates) likedHouse da")
-        }
-    }
-    
     //MARK: life cycles
     
     override func viewDidLoad() {
@@ -135,24 +128,12 @@ class MapChildVC: UIViewController {
             let index = likedHouses.firstIndex(of: id)
             guard let index = index else { return }
             likedHouses.remove(at: index)
-            likedDates.remove(at: index)
             likeBtn.setImage(UIImage(systemName: "heart"), for: .normal)
         } else {
             likedHouses.append(id)
-            likedDates.append(getCurrentDateAsString())
             likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
         UserDefaults.standard.set(likedHouses, forKey: Keys.likedHouses)
-        UserDefaults.standard.set(likedDates, forKey: Keys.likedDate)
-    }
-    
-    func getCurrentDateAsString() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        
-        let currentDate = Date()
-        
-        return dateFormatter.string(from: currentDate)
     }
     
     //MARK: @objc functions

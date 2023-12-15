@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,26 +19,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chose day of vacation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0O-cw-4R8">
-                        <rect key="frame" x="10" y="20" width="220.66666666666666" height="26.333333333333329"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                        <rect key="frame" x="10" y="20" width="239" height="27"/>
+                        <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="22"/>
                         <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlE-wx-mea">
-                        <rect key="frame" x="0.0" y="56.333333333333343" width="477" height="300"/>
+                        <rect key="frame" x="0.0" y="57" width="477" height="300"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="300" id="gm6-Tg-XCE"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of people" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Nj-F1-T2e">
-                        <rect key="frame" x="10" y="448.33333333333331" width="152.66666666666666" height="23"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <rect key="frame" x="10" y="451.66666666666669" width="187.66666666666666" height="25"/>
+                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="19"/>
                         <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQF-tW-C0J">
-                        <rect key="frame" x="173.66666666666666" y="491.33333333333331" width="149.99999999999997" height="39.999999999999943"/>
+                        <rect key="frame" x="173.66666666666666" y="496.66666666666674" width="149.99999999999997" height="40"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHG-J7-PNf">
                                 <rect key="frame" x="40" y="0.0" width="1" height="40"/>
@@ -109,37 +110,37 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="kye-BA-ast">
-                        <rect key="frame" x="25" y="366.33333333333331" width="447" height="57"/>
+                        <rect key="frame" x="25" y="367" width="447" height="59.666666666666686"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sBC-BF-pZ7">
-                                <rect key="frame" x="0.0" y="0.0" width="200.66666666666666" height="21"/>
+                                <rect key="frame" x="0.0" y="0.0" width="210.33333333333334" height="22.333333333333332"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weakday Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEC-cl-o7k">
-                                        <rect key="frame" x="0.0" y="0.0" width="133.33333333333334" height="21"/>
-                                        <fontDescription key="fontDescription" name="Charter-BlackItalic" family="Charter" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="144.66666666666666" height="22.333333333333332"/>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
                                         <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 sum" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZ3-Ky-ZCN">
-                                        <rect key="frame" x="141.33333333333334" y="1.3333333333333712" width="59.333333333333343" height="18.333333333333332"/>
-                                        <fontDescription key="fontDescription" name="Charter-BoldItalic" family="Charter" pointSize="15"/>
+                                        <rect key="frame" x="152.66666666666666" y="1.3333333333333144" width="57.666666666666657" height="19.666666666666668"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RGY-rn-rSK">
-                                <rect key="frame" x="0.0" y="36" width="234.66666666666666" height="21"/>
+                                <rect key="frame" x="0.0" y="37.333333333333314" width="244" height="22.333333333333329"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Working Day Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMG-CB-Wzf">
-                                        <rect key="frame" x="0.0" y="0.0" width="167.33333333333334" height="21"/>
-                                        <fontDescription key="fontDescription" name="Charter-BlackItalic" family="Charter" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="177.33333333333334" height="22.333333333333332"/>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
                                         <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200 sum" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afY-Dn-bbf">
-                                        <rect key="frame" x="175.33333333333334" y="1.3333333333333712" width="59.333333333333343" height="18.333333333333332"/>
-                                        <fontDescription key="fontDescription" name="Charter-BoldItalic" family="Charter" pointSize="15"/>
+                                        <rect key="frame" x="185.33333333333334" y="1.3333333333333712" width="58.666666666666657" height="19.666666666666668"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>

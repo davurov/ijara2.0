@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -10,7 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompanyLocationDetailVC" customModule="ijara" customModuleProvider="target">
             <connections>
+                <outlet property="adressLbl" destination="dPH-Xg-xQZ" id="rgL-Tb-tQ6"/>
                 <outlet property="companyLocationMap" destination="Rno-4L-Dkc" id="Mq1-Mh-zhP"/>
+                <outlet property="mainStackBottomCons" destination="tnB-Mr-70t" id="01y-HP-KRY"/>
+                <outlet property="openYMButton" destination="EfP-JC-2uT" id="wyZ-ID-iLj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,38 +23,55 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rno-4L-Dkc">
-                    <rect key="frame" x="0.0" y="63" width="393" height="789"/>
-                    <imageryMapConfiguration key="preferredConfiguration"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <integer key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </mapView>
-                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snL-K1-fku">
-                    <rect key="frame" x="180" y="45" width="33" height="7"/>
-                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="7" id="Rh1-5i-8o6"/>
-                        <constraint firstAttribute="width" constant="33" id="bT0-na-CGa"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <integer key="value" value="3"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="oB3-1Z-Tbc">
+                    <rect key="frame" x="0.0" y="15" width="393" height="822"/>
+                    <subviews>
+                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rno-4L-Dkc">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="724.66666666666663"/>
+                            <imageryMapConfiguration key="preferredConfiguration"/>
+                        </mapView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Muxtor Ashrafi ko'chasi, 51-uy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPH-Xg-xQZ">
+                            <rect key="frame" x="0.0" y="739.66666666666663" width="393" height="22.333333333333371"/>
+                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VPc-5W-VYF">
+                            <rect key="frame" x="0.0" y="777" width="393" height="45"/>
+                            <subviews>
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EfP-JC-2uT">
+                                    <rect key="frame" x="21.666666666666657" y="0.0" width="350" height="45"/>
+                                    <color key="backgroundColor" red="0.015686274509803921" green="0.14117647058823529" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="4bu-Nw-2L3"/>
+                                        <constraint firstAttribute="width" constant="350" id="DJK-ie-jyv"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="15"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Open yandex map">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <integer key="value" value="15"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="openYMPressed:" destination="-1" eventType="touchUpInside" id="QRG-Ho-CAC"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Rno-4L-Dkc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="02b-zx-SAX"/>
-                <constraint firstAttribute="bottom" secondItem="Rno-4L-Dkc" secondAttribute="bottom" id="11m-Mc-VJI"/>
-                <constraint firstItem="Rno-4L-Dkc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="63" id="AmT-kF-Lel"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Rno-4L-Dkc" secondAttribute="trailing" id="Hgu-sT-IBE"/>
-                <constraint firstItem="Rno-4L-Dkc" firstAttribute="top" secondItem="snL-K1-fku" secondAttribute="bottom" constant="11" id="qFv-ch-xgf"/>
-                <constraint firstItem="snL-K1-fku" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xSD-fO-dpm"/>
+                <constraint firstItem="oB3-1Z-Tbc" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Fc1-s4-RqX"/>
+                <constraint firstItem="oB3-1Z-Tbc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Qza-NV-zpW"/>
+                <constraint firstItem="oB3-1Z-Tbc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="a3x-nY-bpn"/>
+                <constraint firstAttribute="bottom" secondItem="oB3-1Z-Tbc" secondAttribute="bottom" constant="15" id="tnB-Mr-70t"/>
             </constraints>
             <point key="canvasLocation" x="126" y="20"/>
         </view>

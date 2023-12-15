@@ -15,7 +15,7 @@ class ContactTVC: UITableViewCell {
     @IBOutlet weak var contactInfoLbl: UILabel! {
         didSet {
             contactInfoLbl.text = SetLanguage.setLang(type: .contactInfo)
-            contactInfoLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
+//            contactInfoLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         }
     }
     @IBOutlet weak var firstNumberLbl: UILabel!
@@ -29,6 +29,12 @@ class ContactTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if selected {
+            contentView.backgroundColor = .white
+        }
     }
     
     func updateCell(_ phone1: String, _ phone2:  String, _ comingTime: String, _ leavingTime: String){

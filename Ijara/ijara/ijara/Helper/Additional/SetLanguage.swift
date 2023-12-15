@@ -135,6 +135,34 @@ extension SetLanguage{
         case .homeForBackButton   : return "Bosh sahifa"
         case .successfullySend    : return "Xabar muvaffaqiyatli yuborildi"
         case .emptyField          : return "Maydon bo`sh"
+            
+            ///`           ContactVC
+        case .taxi               : return "Taksi"
+        case .taxiType           : return "Taksi turi"
+        case .numberOfPassangers : return "Yo`lo`vchilar"
+        case .minimumConditions  : return "Minimal shartlar"
+        case .recommendedCars    : return "Tavsiya etilganlar"
+        case .cheaperCars        : return "Arzonroq"
+        case .expensiveCars      : return "Qimmatroq"
+            
+            ///`           ChildrensServiceVC
+        case .childrens      : return "Bolalar"
+        case .childrenEvents : return "Bolalar tadbirlari"
+        case .images         : return "rasmlar"
+            
+            ///`           Intdoduction
+        case .introductionForVillas          :  return "Orzu qilgan ta'tillaringizni haqiqatga aylantiramiz. O`zingizga yoqqan dachani bron qiling."
+        case .introductionForTaxis           :  return "Tirbandliklarmi? Navbatlarmi? Unuting! Bizning taxi xizmatimizdan foydalaning"
+        case .introductionForChildrenParties :  return "Noyob bayramni tashkil qiling! Biz sizning farzandingiz uchun maxsus tadbirlarni yaratishda yordam beramiz"
+        case .next                           :  return "Keyingisi"
+            
+            // additional
+        case .all                   : return "Barchasi"
+        case .contactAndComment : return "Izoh & Kontakt"
+        case .houses                : return "Dachalar"
+        case .openYandexMap         : return "Yadex kartani ochish"
+        case .noInternetMessage     : return "Internetga ulanmagan"
+
         }
     }
 }
@@ -255,6 +283,34 @@ extension SetLanguage{
         case .homeForBackButton   : return "Домой"
         case .successfullySend    : return "Сообщение успешно отправлено"
         case .emptyField          : return "Пустое поле"
+            
+            ///`           ContactVC
+        case .taxi               : return "Такси"
+        case .taxiType           : return "Тип такси"
+        case .numberOfPassangers : return "Пассажиры"
+        case .minimumConditions  : return "Минимальные условия"
+        case .recommendedCars    : return "Рекомендуемые"
+        case .cheaperCars        : return "Низкая цена"
+        case .expensiveCars      : return "Высокая цена"
+            
+            ///`           ChildrensServiceVC
+        case .childrens      : return "Дети"
+        case .childrenEvents : return "Детские мероприятия"
+        case .images         : return "изображения"
+            
+            ///`           Intdoduction
+        case .introductionForVillas          :  return "Бронируйте свой отдых без забот. Мы позаботимся о деталях, вы насладитесь волшебством"
+        case .introductionForTaxis           :  return "Пробки? Очереди? Забудьте! Ваш такси всего в одном касании"
+        case .introductionForChildrenParties :  return "Забудьте о скучных днях рождения! Организуйте эпические праздники, которые ваши дети никогда не забудут."
+        case .next                           :  return "Следующий"
+            
+            // additional
+        case .all                   : return "Все"
+        case .contactAndComment     : return "Коммент & контакт"
+        case .houses                : return "Дачи"
+        case .openYandexMap         : return "Открыть Яндекс-карту"
+        case .noInternetMessage     : return "Не подключен к Интернету"
+
         }
     }
 }
@@ -374,6 +430,33 @@ extension SetLanguage{
         case .homeForBackButton   : return "Home"
         case .successfullySend    : return "Message is successfully sent"
         case .emptyField          : return "Empty field"
+            
+            ///`           ContactVC
+        case .taxi               : return "Taxi"
+        case .taxiType           : return "Taxi type"
+        case .numberOfPassangers : return "Passangers"
+        case .minimumConditions  : return "Minimum conditions"
+        case .recommendedCars    : return "Recommended"
+        case .cheaperCars        : return "Cheaper"
+        case .expensiveCars      : return "Expensive"
+            
+            ///`           ChildrensServiceVC
+        case .childrens      : return "Children"
+        case .childrenEvents : return "Children events"
+        case .images         : return "images"
+            
+            ///`           Intdoduction
+        case .introductionForVillas          :  return "Stress-free stays, handcrafted for memories. Let's turn dream vacations into reality"
+        case .introductionForTaxis           :  return "Say goodbye to waiting in line. Order your taxi with a tap and cruise in style"
+        case .introductionForChildrenParties :  return "Forget boring birthdays! Build epic celebrations your kids will never forget"
+        case .next                           :  return "Next"
+            
+            // additional
+        case .all                   : return "All"
+        case .contactAndComment     : return "Comment & contact"
+        case .houses                : return "Villas"
+        case .openYandexMap         : return "Open Yadex Map"
+        case .noInternetMessage     : return "Not conected to the internet"
         }
     }
 }
@@ -392,13 +475,13 @@ enum ClassType {
     //Tabbar
     case menu, liked
     //HomeVC
-    case searchTfPlaceholder, map, news, contacts, allCategory
+    case searchTfPlaceholder, map, news, contacts, allCategory, all
     //HomeDetailVC
-    case priceLbl, depositLbl, sumLbl, viewsLbl, hostedByLbl, peopleLbl, bedsLbl, bedroomsLbl, readMoreBtn, readLess,  locationLbl, chooseDayOfVacationLbl, fridayAndSaturday, otherDays, numberOfPeople, openLocation, openLocationMessage
+    case priceLbl, depositLbl, sumLbl, viewsLbl, hostedByLbl, peopleLbl, bedsLbl, bedroomsLbl, readMoreBtn, readLess,  locationLbl, chooseDayOfVacationLbl, fridayAndSaturday, otherDays, numberOfPeople, openLocation, openLocationMessage, contactAndComment
     //LikedVC
-    case wishlists, wishlistsForBackBtn, delete
+    case wishlists, wishlistsForBackBtn, delete, houses
     //ProfileVC
-    case profileTitle, profileForBackBtn, user, showProfile, emptyTfError, saveBtn, settings, about, appLanguage, chooseLanguage, cancelTitle, privcyPolicy, otherApps, logOut, deleteAccaunt, deleteAccauntWarningMessage, no, yes, firstNameTF, lastNameTF
+    case profileTitle, profileForBackBtn, user, showProfile, emptyTfError, saveBtn, settings, about, appLanguage, chooseLanguage, cancelTitle, privcyPolicy, otherApps, logOut, deleteAccaunt, deleteAccauntWarningMessage, no, yes, firstNameTF, lastNameTF, openYandexMap
     //HomeDetailVC
     case rules, additionalFeatures, showAllElementsBtn, additionaFeaturesOffers, commentByOwner, contactInfo, phoneLbl, comingTime, leavingTime, callBtn
     //MapVC
@@ -407,5 +490,13 @@ enum ClassType {
     case priceRange, minimum, maximum, guestType, famely, female, male, mix, additional, alcohol, verified, clearAll, show
     //Contact
     case contactUs, mainPage, companyAdress, companyAdressDetail, workingTimeForCall, sendAnyTime, enterNameTF, enterEmailTF, enterThemTF, enterMessageTF, sendMessage, doneToolButton, homeForBackButton, successfullySend, emptyField
+    //TaxiService
+    case taxi, taxiType, numberOfPassangers, minimumConditions, recommendedCars, cheaperCars, expensiveCars
+    //Childrens
+    case childrens, childrenEvents, images
+    //Intdoduction
+    case introductionForVillas, introductionForTaxis, introductionForChildrenParties, next
+    //Additional
+    case noInternetMessage
 }
 

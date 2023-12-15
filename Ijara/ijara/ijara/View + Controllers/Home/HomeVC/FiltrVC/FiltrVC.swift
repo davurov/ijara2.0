@@ -95,10 +95,13 @@ class FiltrVC: UIViewController {
         tableView.register(SwitchContTVC.nib(), forCellReuseIdentifier: SwitchContTVC.identifier)
         tableView.register(BedsTVC.nib(), forCellReuseIdentifier: BedsTVC.identifier)
         
-        showView.addShadowByHand(offset: CGSize(width: 10, height: 10), color: AppColors.customBlack.cgColor, radius: 5, opacity: 0.2)
+        showView.layer.shadowColor = AppColors.customBlack.cgColor
+        showView.layer.shadowOpacity = 0.3
+        showView.layer.shadowRadius = 5
+        showView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        
         showView.layer.cornerRadius = 20
         showView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
-        showView.addBorder(size: 2)
         
         clearAllBtn.titleLabel?.numberOfLines = 0
     }
@@ -198,6 +201,10 @@ extension FiltrVC: UITableViewDelegate {
 }
 
 extension FiltrVC: AdditionalDelegate {
+    func openOwnerInfoVC() {
+        //
+    }
+    
     func showAllPressed() {
         if additionalHeight == 340 {
             additionalHeight = CGFloat(40 * enterData.count) + 140

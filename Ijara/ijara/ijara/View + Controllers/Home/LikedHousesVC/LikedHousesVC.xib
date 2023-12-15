@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -11,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LikedHousesVC" customModule="ijara" customModuleProvider="target">
             <connections>
                 <outlet property="animationView" destination="rzX-LH-Mdp" id="t8f-T6-4PF"/>
+                <outlet property="categoriesSegmen" destination="vz2-lu-Mu8" id="lG1-cy-rl4"/>
                 <outlet property="tableView" destination="vxu-Ke-w4S" id="bqv-z1-Juc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="wishlistsLbl" destination="9RC-5l-LFQ" id="rEO-uV-HCa"/>
@@ -21,12 +23,6 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wishlists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9RC-5l-LFQ">
-                    <rect key="frame" x="20" y="69" width="144.66666666666666" height="42"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="35"/>
-                    <color key="textColor" red="0.16078431372549018" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rzX-LH-Mdp">
                     <rect key="frame" x="0.0" y="326" width="393" height="200"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -34,9 +30,33 @@
                         <constraint firstAttribute="height" constant="200" id="sVD-F9-zcV"/>
                     </constraints>
                 </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="LcA-S0-Avy">
+                    <rect key="frame" x="15" y="74" width="363" height="84"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wishlists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9RC-5l-LFQ">
+                            <rect key="frame" x="0.0" y="0.0" width="363" height="36"/>
+                            <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="31"/>
+                            <color key="textColor" red="0.16078431372549018" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vz2-lu-Mu8">
+                            <rect key="frame" x="0.0" y="51" width="363" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="33" id="Bwr-xK-OXJ"/>
+                            </constraints>
+                            <segments>
+                                <segment title="First"/>
+                                <segment title="Second"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentPressed:" destination="-1" eventType="valueChanged" id="bJB-1h-dg3"/>
+                            </connections>
+                        </segmentedControl>
+                    </subviews>
+                </stackView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vxu-Ke-w4S">
-                    <rect key="frame" x="0.0" y="131" width="393" height="721"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <rect key="frame" x="5" y="163" width="383" height="655"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
@@ -44,15 +64,16 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="vxu-Ke-w4S" firstAttribute="top" secondItem="9RC-5l-LFQ" secondAttribute="bottom" constant="20" id="34F-WJ-qeN"/>
+                <constraint firstItem="LcA-S0-Avy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="7j3-2L-o94"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vxu-Ke-w4S" secondAttribute="trailing" constant="5" id="BTp-M4-bUi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="vxu-Ke-w4S" secondAttribute="bottom" id="CNt-NQ-XvJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rzX-LH-Mdp" secondAttribute="trailing" id="Glp-rb-wLL"/>
-                <constraint firstItem="9RC-5l-LFQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="LKt-2M-JCU"/>
-                <constraint firstItem="9RC-5l-LFQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Lk5-QC-pql"/>
-                <constraint firstItem="vxu-Ke-w4S" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="M2s-fI-90X"/>
                 <constraint firstItem="rzX-LH-Mdp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Pxs-dI-gFD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LcA-S0-Avy" secondAttribute="trailing" constant="15" id="QBE-gl-6Rd"/>
                 <constraint firstItem="rzX-LH-Mdp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ThQ-po-mR7"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vxu-Ke-w4S" secondAttribute="trailing" id="hRt-a5-ABf"/>
-                <constraint firstAttribute="bottom" secondItem="vxu-Ke-w4S" secondAttribute="bottom" id="zQr-zV-2AC"/>
+                <constraint firstItem="LcA-S0-Avy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="ZmS-dN-oIP"/>
+                <constraint firstItem="vxu-Ke-w4S" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="5" id="a9C-Om-Yst"/>
+                <constraint firstItem="vxu-Ke-w4S" firstAttribute="top" secondItem="LcA-S0-Avy" secondAttribute="bottom" constant="5" id="v63-EQ-cMF"/>
             </constraints>
             <point key="canvasLocation" x="136.64122137404578" y="19.718309859154932"/>
         </view>

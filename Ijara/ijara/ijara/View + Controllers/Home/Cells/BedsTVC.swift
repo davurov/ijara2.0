@@ -29,7 +29,7 @@ class BedsTVC: UITableViewCell {
     
     func setupViews() {
         numberOfPeopleLbl.text = SetLanguage.setLang(type: .numberOfPeople)
-        numberOfPeopleLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
+//        numberOfPeopleLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         
         collectionView.delegate = self
         collectionView.dataSource = self

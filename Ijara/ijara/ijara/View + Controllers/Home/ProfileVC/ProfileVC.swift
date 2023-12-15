@@ -70,6 +70,20 @@ class ProfileVC: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func companyLocationPressed(_ sender: Any) {
+        let vc = CompanyLocationDetailVC()
+        vc.isWithYandexMap = true
+        
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 24
+        }
+        
+        present(vc, animated: true)
+    }
+    
     @IBAction func otherApps(_ sender: Any) {
         let vc = OtherAppsVC()
         vc.hidesBottomBarWhenPushed = true

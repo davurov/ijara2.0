@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -73,13 +74,13 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="9MZ-4x-Rmn"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h5a-5r-C5V">
                                     <rect key="frame" x="0.0" y="69" width="353" height="56"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
@@ -87,12 +88,12 @@
                     </subviews>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Qn-nw-fkK">
-                    <rect key="frame" x="20" y="750" width="353" height="48"/>
+                    <rect key="frame" x="15" y="748" width="363" height="50"/>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="Lm0-FU-9vX"/>
+                        <constraint firstAttribute="height" constant="50" id="Lm0-FU-9vX"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="19"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Saqlash">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -113,9 +114,9 @@
                 <constraint firstItem="239-gk-l87" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="8kt-ta-tha"/>
                 <constraint firstItem="1Qn-nw-fkK" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="-20" id="FUg-pa-DpY"/>
                 <constraint firstItem="239-gk-l87" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Ysd-5L-t3k"/>
-                <constraint firstAttribute="trailing" secondItem="1Qn-nw-fkK" secondAttribute="trailing" constant="20" id="Zfi-hd-cCp"/>
+                <constraint firstAttribute="trailing" secondItem="1Qn-nw-fkK" secondAttribute="trailing" constant="15" id="Zfi-hd-cCp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="239-gk-l87" secondAttribute="trailing" constant="20" id="doP-fJ-1KR"/>
-                <constraint firstItem="1Qn-nw-fkK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="egZ-Bt-CYY"/>
+                <constraint firstItem="1Qn-nw-fkK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="egZ-Bt-CYY"/>
             </constraints>
             <point key="canvasLocation" x="136.64122137404578" y="19.718309859154932"/>
         </view>

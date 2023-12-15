@@ -16,7 +16,7 @@ class SingInLangVC: UIViewController {
     
     @IBOutlet weak var getStartBtn: UIButton!{
         didSet{
-            getStartBtn.setTitle(SetLanguage.setLang(type: .getStartBtn), for: .normal)
+            getStartBtn.setTitle(SetLanguage.setLang(type: .next), for: .normal)
             getStartBtn.backgroundColor = AppColors.mainColor
         }
     }
@@ -97,8 +97,9 @@ class SingInLangVC: UIViewController {
     @IBAction func goToSignUpBtnPressed(_ sender: UIButton) {
 
         if isSelectLang {
-            let vc = WelcomePageVC(nibName: "WelcomePageVC", bundle: nil)
-            navigationController?.pushViewController(vc, animated: true)
+            let vc = IntroductionVC()
+            vc.modalPresentationStyle = .overFullScreen
+            present(vc, animated: true)
         } else {
             switch UserDefaults.standard.string(forKey: Keys.LANG){
             case "uz":

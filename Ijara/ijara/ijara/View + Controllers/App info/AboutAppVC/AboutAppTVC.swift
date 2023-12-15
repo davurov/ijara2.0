@@ -18,6 +18,12 @@ class AboutAppTVC: UITableViewCell {
         setupViews()
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if selected {
+            contentView.backgroundColor = .clear
+        }
+    }
+    
      func updateCell(_ title: String, description: String){
         titleLbl.text = title
         descriptionLbl.text = description
@@ -25,9 +31,6 @@ class AboutAppTVC: UITableViewCell {
     
     private func setupViews(){
         contentView.backgroundColor = .clear
-        
-        titleLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
-        descriptionLbl.font = .systemFont(ofSize: 17, weight: .medium)
         descriptionLbl.numberOfLines = 0
     }
     

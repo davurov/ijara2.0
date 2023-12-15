@@ -63,7 +63,7 @@ class RuleFiltrTVC: UITableViewCell {
     }
     
     func setUpViews() {
-        guestTypeLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
+//        guestTypeLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         guestTypeLbl.text = SetLanguage.setLang(type: .guestType)
         famelyLbl.text    = SetLanguage.setLang(type: .famely)
         femaleLbl.text    = SetLanguage.setLang(type: .female)

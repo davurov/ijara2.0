@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="282" id="KGk-i7-Jjw" customClass="DriverInfoTVC" customModule="ijara" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="461" height="282"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="461" height="282"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Mjs-he-zKv">
+                        <rect key="frame" x="5" y="5" width="451" height="272"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="KRM-7X-JBR" userLabel="DriverName">
+                                <rect key="frame" x="0.0" y="0.0" width="119.66666666666667" height="55"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bzs-aM-2Da">
+                                        <rect key="frame" x="0.0" y="2" width="55" height="51.666666666666671"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="0.16078431369999999" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="55" id="GbS-wS-0DJ"/>
+                                            <constraint firstAttribute="height" constant="55" id="Tiy-8K-Uud"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hnY-Wi-QIB">
+                                        <rect key="frame" x="70" y="0.0" width="49.666666666666657" height="55"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noI-YR-zI6">
+                                                <rect key="frame" x="0.0" y="0.0" width="49.666666666666664" height="22"/>
+                                                <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="19"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evX-vj-85f">
+                                                <rect key="frame" x="0.0" y="27" width="49.666666666666664" height="28"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFG-HH-OiZ">
+                                <rect key="frame" x="0.0" y="70" width="450.33333333333331" height="83.333333333333314"/>
+                                <string key="text">chimyon, chorvoq, xumson, togli xududlarga taxi xizmati COBALT avtoda ,konditsioner, krugavoy tonirovka, avtomobil yangi va toza, olib borish va olib kelish ,narxi\nkelishilgan xolda...</string>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="IPW-2o-4cD" userLabel="phoneNumers">
+                                <rect key="frame" x="0.0" y="168.33333333333334" width="263.33333333333331" height="103.66666666666666"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bog`lanish uchun telefonlar:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUh-Qk-GGq">
+                                        <rect key="frame" x="0.0" y="0.0" width="259.33333333333331" height="22.333333333333332"/>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="1A1-p1-EW8">
+                                        <rect key="frame" x="0.0" y="37.333333333333307" width="263.33333333333331" height="66.333333333333314"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="wjm-iY-DZo">
+                                                <rect key="frame" x="0.0" y="0.0" width="263.33333333333331" height="25"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9nC-tp-xvb">
+                                                        <rect key="frame" x="0.0" y="1.6666666666666661" width="25" height="22.333333333333336"/>
+                                                        <color key="tintColor" red="0.16078431369999999" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="25" id="E4x-dF-qE9"/>
+                                                            <constraint firstAttribute="height" constant="25" id="GMk-bR-Ukm"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telefon:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sd-Lj-cKp">
+                                                        <rect key="frame" x="40.000000000000007" y="0.0" width="71.666666666666686" height="25"/>
+                                                        <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="19"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+998 99 815 80 22" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GoD-Qm-ekv">
+                                                        <rect key="frame" x="126.66666666666667" y="0.0" width="136.66666666666663" height="25"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="JuK-Mt-vCx">
+                                                <rect key="frame" x="0.0" y="40" width="263.33333333333331" height="26.333333333333329"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="odG-sF-gqX">
+                                                        <rect key="frame" x="0.0" y="1.6666666666666661" width="25" height="22.333333333333336"/>
+                                                        <color key="tintColor" red="0.16078431369999999" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="25" id="eR1-9h-LEC"/>
+                                                            <constraint firstAttribute="height" constant="25" id="eUd-9a-QRJ"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telefon:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FqX-tp-5ud">
+                                                        <rect key="frame" x="40.000000000000007" y="0.0" width="71.666666666666686" height="22"/>
+                                                        <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="19"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+998 99 815 80 22" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgX-nv-7rz">
+                                                        <rect key="frame" x="126.66666666666667" y="0.0" width="136.66666666666663" height="19.666666666666668"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Mjs-he-zKv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="7a2-C2-yYa"/>
+                    <constraint firstAttribute="bottom" secondItem="Mjs-he-zKv" secondAttribute="bottom" constant="5" id="8OZ-4i-VqN"/>
+                    <constraint firstItem="Mjs-he-zKv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="c2e-2E-6F1"/>
+                    <constraint firstAttribute="trailing" secondItem="Mjs-he-zKv" secondAttribute="trailing" constant="5" id="t0K-jd-nTl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="commentLbl" destination="GFG-HH-OiZ" id="F0R-dV-V3e"/>
+                <outlet property="driverNameLbl" destination="noI-YR-zI6" id="rgR-wZ-Adf"/>
+                <outlet property="driverNameTitle" destination="evX-vj-85f" id="Nxd-IC-oVb"/>
+                <outlet property="numbersToContactLbl" destination="wUh-Qk-GGq" id="qZX-sp-CUP"/>
+                <outlet property="phone1Lbl" destination="9sd-Lj-cKp" id="r0M-Cx-13H"/>
+                <outlet property="phone2Lbl" destination="FqX-tp-5ud" id="L2s-2P-wUW"/>
+                <outlet property="phoneNumber1Lbl" destination="GoD-Qm-ekv" id="dUj-Kk-kPz"/>
+                <outlet property="phoneNumber2Lbl" destination="QgX-nv-7rz" id="TNv-Zm-j9c"/>
+            </connections>
+            <point key="canvasLocation" x="231.29770992366412" y="103.52112676056339"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="phone.fill" catalog="system" width="128" height="114"/>
+    </resources>
+</document>

@@ -9,7 +9,6 @@ import UIKit
 
 class PhotoCVC: UICollectionViewCell {
     
-    
     @IBOutlet weak var houseImage: UIImageView!
     @IBOutlet weak var imageCont: UIView!
     
@@ -24,7 +23,11 @@ class PhotoCVC: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        imageCont.layer.cornerRadius = 10
+        imageCont.clipsToBounds = true
+
+        houseImage.layer.cornerRadius = 10
+        houseImage.clipsToBounds = true
     }
     
     func loadImage(url: String) {

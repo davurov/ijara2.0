@@ -122,7 +122,6 @@ class ChooseLanguageVC: UIViewController {
         view.isUserInteractionEnabled = true
         
         //miniView
-//        miniView.addBorder(size: 3)
         miniView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         miniView.layer.cornerRadius = 50
         miniView.clipsToBounds = true

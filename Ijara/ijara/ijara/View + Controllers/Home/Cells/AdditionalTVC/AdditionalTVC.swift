@@ -9,6 +9,7 @@ import UIKit
 
 protocol AdditionalDelegate: AnyObject {
     func showAllPressed()
+    func openOwnerInfoVC()
 }
 
 class AdditionalTVC: UITableViewCell {
@@ -23,6 +24,11 @@ class AdditionalTVC: UITableViewCell {
     @IBOutlet weak var showBtn: UIButton!
     
     @IBOutlet weak var tableViewConst: NSLayoutConstraint!
+    
+    @IBOutlet weak var ownerInfoView: UIView!
+    
+    @IBOutlet weak var commentAndContact: UILabel!
+    
     
     static var addedFeatures = Array(repeating: false, count: 27)
     var features = [Entertainmentdatum]()
@@ -48,6 +54,11 @@ class AdditionalTVC: UITableViewCell {
         }
     }
     
+    @IBAction func ownerInfoBtnPressed(_ sender: Any) {
+        delegate?.openOwnerInfoVC()
+    }
+    
+    
     //MARK: functions
     
     func updateCell(_ features: [Entertainmentdatum]){
@@ -63,7 +74,13 @@ class AdditionalTVC: UITableViewCell {
         
         showBtn.setTitle(SetLanguage.setLang(type: .showAllElementsBtn), for: .normal)
         additionalFeaturesLbl.text = SetLanguage.setLang(type: .additionalFeatures)
-        additionalFeaturesLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
+        
+        ownerInfoView.layer.borderColor = UIColor.lightGray.cgColor//AppColors.mainColor.cgColor
+        ownerInfoView.layer.borderWidth = 0.5
+        ownerInfoView.layer.cornerRadius = 15
+        ownerInfoView.clipsToBounds = true
+        
+        commentAndContact.text = SetLanguage.setLang(type: .contactAndComment)
     }
     
     func clearChanges(){

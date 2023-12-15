@@ -32,12 +32,14 @@ class NameTVC: UITableViewCell {
             j.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        nameLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
+        nameLbl.font = UIFont(name: "American Typewriter Bold", size: 25)
         
         starImg.image = UIImage(systemName: "star.fill")
         starImg.tintColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
         
-        locationLbl.font = .systemFont(ofSize: 15)
+        viewsLbl.font = UIFont(name: "Futura Medium", size: 17)
+        
+        locationLbl.font = UIFont(name: "Futura Medium", size: 15)//.systemFont(ofSize: 15)
         locationLbl.textColor = .lightGray
         
         NSLayoutConstraint.activate([

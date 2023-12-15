@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,11 +24,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GnE-0B-Ufd">
-                    <rect key="frame" x="0.0" y="79" width="393" height="673"/>
+                    <rect key="frame" x="0.0" y="79" width="393" height="683"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykF-8G-FCF">
-                    <rect key="frame" x="0.0" y="752" width="393" height="100"/>
+                    <rect key="frame" x="0.0" y="762" width="393" height="90"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vd-G1-WIg">
                             <rect key="frame" x="20" y="25" width="150" height="50"/>
@@ -36,7 +37,7 @@
                                 <constraint firstAttribute="height" constant="50" id="G3E-hf-fAg"/>
                                 <constraint firstAttribute="width" constant="150" id="Xia-2l-oCq"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Clear all">
                                 <color key="titleColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -55,7 +56,7 @@
                     <constraints>
                         <constraint firstItem="6vd-G1-WIg" firstAttribute="leading" secondItem="ykF-8G-FCF" secondAttribute="leading" constant="20" id="BqW-c7-FGD"/>
                         <constraint firstItem="6vd-G1-WIg" firstAttribute="top" secondItem="ykF-8G-FCF" secondAttribute="top" constant="25" id="IwW-IW-GOl"/>
-                        <constraint firstAttribute="height" constant="100" id="w6R-Oe-ok3"/>
+                        <constraint firstAttribute="height" constant="90" id="w6R-Oe-ok3"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="3"/>
@@ -68,13 +69,13 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ys5-JY-Cf0">
-                    <rect key="frame" x="253" y="777" width="120" height="50"/>
+                    <rect key="frame" x="253" y="787" width="120" height="50"/>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="XMb-C7-UKX"/>
                         <constraint firstAttribute="width" constant="120" id="mxu-FB-KH5"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="19"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Show">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

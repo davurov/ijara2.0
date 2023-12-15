@@ -18,6 +18,9 @@ class ContactInfoTVC: UITableViewCell {
     
     //MARK: Elements
     
+    static let identifire = String(describing: ContactInfoTVC.self)
+    static func nib() -> UINib { UINib(nibName: identifire, bundle: nil) }
+    
     var index = 0
     var openLocationMap: (() -> Void)?
     
@@ -25,14 +28,14 @@ class ContactInfoTVC: UITableViewCell {
         super.awakeFromNib()
     }
     
-    @IBAction func openContactPressed(_ sender: Any) {
-        switch index {
-        case 0: openLocationMap?()
-        case 1: openPhoneCall("+998901773363")
-        case 2: openTelegramApp("bronlahelp")
-        default: break
-        }
-    }
+//    @IBAction func openContactPressed(_ sender: Any) {
+//        switch index {
+//        case 0: openLocationMap?()
+//        case 1: openPhoneCall("+998901773363")
+//        case 2: openTelegramApp("bronlahelp")
+//        default: break
+//        }
+//    }
     
     func updateCell(_ data: ContactInfoDM){
         contactImage.image = data.contactImage

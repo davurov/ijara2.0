@@ -55,7 +55,8 @@ class ContactVC: UIViewController {
         title = SetLanguage.setLang(type: .contacts)
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.tintColor = AppColors.mainColor
-        
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.backgroundColor = .systemGray6
         sendMessageBtn.setTitle(SetLanguage.setLang(type: .sendMessage), for: .normal)
         setupTableView()
         
@@ -63,8 +64,12 @@ class ContactVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = false
+       
     }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        navigationController?.navigationBar.backgroundColor = .white
+//    }
     
     @IBAction func sendMessagePressed(_ sender: UIButton) {
         if let indexPaths = tableView.indexPathsForVisibleRows {
@@ -101,6 +106,44 @@ class ContactVC: UIViewController {
         } else {
             print("Device not configured to send mail.")
         }
+    }
+    
+    func openPhoneCall(_ phoneNumber: String){
+        if let phoneURL = URL(string: "tel://\(phoneNumber)") {
+            if UIApplication.shared.canOpenURL(phoneURL) {
+                UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+            } else {
+                print("Call is not installed, handle accordingly")
+            }
+        } else {
+            print("Invalid URL, handle accordingly")
+        }
+    }
+    
+    func openTelegramApp(_ userName: String){
+        if let telegramURL = URL(string: "https://t.me/\(userName)") {
+            if UIApplication.shared.canOpenURL(telegramURL) {
+                UIApplication.shared.open(telegramURL, options: [:], completionHandler: nil)
+            } else {
+                print("Telegram app is not installed, handle accordingly")
+            }
+        } else {
+            print("Invalid URL, handle accordingly")
+        }
+    }
+    
+    func openCompanyLocation(){
+        let vc = CompanyLocationDetailVC()
+        vc.isWithYandexMap = false
+        
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 24
+        }
+        
+        present(vc, animated: true)
     }
     
 }

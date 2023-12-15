@@ -31,6 +31,10 @@ class HomeVC: UIViewController {
     @IBOutlet weak var newsLbl: UILabel!
     @IBOutlet weak var contactsLbl: UILabel!
     
+    @IBOutlet weak var housesLbl: UILabel!
+    
+    @IBOutlet weak var allBtn: UIButton!
+    
     //MARK: Variables
     
     let locationManager = CLLocationManager()
@@ -74,6 +78,7 @@ class HomeVC: UIViewController {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.tintColor = AppColors.mainColor
         navigationController?.navigationBar.backItem?.backButtonTitle = SetLanguage.setLang(type: .homeForBackButton)
+        navigationController?.navigationBar.backgroundColor = .white
     }
     
     //MARK: - @IBActions
@@ -118,6 +123,14 @@ class HomeVC: UIViewController {
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func allPressed(_ sender: Any) {
+        let vc = AllHousesVC()
+        vc.setValues(allVillas)
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     //MARK: - Functions
     
@@ -168,6 +181,11 @@ class HomeVC: UIViewController {
         mapLbl.text      = SetLanguage.setLang(type: .map)
         newsLbl.text     = SetLanguage.setLang(type: .news)
         contactsLbl.text = SetLanguage.setLang(type: .contacts)
+        
+        housesLbl.text = SetLanguage.setLang(type: .houses)
+        
+        allBtn.setTitleColor(AppColors.selectedTabbarCollor, for: .normal)
+        allBtn.setTitle(SetLanguage.setLang(type: .all), for: .normal)
     }
     
     func setupColView() {
@@ -209,6 +227,7 @@ class HomeVC: UIViewController {
             
             self.allHouses = allHouses
             self.allVillas = allHouses
+            print("self.allVillas.count: \(self.allVillas.count)")
             self.colView.reloadData()
             Loader.stop()
         }

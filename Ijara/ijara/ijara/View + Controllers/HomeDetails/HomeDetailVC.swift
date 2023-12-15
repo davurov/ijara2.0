@@ -58,7 +58,6 @@ class HomeDetailVC: UIViewController {
     var totalSum = 0 // to count price
     var dayCount = 0 // number of days in range
     var lastPeopleNum = 0
-    var likedDates: [String] = []
     
     var price = (wrking: 0 ,weekday: 0) {
         didSet {
@@ -67,22 +66,17 @@ class HomeDetailVC: UIViewController {
     }
     var id = 0
     
-    var likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as? [Int] ?? []
-    
     //MARK: Life cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        likedDates = UserDefaults.standard.stringArray(forKey: Keys.likedDate) ?? []
         title = countryHouseDM?.name
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.isHidden = false
-        setupTabbarButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        showLikeBtn()
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     //MARK: @IBAction functions
@@ -92,18 +86,11 @@ class HomeDetailVC: UIViewController {
     }
     
     @objc func likeBtnPressed(){
-        if likedHouses.contains(id) {
-            let index = likedHouses.firstIndex(of: id) ?? 0
-            likedHouses.remove(at: index)
-            likedDates.remove(at: index)
-            likeBtn.image = UIImage(systemName: "heart")
-        } else {
-            likedHouses.append(id)
-            likedDates.append(getCurrentDateAsString())
-            likeBtn.image = UIImage(systemName: "heart.fill")
-        }
-        UserDefaults.standard.set(likedHouses, forKey: Keys.likedHouses)
-        UserDefaults.standard.set(likedDates, forKey: Keys.likedDate)
+        //change likedBtn
+        guard let countryHouseDM = countryHouseDM else { return }
+        
+        let isLiked = LikedProducts.likedProducts.isLikedPerform(sevriceType: .house, id: countryHouseDM.id)
+        likeBtn.image = isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
     }
     
     @objc func shareBtnPressed(){
@@ -125,6 +112,7 @@ class HomeDetailVC: UIViewController {
             
             countryHouseDM = detailData
             setUpViews()
+            setupTabbarButtons()
             tableView.reloadData()
         }
     }
@@ -134,16 +122,22 @@ class HomeDetailVC: UIViewController {
             image: UIImage(systemName: "heart"), style: .done,
             target: self, action: #selector(likeBtnPressed)
         )
-
-        likeBtn.tintColor = AppColors.mainColor
         
+        guard let countryHouseDM = countryHouseDM else { return }
+        
+        //find that house is liked or not
+        let isLiked = LikedProducts.likedProducts.isLiked(sevriceType: .house, id: countryHouseDM.id)
+        
+        likeBtn.image = isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        
+        likeBtn.tintColor = AppColors.mainColor
+
         let shareBtn = UIBarButtonItem(
             image: UIImage(systemName: "square.and.arrow.up"), style: .done,
             target: self, action: #selector(shareBtnPressed)
         )
         
         shareBtn.tintColor = AppColors.mainColor
-        
         navigationItem.rightBarButtonItems = [likeBtn, shareBtn]
     }
     
@@ -156,17 +150,13 @@ class HomeDetailVC: UIViewController {
         tableView.register(RulesTVC.nib(), forCellReuseIdentifier: RulesTVC.identifier)
         tableView.register(AdditionalTVC.nib(), forCellReuseIdentifier: AdditionalTVC.identifier)
         tableView.register(InfoTVC.nib(), forCellReuseIdentifier: InfoTVC.identifier)
-        tableView.register(CommentTVC.nib(), forCellReuseIdentifier: CommentTVC.identifier)
-        tableView.register(ContactTVC.nib(), forCellReuseIdentifier: ContactTVC.identifier)
         tableView.register(CalendarTVC.nib(), forCellReuseIdentifier: CalendarTVC.identifier)
         tableView.register(MapTVC.nib(), forCellReuseIdentifier: MapTVC.identifier)
         title = countryHouseDM?.name
         
-        callCont.addShadowByHand(offset: CGSize(width: 0, height: 0), color: AppColors.customBlack.cgColor, radius: 5, opacity: 0.2)
+        callCont.addShadowByHand(offset: CGSize(width: 0, height: 0), color: AppColors.customBlack.cgColor, radius: 5, opacity: 0.3)
         callCont.layer.cornerRadius = 20
         callCont.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
-        
-        showLikeBtn()
     }
     
     func setPriceAnimation(weekwnds: Int, workingdays: Int) {
@@ -194,47 +184,13 @@ class HomeDetailVC: UIViewController {
         activityViewController.popoverPresentationController?.sourceView = self.view
         self.present(activityViewController, animated: true, completion: nil)
     }
-    
-    func showLikeBtn() {
-        if likedHouses.contains(id) {
-            likeBtn.image = UIImage(systemName: "heart.fill")
-        } else {
-            likeBtn.image = UIImage(systemName: "heart")
-        }
-    }
-    
-    /// func for liked or unliked houses
-//    func likePressed() {
-//        if likedHouses.contains(id) {
-//            let index = likedHouses.firstIndex(of: id) ?? 0
-//            likedHouses.remove(at: index)
-//            likedDates.remove(at: index)
-//            likeBtn.setImage(UIImage(systemName: "heart"), for: .normal)
-//        } else {
-//            likedHouses.append(id)
-//            likedDates.append(getCurrentDateAsString())
-//            print(getCurrentDateAsString(), "ni qo`shdi date ga")
-//            likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-//        }
-//        UserDefaults.standard.set(likedHouses, forKey: Keys.likedHouses)
-//        UserDefaults.standard.set(likedDates, forKey: Keys.likedDate)
-//    }
-    
-    func getCurrentDateAsString() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        
-        let currentDate = Date()
-        
-        return dateFormatter.string(from: currentDate)
-    }
-    
+
 }
 
 //MARK: - UITableViewDataSource
 extension HomeDetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -245,7 +201,8 @@ extension HomeDetailVC: UITableViewDataSource {
             guard let countryHouseDM = countryHouseDM else { return photoCell }
             
             photoCell.updateCell(countryHouseDM.images)
- 
+            photoCell.allImagesDelegate = self
+            
             return photoCell
         } else if indexPath.row == 1 {
             let nameCell = tableView.dequeueReusableCell(withIdentifier: NameTVC.identifier, for: indexPath) as! NameTVC
@@ -291,28 +248,6 @@ extension HomeDetailVC: UITableViewDataSource {
             
             return additionalCell
         } else if indexPath.row == 5 {
-            let commentCell = tableView.dequeueReusableCell(withIdentifier: CommentTVC.identifier, for: indexPath) as! CommentTVC
-            
-            guard let countryHouseDM = countryHouseDM else { return commentCell }
-            
-            commentCell.delegate = self
-            commentCell.updateCell(countryHouseDM.comment)
-
-            return commentCell
-        } else if indexPath.row == 6 {
-            let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactTVC.identifier, for: indexPath) as! ContactTVC
-         
-            guard let countryHouseDM = countryHouseDM else { return contactCell }
-            
-            contactCell.updateCell(
-                countryHouseDM.firstphone,
-                countryHouseDM.secondphone,
-                countryHouseDM.startTime,
-                countryHouseDM.finishTime
-            )
-            
-            return contactCell
-        } else if indexPath.row == 7 {
             let calendarCell = tableView.dequeueReusableCell(withIdentifier: CalendarTVC.identifier, for: indexPath) as! CalendarTVC
             
             guard let countryHouseDM = countryHouseDM else { return calendarCell }
@@ -358,12 +293,8 @@ extension HomeDetailVC: UITableViewDelegate {
                     return 130
                 }
         } else if indexPath.row == 4 {
-            return 340
+            return 415 //340
         } else if indexPath.row == 5 {
-            return commentCellSize
-        } else if indexPath.row == 6 {
-            return 230
-        } else if indexPath.row == 7 {
             return 575
         } else {
             return 300
@@ -382,36 +313,6 @@ extension HomeDetailVC {
     }
 }
 
-//MARK: - UIScrollViewDelegate
-//extension HomeDetailVC: UIScrollViewDelegate {
-//    //MARK: - TELLS SCROLLED UP OR DAWN
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let currentContentOffset = scrollView.contentOffset.y
-//        //WORKES WHEN WHEN SWIPED DAWN AND NOT 0 CELL IS NOT ON SCREEN
-//        if currentContentOffset > previousContentOffset && !navView.isHidden && !isCellVisible(indexPath: IndexPath(row: 0, section: 0)) {
-//            // IF SCROLLED DAWN IT HIDES VIEW
-//            UIView.animate(withDuration: 0.3) {
-//                self.navView.alpha = 0.0
-//            }
-//        } else if currentContentOffset < previousContentOffset && (navView.alpha == 0 || isCellVisible(indexPath: IndexPath(row: 0, section: 0))) {
-//            //SHOWS NAVVIEW BUT COLOR IS CLEAR
-//            if !isCellVisible(indexPath: IndexPath(row: 0, section: 0))  {
-//               // navView.backgroundColor = AppColors.mainColor
-//            } else {
-//                //SHOWS NAVVIEW BUT COLOR IS MAIN COLOR
-//                UIView.transition(with: navView, duration: 0.3, options: .transitionCrossDissolve, animations: {
-//                    self.navView.backgroundColor = .clear
-//                }, completion: nil)
-//            }
-//            UIView.animate(withDuration: 0.3) {
-//                self.navView.alpha = 1.0
-//            }
-//        }
-//
-//        previousContentOffset = currentContentOffset
-//    }
-//}
-
 //MARK: - CommentDelegate
 extension HomeDetailVC: CommentDelegate {
     func readMorePressed(size: CGFloat) {
@@ -429,16 +330,38 @@ extension HomeDetailVC: MapDelegate {
 
 //MARK: - AdditionalDelegate
 extension HomeDetailVC: AdditionalDelegate {
-    func showAllPressed() {
-        let vc = AdditionalVC()
+    func openOwnerInfoVC() {
+        guard let countryHouseDM = countryHouseDM else { return }
+
+        let vc = OwnerInfoVC()
+        vc.setValues(house: countryHouseDM)
+        
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
             sheet.prefersScrollingExpandsWhenScrolledToEdge = false
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 24
         }
+        
         present(vc, animated: true)
+
+        
+//        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func showAllPressed() {
+        let vc = AdditionalVC()
+//        if let sheet = vc.sheetPresentationController {
+//            sheet.detents = [.medium(), .large()]
+//            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+//            sheet.prefersGrabberVisible = true
+//            sheet.preferredCornerRadius = 24
+//        }
+//        present(vc, animated: true)
         vc.features = countryHouseDM?.entertainmentdata ?? []
+
+        navigationController?.pushViewController(vc, animated: true)
+        print("qwerty")
     }
 }
 
@@ -474,5 +397,19 @@ extension HomeDetailVC: RangeDelegate {
     
         changePrice(sum: totalSum)
         
+    }
+}
+
+extension HomeDetailVC: AllImagesProtocol {
+    func allPressed(_ images: [String]) {
+        let vc = All_ImagesVC()
+        vc.setImages(images)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func detailPressed(images: [String], selectedImageIndex: Int) {
+        let vc = ImageDetailVC()
+        vc.setImage(images: images, selectedImgIndex: selectedImageIndex)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
