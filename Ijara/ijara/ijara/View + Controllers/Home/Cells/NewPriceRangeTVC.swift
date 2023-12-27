@@ -140,9 +140,9 @@ class NewPriceRangeTVC: UITableViewCell {
     func setupViews(){
         contentView.addSubview(priceRangeLbl)
         priceRangeLbl.translatesAutoresizingMaskIntoConstraints = false
-        priceRangeLbl.font = UIFont(name: "American Typewriter Bold", size: 25)
+        priceRangeLbl.font = .systemFont(ofSize: 21, weight: .semibold)//UIFont(name: "American Typewriter Bold", size: 25)
         priceRangeLbl.text = SetLanguage.setLang(type: .priceRange)
-        priceRangeLbl.textColor = AppColors.customBlack
+        priceRangeLbl.textColor = AppColors.mainColor//AppColors.customBlack
 
         contentView.addSubview(sliderView)
         sliderView.translatesAutoresizingMaskIntoConstraints = false
@@ -174,16 +174,16 @@ class NewPriceRangeTVC: UITableViewCell {
         contentView.addSubview(minimumLbl)
         minimumLbl.translatesAutoresizingMaskIntoConstraints = false
         minimumLbl.text = "\(SetLanguage.setLang(type: .minimum)): \n \(minPrice)"
-        minimumLbl.textColor = AppColors.customBlack
-        minimumLbl.font = UIFont(name: "Futura Medium", size: 17)//.boldSystemFont(ofSize: 17)
+        minimumLbl.textColor = AppColors.mainColor//customBlack
+        minimumLbl.font = .systemFont(ofSize: 17, weight: .regular)//UIFont(name: "Futura Medium", size: 17)
         minimumLbl.textAlignment = .center
         minimumLbl.numberOfLines = 0
         
         contentView.addSubview(maximumLbl)
         maximumLbl.translatesAutoresizingMaskIntoConstraints = false
         maximumLbl.text = "\(SetLanguage.setLang(type: .maximum)): \n \(maxPrice)"
-        maximumLbl.textColor = AppColors.customBlack
-        maximumLbl.font = UIFont(name: "Futura Medium", size: 17)//.boldSystemFont(ofSize: 17)
+        maximumLbl.textColor = AppColors.mainColor//customBlack
+        maximumLbl.font = .systemFont(ofSize: 17, weight: .regular)//UIFont(name: "Futura Medium", size: 17)
         maximumLbl.textAlignment = .center
         maximumLbl.numberOfLines = 0
         

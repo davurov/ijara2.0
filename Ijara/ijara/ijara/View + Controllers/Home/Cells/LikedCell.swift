@@ -22,12 +22,19 @@ class LikedCell: UITableViewCell {
         
         contentView.backgroundColor = .clear
         backView.backgroundColor = .white
-        backView.layer.shadowColor = AppColors.mainColor.cgColor
-        backView.layer.shadowOffset = CGSize(width: 5, height: 5)
-        backView.layer.shadowOpacity = 0.5
-        backView.layer.shadowRadius = 5
         
         backView.layer.cornerRadius = 10
+        
+        backView.layer.shadowColor = UIColor.lightGray.cgColor
+        backView.layer.shadowRadius = 6
+        backView.layer.shadowOffset = CGSize(width: 6, height: 6)
+        backView.layer.shadowOpacity = 0.3
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if selected {
+            contentView.backgroundColor = .systemGray6
+        }
     }
     
     func loadImage(url: String) {

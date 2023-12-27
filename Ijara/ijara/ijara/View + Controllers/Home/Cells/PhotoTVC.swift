@@ -36,6 +36,7 @@ class PhotoTVC: UITableViewCell {
         }
     }
     var previousOffset: CGFloat = 0
+    var isWithRadiusPhoto = false
     weak var allImagesDelegate: AllImagesProtocol!
     
     override func awakeFromNib() {
@@ -71,6 +72,7 @@ extension PhotoTVC: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCVC.identifier, for: indexPath) as! PhotoCVC
 
         cell.loadImage(url: houseImgs[indexPath.row])
+        cell.isWithRadius = isWithRadiusPhoto
         
         return cell
     }

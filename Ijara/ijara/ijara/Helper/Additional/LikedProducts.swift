@@ -22,7 +22,6 @@ class LikedProducts {
     let userDef = UserDefaults.standard
     
     init() {
-        print("init ga kirdi")
         getLikedProducts()
     }
     
@@ -62,16 +61,10 @@ class LikedProducts {
         getLikedProducts()
         switch sevriceType {
         case .house:
-//            print("h,t,p 2: ", likedHousesIDs, likedTaxiServicesIDs, likedPartiesIDs)
-
             return likedHousesIDs.contains(id) ? true : false
         case .taxi:
-//            print("h,t,p 2: ", likedHousesIDs, likedTaxiServicesIDs, likedPartiesIDs)
-
             return likedTaxiServicesIDs.contains(id) ? true : false
         case .party:
-//            print("h,t,p 2: ", likedHousesIDs, likedTaxiServicesIDs, likedPartiesIDs)
-
             return likedPartiesIDs.contains(id) ? true : false
         }
     }

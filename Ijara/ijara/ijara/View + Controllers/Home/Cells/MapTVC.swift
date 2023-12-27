@@ -20,7 +20,6 @@ class MapTVC: UITableViewCell {
     @IBOutlet weak var locationLbl: UILabel! {
         didSet {
             locationLbl.text = SetLanguage.setLang(type: .locationLbl)
-            locationLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         }
     }
     @IBOutlet weak var map: MKMapView!

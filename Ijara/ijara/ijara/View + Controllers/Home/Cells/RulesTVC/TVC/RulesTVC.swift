@@ -41,7 +41,6 @@ class RulesTVC: UITableViewCell {
         collView.register(RulesCVC.nib(), forCellWithReuseIdentifier: RulesCVC.identifier)
         
         rulesLbl.text = SetLanguage.setLang(type: .rules)
-        rulesLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
     }
     
 }
@@ -62,6 +61,7 @@ extension RulesTVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 175, height: 80)
+        let screenSize = UIScreen.main.bounds.size
+        return CGSize(width: screenSize.width * 0.406, height: 80)
     }
 }

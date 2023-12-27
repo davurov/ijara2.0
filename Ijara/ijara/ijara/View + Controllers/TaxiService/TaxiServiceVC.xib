@@ -24,17 +24,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wRR-qh-Gut">
-                    <rect key="frame" x="0.0" y="128" width="393" height="690"/>
+                    <rect key="frame" x="0.0" y="106" width="393" height="712"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="5qx-qF-iBY">
-                    <rect key="frame" x="25" y="74" width="343" height="39"/>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="cqS-AG-ikD">
+                    <rect key="frame" x="11" y="62" width="371" height="39"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CH-1s-3V0">
-                            <rect key="frame" x="0.0" y="0.0" width="123" height="39"/>
+                            <rect key="frame" x="0.0" y="0.0" width="188" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="39" id="Wcv-Ef-F3C"/>
                             </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Tavfsiya etilganlar"/>
                             <connections>
@@ -42,8 +43,8 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jxm-Ji-NKc">
-                            <rect key="frame" x="178.66666666666666" y="0.0" width="66" height="39"/>
-                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                            <rect key="frame" x="193" y="0.0" width="97" height="39"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Arzonroq"/>
                             <connections>
@@ -51,8 +52,8 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44g-64-PB2">
-                            <rect key="frame" x="300" y="0.0" width="43" height="39"/>
-                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                            <rect key="frame" x="295" y="0.0" width="76" height="39"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Button"/>
                             <connections>
@@ -65,13 +66,13 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5qx-qF-iBY" secondAttribute="trailing" constant="25" id="5bH-m3-HDd"/>
-                <constraint firstItem="wRR-qh-Gut" firstAttribute="top" secondItem="5qx-qF-iBY" secondAttribute="bottom" constant="15" id="6tC-TS-cPR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wRR-qh-Gut" secondAttribute="bottom" id="Boo-vU-7ns"/>
                 <constraint firstItem="wRR-qh-Gut" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Do2-of-7st"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wRR-qh-Gut" secondAttribute="trailing" id="Q0I-qv-31X"/>
-                <constraint firstItem="5qx-qF-iBY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="dGq-SF-hno"/>
-                <constraint firstItem="5qx-qF-iBY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="tei-6c-wEI"/>
+                <constraint firstItem="cqS-AG-ikD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="11" id="Yjn-v9-cQQ"/>
+                <constraint firstItem="cqS-AG-ikD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="3" id="kkV-nL-T4o"/>
+                <constraint firstItem="wRR-qh-Gut" firstAttribute="top" secondItem="cqS-AG-ikD" secondAttribute="bottom" constant="5" id="s9U-W2-2Dp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cqS-AG-ikD" secondAttribute="trailing" constant="11" id="vp7-90-d1z"/>
             </constraints>
             <point key="canvasLocation" x="136.64122137404578" y="19.718309859154932"/>
         </view>

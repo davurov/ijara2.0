@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="395" id="KGk-i7-Jjw" customClass="NewsImagesTVC" customModule="ijara" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="641" height="395"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="641" height="395"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PlO-tp-5x2">
+                        <rect key="frame" x="5" y="5" width="631" height="385"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chorvoq2" translatesAutoresizingMaskIntoConstraints="NO" id="41P-Qe-uMd">
+                                <rect key="frame" x="0.0" y="0.0" width="631" height="0.0"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="w4u-f1-cZw">
+                                <rect key="frame" x="0.0" y="5" width="631" height="380"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chorvoq1" translatesAutoresizingMaskIntoConstraints="NO" id="akt-GM-E58">
+                                        <rect key="frame" x="0.0" y="0.0" width="313" height="380"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chorvoq3" translatesAutoresizingMaskIntoConstraints="NO" id="8c1-GI-Bzp">
+                                        <rect key="frame" x="318" y="0.0" width="313" height="380"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="PlO-tp-5x2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="0xW-an-XfE"/>
+                    <constraint firstAttribute="bottom" secondItem="PlO-tp-5x2" secondAttribute="bottom" constant="5" id="8xL-Np-bGd"/>
+                    <constraint firstItem="PlO-tp-5x2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="jfb-r7-6a7"/>
+                    <constraint firstAttribute="trailing" secondItem="PlO-tp-5x2" secondAttribute="trailing" constant="5" id="tsA-eE-IR3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="img1" destination="41P-Qe-uMd" id="CRX-ad-R1s"/>
+                <outlet property="img2" destination="akt-GM-E58" id="QkK-oJ-MVl"/>
+                <outlet property="img3" destination="8c1-GI-Bzp" id="3Re-Dt-ZYa"/>
+            </connections>
+            <point key="canvasLocation" x="319.84732824427482" y="182.74647887323945"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Chorvoq2" width="275" height="183"/>
+        <image name="Chorvoq3" width="680" height="453"/>
+        <image name="chorvoq1" width="900" height="600"/>
+    </resources>
+</document>

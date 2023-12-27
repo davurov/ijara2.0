@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,6 +15,7 @@
                 <outlet property="animationView" destination="rzX-LH-Mdp" id="t8f-T6-4PF"/>
                 <outlet property="categoriesSegmen" destination="vz2-lu-Mu8" id="lG1-cy-rl4"/>
                 <outlet property="tableView" destination="vxu-Ke-w4S" id="bqv-z1-Juc"/>
+                <outlet property="trashButton" destination="q9c-FX-gJH" id="PMG-RF-9mQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="wishlistsLbl" destination="9RC-5l-LFQ" id="rEO-uV-HCa"/>
             </connections>
@@ -25,22 +27,42 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rzX-LH-Mdp">
                     <rect key="frame" x="0.0" y="326" width="393" height="200"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="200" id="sVD-F9-zcV"/>
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="LcA-S0-Avy">
-                    <rect key="frame" x="15" y="74" width="363" height="84"/>
+                    <rect key="frame" x="15" y="74" width="363" height="81"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wishlists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9RC-5l-LFQ">
-                            <rect key="frame" x="0.0" y="0.0" width="363" height="36"/>
-                            <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="31"/>
-                            <color key="textColor" red="0.16078431372549018" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dob-Jq-syD">
+                            <rect key="frame" x="0.0" y="0.0" width="363" height="33"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wishlists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9RC-5l-LFQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="330" height="33"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                    <color key="textColor" name="AppMainColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q9c-FX-gJH">
+                                    <rect key="frame" x="330" y="0.0" width="33" height="33"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="33" id="GY9-Qo-dKg"/>
+                                        <constraint firstAttribute="height" constant="33" id="cqb-L5-vWX"/>
+                                    </constraints>
+                                    <color key="tintColor" name="AppMainColor"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="trash.fill" catalog="system">
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="trashBtnPressed:" destination="-1" eventType="touchUpInside" id="GHV-sl-UIz"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vz2-lu-Mu8">
-                            <rect key="frame" x="0.0" y="51" width="363" height="34"/>
+                            <rect key="frame" x="0.0" y="48" width="363" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="33" id="Bwr-xK-OXJ"/>
                             </constraints>
@@ -55,7 +77,7 @@
                     </subviews>
                 </stackView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vxu-Ke-w4S">
-                    <rect key="frame" x="5" y="163" width="383" height="655"/>
+                    <rect key="frame" x="5" y="160" width="383" height="658"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -79,6 +101,10 @@
         </view>
     </objects>
     <resources>
+        <image name="trash.fill" catalog="system" width="119" height="128"/>
+        <namedColor name="AppMainColor">
+            <color red="0.016000000759959221" green="0.14100000262260437" blue="0.18400000035762787" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

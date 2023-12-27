@@ -14,6 +14,7 @@ class LikedHousesVC: UIViewController {
     @IBOutlet weak var categoriesSegmen: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var animationView: UIView!
+    @IBOutlet weak var trashButton: UIButton!
     
     //MARK: Variables
     let userDef = UserDefaults.standard
@@ -26,9 +27,9 @@ class LikedHousesVC: UIViewController {
     var allTaxis: [TaxiDM] = []
     var allParties: [ChildrensParty] = []
     
-    var likedHouses = [CountryhouseData]() //{ didSet {showEmptyAnimation(.house)} }
-    var likedTaxiServices = [TaxiDM]() //{ didSet {showEmptyAnimation(.taxi)} }
-    var likedChildrenParties = [ChildrensParty]() //{ didSet {showEmptyAnimation(.party)} }
+    var likedHouses = [CountryhouseData]()
+    var likedTaxiServices = [TaxiDM]()
+    var likedChildrenParties = [ChildrensParty]()
 
     var lottieView = LottieAnimationView()
     var selectedCategory: ServiceType = .house
@@ -41,7 +42,7 @@ class LikedHousesVC: UIViewController {
         super.viewDidLoad()
         Loader.start()
 
-        navigationItem.backButtonTitle = SetLanguage.setLang(type: .wishlistsForBackBtn)
+        navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = AppColors.mainColor
         wishlistsLbl.text = SetLanguage.setLang(type: .wishlists)
         title = SetLanguage.setLang(type: .wishlists)
@@ -50,13 +51,12 @@ class LikedHousesVC: UIViewController {
         getAllTaxiServices()
         getAllParties()
         
-        
         var timer: Timer?
         
-        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true, block: {[weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true, block: {[weak self] _ in
             guard let self = self else { return }
             
-            print("while true")
+            //for example: taxi or party get load faster then others, to reload all 3 type we should wait until all liked products loaded. Therefor we are check every 0.15 second, after got all liked products we can reload tableView.
             if serviceRespondCounter == 3 {
                 updateLikedHouses()
                 updateLikedTaxis()
@@ -90,6 +90,14 @@ class LikedHousesVC: UIViewController {
         tableView.reloadData()
     }
     
+    @IBAction func trashBtnPressed(_ sender: Any) {
+        let vc = DeleteLikedsVC()
+        vc.modalPresentationStyle = .overFullScreen
+        vc.deleteDelegate = self
+        present(vc, animated: false)
+    }
+    
+    
     @IBAction func segmentPressed(_ sender: Any) {
         if categoriesSegmen.selectedSegmentIndex == 0 {
             selectedCategory = .house
@@ -100,7 +108,6 @@ class LikedHousesVC: UIViewController {
         }
         
         showEmptyAnimation(selectedCategory)
-        print("step 1: showEmpAn gs \(selectedCategory) ni berdi")
         tableView.reloadData()
     }
     
@@ -110,18 +117,16 @@ class LikedHousesVC: UIViewController {
         switch type {
         case .house:
             showAnimation(likedHouses.isEmpty ? true : false)
-            print("showAnimation ga \(likedHouses.isEmpty ? true : false) berdi house da")
         case .taxi:
             showAnimation(likedTaxiServices.isEmpty ? true : false)
-            print("step 2: \(likedTaxiServices.isEmpty)")
-            print("showAnimation ga \(likedHouses.isEmpty ? true : false) berdi taxi da")
         case .party:
             showAnimation(likedChildrenParties.isEmpty ? true : false)
-            print("showAnimation ga \(likedHouses.isEmpty ? true : false) berdi party da")
         }
     }
     
     func setUpViews() {
+        view.backgroundColor = .systemGray6
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(LikedCell.nib(), forCellReuseIdentifier: LikedCell.identifier)
@@ -150,11 +155,13 @@ class LikedHousesVC: UIViewController {
         if shouldShow {
             tableView.isHidden = true
             lottieView.isHidden = false
+            trashButton.isHidden = true
             lottieView.play()
         } else {
             lottieView.stop()
             lottieView.isHidden = true
             tableView.isHidden = false
+            trashButton.isHidden = false
         }
     }
     
@@ -339,4 +346,17 @@ extension LikedHousesVC: UITableViewDelegate {
         return 110
     }
     
+}
+
+extension LikedHousesVC: DeleteLikedsDelegate {
+    func deleteAllProducts() {
+        switch selectedCategory {
+        case .house:
+            for _ in 0..<likedHouses.count { deleteAt(ind: 0) }
+        case .taxi:
+            for _ in 0..<likedTaxiServices.count { deleteAt(ind: 0) }
+        case .party:
+            for _ in 0..<likedChildrenParties.count { deleteAt(ind: 0) }
+        }
+    }
 }

@@ -15,7 +15,6 @@ class PartyImagesTVC: UITableViewCell {
     
 	@IBOutlet weak var imagesBtn: UIButton!
 	
-	
 	static let identifier: String = String(describing: PartyImagesTVC.self)
 	static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
 	
@@ -31,7 +30,6 @@ class PartyImagesTVC: UITableViewCell {
 	@IBAction func imagesBtnPressed(_ sender: Any) {
 		allImagesDelegate.allPressed(partyImages)
 	}
-	
 	
 	func updateCell(images: [String]){
 		partyImages = images
@@ -57,6 +55,8 @@ extension PartyImagesTVC: UICollectionViewDataSource {
 		guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCVC.identifier, for: indexPath) as? PhotoCVC else { return UICollectionViewCell() }
 		
 		cell.loadImage(url: partyImages[indexPath.item])
+		cell.isWithRadius = true
+		cell.giveRadius(10)
 		
 		return cell
 	}

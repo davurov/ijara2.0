@@ -39,6 +39,8 @@ class SendMessageTVC: UITableViewCell {
         
         if messagePlaceholder == SetLanguage.setLang(type: .enterNameTF) {
             sendMessageTF.text = UserDefaults.standard.string(forKey: Keys.userName)
+        } else if messagePlaceholder == SetLanguage.setLang(type: .enterEmailTF) {
+            sendMessageTF.text = UserDefaults.standard.string(forKey: Keys.userEmail)
         }
     }
     

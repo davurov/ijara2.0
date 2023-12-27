@@ -60,11 +60,5 @@ class ChildrensPartyTVC: UITableViewCell {
 		priceView.layer.cornerRadius = 15
 		priceView.clipsToBounds = true
 		priceView.addShadowCustom(offset: CGSize(width: 5, height: 5), color: AppColors.mainColor.cgColor, radius: 5, opacity: 1)
-		
-//		let isLiked = LikedProducts.likedProducts.isLiked(sevriceType: .party, id: partyID)
-//
-//		let heartImg = UIImage(systemName: isLiked ? "heart.fill" : "heart")
-//
-//		likedBtn.setImage(heartImg, for: .normal)
 	}
 }

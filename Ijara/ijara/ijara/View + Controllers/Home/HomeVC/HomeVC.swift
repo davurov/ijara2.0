@@ -35,10 +35,19 @@ class HomeVC: UIViewController {
     
     @IBOutlet weak var allBtn: UIButton!
     
+    @IBOutlet weak var mainSV: UIStackView!
+    
+    
     //MARK: Variables
     
     let locationManager = CLLocationManager()
-    let categoryNames = [SetLanguage.setLang(type: .allCategory),"Toshkent","Chorvoq","Chimyon","Qibray"]
+    let categoryNames = [
+        SetLanguage.setLang(type: .allCategory),
+        SetLanguage.setLang(type: .Tashkent),
+        SetLanguage.setLang(type: .Chorvoq),
+        SetLanguage.setLang(type: .Chimyon),
+        SetLanguage.setLang(type: .Qibray)
+    ]
     var selectedRegion = SetLanguage.setLang(type: .allCategory)
     var filteredVillasID = [Int]()
     var isSelected = false
@@ -62,9 +71,7 @@ class HomeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.backButtonTitle = SetLanguage.setLang(type: .homeForBackButton)
-        setupColView()
-        setupSubviews()
+        navigationItem.backButtonTitle = ""
         locationManager.requestWhenInUseAuthorization()
     }
     
@@ -72,12 +79,12 @@ class HomeVC: UIViewController {
         super.viewWillAppear(animated)
         
         if !isConfigured {
+            mainSV.isHidden = true
             getData()
             isConfigured = true
         }
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.tintColor = AppColors.mainColor
-        navigationController?.navigationBar.backItem?.backButtonTitle = SetLanguage.setLang(type: .homeForBackButton)
         navigationController?.navigationBar.backgroundColor = .white
     }
     
@@ -113,9 +120,13 @@ class HomeVC: UIViewController {
     @IBAction func newsBtn(_ sender: Any) {
         
         let vc = NewsVC()
-        vc.hidesBottomBarWhenPushed = true
-        vc.navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.pushViewController(vc, animated: true)
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [ .medium(), .large()]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 24
+        }
+        present(vc, animated: true)
     }
     
     @IBAction func contactsPressed(_ sender: Any) {
@@ -130,7 +141,6 @@ class HomeVC: UIViewController {
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
-    
     
     //MARK: - Functions
     
@@ -148,6 +158,7 @@ class HomeVC: UIViewController {
         searchTF.placeholder = SetLanguage.setLang(type: .searchTfPlaceholder)
         searchTF.leftView = leftView
         searchTF.leftViewMode = .always
+        
         searchTF.layer.cornerRadius = searchTF.frame.height / 3
         searchTF.clipsToBounds = true
         searchTF.backgroundColor = AppColors.customGray6
@@ -182,10 +193,10 @@ class HomeVC: UIViewController {
         newsLbl.text     = SetLanguage.setLang(type: .news)
         contactsLbl.text = SetLanguage.setLang(type: .contacts)
         
-        housesLbl.text = SetLanguage.setLang(type: .houses)
+        housesLbl.text = "  " + SetLanguage.setLang(type: .houses)
         
         allBtn.setTitleColor(AppColors.selectedTabbarCollor, for: .normal)
-        allBtn.setTitle(SetLanguage.setLang(type: .all), for: .normal)
+        allBtn.setTitle("\(SetLanguage.setLang(type: .all))   ", for: .normal)
     }
     
     func setupColView() {
@@ -222,13 +233,16 @@ class HomeVC: UIViewController {
     
     func getData() {
         Loader.start()
-        API.getAllHouses { allHouses in
+        API.getAllHouses { [weak self] allHouses in
+            guard let self = self else { return }
             guard let allHouses = allHouses else { return }
             
             self.allHouses = allHouses
-            self.allVillas = allHouses
-            print("self.allVillas.count: \(self.allVillas.count)")
-            self.colView.reloadData()
+            allVillas = allHouses
+            mainSV.isHidden = false
+            setupSubviews()
+            setupColView()
+            colView.reloadData()
             Loader.stop()
         }
     }
@@ -258,8 +272,8 @@ class HomeVC: UIViewController {
         
         if !filteredVillasID.isEmpty {
             ///``    filtred
-            if str != SetLanguage.setLang(type: .allCategory)   {
-                for i in allVillas where i.province == city && filteredVillasID.contains(i.id) {
+            if str != SetLanguage.setLang(type: .allCategory) {
+                for i in allVillas where i.province == city && filteredVillasID.contains(i.id){
                     allHouses.append(i)
                 }
             } else {
@@ -340,7 +354,6 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             let cell = categoryColView.dequeueReusableCell(withReuseIdentifier: "CategoryCVC", for: indexPath) as! CategoryCVC
             
             // cell configure
-            
             cell.layer.cornerRadius = 12
             cell.clipsToBounds = true
             cell.sizeToFit()
@@ -373,7 +386,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                 typeId: allHouses[indexPath.item].company.map({Companylist(id: $0.id, name: $0.name, image: $0.image)}),
                 pool: []
             )
-
+            cell.imageDatas = allHouses[indexPath.item].imagesAsData
             cell.backgroundColor = .clear
             
             return cell

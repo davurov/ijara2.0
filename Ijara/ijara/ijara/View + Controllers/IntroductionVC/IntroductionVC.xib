@@ -24,8 +24,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stress-free stays, handcrafted for memories. Let's turn dream vacations into reality" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tay-76-kaD">
-                    <rect key="frame" x="25" y="158" width="343" height="77.333333333333314"/>
-                    <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="21"/>
+                    <rect key="frame" x="25" y="134" width="343" height="75.333333333333314"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -41,7 +41,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="MsQ-pk-Wuj"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="19"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Button"/>
@@ -64,7 +64,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="AfV-aS-qfI" firstAttribute="top" secondItem="CPO-YW-QHB" secondAttribute="bottom" id="FFH-uK-YLI"/>
-                <constraint firstItem="tay-76-kaD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="99" id="Kg1-FA-Cbe"/>
+                <constraint firstItem="tay-76-kaD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="75" id="Kg1-FA-Cbe"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Xma-ZR-kKe" secondAttribute="trailing" constant="33" id="KhM-Y1-s85"/>
                 <constraint firstItem="CPO-YW-QHB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="Lfn-Yd-SbC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CPO-YW-QHB" secondAttribute="trailing" constant="25" id="OeR-cg-HwA"/>

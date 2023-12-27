@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeDetailVC" customModule="ijara" customModuleProvider="target">
             <connections>
+                <outlet property="bottomViewHeight" destination="R7V-pe-uIb" id="0XD-zm-Xxp"/>
                 <outlet property="callBtn" destination="nNw-Tg-Vbg" id="8eS-gJ-z6W"/>
                 <outlet property="callCont" destination="cZm-i0-S4Q" id="dVb-Io-Zgq"/>
                 <outlet property="depositLbl" destination="P2i-rz-70L" id="fMK-hM-cnT"/>
@@ -39,16 +41,16 @@
                                     <rect key="frame" x="0.0" y="0.0" width="243" height="50"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="pZZ-6A-bFg">
-                                            <rect key="frame" x="0.0" y="0.0" width="151" height="20"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="145.66666666666666" height="20"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BqS-JN-1Nq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
-                                                    <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="44.666666666666664" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <color key="textColor" name="AppMainColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="253" verticalHuggingPriority="253" horizontalCompressionResistancePriority="754" verticalCompressionResistancePriority="754" translatesAutoresizingMaskIntoConstraints="NO" id="pLg-I6-p0y" customClass="RollingDigitsLabel" customModule="RollingDigitsLabel">
-                                                    <rect key="frame" x="61" y="0.0" width="90" height="20"/>
+                                                    <rect key="frame" x="55.666666666666671" y="0.0" width="90.000000000000014" height="20"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="YzW-9M-RCg"/>
@@ -58,16 +60,16 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="Dbj-dy-fCD">
-                                            <rect key="frame" x="0.0" y="30" width="176" height="20"/>
+                                            <rect key="frame" x="0.0" y="30" width="166.33333333333334" height="20"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="254" verticalHuggingPriority="254" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="753" text="Deposit:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2i-rz-70L">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="20"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
-                                                    <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="65.333333333333329" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <color key="textColor" name="AppMainColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="253" verticalHuggingPriority="253" horizontalCompressionResistancePriority="754" verticalCompressionResistancePriority="754" translatesAutoresizingMaskIntoConstraints="NO" id="ml8-6H-JHB" customClass="RollingDigitsLabel" customModule="RollingDigitsLabel">
-                                                    <rect key="frame" x="86" y="0.0" width="90" height="20"/>
+                                                    <rect key="frame" x="76.333333333333329" y="0.0" width="89.999999999999986" height="20"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="XMq-OV-duZ"/>
@@ -80,12 +82,12 @@
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNw-Tg-Vbg">
                                     <rect key="frame" x="243" y="0.0" width="120" height="50"/>
-                                    <color key="backgroundColor" red="0.16078431369999999" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="backgroundColor" name="AppMainColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="6Gy-3I-cNN"/>
                                         <constraint firstAttribute="width" constant="120" id="nmg-25-rXh"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="19"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Call">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -126,6 +128,9 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="AppMainColor">
+            <color red="0.015686274509803921" green="0.14117647058823529" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

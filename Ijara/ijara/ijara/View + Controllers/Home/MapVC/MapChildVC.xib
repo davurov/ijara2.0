@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -79,27 +80,27 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4oy-HS-9Lu">
-                            <rect key="frame" x="16" y="302" width="17.666666666666671" height="54.666666666666686"/>
+                            <rect key="frame" x="16" y="302" width="23" height="51"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-:-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kmh-VZ-kMJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="17.666666666666668" height="25"/>
-                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="19"/>
-                                    <color key="textColor" red="0.02376633324" green="0.090219385920000006" blue="0.2274331748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="23" height="23"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                    <color key="textColor" name="AppMainColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="257" text="-:-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6i1-sG-jGj">
-                                    <rect key="frame" x="0.0" y="35" width="17.666666666666668" height="19.666666666666671"/>
-                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                    <rect key="frame" x="0.0" y="33" width="23" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="oiP-WF-exi">
-                            <rect key="frame" x="330" y="302" width="47" height="21.666666666666686"/>
+                            <rect key="frame" x="330" y="302" width="47" height="23"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7ix-E9-A4T">
-                                    <rect key="frame" x="0.0" y="0.66666666666666785" width="20" height="19.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="1.3333333333333535" width="20" height="19.666666666666664"/>
                                     <color key="tintColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="20" id="LOY-b1-ktu"/>
@@ -107,15 +108,15 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-:-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVb-FZ-oCz">
-                                    <rect key="frame" x="25" y="0.0" width="22" height="21.666666666666668"/>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                    <color key="textColor" red="0.02376633324" green="0.090219385920000006" blue="0.2274331748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <rect key="frame" x="25" y="0.0" width="22" height="23"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                    <color key="textColor" name="AppMainColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BKP-o8-rWO">
-                            <rect key="frame" x="36.666666666666657" y="376.66666666666669" width="320" height="50"/>
+                            <rect key="frame" x="36.666666666666657" y="373" width="320" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDp-Vn-Hzo">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -145,7 +146,7 @@
                                         <constraint firstAttribute="width" constant="200" id="3Bl-W7-vXu"/>
                                         <constraint firstAttribute="height" constant="50" id="6sy-BZ-R4J"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="15"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                     <color key="tintColor" red="0.89803922179999995" green="0.91372549530000002" blue="0.93333333730000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="More info"/>
@@ -182,7 +183,7 @@
                             </subviews>
                         </stackView>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3T-ex-uC1">
-                            <rect key="frame" x="301.66666666666669" y="371.66666666666669" width="60" height="60"/>
+                            <rect key="frame" x="301.66666666666669" y="368" width="60" height="60"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="E5I-ab-PGt"/>
@@ -205,7 +206,7 @@
                         <constraint firstItem="b3T-ex-uC1" firstAttribute="centerX" secondItem="LZM-yS-Rck" secondAttribute="centerX" id="gxs-HH-S8d"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nue-3v-fIA">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nue-3v-fIA">
                     <rect key="frame" x="171.66666666666666" y="64" width="50" height="4"/>
                     <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -236,6 +237,9 @@
         <image name="globe.europe.africa.fill" catalog="system" width="128" height="123"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <namedColor name="AppMainColor">
+            <color red="0.016000000759959221" green="0.14100000262260437" blue="0.18400000035762787" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

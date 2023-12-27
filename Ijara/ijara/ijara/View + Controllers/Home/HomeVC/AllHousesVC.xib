@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="FXK-rJ-0ug">
-                    <rect key="frame" x="5" y="59" width="383" height="793"/>
+                    <rect key="frame" x="15" y="59" width="363" height="793"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kOD-d8-85W">
                         <size key="itemSize" width="128" height="128"/>
@@ -36,8 +36,8 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="FXK-rJ-0ug" secondAttribute="bottom" id="Isa-SG-qhR"/>
                 <constraint firstItem="FXK-rJ-0ug" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="JCY-qb-g6y"/>
-                <constraint firstItem="FXK-rJ-0ug" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="5" id="Jdp-ZU-DqD"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FXK-rJ-0ug" secondAttribute="trailing" constant="5" id="oGf-Ty-TGb"/>
+                <constraint firstItem="FXK-rJ-0ug" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="Jdp-ZU-DqD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FXK-rJ-0ug" secondAttribute="trailing" constant="15" id="oGf-Ty-TGb"/>
             </constraints>
             <point key="canvasLocation" x="7" y="20"/>
         </view>

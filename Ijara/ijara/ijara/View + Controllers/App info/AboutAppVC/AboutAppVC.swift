@@ -23,12 +23,20 @@ class AboutAppVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backButtonTitle = ""
         setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         changeColor()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor : AppColors.customBlackText
+        ]
+    }
+    
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -89,7 +97,6 @@ class AboutAppVC: UIViewController {
     }
     private func setupViews(){
         navigationController?.navigationBar.tintColor = AppColors.mainColor
-        navigationItem.backButtonTitle = SetLanguage.setLang(type: .about)
         
         tableView.dataSource = self
         tableView.delegate = self

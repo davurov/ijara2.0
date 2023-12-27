@@ -80,10 +80,10 @@ class CalendarTVC: UITableViewCell {
         calendarView.swipeToChooseGesture.isEnabled = true
         
         numberOfPeopleLbl.text = SetLanguage.setLang(type: .numberOfPeople)
-        numberOfPeopleLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
+//        numberOfPeopleLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         
         chooseDayOfVacationLbl.text = SetLanguage.setLang(type: .chooseDayOfVacationLbl)
-        chooseDayOfVacationLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
+//        chooseDayOfVacationLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         
         peopleCounterLbl.text = "\(sum)"
         peopleCounterLbl.textAlignment = .center

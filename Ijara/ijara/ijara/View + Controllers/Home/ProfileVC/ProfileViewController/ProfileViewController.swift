@@ -11,11 +11,10 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = SetLanguage.setLang(type: .profileTitle)
-        navigationItem.backButtonTitle = SetLanguage.setLang(type: .profileForBackBtn)
+        navigationItem.backButtonTitle = ""
         setupTableView()
     }
     
@@ -81,8 +80,8 @@ extension ProfileViewController: UITableViewDataSource {
                     settingName: SetLanguage.setLang(type: .privcyPolicy))
             case 3:
                 settingsCell.updateCell(
-                    icon: UIImage(named: "companyLocation"),//translate
-                    settingName: "Company location")
+                    icon: UIImage(systemName: "mappin.and.ellipse"),
+                    settingName: SetLanguage.setLang(type: .companyLocation))
             default:
                 settingsCell.updateCell(
                     icon: UIImage(systemName: "iphone.rear.camera"),
@@ -112,7 +111,19 @@ extension ProfileViewController: UITableViewDelegate {
                 navigationController?.pushViewController(vc, animated: true)
             case 1:
                 let vc = ChooseLanguageVC()
-                vc.modalPresentationStyle = .overFullScreen
+                if let sheet = vc.sheetPresentationController {
+                    if #available(iOS 16.0, *) {
+                        sheet.detents = [.custom(resolver: { context in
+                            return 250
+                        })]
+                    } else {
+                        // Fallback on earlier versions
+                        sheet.detents = [.medium()]
+                    }
+                    sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+                    sheet.prefersGrabberVisible = true
+                    sheet.preferredCornerRadius = 24
+                }
                 present(vc, animated: true)
             case 2:
                 let vc = AboutAppVC()

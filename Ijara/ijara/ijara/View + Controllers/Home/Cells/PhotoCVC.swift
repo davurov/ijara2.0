@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PhotoCVC: UICollectionViewCell {
     
@@ -13,25 +14,37 @@ class PhotoCVC: UICollectionViewCell {
     @IBOutlet weak var imageCont: UIView!
     
     var isExpanded = false
+    var isWithRadius = false
     
     static let identifier: String = String(describing: PhotoCVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
-    override func prepareForReuse() {
-        houseImage.sd_cancelCurrentImageLoad()
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        imageCont.layer.cornerRadius = 10
-        imageCont.clipsToBounds = true
-
-        houseImage.layer.cornerRadius = 10
-        houseImage.clipsToBounds = true
+        if isWithRadius {
+            imageCont.layer.cornerRadius = 10
+            imageCont.clipsToBounds = true
+            
+            houseImage.layer.cornerRadius = 10
+            houseImage.clipsToBounds = true
+        }
     }
     
     func loadImage(url: String) {
-        houseImage.sd_setImage(with: URL(string: base_URL + url), placeholderImage: UIImage(named: "1"))
+        let url = URL(string: base_URL + url)
+        guard let url = url else { return }
+        
+        let options: SDWebImageOptions = [.highPriority, .continueInBackground]
+        
+        houseImage.sd_setImage(with: url, placeholderImage: UIImage(named: "homeImg"), options: options)
+    }
+    
+    func giveRadius(_ radius: CGFloat){
+        imageCont.layer.cornerRadius = radius
+        imageCont.clipsToBounds = true
+        
+        houseImage.layer.cornerRadius = radius
+        houseImage.clipsToBounds = true
     }
     
     func toggleSize() {
@@ -44,3 +57,6 @@ class PhotoCVC: UICollectionViewCell {
     }
     
 }
+
+
+

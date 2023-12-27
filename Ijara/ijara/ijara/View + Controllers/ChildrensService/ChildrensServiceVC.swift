@@ -32,7 +32,7 @@ class ChildrensServiceVC: UIViewController {
 		super.viewDidLoad()
 		
 		title = SetLanguage.setLang(type: .childrens)
-				
+		navigationItem.backButtonTitle = ""
 		Loader.start()
 		setupViews()
 		self.scrollViewDidScroll(tableView)
@@ -107,7 +107,6 @@ class ChildrensServiceVC: UIViewController {
 			
 			sortLbl.text = SetLanguage.setLang(type: .cheaperCars)
 			childrenPartiesServices = cheaperParties
-			print("childrenPartiesServices.count:", childrenPartiesServices.count)
 			tableView.reloadData()
 		}
 
@@ -134,16 +133,17 @@ class ChildrensServiceVC: UIViewController {
 		addSubviews(stackViewForTitle, stackView1, stackView2, tableView)
 		
 		titleLbl.text = SetLanguage.setLang(type: .childrenEvents)
-		titleLbl.font = UIFont(name: "Futura Bold", size: 25)
+		titleLbl.font = .systemFont(ofSize: 25, weight: .bold)//UIFont(name: "Futura Bold", size: 25)
+		titleLbl.textColor = AppColors.mainColor
 		titleLbl.textAlignment = .left
 		
 		stackViewForTitle.addArrangedSubview(titleLbl)
 		stackViewForTitle.alignment = .leading
 		stackViewForTitle.axis = .vertical
 		
-		
-		sortLbl.font = UIFont(name: "Futura Bold", size: 17)
+		sortLbl.font = .systemFont(ofSize: 17, weight: .bold)//UIFont(name: "Futura Bold", size: 17)
 		sortLbl.text = SetLanguage.setLang(type: .recommendedCars)
+		sortLbl.textColor = AppColors.mainColor
 		sortLbl.textAlignment = .right
 		
 		sortBtn.setImage(UIImage(named: "filter"), for: .normal)
@@ -173,15 +173,13 @@ class ChildrensServiceVC: UIViewController {
 		stackView2.alignment = .fill
 		stackView2.spacing = 7
 		
-	
-		
 		addConstraints()
 	}
 	
 	private func addConstraints(){
 		
 		NSLayoutConstraint.activate([
-			stackView2.topAnchor.constraint(equalTo: view.topAnchor, constant: 55),
+			stackView2.topAnchor.constraint(equalTo: view.topAnchor, constant: 63),
 			stackView2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15),
 			stackView2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
 			stackView2.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
@@ -189,12 +187,7 @@ class ChildrensServiceVC: UIViewController {
 			sortBtn.widthAnchor.constraint(equalToConstant: 50),
 			sortBtn.heightAnchor.constraint(equalToConstant: 50),
 			
-			sortLbl.centerYAnchor.constraint(equalTo: sortBtn.centerYAnchor),
-			
-//			tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15),
-//			tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
-//			tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-//			tableView.topAnchor.constraint(equalTo: stackView2.bottomAnchor, constant: 0)
+			sortLbl.centerYAnchor.constraint(equalTo: sortBtn.centerYAnchor)
 		])
 	}
 	
@@ -204,7 +197,6 @@ class ChildrensServiceVC: UIViewController {
 			v.translatesAutoresizingMaskIntoConstraints = false
 		}
 	}
-	
 }
 
 extension ChildrensServiceVC: UITableViewDataSource {
@@ -227,6 +219,7 @@ extension ChildrensServiceVC: UITableViewDataSource {
 		let heartImg = UIImage(systemName: isLiked ? "heart.fill" : "heart")
 		
 		cell.updateCell(childrenPartiesServices[indexPath.row], heartImage: heartImg ?? UIImage())
+		cell.selectionStyle = .none
 		
 		return cell
 	}
@@ -262,9 +255,12 @@ extension ChildrensServiceVC: UITableViewDelegate {
 					self.stackView1.isHidden = false
 					self.stackViewForTitle.isHidden = false
 				}
-
 				
 			}
 		}
 	}
+	
+//	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//		return 175
+//	}
 }

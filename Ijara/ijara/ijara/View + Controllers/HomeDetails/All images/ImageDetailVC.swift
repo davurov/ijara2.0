@@ -48,12 +48,10 @@ class ImageDetailVC: UIViewController {
     }
     
     @objc func swipeToLeft(_ sender: Any){
-        print("left")
         nextImage()
     }
    
     @objc func swipeToRight(_ sender: Any){
-        print("right")
         previousImage()
     }
     

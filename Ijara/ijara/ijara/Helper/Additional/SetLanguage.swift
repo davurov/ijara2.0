@@ -39,6 +39,13 @@ extension SetLanguage{
         case .news                : return "Yangiliklar"
         case .contacts            : return "Kontaktlar"
         case .allCategory         : return "Hammasi"
+        case .Tashkent            : return "Toshkent"
+        case .Chorvoq             : return "Chorvoq"
+        case .Chimyon             : return "Chimyon"
+        case .Qibray              : return "Qibray"
+            
+            ///`        NewsVC
+        case .close: return "Yopish"
             
             ///`        HomeDetailVC
         case .priceLbl                : return "Narx"
@@ -48,7 +55,7 @@ extension SetLanguage{
         case .viewsLbl                : return "Ko'rildi"
         case .hostedByLbl             : return "Mezbon"
         case .peopleLbl               : return "odamlar"
-        case .bedroomsLbl             : return "yotoq xonalari"
+        case .bedroomsLbl             : return "yotoq xonalar"
         case .bedsLbl                 : return "yotoqlar"
         case .rules                   : return "Qoidalar"
         case .additionalFeatures      : return "Qo'shimcha funktsiyalar"
@@ -68,18 +75,21 @@ extension SetLanguage{
         case .numberOfPeople          : return "Odamlar soni"
         case .openLocation            : return "Manzilni ochish"
         case .openLocationMessage     : return "Yo'nalishni ochish uchun dasturni tanlang"
+        case .emptyCommentMessage     : return "Izoh yozilmagan"
             
             ///`        LikedHousesVC
         case .wishlists           : return "Istaklar ro'yxati"
         case .wishlistsForBackBtn : return "Ro`yxat"
         case .delete              : return "O'chirish"
+        case .deleteLikedsMessage : return "Barcha saqlanganlarni o`chirishni istaysizmi?"
+        case .cancel              : return "Bekor qilish"
             
             ///`        Tabbar
         case .menu:  return "Menu"
-        case .liked: return "Yoqqan dachalar"
+        case .liked: return "Saqlanganlar"
             
             ///`           ProfileVC
-        case .profileTitle                : return "Shaxsiy kabinet"
+        case .profileTitle                : return "Kabinet"
         case .profileForBackBtn           : return "Kabinet"
         case .user                        : return "Foydalanuvchini ismi"
         case .showProfile                 : return "Profilni ko`rish"
@@ -91,6 +101,7 @@ extension SetLanguage{
         case .chooseLanguage              : return "Tilni tanlang"
         case .cancelTitle                 : return "Bekor qilish"
         case .privcyPolicy                : return "Maxfiylik siyosati"
+        case .companyLocation             : return "Kompaniyaning manzili"
         case .otherApps                   : return "Boshqa ilovalar"
         case .logOut                      : return "Chiqish"
         case .deleteAccaunt               : return "Akkountni o`chirish"
@@ -99,6 +110,8 @@ extension SetLanguage{
         case .yes                         : return "Ha"
         case .firstNameTF                 : return "Ism"
         case .lastNameTF                  : return "Familiya"
+        case .optionalTF                  : return "ixtiyoriy"
+        case .editProfile                 : return "Profilni o`zgartirish"
             
             ///`           MapVC
         case .looking  : return "Qidirilmoqda..."
@@ -166,7 +179,7 @@ extension SetLanguage{
         }
     }
 }
-
+//1290 2796
 extension SetLanguage{
     class private func getRuValue(type: ClassType)-> String {
         switch type {
@@ -186,6 +199,13 @@ extension SetLanguage{
         case .news                : return "Новости"
         case .contacts            : return "Контакты"
         case .allCategory         : return "Все"
+        case .Tashkent            : return "г.Ташкент"
+        case .Chorvoq             : return "Чарвак"
+        case .Chimyon             : return "Чимган"
+        case .Qibray              : return "Кибрай"
+            
+            ///`        NewsVC
+        case .close: return "Закрывать"
             
             ///`        HomeDetailVC
         case .priceLbl                : return "Цена"
@@ -215,16 +235,18 @@ extension SetLanguage{
         case .numberOfPeople          : return "Количество людей"
         case .openLocation            : return "Открыть адрес"
         case .openLocationMessage     : return "Выберите приложение, чтобы открыть направление"
-        
+        case .emptyCommentMessage     : return ""
             
             ///`        LikedHousesVC
-        case .wishlists           : return "Список желаний"
+        case .wishlists           : return "Сохраненный"
         case .wishlistsForBackBtn : return "Список"
         case .delete              : return "Удалить"
+        case .deleteLikedsMessage : return "Вы хотите удалить все сохраненные элементы"
+        case .cancel              : return "Отменить"
             
             ///`        Tabbar
         case .menu:  return "Меню"
-        case .liked: return "Понравившиеся"
+        case .liked: return "Любимый"
             
             ///`           ProfileVC
         case .profileTitle                : return "Профиль"
@@ -239,6 +261,7 @@ extension SetLanguage{
         case .chooseLanguage              : return "Выберите язык"
         case .cancelTitle                 : return "Отменить"
         case .privcyPolicy                : return "Политика конфиденциальности"
+        case .companyLocation             : return "Местонахождение компании"
         case .otherApps                   : return "Другие приложения"
         case .logOut                      : return "Выйти"
         case .deleteAccaunt               : return "Удалить учетную запись"
@@ -247,6 +270,8 @@ extension SetLanguage{
         case .yes                         : return "Да"
         case .firstNameTF                 : return "Имя"
         case .lastNameTF                  : return "Фамилия"
+        case .optionalTF                  : return "необязательный"
+        case .editProfile                 : return "Изменить профиль"
             
             ///`           MapVC
         case .looking  : return "Поиск..."
@@ -334,7 +359,14 @@ extension SetLanguage{
         case .news                : return "News"
         case .contacts            : return "Contacts"
         case .allCategory         : return "All"
+        case .Tashkent            : return "Toshkent"
+        case .Chorvoq             : return "Chorvoq"
+        case .Chimyon             : return "Chimyon"
+        case .Qibray              : return "Qibray"
             
+            ///`        NewsVC
+        case .close: return "Close"
+
             ///`        HomeDetailVC
         case .priceLbl                : return "Price"
         case .depositLbl              : return "Deposit"
@@ -363,11 +395,15 @@ extension SetLanguage{
         case .numberOfPeople          : return "Number of people"
         case .openLocation            : return "Open location"
         case .openLocationMessage     : return "Choose an app to open direction"
+        case .emptyCommentMessage     : return "Owner did not write comment"
+
             
             ///`        LikedHousesVC
         case .wishlists           : return "Wishlists"
         case .wishlistsForBackBtn : return "List"
         case .delete              : return "Delete"
+        case .deleteLikedsMessage : return "Do you want to delete all saved items?"
+        case .cancel              : return "Cancel"
             
             ///`        Tabbar
         case .menu               :  return "Menu"
@@ -386,6 +422,7 @@ extension SetLanguage{
         case .chooseLanguage              : return "Choose language"
         case .cancelTitle                 : return "Cancel"
         case .privcyPolicy                : return "Privcy policy"
+        case .companyLocation             : return "Company location"
         case .otherApps                   : return "Other apps"
         case .logOut                      : return "Log out"
         case .deleteAccaunt               : return "Delete accaunt"
@@ -394,6 +431,8 @@ extension SetLanguage{
         case .yes                         : return "Yes"
         case .firstNameTF                 : return "First name"
         case .lastNameTF                  : return "Last name"
+        case .optionalTF                  : return "optional"
+        case .editProfile                 : return "Edit profile"
             
             ///`           MapVC
         case .looking  : return "Looking..."
@@ -475,15 +514,17 @@ enum ClassType {
     //Tabbar
     case menu, liked
     //HomeVC
-    case searchTfPlaceholder, map, news, contacts, allCategory, all
+    case searchTfPlaceholder, map, news, contacts, allCategory, all, Tashkent, Chorvoq, Chimyon, Qibray
+    //NewsVC
+    case close
     //HomeDetailVC
     case priceLbl, depositLbl, sumLbl, viewsLbl, hostedByLbl, peopleLbl, bedsLbl, bedroomsLbl, readMoreBtn, readLess,  locationLbl, chooseDayOfVacationLbl, fridayAndSaturday, otherDays, numberOfPeople, openLocation, openLocationMessage, contactAndComment
     //LikedVC
-    case wishlists, wishlistsForBackBtn, delete, houses
+    case wishlists, wishlistsForBackBtn, delete, houses, deleteLikedsMessage, cancel
     //ProfileVC
-    case profileTitle, profileForBackBtn, user, showProfile, emptyTfError, saveBtn, settings, about, appLanguage, chooseLanguage, cancelTitle, privcyPolicy, otherApps, logOut, deleteAccaunt, deleteAccauntWarningMessage, no, yes, firstNameTF, lastNameTF, openYandexMap
+    case profileTitle, profileForBackBtn, user, showProfile, emptyTfError, saveBtn, settings, about, appLanguage, chooseLanguage, cancelTitle, privcyPolicy, companyLocation, otherApps, logOut, deleteAccaunt, deleteAccauntWarningMessage, no, yes, firstNameTF, lastNameTF, openYandexMap, optionalTF, editProfile
     //HomeDetailVC
-    case rules, additionalFeatures, showAllElementsBtn, additionaFeaturesOffers, commentByOwner, contactInfo, phoneLbl, comingTime, leavingTime, callBtn
+    case rules, additionalFeatures, showAllElementsBtn, additionaFeaturesOffers, commentByOwner, contactInfo, phoneLbl, comingTime, leavingTime, callBtn, emptyCommentMessage
     //MapVC
     case looking, moreInfo
     //FilterVC

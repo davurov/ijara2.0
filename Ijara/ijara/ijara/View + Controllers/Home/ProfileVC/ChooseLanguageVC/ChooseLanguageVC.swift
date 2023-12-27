@@ -11,22 +11,25 @@ class ChooseLanguageVC: UIViewController {
     
     @IBOutlet weak var miniView: UIView!
     
-    @IBOutlet weak var dismissView: UIView!
-    
     @IBOutlet weak var chooseLangLbl: UILabel!
     
     @IBOutlet weak var uzView: UIView!
     
+    @IBOutlet weak var uzLbl: UILabel!
+    
     @IBOutlet weak var ruView: UIView!
     
+    @IBOutlet weak var ruLbl: UILabel!
+    
     @IBOutlet weak var engView: UIView!
+    
+    @IBOutlet weak var engLbl: UILabel!
     
     @IBOutlet weak var uzCheckmark: UIImageView!
     
     @IBOutlet weak var ruCheckmark: UIImageView!
     
     @IBOutlet weak var engCheckmark: UIImageView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +43,8 @@ class ChooseLanguageVC: UIViewController {
     @IBAction func uzPressed(_ sender: Any) {
         clearAllOptions()
         
-        uzView.backgroundColor = .systemGray2
+        uzView.backgroundColor = AppColors.mainColor
+        uzLbl.textColor = .white
         uzCheckmark.isHidden = false
         
         UserDefaults.standard.setValue("uz", forKey: Keys.LANG)
@@ -50,7 +54,8 @@ class ChooseLanguageVC: UIViewController {
     @IBAction func ruPressed(_ sender: Any) {
         clearAllOptions()
         
-        ruView.backgroundColor = .systemGray2
+        ruView.backgroundColor = AppColors.mainColor
+        ruLbl.textColor = .white
         ruCheckmark.isHidden = false
         
         UserDefaults.standard.setValue("ru", forKey: Keys.LANG)
@@ -60,22 +65,12 @@ class ChooseLanguageVC: UIViewController {
     @IBAction func engPressed(_ sender: Any) {
         clearAllOptions()
         
-        engView.backgroundColor = .systemGray2
+        engView.backgroundColor = AppColors.mainColor
+        engLbl.textColor = .white
         engCheckmark.isHidden = false
         
         UserDefaults.standard.setValue("en", forKey: Keys.LANG)
         reloadApp()
-    }
-    
-    @IBAction func dismissAreaPressed(_ sender: Any) {
-        dismiss(animated: true)
-    }
-    
-    
-    @objc func dismissView(_ sender: UISwipeGestureRecognizer) {
-        if sender.direction == .down {
-            dismiss(animated: true)
-        }
     }
     
     //MARK: functions
@@ -85,6 +80,10 @@ class ChooseLanguageVC: UIViewController {
         ruView.backgroundColor = .systemGray6
         engView.backgroundColor = .systemGray6
         
+        uzLbl.textColor = AppColors.mainColor
+        ruLbl.textColor = AppColors.mainColor
+        engLbl.textColor = AppColors.mainColor
+        
         uzCheckmark.isHidden = true
         ruCheckmark.isHidden = true
         engCheckmark.isHidden = true
@@ -93,13 +92,16 @@ class ChooseLanguageVC: UIViewController {
     private func findCurrentLanguage() {
         switch UserDefaults.standard.string(forKey: Keys.LANG) {
         case "uz":
-            uzView.backgroundColor = .systemGray2
+            uzView.backgroundColor = AppColors.mainColor//.systemGray2
+            uzLbl.textColor = .white
             uzCheckmark.isHidden = false
         case "ru":
-            ruView.backgroundColor = .systemGray2
+            ruView.backgroundColor = AppColors.mainColor
+            ruLbl.textColor = .white
             ruCheckmark.isHidden = false
         default:
-            engView.backgroundColor = .systemGray2
+            engView.backgroundColor = AppColors.mainColor
+            engLbl.textColor = .white
             engCheckmark.isHidden = false
         }
     }
@@ -115,20 +117,12 @@ class ChooseLanguageVC: UIViewController {
     
     private func setupViews(){
         //view
-        view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)
-        let dismissGesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissView(_:)))
-        dismissGesture.direction = .down
-        view.addGestureRecognizer(dismissGesture)
-        view.isUserInteractionEnabled = true
+        view.backgroundColor = .white
         
         //miniView
         miniView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         miniView.layer.cornerRadius = 50
         miniView.clipsToBounds = true
-        
-        //dismissView
-        dismissView.layer.cornerRadius = 3
-        dismissView.clipsToBounds = true
         
         //chooseLangLbl
         chooseLangLbl.text = SetLanguage.setLang(type: .chooseLanguage)

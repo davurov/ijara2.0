@@ -15,6 +15,7 @@ class EditProfileVC: UIViewController {
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var lastNameTF: UITextField!
+    @IBOutlet weak var emailTF: UITextField!
     
     var imgUrl = ""
     let userInfos = UserDefaults.standard
@@ -23,6 +24,7 @@ class EditProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = SetLanguage.setLang(type: .editProfile)
         setupViews()
         getProfileData()
     }
@@ -47,6 +49,7 @@ class EditProfileVC: UIViewController {
         profileIMG.image = UIImage().loadImage() ?? UIImage(systemName: "person.fill")
         nameTF.text = userInfos.string(forKey: Keys.userName)
         lastNameTF.text = userInfos.string(forKey: Keys.userLastName)
+        emailTF.text = userInfos.string(forKey: Keys.userEmail)
     }
     
     func setupViews(){
@@ -56,23 +59,25 @@ class EditProfileVC: UIViewController {
         profileView.layer.borderWidth = 1
         
         nameTF.placeholder = SetLanguage.setLang(type: .firstNameTF)
-        nameTF.layer.cornerRadius = 8
-        nameTF.layer.borderColor = AppColors.customGray6.cgColor
-        nameTF.layer.borderWidth = 1
-        nameTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 7))
-        nameTF.leftViewMode = .always
-        nameTF.contentVerticalAlignment = .center
+        changeTfAppearance(tf: &nameTF)
         
         lastNameTF.placeholder = SetLanguage.setLang(type: .lastNameTF)
-        lastNameTF.layer.cornerRadius = 8
-        lastNameTF.layer.borderColor = AppColors.customGray6.cgColor
-        lastNameTF.layer.borderWidth = 1
-        lastNameTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 7))
-        lastNameTF.leftViewMode = .always
-        lastNameTF.contentVerticalAlignment = .center
+        changeTfAppearance(tf: &lastNameTF)
+        
+        emailTF.placeholder = "Email (\(SetLanguage.setLang(type: .optionalTF)))"
+        changeTfAppearance(tf: &emailTF)
         
         saveBtn.setTitle(SetLanguage.setLang(type: .saveBtn), for: .normal)
         saveBtn.backgroundColor = AppColors.mainColor
+    }
+    
+    func changeTfAppearance(tf: inout UITextField){
+        tf.layer.cornerRadius = 8
+        tf.layer.borderColor = AppColors.customGray6.cgColor
+        tf.layer.borderWidth = 1
+        tf.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 7))
+        tf.leftViewMode = .always
+        tf.contentVerticalAlignment = .center
     }
     
 }
@@ -88,6 +93,10 @@ extension EditProfileVC {
             
             userInfos.set(newName, forKey: Keys.userName)
             userInfos.set(newLastName, forKey: Keys.userLastName)
+            userInfos.set(
+                emailTF.text ?? "",
+                forKey: Keys.userEmail
+            )
             
             navigationController?.popViewController(animated: true)
         } else {

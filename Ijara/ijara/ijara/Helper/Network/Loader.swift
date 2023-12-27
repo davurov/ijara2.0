@@ -21,7 +21,6 @@ public class Loader {
         customView.animation = LottieAnimation.named("KKfo9cQRyU")
         customView.animationSpeed = 2.0
         customView.loopMode = .loop
-        
         customView.translatesAutoresizingMaskIntoConstraints = false
         customView.centerXAnchor.constraint(equalTo: loadV.centerXAnchor).isActive = true
         customView.centerYAnchor.constraint(equalTo: loadV.centerYAnchor).isActive = true

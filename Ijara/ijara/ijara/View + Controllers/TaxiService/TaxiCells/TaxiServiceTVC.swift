@@ -84,12 +84,7 @@ extension TaxiServiceTVC: UICollectionViewDataSource {
         guard let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCVC.identifier, for: indexPath) as? PhotoCVC else { return UICollectionViewCell() }
 
         photoCell.loadImage(url: carImages[indexPath.item])
-        
-        photoCell.imageCont.layer.cornerRadius = 10
-        photoCell.imageCont.clipsToBounds = true
-        
-        photoCell.houseImage.layer.cornerRadius = 10
-        photoCell.houseImage.clipsToBounds = true
+        photoCell.isWithRadius = true
         
         return photoCell
     }

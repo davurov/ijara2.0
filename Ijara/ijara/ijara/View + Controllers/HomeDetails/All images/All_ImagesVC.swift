@@ -15,12 +15,18 @@ class All_ImagesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = SetLanguage.setLang(type: .images)
         setupCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.backgroundColor = .clear
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.backgroundColor = .white
     }
     
     func setImages(_ imgs: [String]){
@@ -44,6 +50,8 @@ extension All_ImagesVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCVC.identifier, for: indexPath) as? PhotoCVC else { return UICollectionViewCell() }
         
         cell.loadImage(url: images[indexPath.item])
+        cell.isWithRadius = true
+        cell.giveRadius(5)
         
         return cell
     }

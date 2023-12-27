@@ -13,6 +13,9 @@ class AboutAppTVC: UITableViewCell {
     
     @IBOutlet weak var descriptionLbl: UILabel!
     
+    static let identifire = String(describing: AboutAppTVC.self)
+    static func nib() -> UINib { UINib(nibName: identifire, bundle: nil) }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupViews()

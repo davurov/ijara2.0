@@ -52,9 +52,6 @@ class DriverInfoTVC: UITableViewCell {
         numbersToContactLbl.text = SetLanguage.setLang(type: .contactInfo)
         phone1Lbl.text = "\(SetLanguage.setLang(type: .phoneLbl)) 1: "
         phone2Lbl.text = "\(SetLanguage.setLang(type: .phoneLbl)) 2: "
-        commentLbl.addShadowCustom(offset: CGSize(width: 3, height: 3), color: AppColors.mainColor.cgColor, radius: 3, opacity: 0.25)
-        commentLbl.layer.cornerRadius = 15
-        commentLbl.clipsToBounds = true
     }
     
 }

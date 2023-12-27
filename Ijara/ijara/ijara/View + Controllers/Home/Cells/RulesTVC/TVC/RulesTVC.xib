@@ -2,7 +2,9 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oeH-Cs-9pi">
-                        <rect key="frame" x="5" y="41.333333333333329" width="333" height="101.66666666666667"/>
+                        <rect key="frame" x="15" y="41.333333333333336" width="313" height="101.66666666666666"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="e7n-M7-PRx">
                             <size key="itemSize" width="128" height="128"/>
@@ -28,16 +30,16 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rules" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4t6-3s-aaU">
-                        <rect key="frame" x="5.0000000000000036" y="4.9999999999999982" width="55.333333333333343" height="26.333333333333329"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
-                        <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <rect key="frame" x="5" y="4.9999999999999982" width="53.333333333333329" height="26.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                        <color key="textColor" name="AppMainColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="oeH-Cs-9pi" secondAttribute="trailing" constant="5" id="3bM-tu-gVK"/>
+                    <constraint firstAttribute="trailing" secondItem="oeH-Cs-9pi" secondAttribute="trailing" constant="15" id="3bM-tu-gVK"/>
                     <constraint firstItem="4t6-3s-aaU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="DhR-CP-gIt"/>
-                    <constraint firstItem="oeH-Cs-9pi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="TYa-Qy-9Gd"/>
+                    <constraint firstItem="oeH-Cs-9pi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="TYa-Qy-9Gd"/>
                     <constraint firstItem="oeH-Cs-9pi" firstAttribute="top" secondItem="4t6-3s-aaU" secondAttribute="bottom" constant="10" id="jt3-dX-VII"/>
                     <constraint firstItem="4t6-3s-aaU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="l1U-ZK-T5R"/>
                     <constraint firstAttribute="bottom" secondItem="oeH-Cs-9pi" secondAttribute="bottom" constant="3" id="sXr-JC-OeP"/>
@@ -52,6 +54,9 @@
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="AppMainColor">
+            <color red="0.015686274509803921" green="0.14117647058823529" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

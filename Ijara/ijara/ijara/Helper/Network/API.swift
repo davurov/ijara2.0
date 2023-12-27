@@ -21,7 +21,7 @@ class API {
         API.getProductsID { IDsOfHouses in
             
             guard let IDsOfHouses = IDsOfHouses else { completion(nil); return }
-            
+
             for id in IDsOfHouses {
                 allVillasID.append(id)
             }
@@ -31,18 +31,18 @@ class API {
         func receivedAllIds(){
             // 2. get all houses by id of each house
             
-//            let lang = UserDefaults.standard.string(forKey: Keys.LANG) ?? "uz"
             var allHouses: [CountryhouseData] = []
             
             var counter = 0
+            allVillasID = [368, 488, 576, 22, 582, 16, 367, 411, 510, 440, 278, 534, 409, 125, 495, 198, 568, 81, 119, 501, 286, 271, 1, 281, 284, 293, 538]
+
             for villaID in allVillasID {
                 API.getDetailDataByID(id: villaID) { villa in
                     counter += 1
                     
                     guard let house = villa else { completion(nil);  return }
-                    
                     allHouses.append(house)
-                    
+
                     if counter == allVillasID.count {
                         completion(allHouses)
                     }
@@ -92,7 +92,7 @@ class API {
                 }
             }
             
-            let house = CountryhouseData(
+            var house = CountryhouseData(
                 id: i["id"].intValue,
                 name: i["name"].stringValue,
                 owner: i["owner"].stringValue,
@@ -143,7 +143,8 @@ class API {
                 cardowner: i["cardowner"].stringValue,
                 status: i["status"].boolValue,
                 priceForWorkingDays: workPrice,
-                priceForWeekends: weekendPrice
+                priceForWeekends: weekendPrice,
+                imagesAsData: []
             )
             
             completion(house)

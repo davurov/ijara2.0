@@ -44,21 +44,23 @@ class MapVC: UIViewController {
         
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.backgroundColor = .clear
-        navigationItem.backButtonTitle = SetLanguage.setLang(type: .map)
+        navigationItem.backButtonTitle = ""
         
         likedHouses = UserDefaults.standard.array(forKey: Keys.likedHouses) as? [Int] ?? []
         
-        if !isConfigured {
+        if isConfigured {
             addChildHomeVC()
-            childForMapVC.view.isHidden = true
-            isConfigured = true
+            if allHouses.count != 0 {
+                idOfHouseForChild = allHouses.first!.id
+                updateChildMapView(allHouses.first!.id)
+            }
+            childForMapVC.view.isHidden = false
         }
         
-        checkIsLikedForMapChildVC(idOfHouseForChild)
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         navigationController?.navigationBar.backgroundColor = .white
+        childForMapVC.dismissChildVC()
     }
     
     //MARK: functions
@@ -86,10 +88,38 @@ class MapVC: UIViewController {
     
     func addChildHomeVC() {
         childForMapVC = MapChildVC(nibName: "MapChildVC", bundle: nil)
+        childForMapVC.view.isHidden = true
+        checkIsLikedForMapChildVC(idOfHouseForChild)
+        isConfigured = true
         childForMapVC.delegate = self
-        self.add(childForMapVC)
         
-        showHomeChildNotRemove(isDraggingMap: false)
+        if let sheet = childForMapVC.sheetPresentationController {
+            if #available(iOS 16.0, *) {
+                sheet.detents = [
+                    .custom(resolver: { context in
+                    450
+                }),
+                    .custom(resolver: { context in
+                    25
+                })
+                ]
+            } else {
+                // Fallback on earlier versions
+            }
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 24
+            sheet.dismissalTransitionWillBegin()
+            sheet.delegate = self
+            if #available(iOS 16.0, *) {
+                sheet.largestUndimmedDetentIdentifier = sheet.detents[1].identifier
+            } else {
+                // Fallback on earlier versions
+            }
+        }
+//        self.add(childForMapVC)
+        present(childForMapVC, animated: true)
+//        showHomeChildNotRemove(isDraggingMap: false)
     }
     
     /// `getCountryHouse` func get all houses from API
@@ -109,7 +139,7 @@ class MapVC: UIViewController {
             strongSelf.setupDragGestureRecognizer()
             mapView.delegate = self
             locationManager.delegate = self
-            
+            strongSelf.addChildHomeVC()
             if allHouses.count != 0 {
                 strongSelf.idOfHouseForChild = allHouses.first!.id
                 strongSelf.setPinsAndRegion()
@@ -211,11 +241,11 @@ class MapVC: UIViewController {
     //MARK: @objc functions
     
     @objc private func handleMapPan(_ sender: UIPanGestureRecognizer) {
-        showHomeChildNotRemove(isDraggingMap: true)
+//        showHomeChildNotRemove(isDraggingMap: true)
         // Dragging has finished
-        if sender.state == .ended {
-            showHomeChildNotRemove(isDraggingMap: false)
-        }
+//        if sender.state == .ended {
+//            showHomeChildNotRemove(isDraggingMap: false)
+//        }
     }
 
     //MARK: @IBAction functions
@@ -231,6 +261,17 @@ class MapVC: UIViewController {
         }
     }
     
+}
+//MARK: - UISheetPresentationControllerDelegate -
+extension MapVC: UISheetPresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        addChildHomeVC()
+        if allHouses.count != 0 {
+            idOfHouseForChild = allHouses.first!.id
+            updateChildMapView(allHouses.first!.id)
+        }
+        childForMapVC.view.isHidden = false
+    }
 }
 
 //MARK: MKMapViewDelegate

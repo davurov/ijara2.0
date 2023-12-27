@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,13 +28,13 @@
                     <standardMapConfiguration key="preferredConfiguration"/>
                 </mapView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="url-Fs-ycG">
-                    <rect key="frame" x="152.33333333333334" y="81" width="88.666666666666657" height="22"/>
-                    <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="19"/>
-                    <color key="textColor" red="0.1607843041" green="0.18823529780000001" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <rect key="frame" x="154" y="63" width="85" height="23"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                    <color key="textColor" name="AppMainColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dc-aQ-ZPb">
-                    <rect key="frame" x="15" y="128" width="50" height="50"/>
+                    <rect key="frame" x="15" y="111" width="50" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="378-xg-JQu"/>
@@ -57,7 +58,7 @@
                 <constraint firstItem="0xn-MD-2Cu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6R8-R4-ndV"/>
                 <constraint firstItem="0dc-aQ-ZPb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="7wM-Ih-9Be"/>
                 <constraint firstItem="0xn-MD-2Cu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="EpK-ub-5q7"/>
-                <constraint firstItem="url-Fs-ycG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="81" id="HaE-LA-zqj"/>
+                <constraint firstItem="url-Fs-ycG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="63" id="HaE-LA-zqj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0xn-MD-2Cu" secondAttribute="trailing" id="MsC-L7-mYy"/>
                 <constraint firstItem="0dc-aQ-ZPb" firstAttribute="top" secondItem="url-Fs-ycG" secondAttribute="bottom" constant="25" id="YQ5-Is-K0F"/>
                 <constraint firstItem="url-Fs-ycG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eG2-hw-hOL"/>
@@ -68,6 +69,9 @@
     </objects>
     <resources>
         <image name="destination" width="22" height="22"/>
+        <namedColor name="AppMainColor">
+            <color red="0.016000000759959221" green="0.14100000262260437" blue="0.18400000035762787" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

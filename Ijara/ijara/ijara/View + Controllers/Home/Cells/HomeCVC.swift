@@ -43,6 +43,7 @@ class HomeCVC: UICollectionViewCell {
     
     static let identifier: String = String(describing: HomeCVC.self)
     var images = [String]()
+    var imageDatas = [Data]()
     var price = (working: 0, weekend:0)
     var id = 0
     weak var cellDelegate: CellDelegate?
@@ -54,6 +55,7 @@ class HomeCVC: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
+        collectionView.reloadData()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,6 +69,9 @@ class HomeCVC: UICollectionViewCell {
         // This setup will only run once, even if the cell is reused
         if !isConfigured {
             setupViews()
+            DispatchQueue.main.asyncAfter(deadline: .now()+5) {
+                self.collectionView.reloadData()
+            }
             isConfigured = true
         }
     }
@@ -102,13 +107,15 @@ class HomeCVC: UICollectionViewCell {
         
         containerView.addSubview(nameLbl)
         nameLbl.translatesAutoresizingMaskIntoConstraints = false
-        nameLbl.font = UIFont(name: "American Typewriter Bold", size: 21)//.monospacedSystemFont(ofSize: 21, weight: .semibold)
+        nameLbl.font = .systemFont(ofSize: 21, weight: .semibold)
+        nameLbl.textColor = AppColors.mainColor
         nameLbl.numberOfLines = 2
         
         containerView.addSubview(priceLbl)
         priceLbl.translatesAutoresizingMaskIntoConstraints = false
         priceLbl.textAlignment = .right
-        priceLbl.font = UIFont(name: "Futura Medium", size: 17)
+        priceLbl.font = .systemFont(ofSize: 17, weight: .medium)
+        priceLbl.textColor = AppColors.mainColor
         priceLbl.numberOfLines = 0
         
         containerView.addSubview(locationImg)
@@ -117,7 +124,8 @@ class HomeCVC: UICollectionViewCell {
         
         containerView.addSubview(locationLbl)
         locationLbl.translatesAutoresizingMaskIntoConstraints = false
-        locationLbl.font = UIFont(name: "Futura Medium", size: 17)
+        locationLbl.font = .systemFont(ofSize: 17, weight: .regular)
+        locationLbl.textColor = AppColors.mainColor
         locationLbl.numberOfLines = 0
         
         s_vForGuestType.addArrangedSubview(familyImg)
@@ -207,7 +215,7 @@ class HomeCVC: UICollectionViewCell {
             locationLbl.topAnchor.constraint(equalTo: locationImg.topAnchor, constant: 0),
             
             s_vForGuestType.leftAnchor.constraint(equalTo: collectionView.leftAnchor, constant: 0),
-            s_vForGuestType.topAnchor.constraint(equalTo: locationImg.bottomAnchor, constant: 7),
+            s_vForGuestType.topAnchor.constraint(equalTo: locationImg.bottomAnchor, constant: 9),
             
             innirPool.heightAnchor.constraint(equalToConstant: 30),
             innirPool.widthAnchor.constraint(equalToConstant: 30),
@@ -223,17 +231,18 @@ class HomeCVC: UICollectionViewCell {
             alcoholImg.heightAnchor.constraint(equalToConstant: 40),
             alcoholImg.widthAnchor.constraint(equalToConstant: 40)
         ])
-
     }
     
     func updateCell(id: Int, name: String, price: (workingDay: Int, weekend: Int), location: String, images: [String]){
         self.id = id
         nameLbl.text = name
         nameLbl.numberOfLines = 0
-        priceLbl.text = "\(price.workingDay)/\(price.weekend) \(SetLanguage.setLang(type: .sumLbl))"
+        priceLbl.text = "\(price.workingDay) / \(price.weekend) \(SetLanguage.setLang(type: .sumLbl))"
         priceLbl.numberOfLines = 0
         locationLbl.text = location
         self.images = images
+        
+        collectionView.reloadData()
     }
     
     func setupPageController() {
@@ -326,8 +335,14 @@ extension HomeCVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         
         cell.imageCont.layer.cornerRadius = 10
         cell.loadImage(url: images[indexPath.row])
+        cell.isWithRadius = true
         
         return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let currentCell = collectionView.cellForItem(at: indexPath) as? PhotoCVC else { return }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

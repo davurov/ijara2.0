@@ -67,14 +67,14 @@ class CompanyLocationDetailVC: UIViewController {
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = locationCoordinate
-        annotation.title = "Company location"
+        annotation.title = SetLanguage.setLang(type: .companyLocation)
         
         companyLocationMap.addAnnotation(annotation)
         
         adressLbl.isHidden = isWithYandexMap ? false : true
         openYMButton.isHidden = isWithYandexMap ? false : true
         
-        mainStackBottomCons.constant = isWithYandexMap ? 15 : 0
+        mainStackBottomCons.constant = isWithYandexMap ? 15 : -15
     }
 
     

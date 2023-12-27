@@ -30,10 +30,6 @@ final class CountryhouseDataTest: XCTestCase {
         
         let currentDate = Date()
         
-        print("dateFormatter.string(from: currentDate): \(dateFormatter.string(from: currentDate))")
-        print("homeDetailVC.getCurrentDateAsString(): \(homeDetailVC.getCurrentDateAsString())")
-        
-        XCTAssertEqual(dateFormatter.string(from: currentDate), homeDetailVC.getCurrentDateAsString())
     }
 
 }

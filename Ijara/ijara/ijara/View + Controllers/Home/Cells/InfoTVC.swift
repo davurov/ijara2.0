@@ -23,8 +23,6 @@ class InfoTVC: UITableViewCell {
     }
     
     func updateCell(_ ownerName: String,  _ numberOfBeds: String, _ numberOfBedrooms: String, _ numberOfPeaople: String){
-        ownerLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
-        
         self.ownerLbl.text = ownerName
         self.numberOfBeds.text = numberOfBeds
         self.numberOfBedrooms.text = numberOfBedrooms

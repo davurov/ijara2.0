@@ -12,7 +12,6 @@ class RulesCVC: UICollectionViewCell {
     static let identifier: String = String(describing: RulesCVC.self)
     static func nib()->UINib{return UINib(nibName: identifier, bundle: nil)}
     
-    
     @IBOutlet weak var ruleImg: UIImageView!
     @IBOutlet weak var contView: UIView!
     @IBOutlet weak var ruleLbl: UILabel!

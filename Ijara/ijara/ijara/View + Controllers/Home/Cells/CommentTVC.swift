@@ -55,7 +55,7 @@ class CommentTVC: UITableViewCell {
     
     func updateCell(_ comment: String){
         if comment.isEmpty {
-            commentLbl.text = "Owner did not write any comment" // should translate
+            commentLbl.text = SetLanguage.setLang(type: .emptyCommentMessage)
         } else {
             commentLbl.text = comment
         }
@@ -68,7 +68,6 @@ class CommentTVC: UITableViewCell {
         contentView.backgroundColor = .clear
         borderView.backgroundColor = .clear
         ownerNameLbl.text = SetLanguage.setLang(type: .commentByOwner)
-//        ownerNameLbl.font = UIFont(name: "American Typewriter Condensed Bold", size: 25)
         
         borderView.addBorder(size: 0.5)
         readBtn.addBorder(size: 1)

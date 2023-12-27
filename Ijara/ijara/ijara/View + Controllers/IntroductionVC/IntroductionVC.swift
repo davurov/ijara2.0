@@ -47,6 +47,7 @@ class IntroductionVC: UIViewController {
             pageController.currentPage = currentPage
             nextBtn.setTitle(SetLanguage.setLang(type: .getstartLangBtn), for: .normal)
         default:
+            UserDefaults.standard.set(true, forKey: Keys.isUserEnteredFirstTime)
             let vc = CustomTabBar()
             vc.modalPresentationStyle = .overFullScreen
             present(vc, animated: true)

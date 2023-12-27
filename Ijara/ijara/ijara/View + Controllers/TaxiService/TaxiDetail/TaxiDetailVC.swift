@@ -13,6 +13,8 @@ class TaxiDetailVC: UIViewController {
     @IBOutlet weak var priceLbl: UILabel!
     @IBOutlet weak var callBtn: UIButton!
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var bottomViewHeight: NSLayoutConstraint!
+    
     
     var likeBtn: UIBarButtonItem!
     
@@ -22,6 +24,7 @@ class TaxiDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = taxi.title
+        navigationItem.backButtonTitle = ""
         setupTableView()
         setupViews()
     }
@@ -41,25 +44,6 @@ class TaxiDetailVC: UIViewController {
         let isLiked = LikedProducts.likedProducts.isLikedPerform(sevriceType: .taxi, id: taxi.id)
         
         likeBtn.image = isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
-
-//        if isLiked {
-//            likeBtn.image = UIImage(systemName: "heart.fill")
-//        } else {
-//            likeBtn.image = UIImage(systemName: "heart")
-//        }
-        
-//        if likedHouses.contains(id) {
-//            let index = likedHouses.firstIndex(of: id) ?? 0
-//            likedHouses.remove(at: index)
-//            likedDates.remove(at: index)
-//            likeBtn.image = UIImage(systemName: "heart")
-//        } else {
-//            likedHouses.append(id)
-//            likedDates.append(getCurrentDateAsString())
-//            likeBtn.image = UIImage(systemName: "heart.fill")
-//        }
-//        UserDefaults.standard.set(likedHouses, forKey: Keys.likedHouses)
-//        UserDefaults.standard.set(likedDates, forKey: Keys.likedDate)
     }
     
     @objc func shareBtnPressed(){
@@ -95,6 +79,8 @@ class TaxiDetailVC: UIViewController {
         callBtn.clipsToBounds = true
         callBtn.setTitleColor(.white, for: .normal)
         callBtn.setTitle(SetLanguage.setLang(type: .callBtn), for: .normal)
+        
+        bottomViewHeight.constant = UIScreen.main.bounds.height * 0.107
     }
     
     private func setupTabbarButtons(){
@@ -128,7 +114,6 @@ class TaxiDetailVC: UIViewController {
         self.present(activityViewController, animated: true, completion: nil)
     }
     
-    
 }
 
 //MARK: UITableViewDataSource
@@ -143,6 +128,7 @@ extension TaxiDetailVC: UITableViewDataSource {
             
             photoCell.updateCell(taxi.carImages)
             photoCell.allImagesDelegate = self
+            photoCell.isWithRadiusPhoto = false
             
             return photoCell
         } else if indexPath.row == 1 {

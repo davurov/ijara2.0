@@ -12,7 +12,6 @@ import RollingDigitsLabel
 class HomeDetailVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableviewSafeConst: NSLayoutConstraint!
     @IBOutlet weak var callCont: UIView!
     
     @IBOutlet weak var priceLbl: UILabel! {
@@ -48,6 +47,9 @@ class HomeDetailVC: UIViewController {
         }
     }
     
+    @IBOutlet weak var bottomViewHeight: NSLayoutConstraint!
+    
+    
     var likeBtn: UIBarButtonItem!
     
     //MARK: Variables
@@ -71,12 +73,18 @@ class HomeDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = countryHouseDM?.name
+        navigationItem.backButtonTitle = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.backgroundColor = .clear
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.backgroundColor = .white
     }
     
     //MARK: @IBAction functions
@@ -144,7 +152,7 @@ class HomeDetailVC: UIViewController {
     func setUpViews() {
         tableView.delegate = self
         tableView.dataSource = self
-        
+
         tableView.register(PhotoTVC.nib(), forCellReuseIdentifier: PhotoTVC.identifier)
         tableView.register(NameTVC.self, forCellReuseIdentifier: NameTVC.identifier)
         tableView.register(RulesTVC.nib(), forCellReuseIdentifier: RulesTVC.identifier)
@@ -157,6 +165,9 @@ class HomeDetailVC: UIViewController {
         callCont.addShadowByHand(offset: CGSize(width: 0, height: 0), color: AppColors.customBlack.cgColor, radius: 5, opacity: 0.3)
         callCont.layer.cornerRadius = 20
         callCont.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+        
+        let screenHeight = UIScreen.main.bounds.height
+        bottomViewHeight.constant = screenHeight * 0.11
     }
     
     func setPriceAnimation(weekwnds: Int, workingdays: Int) {
@@ -202,6 +213,7 @@ extension HomeDetailVC: UITableViewDataSource {
             
             photoCell.updateCell(countryHouseDM.images)
             photoCell.allImagesDelegate = self
+            photoCell.isWithRadiusPhoto = false
             
             return photoCell
         } else if indexPath.row == 1 {
@@ -225,8 +237,8 @@ extension HomeDetailVC: UITableViewDataSource {
             infoCell.updateCell(
                 "\(SetLanguage.setLang(type: .hostedByLbl)) " + countryHouseDM.owner,
                 "\(countryHouseDM.sleeping) \(SetLanguage.setLang(type: .bedsLbl))",
-                "\(countryHouseDM.bedroomsrooms) \(SetLanguage.setLang(type: .bedroomsLbl)) | ",
-                "\(countryHouseDM.numberofpeople) \(SetLanguage.setLang(type: .peopleLbl)) | "
+                "\(countryHouseDM.bedroomsrooms) \(SetLanguage.setLang(type: .bedroomsLbl))",
+                "\(countryHouseDM.numberofpeople) \(SetLanguage.setLang(type: .peopleLbl))"
             )
             
             return infoCell
@@ -279,12 +291,19 @@ extension HomeDetailVC: UITableViewDataSource {
 //MARK: - UITableViewDelegate
 extension HomeDetailVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let screenHeigh = UIScreen.main.bounds.height
+        
         if indexPath.row == 0 {
-            return 300
+            if screenHeigh > 750 {
+                return 300
+            } else {
+                return 300 - 30
+            }
+            //screenHeigh * 0.321
         } else if indexPath.row == 1 {
             return 110
         } else if indexPath.row == 2 {
-            return 80
+            return 115
         } else if indexPath.row == 3 {
             guard let villa = countryHouseDM  else { return 250 }
                 if villa.company.count == 3 || villa.company.count == 4 {
@@ -361,7 +380,6 @@ extension HomeDetailVC: AdditionalDelegate {
         vc.features = countryHouseDM?.entertainmentdata ?? []
 
         navigationController?.pushViewController(vc, animated: true)
-        print("qwerty")
     }
 }
 

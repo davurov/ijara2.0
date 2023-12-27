@@ -7,18 +7,32 @@
 
 import UIKit
 
-final class CustomTabBar: UITabBarController {
+final class CustomTabBar: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [createMenuViewController(),
+        viewControllers = [
+            createMenuViewController(),
                            createChildrensPartyViewController(),
                            createTaxiViewController(),
                            createContactViewController(),
-                           createProfileViewController()]
+                           createProfileViewController()
+                          ]
         
         tabBar.tintColor = AppColors.selectedTabbarCollor
         tabBar.backgroundColor = AppColors.tabBarBack
+        
+        delegate = self
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if item.tag == 3 || item.tag == 4 {
+            tabBar.backgroundColor = .systemGray6
+            tabBar.barTintColor = .systemGray6
+        } else {
+            tabBar.backgroundColor = .white
+            tabBar.barTintColor = .white
+        }
     }
 }
 
@@ -33,20 +47,20 @@ private extension CustomTabBar {
         return UINavigationController(rootViewController: vc)
     }
     
-    func createTaxiViewController() -> UIViewController {
-        let vc = TaxiServiceVC()
-        let image = SFSymbols.TabBarSymbols.taxiTabbarSymbol
-        vc.tabBarItem = UITabBarItem(title: SetLanguage.setLang(type: .taxi),
+    func createChildrensPartyViewController() -> UIViewController {
+        let vc = ChildrensServiceVC()
+        let image = SFSymbols.TabBarSymbols.childrensParty
+        vc.tabBarItem = UITabBarItem(title: SetLanguage.setLang(type: .childrens),
                                      image: image,
                                      tag: 1)
         
         return UINavigationController(rootViewController: vc)
     }
     
-    func createChildrensPartyViewController() -> UIViewController {
-        let vc = ChildrensServiceVC()
-        let image = SFSymbols.TabBarSymbols.childrensParty
-        vc.tabBarItem = UITabBarItem(title: SetLanguage.setLang(type: .childrens),
+    func createTaxiViewController() -> UIViewController {
+        let vc = TaxiServiceVC()
+        let image = SFSymbols.TabBarSymbols.taxiTabbarSymbol
+        vc.tabBarItem = UITabBarItem(title: SetLanguage.setLang(type: .taxi),
                                      image: image,
                                      tag: 2)
         
@@ -56,7 +70,7 @@ private extension CustomTabBar {
     func createContactViewController() -> UIViewController {
         let vc = LikedHousesVC()
         let image = SFSymbols.TabBarSymbols.heartSymbol
-        vc.tabBarItem = UITabBarItem(title: SetLanguage.setLang(type: .liked),
+        vc.tabBarItem = UITabBarItem(title: SetLanguage.setLang(type: .wishlists),
                                      image: image,
                                      tag: 3)
         
@@ -64,7 +78,7 @@ private extension CustomTabBar {
     }
     
     func createProfileViewController() -> UIViewController {
-        let vc = ProfileViewController()//ProfileVC()
+        let vc = ProfileViewController()
         let image = SFSymbols.TabBarSymbols.profileSymbol
         vc.tabBarItem = UITabBarItem(title: SetLanguage.setLang(type: .profileTitle),
                                      image: image,

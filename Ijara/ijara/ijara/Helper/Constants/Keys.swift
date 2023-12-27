@@ -15,6 +15,7 @@ struct Keys {
     static let likedParties = "likedPartiesIDs"
     static let userImage = "userImage"
     static let userName = "userName"
+    static let userEmail = "userEmail"
     static let userLastName = "iuserLastNamemage"
 }
 

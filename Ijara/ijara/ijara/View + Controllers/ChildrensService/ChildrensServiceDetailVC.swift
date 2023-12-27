@@ -17,8 +17,10 @@ class ChildrensServiceDetailVC: UIViewController {
     
     @IBOutlet weak var callBtn: UIButton!
     
+	@IBOutlet weak var heightOfBottomView: NSLayoutConstraint!
+	
 	var likeBtn: UIBarButtonItem!
-    
+
     //MARK: Variables
 	var party: ChildrensParty!
 	let screenWidth = UIScreen.main.bounds.width
@@ -27,8 +29,9 @@ class ChildrensServiceDetailVC: UIViewController {
 		super.viewDidLoad()
 		navigationController?.navigationBar.prefersLargeTitles = false
 		navigationController?.navigationBar.isHidden = false
+		navigationItem.backButtonTitle = ""
 		title = party.title
-		
+
 		setupTableView()
 		setupViews()
 		setupTabbarButtons()
@@ -62,7 +65,10 @@ class ChildrensServiceDetailVC: UIViewController {
 		tableView.dataSource = self
 		tableView.delegate = self
 		tableView.register(PartyImagesTVC.nib(), forCellReuseIdentifier: PartyImagesTVC.identifier)
-		tableView.register(ChildrensAdditionalInfoTVC.nib(), forCellReuseIdentifier: ChildrensAdditionalInfoTVC.identifier)
+		tableView.register(
+			ChildrensAdditionalInfoTVC.nib(),
+			forCellReuseIdentifier: ChildrensAdditionalInfoTVC.identifier
+		)
 		tableView.register(DriverInfoTVC.nib(), forCellReuseIdentifier: DriverInfoTVC.identifier)
 	}
 	
@@ -78,8 +84,11 @@ class ChildrensServiceDetailVC: UIViewController {
 		callBtn.backgroundColor = AppColors.mainColor
 		callBtn.setTitleColor(.white, for: .normal)
 		callBtn.setTitle(SetLanguage.setLang(type: .callBtn), for: .normal)
+		callBtn.titleLabel?.font = .systemFont(ofSize: 19, weight: .semibold)
 		callBtn.layer.cornerRadius = 10
 		callBtn.clipsToBounds = true
+		
+		heightOfBottomView.constant = UIScreen.main.bounds.height * 0.107
 	}
 	
 	private func setupTabbarButtons(){
@@ -113,7 +122,6 @@ class ChildrensServiceDetailVC: UIViewController {
 		activityViewController.popoverPresentationController?.sourceView = self.view
 		self.present(activityViewController, animated: true, completion: nil)
 	}
-	
 	
 }
 

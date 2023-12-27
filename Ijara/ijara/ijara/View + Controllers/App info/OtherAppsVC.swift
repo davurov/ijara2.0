@@ -21,7 +21,7 @@ class OtherAppsVC: UIViewController, WKNavigationDelegate {
     
     private func setupViews(){
         Loader.start()
-        
+        title = SetLanguage.setLang(type: .otherApps)
         navigationController?.navigationBar.tintColor = AppColors.mainColor
         
         guard let url = URL(string: "https://apps.apple.com/uz/developer/uchqun-tulavov/id1603826963") else { return }

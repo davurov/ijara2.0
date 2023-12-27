@@ -68,6 +68,10 @@ class MapChildVC: UIViewController {
     
     //MARK: function
     
+    func dismissChildVC(){
+        dismiss(animated: true)
+    }
+    
     func setViews() {
         moreInfoBtn.setTitle(SetLanguage.setLang(type: .moreInfo), for: .normal)
         moreInfoBtn.titleLabel?.numberOfLines = 0

@@ -64,12 +64,14 @@ class ContactVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       
+        navigationController?.navigationBar.tintColor = AppColors.mainColor
+        
+        navigationController?.navigationBar.backgroundColor = .systemGray6
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        navigationController?.navigationBar.backgroundColor = .white
-//    }
+    override func viewDidDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.backgroundColor = .clear
+    }
     
     @IBAction func sendMessagePressed(_ sender: UIButton) {
         if let indexPaths = tableView.indexPathsForVisibleRows {

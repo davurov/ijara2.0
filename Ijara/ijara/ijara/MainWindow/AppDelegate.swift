@@ -21,9 +21,8 @@ var window: UIWindow?
         window = UIWindow()
         /// If user firs time entered to app , `isFirstTime` will equal to false. Because  default value of `isFirstTime` is false and befor get values, we did not set any value yet.
         let isFirstTime = UserDefaults.standard.bool(forKey: Keys.isUserEnteredFirstTime)
-
+        
         if !isFirstTime {
-            UserDefaults.standard.set(true, forKey: Keys.isUserEnteredFirstTime)
             let vc = SingInLangVC(nibName: "SingInLangVC", bundle: nil)
             let nav = UINavigationController(rootViewController: vc)
             window?.rootViewController = nav
@@ -31,7 +30,7 @@ var window: UIWindow?
             let vc = CustomTabBar()
             window?.rootViewController = vc
         }
-//        window?.rootViewController = IntroductionVC()//Categories()
+
         window?.makeKeyAndVisible()
         return true
     }

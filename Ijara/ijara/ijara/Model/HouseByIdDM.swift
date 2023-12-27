@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - Countryhousedata
 struct CountryhouseData: Codable {
@@ -38,6 +39,7 @@ struct CountryhouseData: Codable {
     let status: Bool
     var priceForWorkingDays: Int
     var priceForWeekends: Int
+    var imagesAsData: [Data]
 }
 
 extension CountryhouseData {

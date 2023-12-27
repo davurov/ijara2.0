@@ -75,7 +75,7 @@ class AdditionalTVC: UITableViewCell {
         showBtn.setTitle(SetLanguage.setLang(type: .showAllElementsBtn), for: .normal)
         additionalFeaturesLbl.text = SetLanguage.setLang(type: .additionalFeatures)
         
-        ownerInfoView.layer.borderColor = UIColor.lightGray.cgColor//AppColors.mainColor.cgColor
+        ownerInfoView.layer.borderColor = UIColor.lightGray.cgColor
         ownerInfoView.layer.borderWidth = 0.5
         ownerInfoView.layer.cornerRadius = 15
         ownerInfoView.clipsToBounds = true

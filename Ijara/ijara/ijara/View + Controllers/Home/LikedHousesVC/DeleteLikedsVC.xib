@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeleteLikedsVC" customModule="ijara" customModuleProvider="target">
+            <connections>
+                <outlet property="backView" destination="VMd-MM-nSQ" id="qls-2h-OGp"/>
+                <outlet property="cancelButton" destination="YDv-qq-23d" id="qRi-U6-Wi3"/>
+                <outlet property="messageLbl" destination="0Zp-Y6-YM3" id="hYB-eh-BIB"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="yesButton" destination="85V-By-U9G" id="tpG-Zf-sfg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VMd-MM-nSQ">
+                    <rect key="frame" x="46.666666666666657" y="326" width="300" height="200"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="ebp-j0-0ey">
+                            <rect key="frame" x="5" y="5" width="290" height="190"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siz barch saqlanganlarni o`chirishni istaysizmi?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zp-Y6-YM3">
+                                    <rect key="frame" x="0.0" y="0.0" width="290" height="70"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" name="AppMainColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LcE-S7-zwe">
+                                    <rect key="frame" x="0.0" y="95" width="290" height="95"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85V-By-U9G">
+                                            <rect key="frame" x="20" y="0.0" width="250" height="45"/>
+                                            <color key="backgroundColor" name="AppMainColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="250" id="9xa-f1-wUU"/>
+                                                <constraint firstAttribute="height" constant="45" id="kTj-1k-tvq"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Ha"/>
+                                            <connections>
+                                                <action selector="yesBtnPressed:" destination="-1" eventType="touchUpInside" id="zuI-PP-Y0k"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDv-qq-23d">
+                                            <rect key="frame" x="104" y="50" width="82" height="45"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                            <color key="tintColor" name="AppMainColor"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Bekor qilish"/>
+                                            <connections>
+                                                <action selector="cancelPressed:" destination="-1" eventType="touchUpInside" id="ulp-KO-Htz"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                    <constraints>
+                        <constraint firstItem="ebp-j0-0ey" firstAttribute="top" secondItem="VMd-MM-nSQ" secondAttribute="top" constant="5" id="6Nc-L3-1cZ"/>
+                        <constraint firstAttribute="height" constant="200" id="7ap-Gg-qWe"/>
+                        <constraint firstItem="ebp-j0-0ey" firstAttribute="leading" secondItem="VMd-MM-nSQ" secondAttribute="leading" constant="5" id="J6e-bV-piA"/>
+                        <constraint firstAttribute="trailing" secondItem="ebp-j0-0ey" secondAttribute="trailing" constant="5" id="UIR-Us-0VJ"/>
+                        <constraint firstAttribute="width" constant="300" id="dZb-Cl-soT"/>
+                        <constraint firstAttribute="bottom" secondItem="ebp-j0-0ey" secondAttribute="bottom" constant="5" id="wag-hl-t53"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="VMd-MM-nSQ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="E07-fe-0K2"/>
+                <constraint firstItem="VMd-MM-nSQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IXp-6f-6yn"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="AppMainColor">
+            <color red="0.016000000759959221" green="0.14100000262260437" blue="0.18400000035762787" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

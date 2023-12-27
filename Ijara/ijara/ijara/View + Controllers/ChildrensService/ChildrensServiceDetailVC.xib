@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,6 +14,7 @@
             <connections>
                 <outlet property="bottomView" destination="mpy-iT-fmY" id="U7c-Ef-4Mi"/>
                 <outlet property="callBtn" destination="rKJ-BI-LSf" id="g4n-8q-ba8"/>
+                <outlet property="heightOfBottomView" destination="jUz-n8-JPK" id="T42-DS-LRB"/>
                 <outlet property="priceLbl" destination="PmR-2V-zHX" id="m1j-69-vgl"/>
                 <outlet property="tableView" destination="bYQ-hY-ttY" id="Sl5-EG-BNH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,31 +25,33 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bYQ-hY-ttY">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bYQ-hY-ttY">
                     <rect key="frame" x="5" y="84" width="383" height="663"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mpy-iT-fmY">
                     <rect key="frame" x="0.0" y="752" width="393" height="100"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLo-VY-XBU">
-                            <rect key="frame" x="25" y="22" width="343" height="45"/>
+                            <rect key="frame" x="25" y="27.666666666666629" width="343" height="45"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmR-2V-zHX">
                                     <rect key="frame" x="0.0" y="0.0" width="218" height="45"/>
-                                    <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="21"/>
-                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                    <color key="textColor" name="AppMainColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKJ-BI-LSf">
                                     <rect key="frame" x="218" y="0.0" width="125" height="45"/>
+                                    <color key="backgroundColor" name="AppMainColor"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="125" id="JQI-Ud-B5m"/>
                                         <constraint firstAttribute="height" constant="45" id="eME-Yb-ypk"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                    <state key="normal" title="Button"/>
+                                    <state key="normal" title="Button">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
                                     <connections>
                                         <action selector="callBtnPressed:" destination="-1" eventType="touchUpInside" id="kZA-6R-B7K"/>
                                     </connections>
@@ -57,7 +61,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="HLo-VY-XBU" secondAttribute="bottom" constant="33" id="3rm-Tw-pWV"/>
+                        <constraint firstItem="HLo-VY-XBU" firstAttribute="centerY" secondItem="mpy-iT-fmY" secondAttribute="centerY" id="1dC-yf-eLP"/>
                         <constraint firstAttribute="trailing" secondItem="HLo-VY-XBU" secondAttribute="trailing" constant="25" id="Mi6-5u-veZ"/>
                         <constraint firstItem="HLo-VY-XBU" firstAttribute="leading" secondItem="mpy-iT-fmY" secondAttribute="leading" constant="25" id="hMv-TK-XEt"/>
                         <constraint firstAttribute="height" constant="100" id="jUz-n8-JPK"/>
@@ -79,6 +83,9 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="AppMainColor">
+            <color red="0.015686274509803921" green="0.14117647058823529" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

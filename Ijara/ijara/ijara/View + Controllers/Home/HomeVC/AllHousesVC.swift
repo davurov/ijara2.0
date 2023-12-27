@@ -15,7 +15,8 @@ class AllHousesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Dachala" // tranlate
+        title = SetLanguage.setLang(type: .houses)
+        navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.isHidden = false
         setupColView()
     }
@@ -54,7 +55,13 @@ extension AllHousesVC: UICollectionViewDataSource {
 
 extension AllHousesVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 180, height: 290)
+        let screenSize = UIScreen.main.bounds.size
+        if houses[indexPath.item].name.count > 13 {
+            return CGSize(width: screenSize.width * 0.441, height: 275)
+        } else {
+            return CGSize(width: screenSize.width * 0.441, height: 255)
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

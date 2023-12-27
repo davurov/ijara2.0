@@ -17,7 +17,6 @@ class TaxiCarInfoTVC: UITableViewCell {
     
     @IBOutlet weak var minimumConditionsLbl: UILabel!
     
-    
     static let identifier = String(describing: TaxiCarInfoTVC.self)
     static func nib() -> UINib { return UINib(nibName: identifier, bundle: nil) }
     

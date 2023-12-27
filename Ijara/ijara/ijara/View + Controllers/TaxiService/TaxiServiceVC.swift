@@ -31,28 +31,12 @@ class TaxiServiceVC: UIViewController {
         super.viewDidLoad()
         Loader.start()
         
-        navigationItem.backButtonTitle = SetLanguage.setLang(type: .taxi)
+        navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = AppColors.mainColor
         navigationController?.navigationBar.prefersLargeTitles = true
         title = SetLanguage.setLang(type: .taxi)
         
         getAllTaxiServices()
-//        var timer: Timer?
-//        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true, block: { [self] _ in
-//            sortTaxiServices(services: getTaxiServices())
-//
-//            if sortingTaxis.count == 8 {
-//                timer?.invalidate()
-//                timer = nil
-//
-//                taxiServices = sortingTaxis
-//                setupTableView()
-//                setMaxAndMinTaxis()
-//                tableView.reloadData()
-//                Loader.stop()
-//            }
-//        })
-//        timer?.fire()
         
         setupViews()
     }
@@ -68,7 +52,7 @@ class TaxiServiceVC: UIViewController {
         
         recommendedBtn.backgroundColor = AppColors.mainColor
         recommendedBtn.setTitleColor(.white, for: .normal)
-        recommendedBtn.setTitle(" \(SetLanguage.setLang(type: .recommendedCars)) ", for: .normal)
+        recommendedBtn.setTitle("  \(SetLanguage.setLang(type: .recommendedCars))  ", for: .normal)
         
         tableView.reloadData()
     }
@@ -80,7 +64,7 @@ class TaxiServiceVC: UIViewController {
         
         cheaperBtn.backgroundColor = AppColors.mainColor
         cheaperBtn.setTitleColor(.white, for: .normal)
-        cheaperBtn.setTitle(" \(SetLanguage.setLang(type: .cheaperCars)) ", for: .normal)
+        cheaperBtn.setTitle("  \(SetLanguage.setLang(type: .cheaperCars))  ", for: .normal)
         
         tableView.reloadData()
     }
@@ -92,7 +76,7 @@ class TaxiServiceVC: UIViewController {
         
         expensiveBtn.backgroundColor = AppColors.mainColor
         expensiveBtn.setTitleColor(.white, for: .normal)
-        expensiveBtn.setTitle(" \(SetLanguage.setLang(type: .expensiveCars)) ", for: .normal)
+        expensiveBtn.setTitle("  \(SetLanguage.setLang(type: .expensiveCars))  ", for: .normal)
         
         tableView.reloadData()
     }
@@ -131,19 +115,18 @@ class TaxiServiceVC: UIViewController {
         return nil
     }
     
-    
     private func clearButtons(){
         recommendedBtn.backgroundColor = .white
         recommendedBtn.setTitleColor(AppColors.customBlackText, for: .normal)
-        recommendedBtn.setTitle(" \(SetLanguage.setLang(type: .recommendedCars)) ", for: .normal)
+        recommendedBtn.setTitle("  \(SetLanguage.setLang(type: .recommendedCars))  ", for: .normal)
         
         cheaperBtn.backgroundColor = .white
         cheaperBtn.setTitleColor(AppColors.customBlackText, for: .normal)
-        cheaperBtn.setTitle(" \(SetLanguage.setLang(type: .cheaperCars)) ", for: .normal)
+        cheaperBtn.setTitle("  \(SetLanguage.setLang(type: .cheaperCars))  ", for: .normal)
         
         expensiveBtn.backgroundColor = .white
         expensiveBtn.setTitleColor(AppColors.customBlackText, for: .normal)
-        expensiveBtn.setTitle(" \(SetLanguage.setLang(type: .expensiveCars)) ", for: .normal)
+        expensiveBtn.setTitle("  \(SetLanguage.setLang(type: .expensiveCars))  ", for: .normal)
     }
     
     private func getAllTaxiServices() {
@@ -180,27 +163,27 @@ class TaxiServiceVC: UIViewController {
     private func setupViews(){
         recommendedBtn.backgroundColor = AppColors.mainColor
         recommendedBtn.setTitleColor(.white, for: .normal)
-        recommendedBtn.setTitle(" \(SetLanguage.setLang(type: .recommendedCars)) ", for: .normal)
+        recommendedBtn.setTitle("  \(SetLanguage.setLang(type: .recommendedCars))  ", for: .normal)
         recommendedBtn.titleLabel?.numberOfLines = 0
-        recommendedBtn.layer.borderWidth = 3
+        recommendedBtn.layer.borderWidth = 1.5
         recommendedBtn.layer.borderColor = AppColors.mainColor.cgColor
         recommendedBtn.layer.cornerRadius = 15
         recommendedBtn.clipsToBounds = true
         
         cheaperBtn.backgroundColor = .white
-        cheaperBtn.setTitleColor(AppColors.customBlackText, for: .normal)
-        cheaperBtn.setTitle(" \(SetLanguage.setLang(type: .cheaperCars)) ", for: .normal)
+        cheaperBtn.setTitleColor(AppColors.mainColor, for: .normal)
+        cheaperBtn.setTitle("  \(SetLanguage.setLang(type: .cheaperCars))  ", for: .normal)
         cheaperBtn.titleLabel?.numberOfLines = 0
-        cheaperBtn.layer.borderWidth = 3
+        cheaperBtn.layer.borderWidth = 1.5
         cheaperBtn.layer.borderColor = AppColors.mainColor.cgColor
         cheaperBtn.layer.cornerRadius = 15
         cheaperBtn.clipsToBounds = true
         
         expensiveBtn.backgroundColor = .white
-        expensiveBtn.setTitleColor(AppColors.customBlackText, for: .normal)
-        expensiveBtn.setTitle(" \(SetLanguage.setLang(type: .expensiveCars)) ", for: .normal)
+        expensiveBtn.setTitleColor(AppColors.mainColor, for: .normal)
+        expensiveBtn.setTitle("  \(SetLanguage.setLang(type: .expensiveCars))  ", for: .normal)
         expensiveBtn.titleLabel?.numberOfLines = 0
-        expensiveBtn.layer.borderWidth = 3
+        expensiveBtn.layer.borderWidth = 1.5
         expensiveBtn.layer.borderColor = AppColors.mainColor.cgColor
         expensiveBtn.layer.cornerRadius = 15
         expensiveBtn.clipsToBounds = true
@@ -215,7 +198,7 @@ extension TaxiServiceVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let taxiCell = tableView.dequeueReusableCell(withIdentifier: TaxiServiceTVC.identifire, for: indexPath) as! TaxiServiceTVC
         
         let currentTaxi = taxiServices[indexPath.row]
@@ -247,7 +230,7 @@ extension TaxiServiceVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-       return 400
+       return 350
     }
 }
 
