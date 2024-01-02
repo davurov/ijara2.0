@@ -36,6 +36,12 @@ class LikedHousesVC: UIViewController {
     
     var serviceRespondCounter = 0
     
+    let dispatchGroup = DispatchGroup()
+    let queue1 = DispatchQueue.global(qos: .userInitiated)
+    let queue2 = DispatchQueue.global(qos: .userInitiated)
+    let queue3 = DispatchQueue.global(qos: .userInitiated)
+    
+    
     //MARK: Life cycles
     
     override func viewDidLoad() {
@@ -47,8 +53,8 @@ class LikedHousesVC: UIViewController {
         wishlistsLbl.text = SetLanguage.setLang(type: .wishlists)
         title = SetLanguage.setLang(type: .wishlists)
         
-        getAllHouses()
         getAllTaxiServices()
+        getAllHouses()
         getAllParties()
         
         var timer: Timer?
@@ -96,7 +102,6 @@ class LikedHousesVC: UIViewController {
         vc.deleteDelegate = self
         present(vc, animated: false)
     }
-    
     
     @IBAction func segmentPressed(_ sender: Any) {
         if categoriesSegmen.selectedSegmentIndex == 0 {
@@ -202,7 +207,7 @@ class LikedHousesVC: UIViewController {
         API.getAllHouses { [weak self] houses in
             guard let self = self else { return }
             guard let houses = houses else { return }
-            
+
             serviceRespondCounter += 1
             
             allHouses = houses

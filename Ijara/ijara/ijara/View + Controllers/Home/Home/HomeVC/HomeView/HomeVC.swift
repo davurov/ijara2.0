@@ -15,11 +15,21 @@ enum ScrollState {
     case down
 }
 
+/// `FiltredDelegate` to get parametrs which user selected in `FiltrVC`
 protocol FiltredDelegate: AnyObject {
     func filtrData(minPrice: Int, maxPrice: Int, guestType: [Int], additionalFetures: [Int], isAllowedAlcohol: Bool, isVerified: Bool, numberOfPeople: Int?)
 }
 
-class HomeVC: UIViewController {
+/// `HomeViewProtocol` for set values which recived form `HomePresenter`
+protocol HomeViewProtocol: AnyObject {
+    func setHouses(houses: [CountryhouseData]?)
+    func setPirceInterval(min: Int, max: Int)
+    func searchedHouses(houses: [CountryhouseData])
+    func sortedHousesByProvince(sortedHouses: [CountryhouseData])
+    func setFiltredHouses(filtredHouses: [CountryhouseData])
+}
+
+class HomeVC: UIViewController, HomeViewProtocol {
     
     @IBOutlet weak var searchTF: UITextField!
     @IBOutlet weak var colView: UICollectionView!
@@ -35,34 +45,26 @@ class HomeVC: UIViewController {
     
     @IBOutlet weak var allBtn: UIButton!
     
-    @IBOutlet weak var mainSV: UIStackView!
-    
-    
     //MARK: Variables
+    private var homePresenter: HomePresenter {
+        return HomePresenter(view: self)
+    }
     
     let locationManager = CLLocationManager()
-    let categoryNames = [
-        SetLanguage.setLang(type: .allCategory),
-        SetLanguage.setLang(type: .Tashkent),
-        SetLanguage.setLang(type: .Chorvoq),
-        SetLanguage.setLang(type: .Chimyon),
-        SetLanguage.setLang(type: .Qibray)
-    ]
+    let categoryNames =  SetLanguage.setTranslatedCategories()
     var selectedRegion = SetLanguage.setLang(type: .allCategory)
     var filteredVillasID = [Int]()
     var isSelected = false
     var scrollFlag = false
+    
+    /// `allHouses` can be change according to filtring, sorting, searching
     var allHouses = [CountryhouseData]()
+    
+    /// `allVillas` will change only one time when got houses form server
     var allVillas = [CountryhouseData]()
     
-    // variables for filtring
-    var selectedMinimumPrice = 500000
-    var selectedMaximumPrice = 15000000
-    var selectedGuestType = [Int]()
-    var selectedAdditionalFeatures = [Int]()
-    var isUserSelectedAlcohol = false
-    var isVerified = false
-    var selectedNumberOfPeople: Int?
+    var filtrModel = FiltrHousesModel()
+    
     var priceInterval: (minHousePrice: Int, maxHousePrice: Int) = (500000, 15000000)
     
     var isConfigured = false
@@ -73,13 +75,14 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         navigationItem.backButtonTitle = ""
         locationManager.requestWhenInUseAuthorization()
+        setupSubviews()
+        setupColView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if !isConfigured {
-            mainSV.isHidden = true
             getData()
             isConfigured = true
         }
@@ -101,7 +104,7 @@ class HomeVC: UIViewController {
         vc.filtrDelegate = self
         
         if allHouses.count != 0 {
-            findPriceInterval()
+            homePresenter.findPriceInterval(from: allHouses)
         }
         
         vc.priceRange.minPrice = priceInterval.minHousePrice
@@ -164,6 +167,7 @@ class HomeVC: UIViewController {
         searchTF.backgroundColor = AppColors.customGray6
         searchTF.placeholder = SetLanguage.setLang(type: .searchTfPlaceholder)
         searchTF.delegate = self
+        searchTF.returnKeyType = .done
         
         colView.reloadData()
     }
@@ -196,7 +200,7 @@ class HomeVC: UIViewController {
         housesLbl.text = "  " + SetLanguage.setLang(type: .houses)
         
         allBtn.setTitleColor(AppColors.selectedTabbarCollor, for: .normal)
-        allBtn.setTitle("\(SetLanguage.setLang(type: .all))   ", for: .normal)
+        allBtn.setTitle("\(SetLanguage.setLang(type: .all))", for: .normal)
     }
     
     func setupColView() {
@@ -233,105 +237,59 @@ class HomeVC: UIViewController {
     
     func getData() {
         Loader.start()
-        API.getAllHouses { [weak self] allHouses in
-            guard let self = self else { return }
-            guard let allHouses = allHouses else { return }
-            
-            self.allHouses = allHouses
-            allVillas = allHouses
-            mainSV.isHidden = false
-            setupSubviews()
-            setupColView()
-            colView.reloadData()
-            Loader.stop()
-        }
+        homePresenter.getHouses()
     }
     
     func findPriceInterval() {
-        
-        priceInterval.minHousePrice = allHouses.first!.priceForWorkingDays
-        priceInterval.maxHousePrice = allHouses.first!.priceForWeekends
-        
-        for house in allHouses {
-            if house.priceForWorkingDays < priceInterval.minHousePrice {
-                priceInterval.minHousePrice = house.priceForWorkingDays
-            } else if house.priceForWeekends > priceInterval.maxHousePrice {
-                priceInterval.maxHousePrice = house.priceForWeekends
-            }
-        }
+        homePresenter.findPriceInterval(from: allHouses)
     }
     
     /// Search by tapped city category
     func searchByCategory(str: String) {
-        allHouses = []
         var city = str
         
         if city == "Toshkent" {
             city.append(" sh.")
         }
         
-        if !filteredVillasID.isEmpty {
-            ///``    filtred
-            if str != SetLanguage.setLang(type: .allCategory) {
-                for i in allVillas where i.province == city && filteredVillasID.contains(i.id){
-                    allHouses.append(i)
-                }
-            } else {
-                for i in allVillas where filteredVillasID.contains(i.id) {
-                    allHouses.append(i)
-                }
-            }
-        } else {
-            ///``  not filtred
-            if str != SetLanguage.setLang(type: .allCategory) {
-                for i in allVillas where i.province == city {
-                    allHouses.append(i)
-                }
-            } else {
-                allHouses = allVillas
-            }
-            
-        }
+        homePresenter.sortByProvince(with: allVillas, province: city)
+    }
+    
+}
+
+//MARK: - HomeViewDelegate
+
+extension HomeVC {
+    func setHouses(houses: [CountryhouseData]?) {
+        guard let houses  = houses else { return }
+        
+        allHouses = houses
+        allVillas = allHouses
+        colView.reloadData()
+        Loader.stop()
+    }
+    
+    func setPirceInterval(min: Int, max: Int) {
+        priceInterval.minHousePrice = min
+        priceInterval.maxHousePrice = max
+    }
+    
+    func searchedHouses(houses: [CountryhouseData]) {
+        allHouses = houses
         colView.reloadData()
     }
     
-    func isFiltered(_ house: CountryhouseData) -> Bool {
-        ///# check price range
-        if house.priceForWorkingDays < selectedMinimumPrice || house.priceForWeekends > selectedMaximumPrice {
-            return false
+    func sortedHousesByProvince(sortedHouses: [CountryhouseData]) {
+        allHouses = sortedHouses
+        colView.reloadData()
+    }
+    
+    func setFiltredHouses(filtredHouses: [CountryhouseData]) {
+        allHouses = filtredHouses
+        colView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            Loader.stop()
         }
-
-        ///# check guestType
-        if !selectedGuestType.isContainsSelectedParamentr(house.companiesId()) {
-            return false
-        }
-        
-        ///# check additionFetures
-        if !selectedAdditionalFeatures.isContainsSelectedParamentr(house.additionFeaturesId()) {
-            return false
-        }
-        
-        ///# check alcohol
-        if isUserSelectedAlcohol && !house.alcohol {
-            return false
-        }
-        
-        ///# check approved
-        if self.isVerified && !house.approved {
-            return false
-        }
-        
-        ///# check number of people
-        if let numPeople = selectedNumberOfPeople {
-            // user selected number of people
-            if numPeople == 9 && house.numberofpeople <= 8 {
-                return false
-            } else if numPeople != 9 && numPeople != house.numberofpeople {
-                return false
-            }
-        }
-        
-        return true
     }
     
 }
@@ -487,23 +445,10 @@ extension HomeVC: UITextFieldDelegate {
     }
 
     @objc func serchByName(textField: UITextField) {
-        allHouses = []
         if let name = searchTF.text {
-            if name.replacingOccurrences(of: " ", with: "") != "" {
-                for i in allVillas {
-                    let houseName = i.name.lowercased().replacingOccurrences(of: " ", with: "")
-                    let searchName = name.lowercased().replacingOccurrences(of: " ", with: "")
-                    if houseName.contains(searchName) {
-                        allHouses.append(i)
-                    }
-                }
-            } else {
-                allHouses = allVillas
-            }
+            homePresenter.searchByKey(from: allVillas, searchKey: name, province: selectedRegion)
         }
-        colView.reloadData()
     }
-    
 }
 
 //MARK: CellDelegate
@@ -522,34 +467,19 @@ extension HomeVC: CellDelegate {
 extension HomeVC: FiltredDelegate {
     
     func filtrData(minPrice: Int, maxPrice: Int, guestType: [Int], additionalFetures: [Int], isAllowedAlcohol: Bool, isVerified: Bool, numberOfPeople: Int?) {
+        
         Loader.start()
         
-        selectedMinimumPrice = minPrice
-        selectedMaximumPrice = maxPrice
-        selectedGuestType = guestType
-        selectedAdditionalFeatures = additionalFetures
-        isUserSelectedAlcohol = isAllowedAlcohol
-        self.isVerified = isVerified
-        selectedNumberOfPeople = numberOfPeople
-        filteredVillasID = []
+        filtrModel = FiltrHousesModel(
+            selectedMinimumPrice       : minPrice,
+            selectedMaximumPrice       : maxPrice,
+            selectedGuestType          : guestType,
+            selectedAdditionalFeatures : additionalFetures,
+            isUserSelectedAlcohol      : isAllowedAlcohol,
+            isVerified                 : isVerified,
+            selectedNumberOfPeople     : numberOfPeople
+        )
         
-        // get houses by id
-        allHouses = []
-        allVillas.forEach { house in
-            if isFiltered(house) {
-                allHouses.append(house)
-            }
-        }
-        
-        colView.reloadData()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-            Loader.stop()
-        }
+        homePresenter.filtrHouses(with: allHouses, filtrParametrs: filtrModel, province: selectedRegion)
     }
 }
-
-
-
-
-

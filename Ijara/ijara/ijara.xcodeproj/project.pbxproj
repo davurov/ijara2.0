@@ -72,7 +72,7 @@
 		3DBDDB142AAA2D6A0068E065 /* MapVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDDB122AAA2D6A0068E065 /* MapVC.xib */; };
 		3DBDDB1A2AAB689A0068E065 /* MapChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB182AAB689A0068E065 /* MapChildVC.swift */; };
 		3DBDDB1B2AAB689A0068E065 /* MapChildVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDDB192AAB689A0068E065 /* MapChildVC.xib */; };
-		3DBDDB1D2AAB97A90068E065 /* HouseByIdDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB1C2AAB97A90068E065 /* HouseByIdDM.swift */; };
+		3DBDDB1D2AAB97A90068E065 /* CountryhouseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB1C2AAB97A90068E065 /* CountryhouseData.swift */; };
 		3DBDDB222AAEDB600068E065 /* OpenMapDirections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB212AAEDB600068E065 /* OpenMapDirections.swift */; };
 		3DBDDB272AB0B8490068E065 /* LikedHousesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDDB252AB0B8490068E065 /* LikedHousesVC.swift */; };
 		3DBDDB282AB0B8490068E065 /* LikedHousesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDDB262AB0B8490068E065 /* LikedHousesVC.xib */; };
@@ -166,6 +166,8 @@
 		FFC35B6F2B393B0300FFADC4 /* NewsImagesTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC35B6D2B393B0300FFADC4 /* NewsImagesTVC.xib */; };
 		FFC35B722B39543F00FFADC4 /* DeleteLikedsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC35B702B39543F00FFADC4 /* DeleteLikedsVC.swift */; };
 		FFC35B732B39543F00FFADC4 /* DeleteLikedsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC35B712B39543F00FFADC4 /* DeleteLikedsVC.xib */; };
+		FFEC7BD42B43220900860897 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC7BD32B43220900860897 /* HomePresenter.swift */; };
+		FFEC7BD62B43D0D500860897 /* FiltrHousesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC7BD52B43D0D500860897 /* FiltrHousesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,7 +247,7 @@
 		3DBDDB122AAA2D6A0068E065 /* MapVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapVC.xib; sourceTree = "<group>"; };
 		3DBDDB182AAB689A0068E065 /* MapChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapChildVC.swift; sourceTree = "<group>"; };
 		3DBDDB192AAB689A0068E065 /* MapChildVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapChildVC.xib; sourceTree = "<group>"; };
-		3DBDDB1C2AAB97A90068E065 /* HouseByIdDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseByIdDM.swift; sourceTree = "<group>"; };
+		3DBDDB1C2AAB97A90068E065 /* CountryhouseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryhouseData.swift; sourceTree = "<group>"; };
 		3DBDDB212AAEDB600068E065 /* OpenMapDirections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMapDirections.swift; sourceTree = "<group>"; };
 		3DBDDB252AB0B8490068E065 /* LikedHousesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedHousesVC.swift; sourceTree = "<group>"; };
 		3DBDDB262AB0B8490068E065 /* LikedHousesVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikedHousesVC.xib; sourceTree = "<group>"; };
@@ -342,6 +344,8 @@
 		FFC35B6D2B393B0300FFADC4 /* NewsImagesTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsImagesTVC.xib; sourceTree = "<group>"; };
 		FFC35B702B39543F00FFADC4 /* DeleteLikedsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteLikedsVC.swift; sourceTree = "<group>"; };
 		FFC35B712B39543F00FFADC4 /* DeleteLikedsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteLikedsVC.xib; sourceTree = "<group>"; };
+		FFEC7BD32B43220900860897 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		FFEC7BD52B43D0D500860897 /* FiltrHousesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltrHousesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -488,16 +492,15 @@
 			path = ProfileVC;
 			sourceTree = "<group>";
 		};
-		3DBDDB102AAA2D340068E065 /* HomeVC */ = {
+		3DBDDB102AAA2D340068E065 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				DBD74E2A2AA26C70003096BB /* HomeVC.swift */,
-				DBD74E2B2AA26C70003096BB /* HomeVC.xib */,
+				FFEC7BCF2B43216E00860897 /* HomeVC */,
 				3D8A72FB2AC1B3760051DE9D /* FiltrVC */,
 				FF122D732B28158600905A89 /* AllHousesVC.swift */,
 				FF122D742B28158600905A89 /* AllHousesVC.xib */,
 			);
-			path = HomeVC;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		3DBDDB152AAA2D850068E065 /* MapVC */ = {
@@ -592,7 +595,6 @@
 			children = (
 				FF95DBC42B1A3D6D003FB43B /* TaxiDM.swift */,
 				3D0D05852A929DC200BDAFF3 /* HouseDM.swift */,
-				3DBDDB1C2AAB97A90068E065 /* HouseByIdDM.swift */,
 				FFC03EAE2AF9E5B500AAF45C /* ContactInfoDM.swift */,
 				FF043E252B1EDA340028EF55 /* ChildrensParty.swift */,
 			);
@@ -668,7 +670,7 @@
 			isa = PBXGroup;
 			children = (
 				DBD74E2E2AA26C79003096BB /* Cells */,
-				3DBDDB102AAA2D340068E065 /* HomeVC */,
+				3DBDDB102AAA2D340068E065 /* Home */,
 				3DBDDB152AAA2D850068E065 /* MapVC */,
 				3DBDDB292AB0B85F0068E065 /* LikedHousesVC */,
 				3D9502F02AB4562700F0D3A8 /* ProfileVC */,
@@ -910,6 +912,42 @@
 				FFC03EB52AF9E6DD00AAF45C /* ContactInfoTVC.xib */,
 			);
 			path = ContactTVCs;
+			sourceTree = "<group>";
+		};
+		FFEC7BCF2B43216E00860897 /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				FFEC7BD22B4321B300860897 /* HomeModel */,
+				FFEC7BD12B4321A400860897 /* HomeView */,
+				FFEC7BD02B43218300860897 /* HomePresenter */,
+			);
+			path = HomeVC;
+			sourceTree = "<group>";
+		};
+		FFEC7BD02B43218300860897 /* HomePresenter */ = {
+			isa = PBXGroup;
+			children = (
+				FFEC7BD32B43220900860897 /* HomePresenter.swift */,
+			);
+			path = HomePresenter;
+			sourceTree = "<group>";
+		};
+		FFEC7BD12B4321A400860897 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				DBD74E2A2AA26C70003096BB /* HomeVC.swift */,
+				DBD74E2B2AA26C70003096BB /* HomeVC.xib */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		FFEC7BD22B4321B300860897 /* HomeModel */ = {
+			isa = PBXGroup;
+			children = (
+				3DBDDB1C2AAB97A90068E065 /* CountryhouseData.swift */,
+				FFEC7BD52B43D0D500860897 /* FiltrHousesModel.swift */,
+			);
+			path = HomeModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1192,10 +1230,12 @@
 				3D8A73022AC205EA0051DE9D /* RuleFiltrTVC.swift in Sources */,
 				FF043E3F2B21E2960028EF55 /* LikedProducts.swift in Sources */,
 				FFC03EB32AF9E6B100AAF45C /* SendMessageTVC.swift in Sources */,
-				3DBDDB1D2AAB97A90068E065 /* HouseByIdDM.swift in Sources */,
+				3DBDDB1D2AAB97A90068E065 /* CountryhouseData.swift in Sources */,
 				FF043E4B2B261D990028EF55 /* OwnerInfoVC.swift in Sources */,
 				3D0D056A2A8A172C00BDAFF3 /* Keys.swift in Sources */,
+				FFEC7BD42B43220900860897 /* HomePresenter.swift in Sources */,
 				3DBDDB272AB0B8490068E065 /* LikedHousesVC.swift in Sources */,
+				FFEC7BD62B43D0D500860897 /* FiltrHousesModel.swift in Sources */,
 				3D8A72EE2AC0C2030051DE9D /* AdditionalVC.swift in Sources */,
 				3D0D056C2A8A1B4500BDAFF3 /* SetLanguage.swift in Sources */,
 				FF043E472B2477B30028EF55 /* ImageDetailVC.swift in Sources */,
@@ -1370,7 +1410,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = 7W6F238426;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ijara/Info.plist;
@@ -1387,7 +1427,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = myCompany.ijara;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1406,7 +1446,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = 7W6F238426;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ijara/Info.plist;
@@ -1423,7 +1463,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = myCompany.ijara;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -1,5 +1,5 @@
 //
-//  HouseById.swift
+//  CountryhouseData.swift
 //  ijara
 //
 //  Created by Abduraxmon on 08/09/23.

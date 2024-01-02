@@ -34,7 +34,7 @@ class API {
             var allHouses: [CountryhouseData] = []
             
             var counter = 0
-            allVillasID = [368, 488, 576, 22, 582, 16, 367, 411, 510, 440, 278, 534, 409, 125, 495, 198, 568, 81, 119, 501, 286, 271, 1, 281, 284, 293, 538]
+            allVillasID = [538, 409, 576, 22, 582, 16, 367, 411, 510, 440, 278, 534, 368, 125, 495, 198, 568, 81, 119, 501, 286, 271, 1, 281, 284, 293, 488]
 
             for villaID in allVillasID {
                 API.getDetailDataByID(id: villaID) { villa in
@@ -92,7 +92,7 @@ class API {
                 }
             }
             
-            var house = CountryhouseData(
+            let house = CountryhouseData(
                 id: i["id"].intValue,
                 name: i["name"].stringValue,
                 owner: i["owner"].stringValue,
@@ -310,6 +310,7 @@ extension API {
             if let counter = counter, allChildrenParties.count == counter {
                 timer?.invalidate()
                 timer = nil
+                print("mana all childreds ga bervordi")
                 completion (allChildrenParties)
             }
         })

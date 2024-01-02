@@ -140,7 +140,7 @@ class NewPriceRangeTVC: UITableViewCell {
     func setupViews(){
         contentView.addSubview(priceRangeLbl)
         priceRangeLbl.translatesAutoresizingMaskIntoConstraints = false
-        priceRangeLbl.font = .systemFont(ofSize: 21, weight: .semibold)//UIFont(name: "American Typewriter Bold", size: 25)
+        priceRangeLbl.font = .systemFont(ofSize: 21, weight: .semibold)
         priceRangeLbl.text = SetLanguage.setLang(type: .priceRange)
         priceRangeLbl.textColor = AppColors.mainColor//AppColors.customBlack
 

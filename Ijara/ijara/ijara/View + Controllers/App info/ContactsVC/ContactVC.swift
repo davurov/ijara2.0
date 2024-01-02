@@ -97,13 +97,12 @@ class ContactVC: UIViewController {
             mailComposeViewController.mailComposeDelegate = self
             mailComposeViewController.setToRecipients(["bronlauz@gmail.com"])
             mailComposeViewController.setToRecipients([ContactVC.messages[0]])
-
             mailComposeViewController.setSubject(ContactVC.messages[2])
             mailComposeViewController.setMessageBody(ContactVC.messages[3], isHTML: false)
             
             Alert.showAlertWithBool(forState: .success, message: SetLanguage.setLang(type: .successfullySend), isShow: true)
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-                self.dismiss(animated: true)
+                self.navigationController?.popViewController(animated: true)
             }
         } else {
             print("Device not configured to send mail.")

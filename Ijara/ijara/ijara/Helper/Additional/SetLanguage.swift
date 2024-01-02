@@ -53,7 +53,7 @@ extension SetLanguage{
         case .sumLbl                  : return "So`m"
         case .callBtn                 : return "Qo`ng`iroq"
         case .viewsLbl                : return "Ko'rildi"
-        case .hostedByLbl             : return "Mezbon"
+        case .hostedByLbl             : return "Egasi"
         case .peopleLbl               : return "odamlar"
         case .bedroomsLbl             : return "yotoq xonalar"
         case .bedsLbl                 : return "yotoqlar"
@@ -78,7 +78,7 @@ extension SetLanguage{
         case .emptyCommentMessage     : return "Izoh yozilmagan"
             
             ///`        LikedHousesVC
-        case .wishlists           : return "Istaklar ro'yxati"
+        case .wishlists           : return "Saqlanganlar"
         case .wishlistsForBackBtn : return "Ro`yxat"
         case .delete              : return "O'chirish"
         case .deleteLikedsMessage : return "Barcha saqlanganlarni o`chirishni istaysizmi?"
@@ -179,7 +179,7 @@ extension SetLanguage{
         }
     }
 }
-//1290 2796
+
 extension SetLanguage{
     class private func getRuValue(type: ClassType)-> String {
         switch type {
@@ -497,6 +497,18 @@ extension SetLanguage{
         case .openYandexMap         : return "Open Yadex Map"
         case .noInternetMessage     : return "Not conected to the internet"
         }
+    }
+}
+
+extension SetLanguage {
+    class func setTranslatedCategories() -> [String] {
+        [
+            SetLanguage.setLang(type: .allCategory),
+            SetLanguage.setLang(type: .Tashkent),
+            SetLanguage.setLang(type: .Chorvoq),
+            SetLanguage.setLang(type: .Chimyon),
+            SetLanguage.setLang(type: .Qibray)
+        ]
     }
 }
 

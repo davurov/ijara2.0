@@ -29,6 +29,9 @@ class OwnerInfoVC: UIViewController {
         tableView.delegate = self
         tableView.register(CommentTVC.nib(), forCellReuseIdentifier: CommentTVC.identifier)
         tableView.register(ContactTVC.nib(), forCellReuseIdentifier: ContactTVC.identifier)
+        
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
     }
     
 }
