@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 
-struct AppColors{
-    
+struct AppColors {
     static var customGray = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
     static var customBlack = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     static var customBlackText = #colorLiteral(red: 0.1411764706, green: 0.1803921569, blue: 0.2588235294, alpha: 1)

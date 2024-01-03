@@ -164,13 +164,8 @@
 		FFC35B732B39543F00FFADC4 /* DeleteLikedsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC35B712B39543F00FFADC4 /* DeleteLikedsVC.xib */; };
 		FFEC7BD42B43220900860897 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC7BD32B43220900860897 /* HomePresenter.swift */; };
 		FFEC7BD62B43D0D500860897 /* FiltrHousesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC7BD52B43D0D500860897 /* FiltrHousesModel.swift */; };
-		FFEC7BE02B4548B000860897 /* r7.png in Resources */ = {isa = PBXBuildFile; fileRef = FFEC7BD92B4548AE00860897 /* r7.png */; };
-		FFEC7BE12B4548B000860897 /* r6.png in Resources */ = {isa = PBXBuildFile; fileRef = FFEC7BDA2B4548AE00860897 /* r6.png */; };
-		FFEC7BE22B4548B000860897 /* r3.png in Resources */ = {isa = PBXBuildFile; fileRef = FFEC7BDB2B4548AF00860897 /* r3.png */; };
-		FFEC7BE32B4548B000860897 /* r4.png in Resources */ = {isa = PBXBuildFile; fileRef = FFEC7BDC2B4548AF00860897 /* r4.png */; };
-		FFEC7BE42B4548B000860897 /* r5.png in Resources */ = {isa = PBXBuildFile; fileRef = FFEC7BDD2B4548AF00860897 /* r5.png */; };
-		FFEC7BE52B4548B000860897 /* r1.png in Resources */ = {isa = PBXBuildFile; fileRef = FFEC7BDE2B4548AF00860897 /* r1.png */; };
-		FFEC7BE62B4548B000860897 /* r2.png in Resources */ = {isa = PBXBuildFile; fileRef = FFEC7BDF2B4548B000860897 /* r2.png */; };
+		FFEC7BE92B45AAC100860897 /* readmeImages-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FFEC7BE72B45AAC100860897 /* readmeImages-1.jpg */; };
+		FFEC7BEA2B45AAC100860897 /* readmeImages-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FFEC7BE82B45AAC100860897 /* readmeImages-2.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -345,13 +340,8 @@
 		FFC35B712B39543F00FFADC4 /* DeleteLikedsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteLikedsVC.xib; sourceTree = "<group>"; };
 		FFEC7BD32B43220900860897 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		FFEC7BD52B43D0D500860897 /* FiltrHousesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltrHousesModel.swift; sourceTree = "<group>"; };
-		FFEC7BD92B4548AE00860897 /* r7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r7.png; sourceTree = "<group>"; };
-		FFEC7BDA2B4548AE00860897 /* r6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r6.png; sourceTree = "<group>"; };
-		FFEC7BDB2B4548AF00860897 /* r3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r3.png; sourceTree = "<group>"; };
-		FFEC7BDC2B4548AF00860897 /* r4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r4.png; sourceTree = "<group>"; };
-		FFEC7BDD2B4548AF00860897 /* r5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r5.png; sourceTree = "<group>"; };
-		FFEC7BDE2B4548AF00860897 /* r1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r1.png; sourceTree = "<group>"; };
-		FFEC7BDF2B4548B000860897 /* r2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r2.png; sourceTree = "<group>"; };
+		FFEC7BE72B45AAC100860897 /* readmeImages-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "readmeImages-1.jpg"; sourceTree = "<group>"; };
+		FFEC7BE82B45AAC100860897 /* readmeImages-2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "readmeImages-2.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -940,13 +930,8 @@
 		FFEC7BD82B45489500860897 /* App Screenshots */ = {
 			isa = PBXGroup;
 			children = (
-				FFEC7BDE2B4548AF00860897 /* r1.png */,
-				FFEC7BDF2B4548B000860897 /* r2.png */,
-				FFEC7BDB2B4548AF00860897 /* r3.png */,
-				FFEC7BDC2B4548AF00860897 /* r4.png */,
-				FFEC7BDD2B4548AF00860897 /* r5.png */,
-				FFEC7BDA2B4548AE00860897 /* r6.png */,
-				FFEC7BD92B4548AE00860897 /* r7.png */,
+				FFEC7BE72B45AAC100860897 /* readmeImages-1.jpg */,
+				FFEC7BE82B45AAC100860897 /* readmeImages-2.jpg */,
 			);
 			path = "App Screenshots";
 			sourceTree = "<group>";
@@ -1040,15 +1025,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFEC7BE22B4548B000860897 /* r3.png in Resources */,
 				FFBF72BE2B125CB2000C48D2 /* NewsVC.xib in Resources */,
 				3D8A73152AC312A30051DE9D /* BedsTVC.xib in Resources */,
-				FFEC7BE32B4548B000860897 /* r4.png in Resources */,
 				3D7359672A6DE0C500BA329F /* LaunchScreen.storyboard in Resources */,
 				FF122D832B2B4DF500905A89 /* UserProfileCell.xib in Resources */,
 				3DBDDB282AB0B8490068E065 /* LikedHousesVC.xib in Resources */,
 				FF043E372B1F98D90028EF55 /* ChildrensAdditionalInfoTVC.xib in Resources */,
-				FFEC7BE02B4548B000860897 /* r7.png in Resources */,
 				FF043E482B2477B30028EF55 /* ImageDetailVC.xib in Resources */,
 				3D8A72BD2ABEBA420051DE9D /* MapTVC.xib in Resources */,
 				FFC35B6F2B393B0300FFADC4 /* NewsImagesTVC.xib in Resources */,
@@ -1075,13 +1057,11 @@
 				FFC03EB22AF9E6B100AAF45C /* SendMessageTVC.xib in Resources */,
 				3DBDDB2D2AB20CED0068E065 /* LikedCell.xib in Resources */,
 				FF95DBCA2B1A549F003FB43B /* TaxiServiceVC.xib in Resources */,
-				FFEC7BE12B4548B000860897 /* r6.png in Resources */,
 				FF95DBCE2B1AF0C2003FB43B /* TaxiCarInfoTVC.xib in Resources */,
 				3D8A72892AB8CDD90051DE9D /* AdditionalTVC.xib in Resources */,
 				FFC03EAB2AF9E55900AAF45C /* ContactVC.xib in Resources */,
-				FFEC7BE42B4548B000860897 /* r5.png in Resources */,
-				FFEC7BE52B4548B000860897 /* r1.png in Resources */,
 				3D70CB5B2AB8A6AC0016C0B4 /* RulesCVC.xib in Resources */,
+				FFEC7BEA2B45AAC100860897 /* readmeImages-2.jpg in Resources */,
 				DBD74E362AA26C81003096BB /* CategoryCVC.xib in Resources */,
 				FF043E3B2B1F9DF90028EF55 /* PartyImagesTVC.xib in Resources */,
 				3D0D05672A8A162B00BDAFF3 /* SingInLangVC.xib in Resources */,
@@ -1090,13 +1070,13 @@
 				3DBDDB382AB386AD0068E065 /* like.json in Resources */,
 				FF122D7A2B28180100905A89 /* AllHousesCVC.xib in Resources */,
 				FF122D7E2B2B4C8400905A89 /* ProfileViewController.xib in Resources */,
-				FFEC7BE62B4548B000860897 /* r2.png in Resources */,
 				3DBDDB1B2AAB689A0068E065 /* MapChildVC.xib in Resources */,
 				3DC9283F2AB46B9D00A56389 /* EditProfileVC.xib in Resources */,
 				FF043E432B2473290028EF55 /* All_ImagesVC.xib in Resources */,
 				FF122D762B28158600905A89 /* AllHousesVC.xib in Resources */,
 				3D70CB492AB5FF050016C0B4 /* HomeDetailVC.xib in Resources */,
 				3D8A729B2AB9DFA10051DE9D /* ContactTVC.xib in Resources */,
+				FFEC7BE92B45AAC100860897 /* readmeImages-1.jpg in Resources */,
 				FF0536922B3744390073B14B /* KKfo9cQRyU.json in Resources */,
 				3D70CB4E2AB7A49A0016C0B4 /* PhotoTVC.xib in Resources */,
 				3D0D057E2A8F357F00BDAFF3 /* KKfo9cQRyU_2.json in Resources */,
