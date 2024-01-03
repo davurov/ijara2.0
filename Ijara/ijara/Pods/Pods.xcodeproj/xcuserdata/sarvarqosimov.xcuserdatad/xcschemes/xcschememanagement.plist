@@ -7,7 +7,7 @@
 		<key>Alamofire.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>16</integer>
+			<integer>15</integer>
 		</dict>
 		<key>BoringSSL-GRPC.xcscheme_^#shared#^_</key>
 		<dict>
@@ -22,12 +22,12 @@
 		<key>Firebase.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>21</integer>
 		</dict>
 		<key>FirebaseAnalytics.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>23</integer>
 		</dict>
 		<key>FirebaseAppCheckInterop.xcscheme_^#shared#^_</key>
 		<dict>
@@ -37,17 +37,17 @@
 		<key>FirebaseAuth.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>16</integer>
 		</dict>
 		<key>FirebaseCore.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>17</integer>
 		</dict>
 		<key>FirebaseCoreInternal.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>20</integer>
 		</dict>
 		<key>FirebaseFirestore.xcscheme_^#shared#^_</key>
 		<dict>
@@ -57,7 +57,7 @@
 		<key>FirebaseInstallations.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>18</integer>
 		</dict>
 		<key>GTMSessionFetcher.xcscheme_^#shared#^_</key>
 		<dict>
@@ -67,17 +67,17 @@
 		<key>GoogleAppMeasurement.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>27</integer>
+			<integer>26</integer>
 		</dict>
 		<key>GoogleUtilities.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>22</integer>
 		</dict>
 		<key>IQKeyboardManager.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>14</integer>
 		</dict>
 		<key>Pods-ijara.xcscheme_^#shared#^_</key>
 		<dict>
@@ -87,7 +87,7 @@
 		<key>PromisesObjC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>20</integer>
+			<integer>19</integer>
 		</dict>
 		<key>SCPageControl.xcscheme_^#shared#^_</key>
 		<dict>
@@ -117,12 +117,12 @@
 		<key>gRPC-C++.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>26</integer>
+			<integer>25</integer>
 		</dict>
 		<key>gRPC-Core.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>13</integer>
 		</dict>
 		<key>leveldb-library.xcscheme_^#shared#^_</key>
 		<dict>
@@ -132,7 +132,7 @@
 		<key>lottie-ios.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>24</integer>
 		</dict>
 		<key>nanopb.xcscheme_^#shared#^_</key>
 		<dict>
