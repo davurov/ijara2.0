@@ -9,46 +9,28 @@ import UIKit
 import CoreLocation
 import RollingDigitsLabel
 
+protocol HomeDetailViewDelegate {
+    func setDetailData(detailData: CountryhouseData)
+    func setLikedButtonImage(imageName: String)
+}
+
 class HomeDetailVC: UIViewController {
+    //MARK: Elements
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var callCont: UIView!
     
-    @IBOutlet weak var priceLbl: UILabel! {
-        didSet {
-            priceLbl.text = "\(SetLanguage.setLang(type: .priceLbl)): "
-        }
-    }
-    @IBOutlet weak var depositLbl: UILabel! {
-        didSet {
-            depositLbl.text = "\(SetLanguage.setLang(type: .depositLbl)): "
-        }
-    }
+    @IBOutlet weak var priceLbl: UILabel! 
+
+    @IBOutlet weak var depositLbl: UILabel!
  
-    @IBOutlet weak var callBtn: UIButton! {
-        didSet {
-            callBtn.setTitle(SetLanguage.setLang(type: .callBtn), for: .normal)
-        }
-    }
+    @IBOutlet weak var callBtn: UIButton!
     
-    @IBOutlet private var rollingDigitsLabel: RollingDigitsLabel? {
-        didSet {
-            rollingDigitsLabel?.numberStyle = .decimal
-            rollingDigitsLabel?.set(font: .boldSystemFont(ofSize: 17))
-            rollingDigitsLabel?.set(color: AppColors.mainColor)
-        }
-    }
+    @IBOutlet private var rollingDigitsLabel: RollingDigitsLabel?
     
-    @IBOutlet weak var rollingDigits2: RollingDigitsLabel! {
-        didSet {
-            rollingDigits2.numberStyle = .decimal
-            rollingDigits2.set(font: .boldSystemFont(ofSize: 17))
-            rollingDigits2.set(color: AppColors.mainColor)
-        }
-    }
+    @IBOutlet weak var rollingDigits2: RollingDigitsLabel!
     
     @IBOutlet weak var bottomViewHeight: NSLayoutConstraint!
-    
     
     var likeBtn: UIBarButtonItem!
     
@@ -60,19 +42,14 @@ class HomeDetailVC: UIViewController {
     var totalSum = 0 // to count price
     var dayCount = 0 // number of days in range
     var lastPeopleNum = 0
-    
-    var price = (wrking: 0 ,weekday: 0) {
-        didSet {
-            setPriceAnimation(weekwnds: price.weekday, workingdays: price.wrking)
-        }
-    }
+    var price = (wrking: 0 ,weekday: 0)
     var id = 0
+    var homeDetailPresenter: HomeDetailPresenter?
     
     //MARK: Life cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = countryHouseDM?.name
         navigationItem.backButtonTitle = ""
     }
     
@@ -94,11 +71,9 @@ class HomeDetailVC: UIViewController {
     }
     
     @objc func likeBtnPressed(){
-        //change likedBtn
         guard let countryHouseDM = countryHouseDM else { return }
         
-        let isLiked = LikedProducts.likedProducts.isLikedPerform(sevriceType: .house, id: countryHouseDM.id)
-        likeBtn.image = isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        homeDetailPresenter?.likedButtonImage(id: id)
     }
     
     @objc func shareBtnPressed(){
@@ -110,19 +85,9 @@ class HomeDetailVC: UIViewController {
     func getData(id: Int) {
         self.id = id
         Loader.start()
-        API.getDetailDataByID(id: id) { [self] countryhouseData in
-            Loader.stop()
-            
-            guard let detailData = countryhouseData else {
-                print("can not get data")
-                return
-            }
-            
-            countryHouseDM = detailData
-            setUpViews()
-            setupTabbarButtons()
-            tableView.reloadData()
-        }
+
+        homeDetailPresenter = HomeDetailPresenter(view: self)
+        homeDetailPresenter?.getHomeDetailData(id: id)
     }
     
     private func setupTabbarButtons(){
@@ -149,7 +114,9 @@ class HomeDetailVC: UIViewController {
         navigationItem.rightBarButtonItems = [likeBtn, shareBtn]
     }
     
-    func setUpViews() {
+    private func setUpViews() {
+        title = countryHouseDM?.name
+        
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -168,9 +135,25 @@ class HomeDetailVC: UIViewController {
         
         let screenHeight = UIScreen.main.bounds.height
         bottomViewHeight.constant = screenHeight * 0.11
+        
+        priceLbl.text = "\(SetLanguage.setLang(type: .priceLbl)): "
+        
+        depositLbl.text = "\(SetLanguage.setLang(type: .depositLbl)): "
+        
+        callBtn.setTitle(SetLanguage.setLang(type: .callBtn), for: .normal)
+        
+        rollingDigitsLabel?.numberStyle = .decimal
+        rollingDigitsLabel?.set(font: .boldSystemFont(ofSize: 17))
+        rollingDigitsLabel?.set(color: AppColors.mainColor)
+        
+        rollingDigits2.numberStyle = .decimal
+        rollingDigits2.set(font: .boldSystemFont(ofSize: 17))
+        rollingDigits2.set(color: AppColors.mainColor)
+        
+        setPriceAnimation(weekwnds: price.weekday, workingdays: price.wrking)
     }
     
-    func setPriceAnimation(weekwnds: Int, workingdays: Int) {
+    private func setPriceAnimation(weekwnds: Int, workingdays: Int) {
         var newNumber = 0
         if Date().currentDay == countryHouseDM?.weekday[0] || Date().currentDay == countryHouseDM?.weekday[1] {
             newNumber = weekwnds
@@ -195,7 +178,21 @@ class HomeDetailVC: UIViewController {
         activityViewController.popoverPresentationController?.sourceView = self.view
         self.present(activityViewController, animated: true, completion: nil)
     }
+}
 
+//MARK: HomeDetailViewDelegate
+extension HomeDetailVC: HomeDetailViewDelegate {
+    func setDetailData(detailData: CountryhouseData) {
+        countryHouseDM = detailData
+        setUpViews()
+        setupTabbarButtons()
+        tableView.reloadData()
+        Loader.stop()
+    }
+    
+    func setLikedButtonImage(imageName: String) {
+        likeBtn.image = UIImage(systemName: imageName)
+    }
 }
 
 //MARK: - UITableViewDataSource
